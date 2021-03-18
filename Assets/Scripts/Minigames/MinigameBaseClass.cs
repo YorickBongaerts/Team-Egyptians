@@ -14,20 +14,40 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
-        private bool _winningClause;
-        private bool _isGameActive; // could be a static field in a game loop manager
-        private float _timeRemaining = 10;
+ //Updated upstream
+        
 
         private void FixedUpdate()
         {
             Timer();
         }
 
+        #region Privates
+        
+        private bool _isGameActive; // could be a static field in a game loop manager
+        private bool _hasGoodThingHappened;
+        private float _score;
+        private float _scoreIncrease;
+        private bool _winningClause;
+        private float _timeRemaining = 10;
 
+        #endregion Privates
+
+        #region Publics
+
+
+
+        #endregion Publics
+
+        #region Methods
         protected virtual void ScoreSystem()
         {
             //The score system will hold the scope of the player
             //The way in which the points are calculated varies between minigames and will be coded in their respective scripts
+            if (_hasGoodThingHappened)
+            {
+                _score += _scoreIncrease;
+            }
 
         }
 
@@ -99,5 +119,6 @@ namespace MexiColleccion.Minigames
         {
             //Loses the minigame when the timer reaches 0
         }
+        #endregion Methods
     }
 }
