@@ -14,8 +14,15 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
-
+        private bool _winningClause;
         private bool _isGameActive; // could be a static field in a game loop manager
+        private float _timeRemaining = 10;
+
+        private void FixedUpdate()
+        {
+            Timer();
+        }
+
 
         protected virtual void ScoreSystem()
         {
@@ -44,6 +51,7 @@ namespace MexiColleccion.Minigames
         {
             //Conditions on when to win the minigame
             //Return true if won
+            _winningClause = true;
         }
 
         private void CollectArtifact()
@@ -58,6 +66,7 @@ namespace MexiColleccion.Minigames
         {
             //Conditions on when to lose the minigame
             //Return true if lost  OR return a false for win condition
+            _winningClause = false;
         }
 
         private void EndMinigame()
@@ -65,6 +74,8 @@ namespace MexiColleccion.Minigames
             //End condition of the minigame
             //Based on win or lose minigame
             //Show right ui/scene
+
+            _isGameActive = false;
         }
 
         private void Timer()
@@ -72,6 +83,16 @@ namespace MexiColleccion.Minigames
             //Timer
             //Display in the UI
             //Get an int value, so that it can be specified per minigame
+
+
+
+            //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
+
+            if (_timeRemaining > 0)
+            {
+                _timeRemaining -= Time.deltaTime;
+            }
+            Debug.Log("Timer: " + (int)_timeRemaining);
         }
 
         private void LoseWhenTimeRunsOut()
