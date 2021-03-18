@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames
 {
@@ -17,9 +18,9 @@ namespace MexiColleccion.Minigames
  //Updated upstream
         
 
-        private void FixedUpdate()
+        private void Update()
         {
-            Timer();
+            Timer(1f);
         }
 
         #region Privates
@@ -29,7 +30,10 @@ namespace MexiColleccion.Minigames
         private float _score;
         private float _scoreIncrease;
         private bool _winningClause;
+        
         private float _timeRemaining = 10;
+        private bool _timeIsRunning = true;
+        public Text timeText;
 
         #endregion Privates
 
@@ -98,7 +102,7 @@ namespace MexiColleccion.Minigames
             _isGameActive = false;
         }
 
-        private void Timer()
+        private void Timer(float timeRemaining)
         {
             //Timer
             //Display in the UI
@@ -108,11 +112,23 @@ namespace MexiColleccion.Minigames
 
             //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
 
-            if (_timeRemaining > 0)
+            if(_timeIsRunning)
             {
-                _timeRemaining -= Time.deltaTime;
-            }
-            Debug.Log("Timer: " + (int)_timeRemaining);
+                if (timeRemaining > 0)
+                {
+                    timeRemaining -= Time.deltaTime;
+                    float minutes = Mathf.FloorToInt(timeRemaining / 60);
+                    float seconds = Mathf.FloorToInt(timeRemaining % 60);
+
+                    Debug.Log("Timer: " + minutes + " minutes and " + seconds + " seconds.");
+                }
+                else
+                {
+                    Debug.Log("Time has run out");
+                    timeRemaining = 0;
+                    _timeIsRunning = false;
+                }                
+            }            
         }
 
         private void LoseWhenTimeRunsOut()
