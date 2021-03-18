@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace MexiColleccion.Minigames
 {
@@ -27,12 +28,14 @@ namespace MexiColleccion.Minigames
         private bool _isGameActive; // could be a static field in a game loop manager
         private bool _hasGoodThingHappened;
         private float _score;
-        private float _scoreIncrease;
         private bool _winningClause;
         
         private float _timeRemaining = 10;
         private bool _timeIsRunning = true;
         public Text timeText;
+        private int _amountOfArtifacts;
+        private GameObject _collectibleArtifact;
+        private GameObject[] _collectedArtifacts;
 
         #endregion Privates
 
@@ -40,6 +43,9 @@ namespace MexiColleccion.Minigames
         public Hub.HubScript HubScript;
 
 
+
+        public float _scoreIncrease = 1;
+        public float Score { get; internal set; }
         #endregion Publics
 
         #region Methods
@@ -50,8 +56,9 @@ namespace MexiColleccion.Minigames
             if (_hasGoodThingHappened)
             {
                 _score += _scoreIncrease;
+                //Extra things
+                Score = _score;
             }
-
         }
 
         private void StartMinigame()
@@ -68,6 +75,16 @@ namespace MexiColleccion.Minigames
             //Prompt this artifact to be rewarded to the player (ui?)
 
             //Chooses a random artifact that has not yet been collected
+
+            //Removing of already collected pieces
+            foreach (var collectedArtifact in _collectedArtifacts)
+            {
+                string nameToRemove = collectedArtifact.name;
+                minigameSpecificArtifacts = minigameSpecificArtifacts.Where(name => name.name == nameToRemove).ToArray();
+            }
+
+            _amountOfArtifacts = minigameSpecificArtifacts.Length;
+            _collectibleArtifact = minigameSpecificArtifacts[Random.Range(0, _amountOfArtifacts)];
         }
 
         private void WinMinigame() //Vague conditions to be overwritten in the minigameSpecificClasses?
