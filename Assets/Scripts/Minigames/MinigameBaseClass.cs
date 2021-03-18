@@ -6,10 +6,10 @@ namespace MexiColleccion.Minigames
 {
     public class MinigameBaseClass : MonoBehaviour
     {
-        //Thibo and Vincent
+        //Tibo and Vincent
         //Make a base class for both minigames
 
-        //Thibo check for the artist minigame
+        //Tibo check for the artist minigame
         //Vincent check for the memory minigame
 
         //Delegates??
