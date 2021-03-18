@@ -15,7 +15,7 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
-        public Hub.HubScript HubScript;
+        
 
         private void Update()
         {
@@ -37,7 +37,7 @@ namespace MexiColleccion.Minigames
         #endregion Privates
 
         #region Publics
-
+        public Hub.HubScript HubScript;
 
 
         #endregion Publics
@@ -104,7 +104,6 @@ namespace MexiColleccion.Minigames
             /*
             if(play cut scene)
                 EndMinigame()
-            
             */
             
             //Conditions on when to lose the minigame
@@ -119,8 +118,7 @@ namespace MexiColleccion.Minigames
             //Show right ui/scene
             _isGameActive = false;
 
-            if(true)
-                HubScript.LoadHub();
+            HubScript.LoadHub();
 
         }
 
@@ -156,6 +154,9 @@ namespace MexiColleccion.Minigames
         private void LoseWhenTimeRunsOut()
         {
             //Loses the minigame when the timer reaches 0
+
+            if(!_timeIsRunning)
+                StateMinigame(false);
         }
         #endregion Methods
     }
