@@ -14,8 +14,7 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
- //Updated upstream
-        
+        public Hub.HubScript HubScript;
 
         private void FixedUpdate()
         {
@@ -72,6 +71,12 @@ namespace MexiColleccion.Minigames
             //Conditions on when to win the minigame
             //Return true if won
             _winningClause = true;
+
+            /*
+            if(play cut scene)
+                EndMinigame()
+            
+            */
         }
 
         private void CollectArtifact()
@@ -81,9 +86,23 @@ namespace MexiColleccion.Minigames
             //Add it to the list of already achieved artifacts
             //Show the artifact that the player gets
         }
+        
+        public void StateMinigame(bool hasWon)
+        {
+            if (hasWon)
+                WinMinigame();
+            else
+                LoseMinigame();
 
+        }
         private void LoseMinigame()
         {
+            /*
+            if(play cut scene)
+                EndMinigame()
+            
+            */
+            
             //Conditions on when to lose the minigame
             //Return true if lost  OR return a false for win condition
             _winningClause = false;
@@ -94,8 +113,11 @@ namespace MexiColleccion.Minigames
             //End condition of the minigame
             //Based on win or lose minigame
             //Show right ui/scene
-
             _isGameActive = false;
+
+            if(true)
+                HubScript.LoadHub();
+
         }
 
         private void Timer()

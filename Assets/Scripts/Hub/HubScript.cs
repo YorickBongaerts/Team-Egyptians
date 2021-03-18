@@ -17,7 +17,7 @@ namespace MexiColleccion.Hub
             //Cleanup for scenes
         }
 
-        private void LoadHub()
+        public void LoadHub()
         {
             //Loads the hub with the selection screens
             //Upon start up?
