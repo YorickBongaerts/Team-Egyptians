@@ -36,6 +36,7 @@ namespace MexiColleccion.Minigames
         private int _amountOfArtifacts;
         private GameObject _collectibleArtifact;
         private GameObject[] _collectedArtifacts;
+        private GameObject[] _minigameSpecificArtifacts;
 
         #endregion Privates
 
@@ -69,7 +70,7 @@ namespace MexiColleccion.Minigames
             _isGameActive = true;
         }
 
-        private void RandomArtifact(GameObject[] minigameSpecificArtifacts) //Link/difference with the method in the HubScript?
+        private GameObject RandomArtifact(GameObject[] minigameSpecificArtifacts) //Link/difference with the method in the HubScript?
         {
             //Select an artifact randomly from the dictionary of artifacts
             //Prompt this artifact to be rewarded to the player (ui?)
@@ -84,7 +85,7 @@ namespace MexiColleccion.Minigames
             }
 
             _amountOfArtifacts = minigameSpecificArtifacts.Length;
-            _collectibleArtifact = minigameSpecificArtifacts[Random.Range(0, _amountOfArtifacts)];
+            return _collectibleArtifact = minigameSpecificArtifacts[Random.Range(0, _amountOfArtifacts)];
         }
 
         private void WinMinigame() //Vague conditions to be overwritten in the minigameSpecificClasses?
@@ -104,8 +105,11 @@ namespace MexiColleccion.Minigames
         {
             //Get the result of the RandomArtifact class
             //Remove this selected artifact from the dictionary
-            //Add it to the list of already achieved artifacts
+            //Add it to the list of already achieved artifacts (Where do we put this list?)
             //Show the artifact that the player gets
+
+            GameObject randomArtifact = RandomArtifact(_minigameSpecificArtifacts);
+            //StuffToSaveScript.CollectedArtifacts.Add(randomArtifact);
         }
         
         public void StateMinigame(bool hasWon)
