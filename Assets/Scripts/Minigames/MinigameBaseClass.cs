@@ -19,7 +19,7 @@ namespace MexiColleccion.Minigames
 
         private void Update()
         {
-            Timer(1f);
+            Timer();
         }
 
         #region Privates
@@ -124,7 +124,7 @@ namespace MexiColleccion.Minigames
 
         }
 
-        private void Timer(float timeRemaining)
+        private void Timer()
         {
             //Timer
             //Display in the UI
@@ -136,18 +136,22 @@ namespace MexiColleccion.Minigames
 
             if(_timeIsRunning)
             {
-                if (timeRemaining > 0)
+                if (_timeRemaining > 0)
                 {
-                    timeRemaining -= Time.deltaTime;
-                    float minutes = Mathf.FloorToInt(timeRemaining / 60);
-                    float seconds = Mathf.FloorToInt(timeRemaining % 60);
+                    _timeRemaining -= Time.deltaTime;
+
+                    //timeRemaining += 1;
+                    float minutes = Mathf.FloorToInt(_timeRemaining / 60);
+                    float seconds = Mathf.FloorToInt(_timeRemaining % 60);
 
                     Debug.Log("Timer: " + minutes + " minutes and " + seconds + " seconds.");
+
+                    timeText.text = string.Format("{0:00}:{0:00}", minutes, seconds);
                 }
                 else
                 {
                     Debug.Log("Time has run out");
-                    timeRemaining = 0;
+                    _timeRemaining = 0;
                     _timeIsRunning = false;
                 }                
             }            
