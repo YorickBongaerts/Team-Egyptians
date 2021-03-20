@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace MexiColleccion.Minigames.Memory
 {
@@ -28,6 +29,18 @@ namespace MexiColleccion.Minigames.Memory
             //Selects the card(s) the player touches
 
             //Input MouseDown(0)
+
+            if(Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+
+
+                if(Physics.Raycast(ray, out hit))
+                {
+                    Debug.Log("Clicked");
+                }
+            }
         }
 
         private void FlipCard()
