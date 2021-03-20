@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MexiColleccion.Hub
 {
     public class HubScript : MonoBehaviour
     {
-        
+
         private void MinigameSelector() // --> seperate class
         {
             //Selection screen for the minigames
@@ -42,6 +40,6 @@ namespace MexiColleccion.Hub
             //Needs to be easily expandable for more artifacts
         }
 
-        
+
     }
 }

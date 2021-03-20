@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +13,7 @@ public class UIScript : MonoBehaviour
     private bool _isInOptions = false;
 
     private int _tappedSide = 0;
-    private Vector3 _spaceBetweenObjects = new Vector3(400,0,0);
+    private Vector3 _spaceBetweenObjects = new Vector3(400, 0, 0);
     private Vector3 _destinationPosition;
     [SerializeField]
     private GameObject _playerCharacter;
@@ -46,7 +45,7 @@ public class UIScript : MonoBehaviour
         PlayerScript._isMoving = true;
         _destinationPosition = _playerCharacter.transform.position + _tappedSide * _spaceBetweenObjects;
     }
-    
+
     public void OnPaintingMemeoryUp()
     {
         Debug.Log("Now entering memory game");
@@ -61,9 +60,9 @@ public class UIScript : MonoBehaviour
 
     public void OnOptionsClick()
     {
-        if(_isInOptions== false)
+        if (_isInOptions == false)
         {
-            
+
             foreach (GameObject ui in _optionsUI)
             {
                 ui.SetActive(true);
@@ -100,5 +99,5 @@ public class UIScript : MonoBehaviour
     {
         Application.Quit();
     }
-   
+
 }

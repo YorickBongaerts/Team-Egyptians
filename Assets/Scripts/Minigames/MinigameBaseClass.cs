@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using MexiColleccion.Hub;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using MexiColleccion.Hub;
 
 namespace MexiColleccion.Minigames
 {
@@ -17,7 +15,7 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
-        
+
 
         private void Update()
         {
@@ -25,12 +23,12 @@ namespace MexiColleccion.Minigames
         }
 
         #region Privates
-        
+
         private bool _isGameActive; // could be a static field in a game loop manager
         private bool _hasGoodThingHappened;
         private float _score;
         private bool _winningClause;
-        
+
         private float _timeRemaining = 10;
         private bool _timeIsRunning = true;
         private int _amountOfArtifacts;
@@ -111,7 +109,7 @@ namespace MexiColleccion.Minigames
             GameObject randomArtifact = RandomArtifact(_minigameSpecificArtifacts);
             //StuffToSaveScript.CollectedArtifacts.Add(randomArtifact);
         }
-        
+
         public void EndMinigame(bool hasWon)
         {
             if (hasWon)
@@ -131,7 +129,7 @@ namespace MexiColleccion.Minigames
             if(play cut scene)
                 EndMinigame()
             */
-            
+
             //Conditions on when to lose the minigame
             //Return true if lost  OR return a false for win condition
             _winningClause = false;
@@ -147,7 +145,7 @@ namespace MexiColleccion.Minigames
 
             //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
 
-            if(_timeIsRunning)
+            if (_timeIsRunning)
             {
                 if (_timeRemaining > 0)
                 {
@@ -166,15 +164,15 @@ namespace MexiColleccion.Minigames
                     Debug.Log("Time has run out");
                     _timeRemaining = 0;
                     _timeIsRunning = false;
-                }                
-            }            
+                }
+            }
         }
 
         private void LoseWhenTimeRunsOut()
         {
             //Loses the minigame when the timer reaches 0
 
-            if(!_timeIsRunning)
+            if (!_timeIsRunning)
                 EndMinigame(false);
         }
         #endregion Methods

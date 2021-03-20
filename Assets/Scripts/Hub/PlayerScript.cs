@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -10,7 +8,7 @@ public class PlayerScript : MonoBehaviour
     private Collider _rightTrigger;
     public bool _isMoving = false;
     private Vector3 _destinationPosition;
-    private Vector3 _destinationDistanceAfterTP = new Vector3(150,0,0);
+    private Vector3 _destinationDistanceAfterTP = new Vector3(150, 0, 0);
     private bool _hasPositionChangedAfterTP = true;
     private bool isAssigned;
     private Collider _nonHitTrigger;
@@ -25,12 +23,12 @@ public class PlayerScript : MonoBehaviour
         }
         if (other == _rightTrigger)
         {
-            gameObject.transform.position = _leftTrigger.gameObject.transform.position + new Vector3(50,0,0);
+            gameObject.transform.position = _leftTrigger.gameObject.transform.position + new Vector3(50, 0, 0);
             _hasPositionChangedAfterTP = false;
             isAssigned = false;
             _nonHitTrigger = _leftTrigger;
         }
-        
+
     }
     public void GoToSide(Vector3 destinationPosition, int tappedSide)
     {

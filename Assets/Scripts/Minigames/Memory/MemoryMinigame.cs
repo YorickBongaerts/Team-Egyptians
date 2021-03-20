@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace MexiColleccion.Minigames.Memory
@@ -12,7 +10,7 @@ namespace MexiColleccion.Minigames.Memory
 
         [SerializeField]
         private Material[] _materials;
-        
+
 
         protected sealed override void ScoreSystem() // --> could be a seperate class
         {
@@ -30,18 +28,18 @@ namespace MexiColleccion.Minigames.Memory
 
             //Input MouseDown(0)
 
-            if(Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
 
                 Debug.Log("");
 
-                if(Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit))
                 {
                     Debug.Log("Clicked");
 
-                    
+
                 }
             }
         }
