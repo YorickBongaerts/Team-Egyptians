@@ -6,6 +6,13 @@ namespace MexiColleccion.Minigames.Memory
 {
     public class MemoryMinigame : MinigameBaseClass
     {
+        //Array of materials
+        //each card gets a material assigned based on the index of the array
+
+        [SerializeField]
+        private Material[] _materials;
+
+
         protected sealed override void ScoreSystem() // --> could be a seperate class
         {
             //Implementing the scoresystem of the minigame base class
