@@ -6,6 +6,7 @@ namespace MexiColleccion.Hub
 {
     public class HubScript : MonoBehaviour
     {
+        
         private void MinigameSelector() // --> seperate class
         {
             //Selection screen for the minigames
@@ -40,5 +41,7 @@ namespace MexiColleccion.Hub
             //Viewer for the artifacts
             //Needs to be easily expandable for more artifacts
         }
+
+        
     }
 }

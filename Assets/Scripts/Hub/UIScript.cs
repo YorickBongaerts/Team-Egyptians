@@ -14,54 +14,42 @@ public class UIScript : MonoBehaviour
     private bool _isInOptions = false;
 
     private int _tappedSide = 0;
-    private Vector3 _spaceBetweenObjects = new Vector3(50,0,0);
+    private Vector3 _spaceBetweenObjects = new Vector3(400,0,0);
     private Vector3 _destinationPosition;
-    private bool _isMoving = false;
     [SerializeField]
     private GameObject _playerCharacter;
+    private PlayerScript PlayerScript;
+
     void Update()
     {
-        GoToSide();
+        PlayerScript = _playerCharacter.GetComponent<PlayerScript>();
     }
 
     public void OnLeftButtonUpDown()
     {
         Debug.Log("TappedLeft");
         _tappedSide = -1;
-        _isMoving = true;
+        PlayerScript._isMoving = true;
         _destinationPosition = _playerCharacter.transform.position + _tappedSide * _spaceBetweenObjects;
+        _playerCharacter.GetComponent<PlayerScript>().GoToSide(_destinationPosition);
     }
     public void OnRightButtonDown()
     {
         Debug.Log("TappedRight");
         _tappedSide = 1;
-        _isMoving = true;
+        PlayerScript._isMoving = true;
         _destinationPosition = _playerCharacter.transform.position + _tappedSide * _spaceBetweenObjects;
     }
-    private void GoToSide()
-    {
-        if (_isMoving)
-        {
-            Debug.Log("moved");
-            Vector3 Position = Vector3.MoveTowards(_playerCharacter.transform.position, _destinationPosition, 20f * Time.deltaTime);
-            //float xPosition = Mathf.Lerp(_playerCharacter.transform.position.x, _destinationPosition.x, 1f*Time.deltaTime);
-            _playerCharacter.transform.position = Position;
-            WorldEdge();
-            if (_playerCharacter.transform.position == _destinationPosition)
-            {
-                _isMoving = false;
-            }
-        }
-    }
+    
     public void OnPaintingMemeoryUp()
     {
-        Debug.Log("Now enetering pmemory game");
+        Debug.Log("Now entering memory game");
         SceneManager.LoadScene("MiniGame-Memory");
     }
 
     public void OnPaintingTechnicianUp()
     {
-        Debug.Log("Now enetering technician game");
+        Debug.Log("Now entering technician game");
         SceneManager.LoadScene("MiniGame-Artist");
     }
 
@@ -80,6 +68,7 @@ public class UIScript : MonoBehaviour
                 ui.SetActive(false);
             }
             _isInOptions = true;
+            Time.timeScale = 0;
         }
     }
 
@@ -97,6 +86,7 @@ public class UIScript : MonoBehaviour
                 ui.SetActive(true);
             }
             _isInOptions = false;
+            Time.timeScale = 1;
         }
     }
 
@@ -104,8 +94,5 @@ public class UIScript : MonoBehaviour
     {
         Application.Quit();
     }
-    private void WorldEdge()
-    {
-
-    }
+   
 }
