@@ -20,9 +20,16 @@ public class UIScript : MonoBehaviour
     private GameObject _playerCharacter;
     private PlayerScript PlayerScript;
 
-    void Update()
+    private void Start()
     {
         PlayerScript = _playerCharacter.GetComponent<PlayerScript>();
+    }
+    void FixedUpdate()
+    {
+        if (PlayerScript._isMoving)
+        {
+            PlayerScript.GoToSide(_destinationPosition, _tappedSide);
+        }
     }
 
     public void OnLeftButtonUpDown()
@@ -31,7 +38,6 @@ public class UIScript : MonoBehaviour
         _tappedSide = -1;
         PlayerScript._isMoving = true;
         _destinationPosition = _playerCharacter.transform.position + _tappedSide * _spaceBetweenObjects;
-        _playerCharacter.GetComponent<PlayerScript>().GoToSide(_destinationPosition);
     }
     public void OnRightButtonDown()
     {
