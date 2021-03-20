@@ -21,7 +21,7 @@ namespace MexiColleccion.Minigames
 
         private void Update()
         {
-            UpdateTimer();
+            //UpdateTimer();
         }
 
         #region Privates
