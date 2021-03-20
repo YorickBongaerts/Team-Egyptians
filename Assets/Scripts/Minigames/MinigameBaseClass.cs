@@ -31,6 +31,8 @@ namespace MexiColleccion.Minigames
         private float _score;
         private bool _winningClause;
         
+        private float _timeRemaining = 10;
+        private bool _timeIsRunning = true;
         private int _amountOfArtifacts;
         private GameObject _collectibleArtifact;
         private GameObject[] _collectedArtifacts;
@@ -45,9 +47,6 @@ namespace MexiColleccion.Minigames
 
         public float _scoreIncrease = 1;
         public float Score { get; internal set; }
-
-        public float timeRemaining = 10;
-        public bool timeIsRunning = false;
         #endregion Publics
 
         #region Methods
@@ -138,7 +137,7 @@ namespace MexiColleccion.Minigames
             _winningClause = false;
         }
 
-        public void UpdateTimer()
+        private void UpdateTimer()
         {
             //Timer
             //Display in the UI
@@ -148,25 +147,25 @@ namespace MexiColleccion.Minigames
 
             //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
 
-            if(timeIsRunning)
+            if(_timeIsRunning)
             {
-                if (timeRemaining > 0)
+                if (_timeRemaining > 0)
                 {
-                    timeRemaining -= Time.deltaTime;
+                    _timeRemaining -= Time.deltaTime;
 
                     //timeRemaining += 1;
-                    float minutes = Mathf.FloorToInt(timeRemaining / 60);
-                    float seconds = Mathf.FloorToInt(timeRemaining % 60);
+                    float minutes = Mathf.FloorToInt(_timeRemaining / 60);
+                    float seconds = Mathf.FloorToInt(_timeRemaining % 60);
 
-                    //Debug.Log("Timer: " + minutes + " minutes and " + seconds + " seconds.");
+                    Debug.Log("Timer: " + minutes + " minutes and " + seconds + " seconds.");
 
                     timeText.text = string.Format("{0:00}:{0:00}", minutes, seconds);
                 }
                 else
                 {
-                    //Debug.Log("Time has run out");
-                    timeRemaining = 0;
-                    timeIsRunning = false;
+                    Debug.Log("Time has run out");
+                    _timeRemaining = 0;
+                    _timeIsRunning = false;
                 }                
             }            
         }
@@ -175,7 +174,7 @@ namespace MexiColleccion.Minigames
         {
             //Loses the minigame when the timer reaches 0
 
-            if(!timeIsRunning)
+            if(!_timeIsRunning)
                 EndMinigame(false);
         }
         #endregion Methods
