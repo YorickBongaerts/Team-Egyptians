@@ -12,7 +12,7 @@ namespace MexiColleccion.Minigames.Memory
 
         [SerializeField]
         private Material[] _materials;
-
+        
 
         protected sealed override void ScoreSystem() // --> could be a seperate class
         {
@@ -35,10 +35,13 @@ namespace MexiColleccion.Minigames.Memory
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
 
+                Debug.Log("");
 
                 if(Physics.Raycast(ray, out hit))
                 {
                     Debug.Log("Clicked");
+
+                    
                 }
             }
         }
