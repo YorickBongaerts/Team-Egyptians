@@ -6,7 +6,7 @@
             "id": "54ab54ac-8364-4944-87ec-324f16fc4d4d",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Tap",
                     "type": "Button",
                     "id": "0c2a2ca7-380f-433a-958d-70fc4b10a3a5",
                     "expectedControlType": "Button",
@@ -18,11 +18,11 @@
                 {
                     "name": "",
                     "id": "72e32880-b1a9-44c7-bb88-6b40c31a04c5",
-                    "path": "",
+                    "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -33,7 +33,7 @@
             "id": "50a1de51-81c3-4dbf-a510-b20553408158",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Tap",
                     "type": "Button",
                     "id": "cc213b6a-08aa-4ef6-a629-70c319929dbb",
                     "expectedControlType": "Button",
@@ -45,11 +45,11 @@
                 {
                     "name": "",
                     "id": "842799d2-cfb9-4ac4-a1a6-38b5c645d445",
-                    "path": "",
+                    "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
