@@ -13,7 +13,6 @@ public class UIScript : MonoBehaviour
 
     private bool _isInOptions = false;
     // Start is called before the first frame update
-    void Start()
     private int _tappedSide = 0;
     private Vector3 _spaceBetweenObjects = new Vector3(50,0,0);
     private Vector3 _destinationPosition;
@@ -47,13 +46,13 @@ public class UIScript : MonoBehaviour
             Vector3 Position = Vector3.MoveTowards(_playerCharacter.transform.position, _destinationPosition, 20f * Time.deltaTime);
             //float xPosition = Mathf.Lerp(_playerCharacter.transform.position.x, _destinationPosition.x, 1f*Time.deltaTime);
             _playerCharacter.transform.position = Position;
+            WorldEdge();
             if (_playerCharacter.transform.position == _destinationPosition)
             {
                 _isMoving = false;
             }
         }
     }
-
     public void OnPaintingMemeoryUp()
     {
         Debug.Log("Now enetering pmemory game");
@@ -89,5 +88,9 @@ public class UIScript : MonoBehaviour
     public void onQuitClick()
     {
         Application.Quit();
+    }
+    private void WorldEdge()
+    {
+
     }
 }
