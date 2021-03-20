@@ -17,11 +17,16 @@ namespace MexiColleccion.Minigames
 
         void Update()
         {
+        }
+
+        public void OnTouching()
+        {
+            Debug.Log(inkPercentage);
             if (Pressed)
                 inkPercentage -= 10 * Time.deltaTime;
 
             else
-                if(inkPercentage <= maxInkPercentage)
+                            if (inkPercentage <= maxInkPercentage)
                 inkPercentage += 10 * Time.deltaTime;
         }
     }
