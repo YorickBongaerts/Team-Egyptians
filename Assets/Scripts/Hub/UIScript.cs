@@ -12,8 +12,6 @@ public class UIScript : MonoBehaviour
     private GameObject _activeUI;
 
     private bool _isInOptions = false;
-    // Start is called before the first frame update
-    void Start()
     private int _tappedSide = 0;
     private Vector3 _spaceBetweenObjects = new Vector3(50,0,0);
     private Vector3 _destinationPosition;
