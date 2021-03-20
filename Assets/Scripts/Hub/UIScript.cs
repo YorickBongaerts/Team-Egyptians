@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class UIScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _optionsUI;
+    private List<GameObject> _optionsUI;
 
     [SerializeField]
-    private GameObject _activeUI;
+    private List<GameObject> _activeUI;
 
     private bool _isInOptions = false;
-    // Start is called before the first frame update
+
     private int _tappedSide = 0;
     private Vector3 _spaceBetweenObjects = new Vector3(50,0,0);
     private Vector3 _destinationPosition;
@@ -69,8 +69,16 @@ public class UIScript : MonoBehaviour
     {
         if(_isInOptions== false)
         {
-            _optionsUI.SetActive(true);
-            _activeUI.SetActive(false);
+            
+            foreach (GameObject ui in _optionsUI)
+            {
+                ui.SetActive(true);
+            }
+
+            foreach (GameObject ui in _activeUI)
+            {
+                ui.SetActive(false);
+            }
             _isInOptions = true;
         }
     }
@@ -79,8 +87,15 @@ public class UIScript : MonoBehaviour
     {
         if (_isInOptions == true)
         {
-            _optionsUI.SetActive(false);
-            _activeUI.SetActive(true);
+            foreach (GameObject ui in _optionsUI)
+            {
+                ui.SetActive(false);
+            }
+
+            foreach (GameObject ui in _activeUI)
+            {
+                ui.SetActive(true);
+            }
             _isInOptions = false;
         }
     }
