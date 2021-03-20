@@ -11,6 +11,11 @@ namespace MexiColleccion.Minigames.Memory
         [SerializeField]
         private Material[] _materials;
 
+        private void Update()
+        {
+
+            SelectCard();
+        }
 
         protected sealed override void ScoreSystem() // --> could be a seperate class
         {
@@ -28,16 +33,17 @@ namespace MexiColleccion.Minigames.Memory
 
             //Input MouseDown(0)
 
+
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
 
-                Debug.Log("");
+                Debug.Log("Clicked: ");
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.Log("Clicked");
+                    Debug.Log("Clicked card");
 
 
                 }
