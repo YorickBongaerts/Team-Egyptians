@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using MexiColleccion.Hub;
 
 namespace MexiColleccion.Minigames
 {
@@ -20,7 +21,7 @@ namespace MexiColleccion.Minigames
 
         private void Update()
         {
-            Timer();
+            UpdateTimer();
         }
 
         #region Privates
@@ -32,7 +33,6 @@ namespace MexiColleccion.Minigames
         
         private float _timeRemaining = 10;
         private bool _timeIsRunning = true;
-        public Text timeText;
         private int _amountOfArtifacts;
         private GameObject _collectibleArtifact;
         private GameObject[] _collectedArtifacts;
@@ -41,9 +41,9 @@ namespace MexiColleccion.Minigames
         #endregion Privates
 
         #region Publics
-        public Hub.HubScript HubScript;
+        public HubScript HubScript;
 
-
+        public Text timeText;
 
         public float _scoreIncrease = 1;
         public float Score { get; internal set; }
@@ -112,13 +112,18 @@ namespace MexiColleccion.Minigames
             //StuffToSaveScript.CollectedArtifacts.Add(randomArtifact);
         }
         
-        public void StateMinigame(bool hasWon)
+        public void EndMinigame(bool hasWon)
         {
             if (hasWon)
                 WinMinigame();
             else
                 LoseMinigame();
+            //End condition of the minigame
+            //Based on win or lose minigame
+            //Show right ui/scene
+            _isGameActive = false;
 
+            HubScript.LoadHub();
         }
         private void LoseMinigame()
         {
@@ -132,18 +137,7 @@ namespace MexiColleccion.Minigames
             _winningClause = false;
         }
 
-        private void EndMinigame()
-        {
-            //End condition of the minigame
-            //Based on win or lose minigame
-            //Show right ui/scene
-            _isGameActive = false;
-
-            HubScript.LoadHub();
-
-        }
-
-        private void Timer()
+        private void UpdateTimer()
         {
             //Timer
             //Display in the UI
@@ -181,7 +175,7 @@ namespace MexiColleccion.Minigames
             //Loses the minigame when the timer reaches 0
 
             if(!_timeIsRunning)
-                StateMinigame(false);
+                EndMinigame(false);
         }
         #endregion Methods
     }

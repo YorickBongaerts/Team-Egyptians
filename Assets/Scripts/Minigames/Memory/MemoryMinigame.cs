@@ -6,7 +6,7 @@ namespace MexiColleccion.Minigames.Memory
 {
     public class MemoryMinigame : MinigameBaseClass
     {
-        protected sealed override void ScoreSystem()
+        protected sealed override void ScoreSystem() // --> could be a seperate class
         {
             //Implementing the scoresystem of the minigame base class
         }
@@ -40,7 +40,7 @@ namespace MexiColleccion.Minigames.Memory
             //maybe through a material ID variable?
         }
 
-        private void ScoreIncrease()
+        private void ScoreIncrease() // --> also part of scoresystem
         {
             //If both cards are the same, increase the score
             //Then remove the cards from the game
