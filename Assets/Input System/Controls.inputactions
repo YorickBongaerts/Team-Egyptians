@@ -79,10 +79,26 @@
             "id": "89928d0b-ea22-474c-876c-341df6048b10",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "TouchInput",
+                    "type": "PassThrough",
                     "id": "9a9e6a2a-ab46-48a2-804e-b0d92a581855",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TouchPress",
+                    "type": "PassThrough",
+                    "id": "25c7e7a7-f8d2-4dfe-9f25-83c22a9aee73",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TouchPosition",
+                    "type": "PassThrough",
+                    "id": "32960804-675e-4711-be50-52e16b5ee7ee",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -91,11 +107,33 @@
                 {
                     "name": "",
                     "id": "d9d4ca5a-ca57-4482-90ea-4feb0f04d1ba",
-                    "path": "",
+                    "path": "<Touchscreen>/primaryTouch",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "TouchInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aa34418-185a-4785-97b5-bd32b5c97411",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35c0f152-f3fa-4a4c-8d43-40349f16c729",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

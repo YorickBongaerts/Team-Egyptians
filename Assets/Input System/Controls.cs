@@ -92,10 +92,26 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""89928d0b-ea22-474c-876c-341df6048b10"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""TouchInput"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""9a9e6a2a-ab46-48a2-804e-b0d92a581855"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TouchPress"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""25c7e7a7-f8d2-4dfe-9f25-83c22a9aee73"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TouchPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""32960804-675e-4711-be50-52e16b5ee7ee"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -104,11 +120,33 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d9d4ca5a-ca57-4482-90ea-4feb0f04d1ba"",
-                    ""path"": """",
+                    ""path"": ""<Touchscreen>/primaryTouch"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""TouchInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aa34418-185a-4785-97b5-bd32b5c97411"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35c0f152-f3fa-4a4c-8d43-40349f16c729"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -184,7 +222,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_MainHub_Tap = m_MainHub.FindAction("Tap", throwIfNotFound: true);
         // MemoryGame
         m_MemoryGame = asset.FindActionMap("MemoryGame", throwIfNotFound: true);
-        m_MemoryGame_Newaction = m_MemoryGame.FindAction("New action", throwIfNotFound: true);
+        m_MemoryGame_TouchInput = m_MemoryGame.FindAction("TouchInput", throwIfNotFound: true);
+        m_MemoryGame_TouchPress = m_MemoryGame.FindAction("TouchPress", throwIfNotFound: true);
+        m_MemoryGame_TouchPosition = m_MemoryGame.FindAction("TouchPosition", throwIfNotFound: true);
         // Teotihuacan
         m_Teotihuacan = asset.FindActionMap("Teotihuacan", throwIfNotFound: true);
         m_Teotihuacan_Paint = m_Teotihuacan.FindAction("Paint", throwIfNotFound: true);
@@ -312,12 +352,16 @@ public class @Controls : IInputActionCollection, IDisposable
     // MemoryGame
     private readonly InputActionMap m_MemoryGame;
     private IMemoryGameActions m_MemoryGameActionsCallbackInterface;
-    private readonly InputAction m_MemoryGame_Newaction;
+    private readonly InputAction m_MemoryGame_TouchInput;
+    private readonly InputAction m_MemoryGame_TouchPress;
+    private readonly InputAction m_MemoryGame_TouchPosition;
     public struct MemoryGameActions
     {
         private @Controls m_Wrapper;
         public MemoryGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_MemoryGame_Newaction;
+        public InputAction @TouchInput => m_Wrapper.m_MemoryGame_TouchInput;
+        public InputAction @TouchPress => m_Wrapper.m_MemoryGame_TouchPress;
+        public InputAction @TouchPosition => m_Wrapper.m_MemoryGame_TouchPosition;
         public InputActionMap Get() { return m_Wrapper.m_MemoryGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,16 +371,28 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MemoryGameActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnNewaction;
+                @TouchInput.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchInput;
+                @TouchInput.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchInput;
+                @TouchInput.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchInput;
+                @TouchPress.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPress;
+                @TouchPress.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPress;
+                @TouchPress.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPress;
+                @TouchPosition.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
+                @TouchPosition.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
+                @TouchPosition.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
             }
             m_Wrapper.m_MemoryGameActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @TouchInput.started += instance.OnTouchInput;
+                @TouchInput.performed += instance.OnTouchInput;
+                @TouchInput.canceled += instance.OnTouchInput;
+                @TouchPress.started += instance.OnTouchPress;
+                @TouchPress.performed += instance.OnTouchPress;
+                @TouchPress.canceled += instance.OnTouchPress;
+                @TouchPosition.started += instance.OnTouchPosition;
+                @TouchPosition.performed += instance.OnTouchPosition;
+                @TouchPosition.canceled += instance.OnTouchPosition;
             }
         }
     }
@@ -402,7 +458,9 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface IMemoryGameActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnTouchInput(InputAction.CallbackContext context);
+        void OnTouchPress(InputAction.CallbackContext context);
+        void OnTouchPosition(InputAction.CallbackContext context);
     }
     public interface ITeotihuacanActions
     {
