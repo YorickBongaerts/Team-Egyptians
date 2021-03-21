@@ -7,9 +7,17 @@
             "actions": [
                 {
                     "name": "Tap",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "0c2a2ca7-380f-433a-958d-70fc4b10a3a5",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "9908a6ca-5eb0-4436-850a-54b31f7729ef",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -21,8 +29,19 @@
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mobile",
                     "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86840292-734c-408f-9f00-d688d0715e8c",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -48,7 +67,7 @@
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mobile",
                     "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -87,10 +106,18 @@
             "id": "5b3ec4ec-90ca-4e62-9512-b56a7c39d5c3",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Paint",
+                    "type": "PassThrough",
                     "id": "6e0c269e-2bce-495e-aefe-6f29c325446b",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TapPosition",
+                    "type": "PassThrough",
+                    "id": "74ee284b-80dc-4370-aac7-edee47ce07c9",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -98,17 +125,40 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "bf24e541-58fa-4d97-a632-a206825cffbe",
-                    "path": "",
+                    "id": "a55c15cc-eac3-4a91-8b7a-bb17b13dc7be",
+                    "path": "<Touchscreen>/primaryTouch/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "Mobile",
+                    "action": "TapPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe4640ad-8021-4b40-8542-107f42172cc2",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Paint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

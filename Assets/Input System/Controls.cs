@@ -20,9 +20,17 @@ public class @Controls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Tap"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""0c2a2ca7-380f-433a-958d-70fc4b10a3a5"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9908a6ca-5eb0-4436-850a-54b31f7729ef"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -34,8 +42,19 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Mobile"",
                     ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86840292-734c-408f-9f00-d688d0715e8c"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -61,7 +80,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Mobile"",
                     ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -100,10 +119,18 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""5b3ec4ec-90ca-4e62-9512-b56a7c39d5c3"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Paint"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""6e0c269e-2bce-495e-aefe-6f29c325446b"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TapPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""74ee284b-80dc-4370-aac7-edee47ce07c9"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -111,23 +138,47 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""bf24e541-58fa-4d97-a632-a206825cffbe"",
-                    ""path"": """",
+                    ""id"": ""a55c15cc-eac3-4a91-8b7a-bb17b13dc7be"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""TapPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe4640ad-8021-4b40-8542-107f42172cc2"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""Paint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Mobile"",
+            ""bindingGroup"": ""Mobile"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Touchscreen>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Tap = m_Menu.FindAction("Tap", throwIfNotFound: true);
+        m_Menu_Point = m_Menu.FindAction("Point", throwIfNotFound: true);
         // MainHub
         m_MainHub = asset.FindActionMap("MainHub", throwIfNotFound: true);
         m_MainHub_Tap = m_MainHub.FindAction("Tap", throwIfNotFound: true);
@@ -136,7 +187,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_MemoryGame_Newaction = m_MemoryGame.FindAction("New action", throwIfNotFound: true);
         // Teotihuacan
         m_Teotihuacan = asset.FindActionMap("Teotihuacan", throwIfNotFound: true);
-        m_Teotihuacan_Newaction = m_Teotihuacan.FindAction("New action", throwIfNotFound: true);
+        m_Teotihuacan_Paint = m_Teotihuacan.FindAction("Paint", throwIfNotFound: true);
+        m_Teotihuacan_TapPosition = m_Teotihuacan.FindAction("TapPosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -187,11 +239,13 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Tap;
+    private readonly InputAction m_Menu_Point;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
         public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap => m_Wrapper.m_Menu_Tap;
+        public InputAction @Point => m_Wrapper.m_Menu_Point;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +258,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Tap.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
                 @Tap.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
                 @Tap.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
+                @Point.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -211,6 +268,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Tap.started += instance.OnTap;
                 @Tap.performed += instance.OnTap;
                 @Tap.canceled += instance.OnTap;
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
             }
         }
     }
@@ -285,12 +345,14 @@ public class @Controls : IInputActionCollection, IDisposable
     // Teotihuacan
     private readonly InputActionMap m_Teotihuacan;
     private ITeotihuacanActions m_TeotihuacanActionsCallbackInterface;
-    private readonly InputAction m_Teotihuacan_Newaction;
+    private readonly InputAction m_Teotihuacan_Paint;
+    private readonly InputAction m_Teotihuacan_TapPosition;
     public struct TeotihuacanActions
     {
         private @Controls m_Wrapper;
         public TeotihuacanActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Teotihuacan_Newaction;
+        public InputAction @Paint => m_Wrapper.m_Teotihuacan_Paint;
+        public InputAction @TapPosition => m_Wrapper.m_Teotihuacan_TapPosition;
         public InputActionMap Get() { return m_Wrapper.m_Teotihuacan; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,23 +362,39 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_TeotihuacanActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnNewaction;
+                @Paint.started -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnPaint;
+                @Paint.performed -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnPaint;
+                @Paint.canceled -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnPaint;
+                @TapPosition.started -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnTapPosition;
+                @TapPosition.performed -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnTapPosition;
+                @TapPosition.canceled -= m_Wrapper.m_TeotihuacanActionsCallbackInterface.OnTapPosition;
             }
             m_Wrapper.m_TeotihuacanActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Paint.started += instance.OnPaint;
+                @Paint.performed += instance.OnPaint;
+                @Paint.canceled += instance.OnPaint;
+                @TapPosition.started += instance.OnTapPosition;
+                @TapPosition.performed += instance.OnTapPosition;
+                @TapPosition.canceled += instance.OnTapPosition;
             }
         }
     }
     public TeotihuacanActions @Teotihuacan => new TeotihuacanActions(this);
+    private int m_MobileSchemeIndex = -1;
+    public InputControlScheme MobileScheme
+    {
+        get
+        {
+            if (m_MobileSchemeIndex == -1) m_MobileSchemeIndex = asset.FindControlSchemeIndex("Mobile");
+            return asset.controlSchemes[m_MobileSchemeIndex];
+        }
+    }
     public interface IMenuActions
     {
         void OnTap(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
     }
     public interface IMainHubActions
     {
@@ -328,6 +406,7 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface ITeotihuacanActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnPaint(InputAction.CallbackContext context);
+        void OnTapPosition(InputAction.CallbackContext context);
     }
 }
