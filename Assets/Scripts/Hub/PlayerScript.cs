@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour
     private Collider _rightTrigger;
     public bool _isMoving = false;
     private Vector3 _destinationPosition;
-    private Vector3 _destinationDistanceAfterTP = new Vector3(150, 0, 0);
+    private Vector3 _destinationDistanceAfterTP = new Vector3(350, 0, 0);
     private bool _hasPositionChangedAfterTP = true;
     private bool isAssigned;
     private Collider _nonHitTrigger;
