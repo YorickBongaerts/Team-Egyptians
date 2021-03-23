@@ -8,22 +8,28 @@ namespace MexiColleccion.Minigames
     {
         [SerializeField] private GameObject _display = null;
         [SerializeField] private Transform _brushContainer = null;
-        [SerializeField] private GameObject _inkPrefab = null;
+        [Header("Painting")]
+        [SerializeField] private GameObject[] _brushes = null;
+        [SerializeField] private int _maxBrushCount = 1000;
+        [Header("Brush")]
+        [SerializeField] private float _brushSize = 3.0f;
+        [SerializeField] private int _brushShape = 0;
+
         private Renderer _renderer = null;
-        private bool _isPainting = false;
-        private bool _canPaint = true; // is there still ink left?
         private Vector2 _inputPosition;
         private int _brushCounter = 0;
-        [SerializeField] private int _maxBrushCount = 1000;
+        private bool _isPainting = false;
+        private bool _canPaint = true; // is there still ink left?
 
         void Start()
         {
             Camera.onPostRender += OnPostRenderCallback;
+            _brushShape = Mathf.Clamp(_brushShape, 0, _brushes.Length - 1);
 
             // set up object pool
             for (int i = 0; i < _maxBrushCount; i++)
             {
-                GameObject dot = Instantiate(_inkPrefab, Vector3.zero, Quaternion.identity, _brushContainer);
+                GameObject dot = Instantiate(_brushes[_brushShape], Vector3.zero, Quaternion.identity, _brushContainer);
                 dot.name = $"Dot {i}";
                 dot.SetActive(false);
             }
@@ -43,7 +49,7 @@ namespace MexiColleccion.Minigames
             {
                 if (_brushCounter >= _maxBrushCount)
                 {
-                    UpdateUV();
+                    UpdateTexture();
                     print("Updated");
                 }
             }
@@ -64,9 +70,11 @@ namespace MexiColleccion.Minigames
         {
             GameObject dot = _brushContainer.GetChild(_brushCounter - 1).gameObject;
 
-            // -- scale, shape and color can easily be added --
-
             dot.transform.position = targetPosition;
+            // -- scale, shape and color can easily be added --
+            dot.transform.localScale = new Vector3(_brushSize, _brushSize, 1);
+            dot.GetComponent<SpriteRenderer>().sprite = _brushes[_brushShape].GetComponent<SpriteRenderer>().sprite;
+
             dot.SetActive(activate);
         }
 
@@ -89,7 +97,7 @@ namespace MexiColleccion.Minigames
             _inputPosition = control.position.ReadValue();
         }
 
-        void UpdateUV()
+        void UpdateTexture()
         {
             int width = (int)((_display.transform.localScale.x / Camera.main.orthographicSize) * 360);
             int height = (int)((_display.transform.localScale.y / Camera.main.orthographicSize) * 360);
@@ -101,8 +109,8 @@ namespace MexiColleccion.Minigames
             for (int i = _maxBrushCount - 1; i >= 0; i--)
             {
                 SetDot(Vector3.zero, false);
+                _brushCounter--;
             }
-            _brushCounter = 0;
         }
 
         void OnDestroy()
