@@ -30,6 +30,18 @@ public class MemoryGameManager : MinigameBaseClass
             }
         }
 
+        //ShuffleList(_cardsList);
+
     }
 
+    private static void ShuffleList(List<CardDisplay> randomCardsList)
+    {
+        for (int i = 0; i < randomCardsList.Count; i++)
+        {
+            CardDisplay fruitCurrentIndex = randomCardsList[i];
+            int randomIndex = Random.Range(i, randomCardsList.Count);
+            randomCardsList[i] = randomCardsList[randomIndex];
+            randomCardsList[randomIndex] = fruitCurrentIndex;
+        }
+    }
 }

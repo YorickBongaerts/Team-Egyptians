@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ec097266c9ded545aa44d0eb503da8e, type: 3}
-  m_Name: Card_Temple
+  m_Name: Card_Temple 1
   m_EditorClassIdentifier: 
-  id: 0
   Cardname: Temple
   ImageFront: {fileID: 21300000, guid: dae7dcd8480a3b443a5d5f69e1671e7b, type: 3}
   ImageBack: {fileID: 21300000, guid: 1b9298305e3987749bec3d6b0953d231, type: 3}

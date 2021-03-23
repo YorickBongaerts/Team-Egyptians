@@ -526,10 +526,10 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
-  m_Spacing: {x: 10, y: 0}
+  m_CellSize: {x: 100, y: 150}
+  m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 4
+  m_ConstraintCount: 6
 --- !u!1 &1045112902
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +831,14 @@ PrefabInstance:
       propertyPath: timeText
       value: 
       objectReference: {fileID: 504779826}
+    - target: {fileID: 5346261147458425286, guid: 30728dc9152116241b7cadec1be84b25, type: 3}
+      propertyPath: _cardTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346261147458425286, guid: 30728dc9152116241b7cadec1be84b25, type: 3}
+      propertyPath: _cardTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff700a6039c8bed47bdbbb503bbc9439, type: 2}
     - target: {fileID: 5346261147458425304, guid: 30728dc9152116241b7cadec1be84b25, type: 3}
       propertyPath: m_Name
       value: MemoryGameManager
