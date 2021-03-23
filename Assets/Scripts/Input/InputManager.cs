@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-
-namespace MexiColleccion.Input
+﻿namespace MexiColleccion.Input
 {
     public static class InputManager
     {

@@ -14,7 +14,7 @@ public class MemoryInputManager : Singleton<MemoryInputManager>
 
     private void Awake()
     {
-        controls = new Controls();   
+        controls = new Controls();
     }
 
     private void OnEnable()

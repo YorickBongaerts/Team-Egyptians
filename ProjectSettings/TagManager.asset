@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Right
   - Left
+  - CardsContainer
   layers:
   - Default
   - TransparentFX

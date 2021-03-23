@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -65,7 +62,7 @@ namespace MexiColleccion.Minigames
 
         private void SetDot(Vector3 targetPosition, bool activate)
         {
-            GameObject dot = _brushContainer.GetChild(_brushCounter-1).gameObject;
+            GameObject dot = _brushContainer.GetChild(_brushCounter - 1).gameObject;
 
             // -- scale, shape and color can easily be added --
 
