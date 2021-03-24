@@ -40,7 +40,7 @@ namespace MexiColleccion.Minigames.Memory
                 RaycastHit hit;
 
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit)) //this does not get executed
                 {
                     Debug.Log("Clicked card");
 

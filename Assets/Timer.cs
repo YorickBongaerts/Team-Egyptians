@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//General Timer class, should replace the timer methods in the minigamebaseclass
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float remainingTime = 120f;

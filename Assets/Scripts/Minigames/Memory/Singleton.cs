@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+//Singleton form the video: https://youtu.be/ERAN5KBy2Gs
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     private static T _instance;

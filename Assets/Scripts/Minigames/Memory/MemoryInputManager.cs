@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-1)] //Makes sure that this script gets called first
 public class MemoryInputManager : Singleton<MemoryInputManager>
 {
     private Controls controls;
@@ -10,7 +10,6 @@ public class MemoryInputManager : Singleton<MemoryInputManager>
     public event StartTouchEvent OnStartTouch;
     public delegate void EndTouchEvent(Vector2 position, float time);
     public event EndTouchEvent OnEndTouch;
-
 
     private void Awake()
     {
@@ -32,7 +31,7 @@ public class MemoryInputManager : Singleton<MemoryInputManager>
         controls.MemoryGame.TouchPress.started += ctx => StartTouch(ctx);
         controls.MemoryGame.TouchPress.canceled += ctx => EndTouch(ctx);
     }
-
+        
     private void StartTouch(InputAction.CallbackContext context)
     {
         Debug.Log("Touch started " + controls.MemoryGame.TouchPosition.ReadValue<Vector2>());
