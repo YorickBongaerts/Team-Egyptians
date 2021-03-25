@@ -12,6 +12,7 @@ namespace MexiColleccion.Minigames
         [SerializeField] private GameObject[] _brushes = null;
         [SerializeField] private int _maxBrushCount = 1000;
         [Header("Brush")]
+        [SerializeField] private Color _color = Color.black;
         [SerializeField] private float _brushSize = 3.0f;
         [SerializeField] private int _brushShape = 0;
 
@@ -74,7 +75,7 @@ namespace MexiColleccion.Minigames
             // -- scale, shape and color can easily be added --
             dot.transform.localScale = new Vector3(_brushSize, _brushSize, 1);
             dot.GetComponent<SpriteRenderer>().sprite = _brushes[_brushShape].GetComponent<SpriteRenderer>().sprite;
-
+            dot.GetComponent<SpriteRenderer>().color = _color;
             dot.SetActive(activate);
         }
 
