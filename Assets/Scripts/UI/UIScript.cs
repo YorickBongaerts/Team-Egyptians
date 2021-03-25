@@ -101,7 +101,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void onQuitClick()
+    public void OnQuitClick()
     {
         Application.Quit();
     }

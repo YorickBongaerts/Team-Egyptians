@@ -49,6 +49,6 @@ public class UIScriptMainHub : UIScript
     public void OnPaintingTechnicianUp()
     {
         Debug.Log("Now entering technician game");
-        SceneManager.LoadScene("MiniGame-Artist");
+        SceneManager.LoadScene("Painter - Erik");
     }
 }

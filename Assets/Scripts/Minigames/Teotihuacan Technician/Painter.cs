@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -22,7 +23,11 @@ namespace MexiColleccion.Minigames
         private bool _isPainting = false;
         private bool _canPaint = true; // is there still ink left?
 
-        void Start()
+        private Rect _printRect;
+
+        public event EventHandler OnChangeBrushColor;
+
+        private void Start()
         {
             Camera.onPostRender += OnPostRenderCallback;
             _brushShape = Mathf.Clamp(_brushShape, 0, _brushes.Length - 1);
@@ -42,21 +47,31 @@ namespace MexiColleccion.Minigames
                 Debug.LogError("There is no renderer assigned.");
             if (!Camera.main.orthographic)
                 Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
+
+            int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (Camera.main.orthographicSize * 2f) * Screen.height), Screen.height);
+            int width = Mathf.Min(Mathf.RoundToInt((_display.transform.localScale.x / _display.transform.localScale.y) * height), Screen.width);
+            int rectX = (int)((Screen.width - width) / 2f);
+            int rectY = (int)((Screen.height - height) / 2f);
+
+            _printRect = new Rect(rectX, rectY, width, height);
+
+            print($"{Screen.width}|{Screen.height}|{Screen.dpi}|{_display.transform.localScale.x}|{_display.transform.localScale.y}|{Camera.main.orthographicSize}");
+            print($"width: {width}, height: {height}, bottomLeft: ({rectX}, {rectY})");
         }
 
-        void OnPostRenderCallback(Camera cam)
+        private void OnPostRenderCallback(Camera cam)
         {
             if (cam == Camera.main)
             {
                 if (_brushCounter >= _maxBrushCount)
                 {
                     UpdateTexture();
-                    print("Updated");
+                    //print("Updated");
                 }
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (_isPainting && _brushCounter < _maxBrushCount)
             {
@@ -98,12 +113,10 @@ namespace MexiColleccion.Minigames
             _inputPosition = control.position.ReadValue();
         }
 
-        void UpdateTexture()
+        private void UpdateTexture()
         {
-            int width = (int)((_display.transform.localScale.x / Camera.main.orthographicSize) * 360);
-            int height = (int)((_display.transform.localScale.y / Camera.main.orthographicSize) * 360);
-            Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, width, height), 0, 0, false);
+            Texture2D tex = new Texture2D((int)_printRect.width, (int)_printRect.height, TextureFormat.RGB24, false);
+            tex.ReadPixels(_printRect, 0, 0, false);
             tex.Apply();
             _renderer.material.mainTexture = tex;
             // disable brushes
@@ -114,9 +127,15 @@ namespace MexiColleccion.Minigames
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             Camera.onPostRender -= OnPostRenderCallback;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(new Vector3(_printRect.center.x, _printRect.center.y, 0.01f), new Vector3(_printRect.size.x, _printRect.size.y, 0.01f));
         }
     }
 }
