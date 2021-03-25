@@ -55,7 +55,7 @@ public class UIScript : MonoBehaviour
     public void OnPaintingTechnicianUp()
     {
         Debug.Log("Now entering technician game");
-        SceneManager.LoadScene("MiniGame-Artist");
+        SceneManager.LoadScene("Painter - Erik");
     }
     public void OnMainHubEnter()
     {
