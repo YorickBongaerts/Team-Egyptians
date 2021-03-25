@@ -57,6 +57,11 @@ public class UIScript : MonoBehaviour
         Debug.Log("Now entering technician game");
         SceneManager.LoadScene("MiniGame-Artist");
     }
+    public void OnMainHubEnter()
+    {
+        Debug.Log("Now entering main hub");
+        SceneManager.LoadScene("MainHub");
+    }
 
     public void OnOptionsClick()
     {
@@ -81,6 +86,7 @@ public class UIScript : MonoBehaviour
     {
         if (_isInOptions == true)
         {
+
             foreach (GameObject ui in _optionsUI)
             {
                 ui.SetActive(false);
