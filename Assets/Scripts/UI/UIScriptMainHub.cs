@@ -1,16 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIScript : MonoBehaviour
+public class UIScriptMainHub : UIScript
 {
-    [SerializeField]
-    private List<GameObject> _optionsUI;
-
-    [SerializeField]
-    private List<GameObject> _activeUI;
-
-    private bool _isInOptions = false;
 
     private int _tappedSide = 0;
     private Vector3 _spaceBetweenObjects = new Vector3(400, 0, 0);
@@ -18,7 +12,7 @@ public class UIScript : MonoBehaviour
     [SerializeField]
     private GameObject _playerCharacter;
     private PlayerScript PlayerScript;
-
+    
     private void Start()
     {
         PlayerScript = _playerCharacter.GetComponent<PlayerScript>();
@@ -30,7 +24,7 @@ public class UIScript : MonoBehaviour
             PlayerScript.GoToSide(_destinationPosition, _tappedSide);
         }
     }
-
+    
     public void OnLeftButtonUpDown()
     {
         Debug.Log("TappedLeft");
@@ -51,59 +45,10 @@ public class UIScript : MonoBehaviour
         Debug.Log("Now entering memory game");
         SceneManager.LoadScene("MiniGame-Memory");
     }
-
+    
     public void OnPaintingTechnicianUp()
     {
         Debug.Log("Now entering technician game");
-        SceneManager.LoadScene("Painter - Erik");
+        SceneManager.LoadScene("MiniGame-Artist");
     }
-    public void OnMainHubEnter()
-    {
-        Debug.Log("Now entering main hub");
-        SceneManager.LoadScene("MainHub");
-    }
-
-    public void OnOptionsClick()
-    {
-        if (_isInOptions == false)
-        {
-
-            foreach (GameObject ui in _optionsUI)
-            {
-                ui.SetActive(true);
-            }
-
-            foreach (GameObject ui in _activeUI)
-            {
-                ui.SetActive(false);
-            }
-            _isInOptions = true;
-            Time.timeScale = 0;
-        }
-    }
-
-    public void OnContinueClick()
-    {
-        if (_isInOptions == true)
-        {
-
-            foreach (GameObject ui in _optionsUI)
-            {
-                ui.SetActive(false);
-            }
-
-            foreach (GameObject ui in _activeUI)
-            {
-                ui.SetActive(true);
-            }
-            _isInOptions = false;
-            Time.timeScale = 1;
-        }
-    }
-
-    public void onQuitClick()
-    {
-        Application.Quit();
-    }
-
 }
