@@ -63,6 +63,13 @@ public class UIScript : MonoBehaviour
         SceneManager.LoadScene("MainHub");
     }
 
+    public void OnRestartUp()
+    {
+        Debug.Log("Restarting Scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
     public void OnOptionsClick()
     {
         if (_isInOptions == false)

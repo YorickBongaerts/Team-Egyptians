@@ -52,11 +52,6 @@ public class UIScriptMainHub : UIScript
         SceneManager.LoadScene("Painter - Erik");
     }
 
-    public void OnRestartUp()
-    {
-        Debug.Log("Restarting Scene");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    
-    }
+
 
 }
