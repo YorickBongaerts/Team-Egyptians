@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames.Memory
 {
@@ -10,7 +13,19 @@ namespace MexiColleccion.Minigames.Memory
 
         [SerializeField]
         private Material[] _materials;
+        [SerializeField]
+        private Sprite[] _cardFrontSprites;
 
+        private bool _isAPair = false;
+        private Sprite _cardBackSprite;
+        private GraphicRaycaster _gRay;
+        private PointerEventData _eventData = null;
+        private List<RaycastResult> _results = new List<RaycastResult>(); 
+
+        private void Start()
+        {
+            _gRay = GameObject.Find("GraphicRaycaster").GetComponent<GraphicRaycaster>();
+        }
         private void Update()
         {
 
@@ -33,43 +48,45 @@ namespace MexiColleccion.Minigames.Memory
 
             //Input MouseDown(0)
 
-
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-                RaycastHit hit;
-
-
-                if (Physics.Raycast(ray, out hit)) //this does not get executed
-                {
-                    Debug.Log("Clicked card");
-
-
-                }
-            }
         }
 
-        private void FlipCard()
+        public void FlipCard(mainCard card1, mainCard card2)
         {
             //Flips both the cards after the player has selected 2 face-down cards
             //Flip them back if they do not match
+            card1.ChangeSprite(card1.id,_cardFrontSprites[card1.id]);
+            card2.ChangeSprite(card2.id,_cardFrontSprites[card2.id]);
+            _isAPair = CheckIfCorrect(card1, card2);
+            if (!_isAPair)
+            {
+                card1.ChangeSprite(card1.id, _cardBackSprite);
+                card2.ChangeSprite(card2.id, _cardBackSprite);
+            }
         }
 
-        private void CheckIfCorrect()
+        private bool CheckIfCorrect(mainCard card1, mainCard card2)
         {
             //Check if the player has chosen two cards of the same pair
-
+            if(card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name == card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name)
+            {
+                return true;
+            }
+            else
+                return false;
             //ScoreIncrease()
             //Remove the cards from the game in this method instead of the score increase?
+
 
             //Check if material is the same of both selected items?
             //maybe through a material ID variable?
         }
 
-        private void ScoreIncrease() // --> also part of scoresystem
+        private void ScoreIncrease(mainCard card1, mainCard card2) // --> also part of scoresystem
         {
             //If both cards are the same, increase the score
             //Then remove the cards from the game
+            Destroy(card1.gameObject);
+            Destroy(card2.gameObject);
         }
     }
 }
