@@ -51,4 +51,12 @@ public class UIScriptMainHub : UIScript
         Debug.Log("Now entering technician game");
         SceneManager.LoadScene("Painter - Erik");
     }
+
+    public void OnRestartUp()
+    {
+        Debug.Log("Restarting Scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    
+    }
+
 }
