@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5205714617231120217}
   - component: {fileID: 216077704534920131}
   m_Layer: 0
-  m_Name: MA - Dot
+  m_Name: MA - SoftRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
