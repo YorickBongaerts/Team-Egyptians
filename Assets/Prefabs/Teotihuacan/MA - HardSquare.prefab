@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5205714617231120217}
   - component: {fileID: 216077704534920131}
   m_Layer: 0
-  m_Name: MA - HardRound
+  m_Name: MA - HardSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8682c65f3a3e04441bef35e5f1182872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 040aabe82e37be140ab4de1097c45cbe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

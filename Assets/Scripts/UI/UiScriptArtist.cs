@@ -1,3 +1,4 @@
+using MexiColleccion.Minigames.Teotihuacan;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +13,10 @@ namespace MexiColleccion.UI
         public event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
         public event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
 
-        public void OnBrushColorChanged(Image image)
+        public void OnBrushColorChanged(Ink ink)
         {
-            Color color = image.color;
             EventHandler<BrushColorChangedEventArgs> handler = BrushColorChanged;
-            handler?.Invoke(this, new BrushColorChangedEventArgs(color));
+            handler?.Invoke(this, new BrushColorChangedEventArgs(ink));
         }
 
         public void OnBrushSizeChanged(float scaleSign)
@@ -54,11 +54,11 @@ namespace MexiColleccion.UI
 
     public class BrushColorChangedEventArgs : EventArgs
     {
-        public Color NewColor;
+        public Ink NewInk;
 
-        public BrushColorChangedEventArgs(Color newColor)
+        public BrushColorChangedEventArgs(Ink newInk)
         {
-            NewColor = newColor;
+            NewInk = newInk;
         }
     }
 }
