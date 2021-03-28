@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8818166479774254705}
   - component: {fileID: 8818166479774254711}
   m_Layer: 5
-  m_Name: Ink_Blue
+  m_Name: Ink_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3167f1a56213548bc08d67ab4d3e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInkPercentage: 100
+  _maxInkCapacity: 100
 --- !u!114 &8818166479774254705
 MonoBehaviour:
   m_ObjectHideFlags: 0
