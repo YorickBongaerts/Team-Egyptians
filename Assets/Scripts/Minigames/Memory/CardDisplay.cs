@@ -18,6 +18,8 @@ public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         private GameObject CardsContainer;
 
+        public SceneController sceneController;
+
         public void Initialize(CardType cardType)
         {
             _cardTypeProperties = cardType;
@@ -37,6 +39,8 @@ public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
             //hides the image of the card
             Transform frontImage = transform.GetChild(1);
             frontImage.gameObject.SetActive(false);
+
+            sceneController = GameObject.FindObjectOfType<SceneController>();
         }
 
         private void Delete()
@@ -46,7 +50,8 @@ public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
         public void OnPointerDown(PointerEventData eventData)
         {
             Debug.Log(eventData.pressPosition);
-            gameObject.GetComponent<MainCard>().AfterClick();
+            //make sure this is a general scene controller
+            sceneController.AfterClick();
         }
 
         public void OnDrag(PointerEventData eventData)

@@ -4,17 +4,18 @@ namespace MexiColleccion.Minigames.Memory
 {
     public class MainCard : MonoBehaviour
     {
-        [SerializeField] private SceneController controller;
+        [SerializeField] public SceneController controller;
         [SerializeField] private GameObject Card_Back;
+        public bool IsActive = true;
 
-        public void AfterClick()
-        {
-            if (Card_Back.activeSelf && controller.canReveal)
-            {
-                Card_Back.SetActive(false);
-                controller.CardRevealed(this);
-            }
-        }
+        //public void AfterClick()
+        //{
+        //    if (Card_Back.activeSelf && controller.canReveal)
+        //    {
+        //        Card_Back.SetActive(false);
+        //        controller.CardRevealed(this);
+        //    }
+        //}
 
         private int _id;
         public int id

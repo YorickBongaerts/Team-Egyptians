@@ -711,7 +711,10 @@ MonoBehaviour:
   timeText: {fileID: 0}
   _scoreIncrease: 1
   _materials: []
-  _cardFrontSprites: []
+  _cardFrontSprites:
+  - {fileID: 21300000, guid: 93e5113daf8267147bb305a8c5cdfa08, type: 3}
+  - {fileID: 21300000, guid: f9a094ebc17d58a459491d6c460f3477, type: 3}
+  - {fileID: 21300000, guid: a7e6737f4667c044bb06aec1aad05e7e, type: 3}
 --- !u!4 &363181380
 Transform:
   m_ObjectHideFlags: 0

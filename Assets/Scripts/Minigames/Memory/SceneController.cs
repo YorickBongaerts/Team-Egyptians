@@ -75,7 +75,15 @@ namespace MexiColleccion.Minigames.Memory
         {
             get { return _secondRevealed == null; }
         }
-
+        public void AfterClick()
+        {
+            if (_firstRevealed.IsActive && _firstRevealed.controller.canReveal)
+            {
+                Debug.Log("REVEAL");
+                _firstRevealed.IsActive = false;
+                _firstRevealed.controller.CardRevealed(_firstRevealed);
+            }
+        }
         public void CardRevealed(MainCard card)
         {
             if (_firstRevealed == null)
