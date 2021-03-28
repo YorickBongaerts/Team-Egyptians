@@ -7,7 +7,7 @@ namespace MexiColleccion.Minigames.Memory
         [SerializeField] private SceneController controller;
         [SerializeField] private GameObject Card_Back;
 
-        public void OnMouseDown()
+        public void AfterClick()
         {
             if (Card_Back.activeSelf && controller.canReveal)
             {

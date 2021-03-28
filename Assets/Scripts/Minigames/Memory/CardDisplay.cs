@@ -1,10 +1,11 @@
+using MexiColleccion.Minigames.Memory;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColleccion.Minigames.Memory {
+public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    public class CardDisplay : MonoBehaviour
-    {
         private CardType _cardTypeProperties = null;
 
         [Header("Attributes")]
@@ -42,6 +43,15 @@ namespace MexiColleccion.Minigames.Memory
         {
             Destroy(gameObject);
         }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            Debug.Log(eventData.pressPosition);
+            gameObject.GetComponent<MainCard>().AfterClick();
+        }
 
+        public void OnDrag(PointerEventData eventData)
+        {
+            Debug.Log("IDC BITCHES");
+        }
     }
 }
