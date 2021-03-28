@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MexiColleccion.Minigames.Memory
 {
-    public class mainCard : MonoBehaviour
+    public class MainCard : MonoBehaviour
     {
         [SerializeField] private SceneController controller;
         [SerializeField] private GameObject Card_Back;

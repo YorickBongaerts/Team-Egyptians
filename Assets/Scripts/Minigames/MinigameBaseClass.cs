@@ -15,13 +15,6 @@ namespace MexiColleccion.Minigames
 
         //Delegates??
 
-
-
-        private void Update()
-        {
-            //UpdateTimer();
-        }
-
         #region Privates
 
         private bool _isGameActive; // could be a static field in a game loop manager
@@ -46,6 +39,11 @@ namespace MexiColleccion.Minigames
         public float _scoreIncrease = 1;
         public float Score { get; internal set; }
         #endregion Publics
+
+        private void Update()
+        {
+            //UpdateTimer();
+        }
 
         #region Methods
         protected virtual void ScoreSystem()

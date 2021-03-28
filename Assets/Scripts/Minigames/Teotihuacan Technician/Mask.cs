@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mask : MonoBehaviour
+namespace MexiColleccion.Minigames.Teotihuacan
 {
-    [SerializeField] private Transform _copyFrom = null;
-
-    void Start()
+    public class Mask : MonoBehaviour
     {
-        transform.localScale = _copyFrom.localScale;
+        [SerializeField] private Transform _copyFrom = null;
+
+        void Start()
+        {
+            transform.localScale = _copyFrom.localScale;
+        }
     }
 }

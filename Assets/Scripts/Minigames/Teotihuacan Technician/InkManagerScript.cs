@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MexiColleccion.Minigames
+namespace MexiColleccion.Minigames.Teotihuacan
 {
     public class InkManagerScript : MonoBehaviour
     {

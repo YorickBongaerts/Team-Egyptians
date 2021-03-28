@@ -2,46 +2,49 @@ using MexiColleccion.Minigames;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MemoryGameManager : MinigameBaseClass
+namespace MexiColleccion.Minigames.Memory
 {
-    [SerializeField]
-    private GameObject _cardPrefab = null;
-
-    [SerializeField]
-    private List<CardType> _cardTypes = new List<CardType>();
-
-    private List<CardDisplay> _cardsList = new List<CardDisplay>();
-
-    void Start()
+    public class MemoryGameManager : MinigameBaseClass
     {
-        for (int i = 0; i < _cardTypes.Count; i++)
+        [SerializeField]
+        private GameObject _cardPrefab = null;
+
+        [SerializeField]
+        private List<CardType> _cardTypes = new List<CardType>();
+
+        private List<CardDisplay> _cardsList = new List<CardDisplay>();
+
+        void Start()
         {
-            for (int j = 0; j < 2; j++)
+            for (int i = 0; i < _cardTypes.Count; i++)
             {
-                var cardProperty = _cardTypes[i];
+                for (int j = 0; j < 2; j++)
+                {
+                    var cardProperty = _cardTypes[i];
 
-                var item = Instantiate(_cardPrefab, new Vector2(0, 0), Quaternion.identity);
-                var cardView = item.GetComponent<CardDisplay>();
+                    var item = Instantiate(_cardPrefab, new Vector2(0, 0), Quaternion.identity);
+                    var cardView = item.GetComponent<CardDisplay>();
 
-                //Debug.Log("Ik ben een " + cardProperty.Cardname + " kaart");
-                cardView.Initialize(cardProperty);
+                    //Debug.Log("Ik ben een " + cardProperty.Cardname + " kaart");
+                    cardView.Initialize(cardProperty);
 
-                _cardsList.Add(cardView);
+                    _cardsList.Add(cardView);
+                }
             }
+
+            //ShuffleList(_cardsList);
+
         }
 
-        //ShuffleList(_cardsList);
-
-    }
-
-    private static void ShuffleList(List<CardDisplay> randomCardsList)
-    {
-        for (int i = 0; i < randomCardsList.Count; i++)
+        private static void ShuffleList(List<CardDisplay> randomCardsList)
         {
-            CardDisplay fruitCurrentIndex = randomCardsList[i];
-            int randomIndex = Random.Range(i, randomCardsList.Count);
-            randomCardsList[i] = randomCardsList[randomIndex];
-            randomCardsList[randomIndex] = fruitCurrentIndex;
+            for (int i = 0; i < randomCardsList.Count; i++)
+            {
+                CardDisplay fruitCurrentIndex = randomCardsList[i];
+                int randomIndex = Random.Range(i, randomCardsList.Count);
+                randomCardsList[i] = randomCardsList[randomIndex];
+                randomCardsList[randomIndex] = fruitCurrentIndex;
+            }
         }
     }
 }

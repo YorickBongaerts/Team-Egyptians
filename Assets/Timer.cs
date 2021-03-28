@@ -1,60 +1,63 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-//General Timer class, should replace the timer methods in the minigamebaseclass
-public class Timer : MonoBehaviour
+namespace MexiColleccion.Utils
 {
-    [SerializeField] private float remainingTime = 120f;
-    [SerializeField] private bool IsTimerRunning = false;
-    [SerializeField] private Text timerText;
-
-    private float minutes, seconds;
-    // Start is called before the first frame update
-
-    void Start()
+    //General Timer class, should replace the timer methods in the minigamebaseclass
+    public class Timer : MonoBehaviour
     {
-        //start timer when script is called
-        IsTimerRunning = true;
-    }
+        [SerializeField] private float remainingTime = 120f;
+        [SerializeField] private bool IsTimerRunning = false;
+        [SerializeField] private Text timerText;
 
-    private void Update()
-    {
-        if (remainingTime > 0 & TimerIsRunning())
+        private float minutes, seconds;
+        // Start is called before the first frame update
+
+        void Start()
         {
-            remainingTime -= Time.deltaTime;
-        }
-        else
-        {
-            Debug.Log("Time had run out");
-            remainingTime = 0;
-            IsTimerRunning = false;
+            //start timer when script is called
+            IsTimerRunning = true;
         }
 
-        CalculateMinutes();
-        CalculateSeconds();
+        private void Update()
+        {
+            if (remainingTime > 0 & TimerIsRunning())
+            {
+                remainingTime -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Time had run out");
+                remainingTime = 0;
+                IsTimerRunning = false;
+            }
 
-        DisplayTime();
-    }
+            CalculateMinutes();
+            CalculateSeconds();
 
-    private void CalculateSeconds()
-    {
-        seconds = Mathf.FloorToInt(remainingTime % 60);
-    }
+            DisplayTime();
+        }
 
-    private void CalculateMinutes()
-    {
-        minutes = Mathf.FloorToInt(remainingTime / 60);
-    }
+        private void CalculateSeconds()
+        {
+            seconds = Mathf.FloorToInt(remainingTime % 60);
+        }
 
-    private void DisplayTime()
-    {
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
+        private void CalculateMinutes()
+        {
+            minutes = Mathf.FloorToInt(remainingTime / 60);
+        }
 
-    private bool TimerIsRunning()
-    {
-        if (IsTimerRunning == true)
-            return true;
-        return false;
+        private void DisplayTime()
+        {
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        private bool TimerIsRunning()
+        {
+            if (IsTimerRunning == true)
+                return true;
+            return false;
+        }
     }
 }

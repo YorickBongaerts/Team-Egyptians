@@ -4,58 +4,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiScriptArtist : UIScript
+namespace MexiColleccion.UI
 {
-    public event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
-    public event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
-    public event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
-
-    public void OnBrushColorChanged(Image image)
+    public class UiScriptArtist : UIScript
     {
-        Color color = image.color;
-        EventHandler<BrushColorChangedEventArgs> handler = BrushColorChanged;
-        handler?.Invoke(this, new BrushColorChangedEventArgs(color));
+        public event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
+        public event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
+        public event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
+
+        public void OnBrushColorChanged(Image image)
+        {
+            Color color = image.color;
+            EventHandler<BrushColorChangedEventArgs> handler = BrushColorChanged;
+            handler?.Invoke(this, new BrushColorChangedEventArgs(color));
+        }
+
+        public void OnBrushSizeChanged(float scaleSign)
+        {
+            EventHandler<BrushSizeChangedEventArgs> handler = BrushSizeChanged;
+            handler?.Invoke(this, new BrushSizeChangedEventArgs(scaleSign));
+        }
+
+        public void OnBrushShapeChanged(Sprite newShape)
+        {
+            EventHandler<BrushShapeChangedEventArgs> handler = BrushShapeChanged;
+            handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
+        }
     }
 
-    public void OnBrushSizeChanged(float scaleSign)
+    public class BrushShapeChangedEventArgs : EventArgs
     {
-        EventHandler<BrushSizeChangedEventArgs> handler = BrushSizeChanged;
-        handler?.Invoke(this, new BrushSizeChangedEventArgs(scaleSign));
+        public Sprite NewShape;
+
+        public BrushShapeChangedEventArgs(Sprite newShape)
+        {
+            NewShape = newShape;
+        }
     }
 
-    public void OnBrushShapeChanged(Sprite newShape)
+    public class BrushSizeChangedEventArgs : EventArgs
     {
-        EventHandler<BrushShapeChangedEventArgs> handler = BrushShapeChanged;
-        handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
+        public float ScaleSign;
+
+        public BrushSizeChangedEventArgs(float scaleSign)
+        {
+            ScaleSign = scaleSign;
+        }
     }
-}
 
-public class BrushShapeChangedEventArgs : EventArgs
-{
-    public Sprite NewShape;
-
-    public BrushShapeChangedEventArgs(Sprite newShape)
+    public class BrushColorChangedEventArgs : EventArgs
     {
-        NewShape = newShape;
-    }
-}
+        public Color NewColor;
 
-public class BrushSizeChangedEventArgs : EventArgs
-{
-    public float ScaleSign;
-
-    public BrushSizeChangedEventArgs(float scaleSign)
-    {
-        ScaleSign = scaleSign;
-    }
-}
-
-public class BrushColorChangedEventArgs : EventArgs
-{
-    public Color NewColor;
-
-    public BrushColorChangedEventArgs(Color newColor)
-    {
-        NewColor = newColor;
+        public BrushColorChangedEventArgs(Color newColor)
+        {
+            NewColor = newColor;
+        }
     }
 }

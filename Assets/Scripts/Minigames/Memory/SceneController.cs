@@ -10,7 +10,7 @@ namespace MexiColleccion.Minigames.Memory
         public const float offsetX = 40f;
         public const float offsetY = 50f;
 
-        [SerializeField] private mainCard originalCard;
+        [SerializeField] private MainCard originalCard;
         [SerializeField] private Sprite[] images;
 
         [SerializeField] private Transform parent;
@@ -26,14 +26,14 @@ namespace MexiColleccion.Minigames.Memory
             {
                 for (int j = 0; j < gridRows; j++)
                 {
-                    mainCard card;
+                    MainCard card;
                     if (i == 0 && j == 0)
                     {
                         card = originalCard;
                     }
                     else
                     {
-                        card = Instantiate(originalCard) as mainCard;
+                        card = Instantiate(originalCard) as MainCard;
                     }
 
                     int index = j * gridCols + i;
@@ -64,8 +64,8 @@ namespace MexiColleccion.Minigames.Memory
 
         //-------------------------------------------------------------------------------------------------------------------------------------------
 
-        private mainCard _firstRevealed;
-        private mainCard _secondRevealed;
+        private MainCard _firstRevealed;
+        private MainCard _secondRevealed;
 
         private int _score = 0;
         [SerializeField] private TextMesh scoreLabel;
@@ -76,7 +76,7 @@ namespace MexiColleccion.Minigames.Memory
             get { return _secondRevealed == null; }
         }
 
-        public void CardRevealed(mainCard card)
+        public void CardRevealed(MainCard card)
         {
             if (_firstRevealed == null)
             {

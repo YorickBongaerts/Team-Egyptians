@@ -1,45 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardDisplay : MonoBehaviour
+namespace MexiColleccion.Minigames.Memory
 {
-
-    private CardType _cardTypeProperties = null;
-
-    [Header("Attributes")]
-    [SerializeField]
-    private Text nameText;
-    [SerializeField]
-    private Image ImageFront;
-    [SerializeField]
-    private Image ImageBack;
-
-    private GameObject CardsContainer;
-
-    public void Initialize(CardType cardType)
+    public class CardDisplay : MonoBehaviour
     {
-        _cardTypeProperties = cardType;
+        private CardType _cardTypeProperties = null;
 
-        //nameText = GetComponent<Text>();
-        nameText.text = _cardTypeProperties.Cardname;
+        [Header("Attributes")]
+        [SerializeField]
+        private Text nameText;
+        [SerializeField]
+        private Image ImageFront;
+        [SerializeField]
+        private Image ImageBack;
 
-        //ImageFront = GetComponent<Image>();
-        ImageFront.sprite = _cardTypeProperties.ImageFront;
+        private GameObject CardsContainer;
 
-        //ImageBack = GetComponent<Image>();
-        ImageBack.sprite = _cardTypeProperties.ImageBack;
+        public void Initialize(CardType cardType)
+        {
+            _cardTypeProperties = cardType;
 
-        CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
-        transform.SetParent(CardsContainer.transform);
+            //nameText = GetComponent<Text>();
+            nameText.text = _cardTypeProperties.Cardname;
 
-        //hides the image of the card
-        Transform frontImage = transform.GetChild(1);
-        frontImage.gameObject.SetActive(false);
+            //ImageFront = GetComponent<Image>();
+            ImageFront.sprite = _cardTypeProperties.ImageFront;
+
+            //ImageBack = GetComponent<Image>();
+            ImageBack.sprite = _cardTypeProperties.ImageBack;
+
+            CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
+            transform.SetParent(CardsContainer.transform);
+
+            //hides the image of the card
+            Transform frontImage = transform.GetChild(1);
+            frontImage.gameObject.SetActive(false);
+        }
+
+        private void Delete()
+        {
+            Destroy(gameObject);
+        }
+
     }
-
-    private void Delete()
-    {
-        Destroy(gameObject);
-    }
-
 }

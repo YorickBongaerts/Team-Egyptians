@@ -50,7 +50,7 @@ namespace MexiColleccion.Minigames.Memory
 
         }
 
-        public void FlipCard(mainCard card1, mainCard card2)
+        public void FlipCard(MainCard card1, MainCard card2)
         {
             //Flips both the cards after the player has selected 2 face-down cards
             //Flip them back if they do not match
@@ -64,7 +64,7 @@ namespace MexiColleccion.Minigames.Memory
             }
         }
 
-        private bool CheckIfCorrect(mainCard card1, mainCard card2)
+        private bool CheckIfCorrect(MainCard card1, MainCard card2)
         {
             //Check if the player has chosen two cards of the same pair
             if(card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name == card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name)
@@ -81,7 +81,7 @@ namespace MexiColleccion.Minigames.Memory
             //maybe through a material ID variable?
         }
 
-        private void ScoreIncrease(mainCard card1, mainCard card2) // --> also part of scoresystem
+        private void ScoreIncrease(MainCard card1, MainCard card2) // --> also part of scoresystem
         {
             //If both cards are the same, increase the score
             //Then remove the cards from the game

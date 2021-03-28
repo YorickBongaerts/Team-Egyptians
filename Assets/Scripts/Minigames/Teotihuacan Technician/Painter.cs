@@ -1,10 +1,11 @@
+using MexiColleccion.UI;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-namespace MexiColleccion.Minigames
+namespace MexiColleccion.Minigames.Teotihuacan
 {
     public class Painter : MonoBehaviour
     {

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UiScriptMemory : UIScript
+namespace MexiColleccion.UI
 {
+    public class UiScriptMemory : UIScript
+    {
 
+    }
 }

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIScriptStartScreen : UIScript
+namespace MexiColleccion.UI
 {
+    public class UIScriptStartScreen : UIScript
+    {
 
+    }
 }
