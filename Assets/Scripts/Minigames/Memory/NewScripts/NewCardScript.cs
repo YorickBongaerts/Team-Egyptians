@@ -28,7 +28,7 @@ namespace MexiColleccion.Minigames.Memory
         {
             Debug.Log(eventData.pressPosition);
             //make sure this is a general scene controller
-            sceneController.AfterClick();
+            sceneController.AfterClick(this.gameObject);
         }
 
         public void OnDrag(PointerEventData eventData)

@@ -36,31 +36,33 @@ namespace MexiColleccion.Minigames.Memory
                 for (int j = 0; j < gridRows; j++)
                 {
                     GameObject card;
-                        card = Instantiate(_cardPrefabs[i]);
-                        int index = j * gridCols + i;
-                        card.GetComponent<NewCardScript>().id = numbers[index];
+                    card = Instantiate(_cardPrefabs[i]);
+                    int index = j * gridCols + i;
+                    card.GetComponent<NewCardScript>().id = numbers[index];
 
-                        float posX = (offsetX * i) + startPos.x;
-                        float posY = (offsetY * j) + startPos.y;
-                        card.transform.position = new Vector3(posX, posY, startPos.z);
+                    float posX = (offsetX * i) + startPos.x;
+                    float posY = (offsetY * j) + startPos.y;
+                    card.transform.position = new Vector3(posX, posY, startPos.z);
+
+                    CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
+                    card.transform.SetParent(CardsContainer.transform);
+
+                    _cardsList.Add(card.GetComponent<NewCardScript>());
                 }
             }
             //////////////////////////////////////////////////////
-            for (int i = 0; i < _cardPrefabs.Length; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    var cardPrefab = _cardPrefabs[i];
-
-                    var item = Instantiate(cardPrefab, new Vector2(0, 0), Quaternion.identity);
-
-                    //Debug.Log("Ik ben een " + cardProperty.Cardname + " kaart");
-                    CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
-                    item.transform.SetParent(CardsContainer.transform);
-
-                    _cardsList.Add(item.GetComponent<NewCardScript>());
-                }
-            }
+            //for (int i = 0; i < _cardPrefabs.Length; i++)
+            //{
+            //    for (int j = 0; j < 2; j++)
+            //    {
+            //        
+            //
+            //        //var item = Instantiate(cardPrefab, new Vector2(0, 0), Quaternion.identity);
+            //
+            //        //Debug.Log("Ik ben een " + cardProperty.Cardname + " kaart");
+            //
+            //    }
+            //}
         }
         public void FlipCard(NewCardScript card1, NewCardScript card2)
         {
@@ -85,28 +87,29 @@ namespace MexiColleccion.Minigames.Memory
             }
             return newArray;
         }
-        public void AfterClick()
+        public void AfterClick(GameObject clickedCard)
         {
-            if (_firstRevealed.isActiveAndEnabled && canReveal)
+            NewCardScript revealedCard = clickedCard.GetComponent<NewCardScript>();
+            if (_firstRevealed == null && canReveal)
             {
                 Debug.Log("REVEAL");
-                _firstRevealed.gameObject.SetActive(false);
-                CardRevealed(_firstRevealed);
+                _firstRevealed = revealedCard;
+            }
+            else if(_firstRevealed.gameObject != clickedCard)
+            {
+                Debug.Log("REVEAL 2");
+                _secondRevealed = revealedCard;
+                CardsRevealed();
             }
         }
 
-        public void CardRevealed(NewCardScript card)
+        public void CardsRevealed()
         {
-            if (_firstRevealed == null)
-            {
-                _firstRevealed = card;
-            }
-            else
-            {
-                _secondRevealed = card;
+            if (_firstRevealed == null || _secondRevealed == null)
+                return;
+
                 FlipCard(_firstRevealed, _secondRevealed);
                 StartCoroutine(CheckMatch());
-            }
         }
 
         private IEnumerator CheckMatch()
@@ -115,11 +118,13 @@ namespace MexiColleccion.Minigames.Memory
             {
                 //_score++;
                 //scoreLabel.text = "Score: " + _score;
+                Debug.Log("Correct pair");
             }
             else
             {
                 yield return new WaitForSeconds(0.5f);
                 FlipCard(_firstRevealed, _secondRevealed);
+                Debug.Log("Incorrect pair");
             }
 
             _firstRevealed = null;
