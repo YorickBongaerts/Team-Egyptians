@@ -51,7 +51,7 @@ public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             Debug.Log(eventData.pressPosition);
             //make sure this is a general scene controller
-            sceneController.AfterClick();
+            //sceneController.AfterClick();
         }
 
         public void OnDrag(PointerEventData eventData)

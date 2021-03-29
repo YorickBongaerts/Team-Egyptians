@@ -125,6 +125,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TouchDrag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""69e1eec3-ac8c-4064-b861-0f94af048337"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TouchPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f405058-8a35-4dd2-8b8c-42be674a39f1"",
+                    ""path"": ""<Touchscreen>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchDrag"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -236,6 +255,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_MemoryGame_TouchInput = m_MemoryGame.FindAction("TouchInput", throwIfNotFound: true);
         m_MemoryGame_TouchPress = m_MemoryGame.FindAction("TouchPress", throwIfNotFound: true);
         m_MemoryGame_TouchPosition = m_MemoryGame.FindAction("TouchPosition", throwIfNotFound: true);
+        m_MemoryGame_TouchDrag = m_MemoryGame.FindAction("TouchDrag", throwIfNotFound: true);
         // Teotihuacan
         m_Teotihuacan = asset.FindActionMap("Teotihuacan", throwIfNotFound: true);
         m_Teotihuacan_Paint = m_Teotihuacan.FindAction("Paint", throwIfNotFound: true);
@@ -366,6 +386,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_MemoryGame_TouchInput;
     private readonly InputAction m_MemoryGame_TouchPress;
     private readonly InputAction m_MemoryGame_TouchPosition;
+    private readonly InputAction m_MemoryGame_TouchDrag;
     public struct MemoryGameActions
     {
         private @Controls m_Wrapper;
@@ -373,6 +394,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @TouchInput => m_Wrapper.m_MemoryGame_TouchInput;
         public InputAction @TouchPress => m_Wrapper.m_MemoryGame_TouchPress;
         public InputAction @TouchPosition => m_Wrapper.m_MemoryGame_TouchPosition;
+        public InputAction @TouchDrag => m_Wrapper.m_MemoryGame_TouchDrag;
         public InputActionMap Get() { return m_Wrapper.m_MemoryGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -391,6 +413,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TouchPosition.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
                 @TouchPosition.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
                 @TouchPosition.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchPosition;
+                @TouchDrag.started -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchDrag;
+                @TouchDrag.performed -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchDrag;
+                @TouchDrag.canceled -= m_Wrapper.m_MemoryGameActionsCallbackInterface.OnTouchDrag;
             }
             m_Wrapper.m_MemoryGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -404,6 +429,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TouchPosition.started += instance.OnTouchPosition;
                 @TouchPosition.performed += instance.OnTouchPosition;
                 @TouchPosition.canceled += instance.OnTouchPosition;
+                @TouchDrag.started += instance.OnTouchDrag;
+                @TouchDrag.performed += instance.OnTouchDrag;
+                @TouchDrag.canceled += instance.OnTouchDrag;
             }
         }
     }
@@ -472,6 +500,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnTouchInput(InputAction.CallbackContext context);
         void OnTouchPress(InputAction.CallbackContext context);
         void OnTouchPosition(InputAction.CallbackContext context);
+        void OnTouchDrag(InputAction.CallbackContext context);
     }
     public interface ITeotihuacanActions
     {

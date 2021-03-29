@@ -18,14 +18,8 @@ namespace MexiColleccion.Minigames.Memory
 
         private bool _isAPair = false;
         private Sprite _cardBackSprite;
-        private GraphicRaycaster _gRay;
         private PointerEventData _eventData = null;
         private List<RaycastResult> _results = new List<RaycastResult>(); 
-
-        private void Start()
-        {
-            _gRay = GameObject.Find("GraphicRaycaster").GetComponent<GraphicRaycaster>();
-        }
         private void Update()
         {
 
