@@ -8,19 +8,42 @@ using UnityEngine.InputSystem;
 public class HubPaintings : MonoBehaviour
 {
     public string MinigameName;
+    public Camera camera;
 
     public void OnPaintingTap(InputAction.CallbackContext context)
     {
-        if (MinigameName == "Painter")
+        Ray ray = camera.ScreenPointToRay(context.ReadValue<Vector3>());
+        if(Physics.Raycast(ray, out var hit))
         {
-            SceneManager.LoadScene("Painter");
+            if( hit.transform.gameObject == this.gameObject)
+            {
+                if (MinigameName == "Painter")
+                {
+                    SceneManager.LoadScene("Painter");
+                }
+    
+                if (MinigameName == "Memory")
+                {
+                    SceneManager.LoadScene("Minigame-Memory");
+                }
+            }
+    
         }
-
-        if (MinigameName == "Memory")
-        {
-            SceneManager.LoadScene("Minigame-Memory");
-        }
+    
     }
+
+    //private void OnMouseDown()
+    //{
+    //    if (MinigameName == "Painter")
+    //    {
+    //        SceneManager.LoadScene("Painter");
+    //    }
+    //
+    //    if (MinigameName == "Memory")
+    //    {
+    //        SceneManager.LoadScene("Minigame-Memory");
+    //    }
+    //}
 
 
 

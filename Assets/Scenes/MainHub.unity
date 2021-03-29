@@ -1275,6 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinigameName: Memory
+  camera: {fileID: 690481265}
 --- !u!114 &1003896304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2423,6 +2424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinigameName: Painter
+  camera: {fileID: 690481265}
 --- !u!114 &2117866709
 MonoBehaviour:
   m_ObjectHideFlags: 0
