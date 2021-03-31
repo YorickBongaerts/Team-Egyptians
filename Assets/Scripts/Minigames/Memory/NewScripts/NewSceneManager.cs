@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames.Memory
 {
@@ -40,8 +41,12 @@ namespace MexiColleccion.Minigames.Memory
                     int index = j * gridCols + i;
                     card.GetComponent<NewCardScript>().id = numbers[index];
 
-                    float posX = (offsetX * i) + startPos.x;
-                    float posY = (offsetY * j) + startPos.y;
+                    //float posX = (offsetX * i) + startPos.x;
+                    //float posY = (offsetY * j) + startPos.y;
+
+                    float posX = card.GetComponent<NewCardScript>().id * offsetX;
+                    float posY = 20 * offsetY;
+
                     card.transform.position = new Vector3(posX, posY, startPos.z);
 
                     CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
@@ -63,17 +68,27 @@ namespace MexiColleccion.Minigames.Memory
             //
             //    }
             //}
+            foreach (NewCardScript card in _cardsList)
+            {
+                UpdateCardImage(card);
+                FlipCard(card);
+                UpdateCardImage(card);
+            }
+
         }
-        public void FlipCard(NewCardScript card1, NewCardScript card2)
+        public void FlipCards(NewCardScript card1, NewCardScript card2)
         {
             //Flips both the cards after the player has selected 2 face-down cards
-            card1Storage = card1.ImageBack;
-            card1.ImageBack = card1.ImageFront;
-            card1.ImageFront = card1Storage;
-            
-            card2Storage = card2.ImageBack;
-            card2.ImageBack = card2.ImageFront;
-            card2.ImageFront = card1Storage;
+
+            FlipCard(card1);
+            FlipCard(card2);
+        }
+        private void FlipCard(NewCardScript card)
+        {
+            card1Storage = card.ImageBack;
+            card.ImageBack = card.ImageFront;
+            card.ImageFront = card1Storage;
+            UpdateCardImage(card);
         }
         private int[] ShuffleArray(int[] numbers)
         {
@@ -108,7 +123,7 @@ namespace MexiColleccion.Minigames.Memory
             if (_firstRevealed == null || _secondRevealed == null)
                 return;
 
-                FlipCard(_firstRevealed, _secondRevealed);
+                FlipCards(_firstRevealed, _secondRevealed);
                 StartCoroutine(CheckMatch());
         }
 
@@ -123,13 +138,17 @@ namespace MexiColleccion.Minigames.Memory
             else
             {
                 yield return new WaitForSeconds(0.5f);
-                FlipCard(_firstRevealed, _secondRevealed);
+                FlipCards(_firstRevealed, _secondRevealed);
                 Debug.Log("Incorrect pair");
             }
 
             _firstRevealed = null;
             _secondRevealed = null;
 
+        }
+        private void UpdateCardImage(NewCardScript card)
+        {
+            card.gameObject.GetComponent<Image>().sprite = card.ImageFront;
         }
 }
 }
