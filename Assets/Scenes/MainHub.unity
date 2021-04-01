@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2494,6 +2494,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 74ee284b-80dc-4370-aac7-edee47ce07c9
     m_ActionName: Teotihuacan/TapPosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69e1eec3-ac8c-4064-b861-0f94af048337
+    m_ActionName: MemoryGame/TouchDrag
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu
