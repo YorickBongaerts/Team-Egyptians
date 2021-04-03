@@ -37,8 +37,8 @@ namespace MexiColleccion.Minigames.Memory
                 for (int j = 0; j < gridRows; j++)
                 {
                     GameObject card;
-                    card = Instantiate(_cardPrefabs[i]);
                     int index = j * gridCols + i;
+                    card = Instantiate(_cardPrefabs[numbers[index]]);
                     card.GetComponent<NewCardScript>().id = numbers[index];
 
                     //float posX = (offsetX * i) + startPos.x;
@@ -76,12 +76,13 @@ namespace MexiColleccion.Minigames.Memory
             }
 
         }
-        public void FlipCards(NewCardScript card1, NewCardScript card2)
+        public IEnumerator FlipCards(NewCardScript card1, NewCardScript card2)
         {
             //Flips both the cards after the player has selected 2 face-down cards
 
             FlipCard(card1);
             FlipCard(card2);
+            yield return null;
         }
         private void FlipCard(NewCardScript card)
         {
@@ -123,7 +124,7 @@ namespace MexiColleccion.Minigames.Memory
             if (_firstRevealed == null || _secondRevealed == null)
                 return;
 
-                FlipCards(_firstRevealed, _secondRevealed);
+                StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 StartCoroutine(CheckMatch());
         }
 
@@ -134,17 +135,19 @@ namespace MexiColleccion.Minigames.Memory
                 //_score++;
                 //scoreLabel.text = "Score: " + _score;
                 Debug.Log("Correct pair");
+                Destroy(_firstRevealed.gameObject);
+                Destroy(_secondRevealed.gameObject);
+                _firstRevealed = null;
+                _secondRevealed = null;
             }
             else
             {
                 yield return new WaitForSeconds(0.5f);
-                FlipCards(_firstRevealed, _secondRevealed);
+                yield return StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 Debug.Log("Incorrect pair");
+                _firstRevealed = null;
+                _secondRevealed = null;
             }
-
-            _firstRevealed = null;
-            _secondRevealed = null;
-
         }
         private void UpdateCardImage(NewCardScript card)
         {

@@ -33,7 +33,7 @@ namespace MexiColleccion.Minigames.Memory
 
         public void OnDrag(PointerEventData eventData)
         {
-            Debug.Log("IDC BITCHES");
+            Debug.Log("Dragging");
         }
         private void Delete()
         {
