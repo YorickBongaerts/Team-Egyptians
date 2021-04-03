@@ -21,6 +21,7 @@ namespace MexiColleccion.Minigames.Memory
         public GameObject[] _cardPrefabs = new GameObject[3];
         public List<NewCardScript> _cardsList = new List<NewCardScript>();
         private GameObject CardsContainer;
+        private int amountOfCollectedPairs = 0;
         public bool canReveal
         {
             get { return _secondRevealed == null; }
@@ -111,7 +112,7 @@ namespace MexiColleccion.Minigames.Memory
                 Debug.Log("REVEAL");
                 _firstRevealed = revealedCard;
             }
-            else if(_firstRevealed.gameObject != clickedCard)
+            else if(_firstRevealed.gameObject != clickedCard && _secondRevealed == null)
             {
                 Debug.Log("REVEAL 2");
                 _secondRevealed = revealedCard;
@@ -135,10 +136,10 @@ namespace MexiColleccion.Minigames.Memory
                 //_score++;
                 //scoreLabel.text = "Score: " + _score;
                 Debug.Log("Correct pair");
-                Destroy(_firstRevealed.gameObject);
-                Destroy(_secondRevealed.gameObject);
+                Delete(_firstRevealed.gameObject, _secondRevealed.gameObject);
                 _firstRevealed = null;
                 _secondRevealed = null;
+                CheckForWin();
             }
             else
             {
@@ -149,6 +150,22 @@ namespace MexiColleccion.Minigames.Memory
                 _secondRevealed = null;
             }
         }
+
+        private void CheckForWin()
+        {
+            if (amountOfCollectedPairs == _cardPrefabs.Length)
+            {
+                Debug.Log("Win");
+            }
+        }
+
+        private void Delete(GameObject card1, GameObject card2)
+        {
+            Destroy(_firstRevealed.gameObject);
+            Destroy(_secondRevealed.gameObject);
+            amountOfCollectedPairs++; 
+        }
+
         private void UpdateCardImage(NewCardScript card)
         {
             card.gameObject.GetComponent<Image>().sprite = card.ImageFront;
