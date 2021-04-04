@@ -66,9 +66,17 @@ public class @Controls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Tap"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""cc213b6a-08aa-4ef6-a629-70c319929dbb"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TapPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9d05a432-48ab-49bd-8b41-335d5278f5ff"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -93,6 +101,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fcaf7d83-14bc-4c85-9288-d4d94da7af05"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""TapPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae772b17-2f2b-4e64-b5b3-0908d40c6275"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TapPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -250,6 +280,7 @@ public class @Controls : IInputActionCollection, IDisposable
         // MainHub
         m_MainHub = asset.FindActionMap("MainHub", throwIfNotFound: true);
         m_MainHub_Tap = m_MainHub.FindAction("Tap", throwIfNotFound: true);
+        m_MainHub_TapPosition = m_MainHub.FindAction("TapPosition", throwIfNotFound: true);
         // MemoryGame
         m_MemoryGame = asset.FindActionMap("MemoryGame", throwIfNotFound: true);
         m_MemoryGame_TouchInput = m_MemoryGame.FindAction("TouchInput", throwIfNotFound: true);
@@ -351,11 +382,13 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_MainHub;
     private IMainHubActions m_MainHubActionsCallbackInterface;
     private readonly InputAction m_MainHub_Tap;
+    private readonly InputAction m_MainHub_TapPosition;
     public struct MainHubActions
     {
         private @Controls m_Wrapper;
         public MainHubActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap => m_Wrapper.m_MainHub_Tap;
+        public InputAction @TapPosition => m_Wrapper.m_MainHub_TapPosition;
         public InputActionMap Get() { return m_Wrapper.m_MainHub; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -368,6 +401,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Tap.started -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
                 @Tap.performed -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
                 @Tap.canceled -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
+                @TapPosition.started -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
+                @TapPosition.performed -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
+                @TapPosition.canceled -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
             }
             m_Wrapper.m_MainHubActionsCallbackInterface = instance;
             if (instance != null)
@@ -375,6 +411,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Tap.started += instance.OnTap;
                 @Tap.performed += instance.OnTap;
                 @Tap.canceled += instance.OnTap;
+                @TapPosition.started += instance.OnTapPosition;
+                @TapPosition.performed += instance.OnTapPosition;
+                @TapPosition.canceled += instance.OnTapPosition;
             }
         }
     }
@@ -494,6 +533,7 @@ public class @Controls : IInputActionCollection, IDisposable
     public interface IMainHubActions
     {
         void OnTap(InputAction.CallbackContext context);
+        void OnTapPosition(InputAction.CallbackContext context);
     }
     public interface IMemoryGameActions
     {

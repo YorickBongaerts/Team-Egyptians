@@ -101,7 +101,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         }
         #endregion
 
-        #region event callbacks
+        #region Event callbacks
         private void BrushSizeChanged(object sender, BrushSizeChangedEventArgs e)
         {
             BrushSize = Mathf.Clamp(BrushSize + (e.ScaleSign * _scaleUnit), Mathf.Min(_brushSize.x, _brushSize.z), Mathf.Max(_brushSize.x, _brushSize.z));
