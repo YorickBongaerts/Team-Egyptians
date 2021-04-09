@@ -27,7 +27,7 @@ namespace MexiColleccion.Utils
             }
             else
             {
-                Debug.Log("Time had run out");
+                UnityEngine.Debug.Log("Time had run out");
                 remainingTime = 0;
                 IsTimerRunning = false;
             }

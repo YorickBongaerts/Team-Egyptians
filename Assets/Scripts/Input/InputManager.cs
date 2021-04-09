@@ -1,21 +1,89 @@
-﻿namespace MexiColleccion.Input
+﻿using MexiColleccion.Input.Utilities;
+using MexiColleccion.Utils.Debug;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+namespace MexiColleccion.Input
 {
-    public static class InputManager
+    /// <summary>
+    /// InputManager is the base input class from which a class that needs to handle input derives. Override the event callbacks in order to use the pointer input.
+    /// </summary>
+    [RequireComponent(typeof(PointerInputHandler))]
+    public class InputManager : MonoBehaviour
     {
-        // -- I changed the name because it will handle all input and not only for the character (the character is not controlled during the minigames) - Erik
+        [SerializeField] private InputDebugger _debugger;
+        private PointerInputHandler _inputHandler;
 
+        private PointerInputHandler InputHandler => _inputHandler;
+        private InputDebugger Debugger => _debugger;
 
-        //A possible script to link the button inputs to the character animations and controls
-
-        //This script is not mentioned in the tech analysis (or not directly at least)
-
-        public static void ControlsMainHub()
+        private void OnEnable()
         {
+            _inputHandler = GetComponent<PointerInputHandler>();
+            SubscribeToInputHandler();
         }
 
-        public static void ControlsMinigames()
+        private void OnDisable()
         {
-
+            UnsubscribeFromInputHandler();
+            _inputHandler = null;
         }
+
+        private void SubscribeToInputHandler()
+        {
+            InputHandler.Pressed += OnPressed;
+            InputHandler.Dragged += OnDragged;
+            InputHandler.Released += OnReleased;
+        }
+
+        private void UnsubscribeFromInputHandler()
+        {
+            InputHandler.Pressed -= OnPressed;
+            InputHandler.Dragged -= OnDragged;
+            InputHandler.Released -= OnReleased;
+        }
+
+        /// <summary>
+        /// Event called when the user starts touching the screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnPressed(object sender, PointerEventArgs e)
+        {
+            if (Debugger != null)
+            {
+                Debugger.DebugInfo(e.PointerInput);
+            }
+
+            if (EventSystem.current.IsPointerOverGameObject(e.PointerInput.InputId))
+                return;
+        }
+
+        /// <summary>
+        /// Event called when the user is moving their finger while touching the screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnDragged(object sender, PointerEventArgs e)
+        {
+            if (Debugger != null)
+            {
+                Debugger.DebugInfo(e.PointerInput);
+            }
+        }
+
+        /// <summary>
+        /// Event called when the user stops touching the screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnReleased(object sender, PointerEventArgs e)
+        {
+            if (Debugger != null)
+            {
+                Debugger.DebugInfo(e.PointerInput);
+            }
+        }
+
     }
 }

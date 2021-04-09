@@ -30,8 +30,8 @@ namespace MexiColleccion.Hub
                 isAssigned = false;
                 _nonHitTrigger = _leftTrigger;
             }
-
         }
+
         public void GoToSide(Vector3 destinationPosition, int tappedSide)
         {
             if (!isAssigned)

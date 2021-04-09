@@ -200,48 +200,128 @@
             ]
         },
         {
-            "name": "Teotihuacan",
-            "id": "5b3ec4ec-90ca-4e62-9512-b56a7c39d5c3",
+            "name": "Touch",
+            "id": "cf1908f3-3ad8-4172-ab60-d3867308fcd6",
             "actions": [
                 {
-                    "name": "Paint",
+                    "name": "Pointer",
                     "type": "PassThrough",
-                    "id": "6e0c269e-2bce-495e-aefe-6f29c325446b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TapPosition",
-                    "type": "PassThrough",
-                    "id": "74ee284b-80dc-4370-aac7-edee47ce07c9",
-                    "expectedControlType": "Vector2",
+                    "id": "3aeb809a-7b15-4f39-bf9a-39ed66746865",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "a55c15cc-eac3-4a91-8b7a-bb17b13dc7be",
-                    "path": "<Touchscreen>/primaryTouch/position",
+                    "name": "Touch",
+                    "id": "04dca819-b41d-40fe-a464-728d39f50586",
+                    "path": "PointerInput",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mobile",
-                    "action": "TapPosition",
-                    "isComposite": false,
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "fe4640ad-8021-4b40-8542-107f42172cc2",
+                    "name": "contact",
+                    "id": "2cfc1359-f27c-40b2-a3fd-de74c48292f9",
                     "path": "<Touchscreen>/primaryTouch/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mobile",
-                    "action": "Paint",
+                    "groups": "",
+                    "action": "Pointer",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "position",
+                    "id": "99ebf1cd-ddde-46a0-a221-e2ff53ff194c",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "radius",
+                    "id": "fa55728b-1a3d-4805-b015-4e9055561a5f",
+                    "path": "<Touchscreen>/primaryTouch/radius",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "pressure",
+                    "id": "26e2616f-1825-4bf7-9734-cbf88f0ea7c9",
+                    "path": "<Touchscreen>/primaryTouch/pressure",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "inputId",
+                    "id": "0c8908a3-282a-439d-af3b-50f64a493816",
+                    "path": "<Touchscreen>/primaryTouch/touchId",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Mouse",
+                    "id": "3ebd7a51-52ff-49a9-ba8d-34e9cdcb4612",
+                    "path": "PointerInput",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "contact",
+                    "id": "abbcdfab-6c2a-4ba8-b35f-60ce05baf525",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "position",
+                    "id": "183d81d0-017c-4000-8f67-733314166780",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "inputId",
+                    "id": "28a04dec-333d-4ee6-bcb1-59cae775382a",
+                    "path": "<Mouse>/pointerId",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

@@ -1,3 +1,5 @@
+using MexiColleccion.Input;
+using MexiColleccion.Input.Utilities;
 using MexiColleccion.UI;
 using System;
 using System.Collections;
@@ -8,7 +10,7 @@ using UnityEngine.InputSystem.Controls;
 
 namespace MexiColleccion.Minigames.Teotihuacan
 {
-    public class Painter : MonoBehaviour
+    public class Painter : InputManager
     {
         [Header("References")]
         [Tooltip("Reference to the GameObject where the painting will be displayed on.")]
@@ -83,7 +85,6 @@ namespace MexiColleccion.Minigames.Teotihuacan
         {
             if (_isPainting && CanPaint && _brushCounter < _maxBrushCount)
             {
-                //Vector2 inputPosition = UnityEngine.Input.GetTouch(0).position;
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(_inputPosition.x, _inputPosition.y, -Camera.main.transform.position.z));
                 _brushCounter++;
                 SetDot(worldPosition, true);
@@ -168,26 +169,60 @@ namespace MexiColleccion.Minigames.Teotihuacan
         #endregion
 
         #region Input callbacks
-        public void OnPaint(InputAction.CallbackContext context)
-        {
-            if (context.ReadValueAsButton())
-            {
-                if (EventSystem.current.IsPointerOverGameObject())
-                    return;
+        //public void OnPaint(InputAction.CallbackContext context)
+        //{
+        //    if (context.ReadValueAsButton())
+        //    {
+        //        if (EventSystem.current.IsPointerOverGameObject())
+        //            return;
 
-                if (!_isPainting)
-                {
-                    _isPainting = true;
-                }
+        //        if (!_isPainting)
+        //        {
+        //            _isPainting = true;
+        //        }
+        //        return;
+        //    }
+        //    _isPainting = false;
+        //}
+
+        //public void OnTapPosition(InputAction.CallbackContext context)
+        //{
+        //    TouchControl control = context.control.parent as TouchControl;
+        //    _inputPosition = control.position.ReadValue();
+        //}
+
+
+        protected override void OnPressed(object sender, PointerEventArgs e)
+        {
+            base.OnPressed(sender, e);
+
+            if (EventSystem.current.IsPointerOverGameObject())
                 return;
+
+            if (!_isPainting)
+            {
+                _isPainting = true;
             }
-            _isPainting = false;
+            else
+            {
+                throw new Exception("Hmm, this shouldn't be happening...");
+            }
+
+            _inputPosition = e.PointerInput.Position;
         }
 
-        public void OnTapPosition(InputAction.CallbackContext context)
+        protected override void OnDragged(object sender, PointerEventArgs e)
         {
-            TouchControl control = context.control.parent as TouchControl;
-            _inputPosition = control.position.ReadValue();
+            base.OnDragged(sender, e);
+
+            _inputPosition = e.PointerInput.Position;
+        }
+
+        protected override void OnReleased(object sender, PointerEventArgs e)
+        {
+            base.OnReleased(sender, e);
+
+            _isPainting = false;
         }
         #endregion
     }
