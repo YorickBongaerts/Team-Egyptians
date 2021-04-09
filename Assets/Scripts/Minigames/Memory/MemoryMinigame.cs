@@ -17,7 +17,7 @@ namespace MexiColleccion.Minigames.Memory
         private Sprite[] _cardFrontSprites;
 
         private bool _isAPair = false;
-        private Sprite _cardBackSprite;
+        private Sprite _cardBackSprite = null;
         private PointerEventData _eventData = null;
         private List<RaycastResult> _results = new List<RaycastResult>(); 
         private void Update()

@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Artifact : MonoBehaviour
 {
-    [SerializeField]
-    private string _artifactName; //artifact name convention is *Minigame*+Artifact+*Number*
+    [SerializeField] private string _artifactName; //artifact name convention is *Minigame*+Artifact+*Number*
 
     public Material CollectedMaterial;
 

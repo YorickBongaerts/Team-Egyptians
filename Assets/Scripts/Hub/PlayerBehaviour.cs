@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace MexiColleccion.Hub
 {
+    /// <summary>
+    /// This is the new version of the PlayerScript (deleted)
+    /// </summary>
     public class PlayerBehaviour : MonoBehaviour
     {
-        /// <summary>
-        /// This is the new version of the PlayerScript
-        /// </summary>
 
         [SerializeField] private Collider _leftTrigger;
         [SerializeField] private Collider _rightTrigger;

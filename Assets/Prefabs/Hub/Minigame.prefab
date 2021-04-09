@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 814154616023695644}
   - component: {fileID: 814154616023695645}
   - component: {fileID: 814154616023695642}
-  - component: {fileID: 814154616023695646}
-  - component: {fileID: 814154616023695617}
+  - component: {fileID: 4203346901366355858}
+  - component: {fileID: 8832888965966647364}
   m_Layer: 0
   m_Name: Painting
   m_TagString: Untagged
@@ -128,7 +128,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &814154616023695646
+--- !u!114 &4203346901366355858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,11 +137,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 814154616023695643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e326d907087309640875ebd647b97946, type: 3}
+  m_Script: {fileID: 11500000, guid: b830dc56986e7a742bd47e240a0a142a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinigameName: 
---- !u!114 &814154616023695617
+  _isUsingPen: 0
+  _isUsingTouch: 0
+--- !u!114 &8832888965966647364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,91 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 814154616023695643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 2333654060e129f4ea08781c07014f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 362d44efadd950644982c7ddd5cf480e, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0c2a2ca7-380f-433a-958d-70fc4b10a3a5
-    m_ActionName: Menu/Tap
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9908a6ca-5eb0-4436-850a-54b31f7729ef
-    m_ActionName: Menu/Point
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 814154616023695646}
-        m_TargetAssemblyTypeName: HubPaintings, Assembly-CSharp
-        m_MethodName: OnPaintingTap
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cc213b6a-08aa-4ef6-a629-70c319929dbb
-    m_ActionName: MainHub/Tap
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9a9e6a2a-ab46-48a2-804e-b0d92a581855
-    m_ActionName: MemoryGame/TouchInput
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 25c7e7a7-f8d2-4dfe-9f25-83c22a9aee73
-    m_ActionName: MemoryGame/TouchPress
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 32960804-675e-4711-be50-52e16b5ee7ee
-    m_ActionName: MemoryGame/TouchPosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6e0c269e-2bce-495e-aefe-6f29c325446b
-    m_ActionName: Teotihuacan/Paint
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 74ee284b-80dc-4370-aac7-edee47ce07c9
-    m_ActionName: Teotihuacan/TapPosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 69e1eec3-ac8c-4064-b861-0f94af048337
-    m_ActionName: MemoryGame/TouchDrag
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 814154616023695646}
-        m_TargetAssemblyTypeName: HubPaintings, Assembly-CSharp
-        m_MethodName: OnTapPosition
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 9d05a432-48ab-49bd-8b41-335d5278f5ff
-    m_ActionName: MainHub/TapPosition[/Touchscreen/primaryTouch/position,/Mouse/position]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Menu
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  _debugger: {fileID: 0}
+  _minigameName: 
 --- !u!1 &814154616038312087
 GameObject:
   m_ObjectHideFlags: 0

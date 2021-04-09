@@ -13,7 +13,7 @@ namespace MexiColleccion.Minigames.Memory
         public Sprite ImageBack;
         public NewSceneManager sceneController;
         private int _id;
-        public int id
+        public int Id
         {
             get { return _id; }
 

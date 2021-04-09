@@ -9,9 +9,9 @@ namespace MexiColleccion.UI
 {
     public class UiScriptArtist : UIScript
     {
-        public event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
-        public event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
-        public event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
+        internal event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
+        internal event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
+        internal event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
 
         public void OnBrushColorChanged(Ink ink)
         {
@@ -32,31 +32,31 @@ namespace MexiColleccion.UI
         }
     }
 
-    public class BrushShapeChangedEventArgs : EventArgs
+    internal class BrushShapeChangedEventArgs : EventArgs
     {
-        public Sprite NewShape;
+        internal Sprite NewShape;
 
-        public BrushShapeChangedEventArgs(Sprite newShape)
+        internal BrushShapeChangedEventArgs(Sprite newShape)
         {
             NewShape = newShape;
         }
     }
 
-    public class BrushSizeChangedEventArgs : EventArgs
+    internal class BrushSizeChangedEventArgs : EventArgs
     {
-        public float ScaleSign;
+        internal float ScaleSign;
 
-        public BrushSizeChangedEventArgs(float scaleSign)
+        internal BrushSizeChangedEventArgs(float scaleSign)
         {
             ScaleSign = scaleSign;
         }
     }
 
-    public class BrushColorChangedEventArgs : EventArgs
+    internal class BrushColorChangedEventArgs : EventArgs
     {
-        public Ink NewInk;
+        internal Ink NewInk;
 
-        public BrushColorChangedEventArgs(Ink newInk)
+        internal BrushColorChangedEventArgs(Ink newInk)
         {
             NewInk = newInk;
         }

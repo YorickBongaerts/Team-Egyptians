@@ -11,50 +11,50 @@ namespace MexiColleccion.Input.Utilities
     /// <summary>
     /// Simple object to contain information for drag inputs.
     /// </summary>
-    public struct PointerInput
+    internal struct PointerInput
     {
-        public bool Contact;
+        internal bool Contact;
 
         /// <summary>
         /// ID of input type.
         /// </summary>
-        public int InputId;
+        internal int InputId;
 
         /// <summary>
         /// Position of input.
         /// </summary>
-        public Vector2 Position;
+        internal Vector2 Position;
 
         /// <summary>
         /// Pressure of input.
         /// </summary>
-        public float? Pressure;
+        internal float? Pressure;
 
         /// <summary>
         /// Radius of input.
         /// </summary>
-        public Vector2? Radius;
+        internal Vector2? Radius;
     }
 
 #if UNITY_EDITOR
     [InitializeOnLoad]
 #endif
-    public class PointerInputComposite : InputBindingComposite<PointerInput>
+    internal class PointerInputComposite : InputBindingComposite<PointerInput>
     {
         [InputControl(layout = "Button")]
-        public int contact;
+        internal int contact;
 
         [InputControl(layout = "Vector2")]
-        public int position;
+        internal int position;
 
         [InputControl(layout = "Vector2")]
-        public int radius;
+        internal int radius;
 
         [InputControl(layout = "Axis")]
-        public int pressure;
+        internal int pressure;
 
         [InputControl(layout = "Integer")]
-        public int inputId;
+        internal int inputId;
 
         public override PointerInput ReadValue(ref InputBindingCompositeContext context)
         {

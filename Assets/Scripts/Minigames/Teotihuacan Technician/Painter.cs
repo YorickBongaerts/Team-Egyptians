@@ -169,29 +169,6 @@ namespace MexiColleccion.Minigames.Teotihuacan
         #endregion
 
         #region Input callbacks
-        //public void OnPaint(InputAction.CallbackContext context)
-        //{
-        //    if (context.ReadValueAsButton())
-        //    {
-        //        if (EventSystem.current.IsPointerOverGameObject())
-        //            return;
-
-        //        if (!_isPainting)
-        //        {
-        //            _isPainting = true;
-        //        }
-        //        return;
-        //    }
-        //    _isPainting = false;
-        //}
-
-        //public void OnTapPosition(InputAction.CallbackContext context)
-        //{
-        //    TouchControl control = context.control.parent as TouchControl;
-        //    _inputPosition = control.position.ReadValue();
-        //}
-
-
         protected override void OnPressed(object sender, PointerEventArgs e)
         {
             base.OnPressed(sender, e);

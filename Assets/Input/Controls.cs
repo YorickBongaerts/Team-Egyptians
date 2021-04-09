@@ -15,120 +15,6 @@ public class @Controls : IInputActionCollection, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Menu"",
-            ""id"": ""54ab54ac-8364-4944-87ec-324f16fc4d4d"",
-            ""actions"": [
-                {
-                    ""name"": ""Tap"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""0c2a2ca7-380f-433a-958d-70fc4b10a3a5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Point"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""9908a6ca-5eb0-4436-850a-54b31f7729ef"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""72e32880-b1a9-44c7-bb88-6b40c31a04c5"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mobile"",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""86840292-734c-408f-9f00-d688d0715e8c"",
-                    ""path"": ""<Touchscreen>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mobile"",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""MainHub"",
-            ""id"": ""50a1de51-81c3-4dbf-a510-b20553408158"",
-            ""actions"": [
-                {
-                    ""name"": ""Tap"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""cc213b6a-08aa-4ef6-a629-70c319929dbb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TapPosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""9d05a432-48ab-49bd-8b41-335d5278f5ff"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""842799d2-cfb9-4ac4-a1a6-38b5c645d445"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mobile"",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""503f9ea3-6230-4b3e-8039-aea5c5376525"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fcaf7d83-14bc-4c85-9288-d4d94da7af05"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mobile"",
-                    ""action"": ""TapPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ae772b17-2f2b-4e64-b5b3-0908d40c6275"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TapPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""MemoryGame"",
             ""id"": ""89928d0b-ea22-474c-876c-341df6048b10"",
             ""actions"": [
@@ -353,14 +239,6 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     ]
 }");
-        // Menu
-        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Tap = m_Menu.FindAction("Tap", throwIfNotFound: true);
-        m_Menu_Point = m_Menu.FindAction("Point", throwIfNotFound: true);
-        // MainHub
-        m_MainHub = asset.FindActionMap("MainHub", throwIfNotFound: true);
-        m_MainHub_Tap = m_MainHub.FindAction("Tap", throwIfNotFound: true);
-        m_MainHub_TapPosition = m_MainHub.FindAction("TapPosition", throwIfNotFound: true);
         // MemoryGame
         m_MemoryGame = asset.FindActionMap("MemoryGame", throwIfNotFound: true);
         m_MemoryGame_TouchInput = m_MemoryGame.FindAction("TouchInput", throwIfNotFound: true);
@@ -415,88 +293,6 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         asset.Disable();
     }
-
-    // Menu
-    private readonly InputActionMap m_Menu;
-    private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_Tap;
-    private readonly InputAction m_Menu_Point;
-    public struct MenuActions
-    {
-        private @Controls m_Wrapper;
-        public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Tap => m_Wrapper.m_Menu_Tap;
-        public InputAction @Point => m_Wrapper.m_Menu_Point;
-        public InputActionMap Get() { return m_Wrapper.m_Menu; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
-        public void SetCallbacks(IMenuActions instance)
-        {
-            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
-            {
-                @Tap.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
-                @Tap.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
-                @Tap.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTap;
-                @Point.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
-                @Point.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
-                @Point.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPoint;
-            }
-            m_Wrapper.m_MenuActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Tap.started += instance.OnTap;
-                @Tap.performed += instance.OnTap;
-                @Tap.canceled += instance.OnTap;
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
-            }
-        }
-    }
-    public MenuActions @Menu => new MenuActions(this);
-
-    // MainHub
-    private readonly InputActionMap m_MainHub;
-    private IMainHubActions m_MainHubActionsCallbackInterface;
-    private readonly InputAction m_MainHub_Tap;
-    private readonly InputAction m_MainHub_TapPosition;
-    public struct MainHubActions
-    {
-        private @Controls m_Wrapper;
-        public MainHubActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Tap => m_Wrapper.m_MainHub_Tap;
-        public InputAction @TapPosition => m_Wrapper.m_MainHub_TapPosition;
-        public InputActionMap Get() { return m_Wrapper.m_MainHub; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MainHubActions set) { return set.Get(); }
-        public void SetCallbacks(IMainHubActions instance)
-        {
-            if (m_Wrapper.m_MainHubActionsCallbackInterface != null)
-            {
-                @Tap.started -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
-                @Tap.performed -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
-                @Tap.canceled -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTap;
-                @TapPosition.started -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
-                @TapPosition.performed -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
-                @TapPosition.canceled -= m_Wrapper.m_MainHubActionsCallbackInterface.OnTapPosition;
-            }
-            m_Wrapper.m_MainHubActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Tap.started += instance.OnTap;
-                @Tap.performed += instance.OnTap;
-                @Tap.canceled += instance.OnTap;
-                @TapPosition.started += instance.OnTapPosition;
-                @TapPosition.performed += instance.OnTapPosition;
-                @TapPosition.canceled += instance.OnTapPosition;
-            }
-        }
-    }
-    public MainHubActions @MainHub => new MainHubActions(this);
 
     // MemoryGame
     private readonly InputActionMap m_MemoryGame;
@@ -595,16 +391,6 @@ public class @Controls : IInputActionCollection, IDisposable
             if (m_MobileSchemeIndex == -1) m_MobileSchemeIndex = asset.FindControlSchemeIndex("Mobile");
             return asset.controlSchemes[m_MobileSchemeIndex];
         }
-    }
-    public interface IMenuActions
-    {
-        void OnTap(InputAction.CallbackContext context);
-        void OnPoint(InputAction.CallbackContext context);
-    }
-    public interface IMainHubActions
-    {
-        void OnTap(InputAction.CallbackContext context);
-        void OnTapPosition(InputAction.CallbackContext context);
     }
     public interface IMemoryGameActions
     {

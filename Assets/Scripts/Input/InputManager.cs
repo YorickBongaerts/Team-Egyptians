@@ -17,6 +17,7 @@ namespace MexiColleccion.Input
         private PointerInputHandler InputHandler => _inputHandler;
         private InputDebugger Debugger => _debugger;
 
+        #region Unity Lifecycle
         private void OnEnable()
         {
             _inputHandler = GetComponent<PointerInputHandler>();
@@ -28,6 +29,7 @@ namespace MexiColleccion.Input
             UnsubscribeFromInputHandler();
             _inputHandler = null;
         }
+        #endregion
 
         private void SubscribeToInputHandler()
         {

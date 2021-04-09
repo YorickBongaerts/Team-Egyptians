@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 namespace MexiColleccion.Input.Utilities
 {
-    public sealed class PointerInputHandler : MonoBehaviour
+    internal sealed class PointerInputHandler : MonoBehaviour
     {
-        public event EventHandler<PointerEventArgs> Pressed;
-        public event EventHandler<PointerEventArgs> Dragged;
-        public event EventHandler<PointerEventArgs> Released;
+        internal event EventHandler<PointerEventArgs> Pressed;
+        internal event EventHandler<PointerEventArgs> Dragged;
+        internal event EventHandler<PointerEventArgs> Released;
 
         private Controls _controlsActions;
         private bool _isDragging;
@@ -69,13 +69,13 @@ namespace MexiColleccion.Input.Utilities
         /// <summary>
         /// Simple object that contains information for touch inputs.
         /// </summary>
-        public PointerInput PointerInput;
+        internal PointerInput PointerInput;
         /// <summary>
         /// The CallbackContext of the InputAction (might be redundant).
         /// </summary>
-        public InputAction.CallbackContext Context;
+        internal InputAction.CallbackContext Context;
 
-        public PointerEventArgs(PointerInput pointerInput, InputAction.CallbackContext context)
+        internal PointerEventArgs(PointerInput pointerInput, InputAction.CallbackContext context)
         {
             PointerInput = pointerInput;
             Context = context;

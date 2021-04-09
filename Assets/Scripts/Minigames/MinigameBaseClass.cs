@@ -17,17 +17,16 @@ namespace MexiColleccion.Minigames
 
         #region Privates
 
-        private bool _isGameActive; // could be a static field in a game loop manager
-        private bool _hasGoodThingHappened;
-        private float _score;
-        private bool _winningClause;
-
-        private float _timeRemaining = 10;
-        private bool _timeIsRunning = true;
-        private int _amountOfArtifacts;
-        private GameObject _collectibleArtifact;
         private GameObject[] _collectedArtifacts;
         private GameObject[] _minigameSpecificArtifacts;
+        private GameObject _collectibleArtifact;
+        private float _score;
+        private float _timeRemaining = 10;
+        private int _amountOfArtifacts;
+        private bool _hasGoodThingHappened;
+        private bool _isGameActive; // could be a static field in a game loop manager
+        private bool _isTimeRunning = true;
+        private bool _winningClause;
 
         #endregion Privates
 
@@ -143,7 +142,7 @@ namespace MexiColleccion.Minigames
 
             //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
 
-            if (_timeIsRunning)
+            if (_isTimeRunning)
             {
                 if (_timeRemaining > 0)
                 {
@@ -161,7 +160,7 @@ namespace MexiColleccion.Minigames
                 {
                     Debug.Log("Time has run out");
                     _timeRemaining = 0;
-                    _timeIsRunning = false;
+                    _isTimeRunning = false;
                 }
             }
         }
@@ -170,7 +169,7 @@ namespace MexiColleccion.Minigames
         {
             //Loses the minigame when the timer reaches 0
 
-            if (!_timeIsRunning)
+            if (!_isTimeRunning)
                 EndMinigame(false);
         }
         #endregion Methods

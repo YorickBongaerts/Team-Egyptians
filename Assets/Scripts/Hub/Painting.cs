@@ -1,47 +1,70 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
+using MexiColleccion.Input;
+using MexiColleccion.Input.Utilities;
 
 namespace MexiColleccion.Hub
 {
-    public class Painting : MonoBehaviour
+    /// <summary>
+    /// This is the new version of the HubPaintings Script (deleted)
+    /// </summary>
+    internal class Painting : InputManager
     {
-        /// <summary>
-        /// This is the new version of the HubPaintings Script
-        /// </summary>
-
-        public string MinigameName;
+        [SerializeField] private string _minigameName;
         private Vector2 _inputPosition;
 
-        public void OnTapPosition(InputAction.CallbackContext context)
+        protected override void OnPressed(object sender, PointerEventArgs e)
         {
-            TouchControl control = context.control.parent as TouchControl;
-            _inputPosition = control.position.ReadValue();
-            print(_inputPosition);
-        }
+            base.OnPressed(sender, e);
 
-        public void OnPaintingTap(InputAction.CallbackContext context)
-        {
-            if (context.ReadValueAsButton())
+            _inputPosition = e.PointerInput.Position;
+
+            Ray ray = Camera.main.ScreenPointToRay(_inputPosition);
+            if (Physics.Raycast(ray, out var hit))
             {
-                Ray ray = Camera.main.ScreenPointToRay(_inputPosition);
-                if (Physics.Raycast(ray, out var hit))
+                if (hit.transform.gameObject == gameObject)
                 {
-                    if (hit.transform.gameObject == this.gameObject)
+                    if (_minigameName == "Painter")
                     {
-                        if (MinigameName == "Painter")
-                        {
-                            SceneManager.LoadScene("Painter");
-                        }
+                        SceneManager.LoadScene("Minigame-InputTest"); // TODO: change this to the correct scene
+                    }
 
-                        if (MinigameName == "Memory")
-                        {
-                            SceneManager.LoadScene("Minigame-Memory");
-                        }
+                    if (_minigameName == "Memory")
+                    {
+                        SceneManager.LoadScene("Minigame-Memory");
                     }
                 }
             }
         }
+
+        //public void OnTapPosition(InputAction.CallbackContext context)
+        //{
+        //    TouchControl control = context.control.parent as TouchControl;
+        //    _inputPosition = control.position.ReadValue();
+        //    print(_inputPosition);
+        //}
+
+        //public void OnPaintingTap(InputAction.CallbackContext context)
+        //{
+        //    if (context.ReadValueAsButton())
+        //    {
+        //        Ray ray = Camera.main.ScreenPointToRay(_inputPosition);
+        //        if (Physics.Raycast(ray, out var hit))
+        //        {
+        //            if (hit.transform.gameObject == this.gameObject)
+        //            {
+        //                if (MinigameName == "Painter")
+        //                {
+        //                    SceneManager.LoadScene("Painter");
+        //                }
+
+        //                if (MinigameName == "Memory")
+        //                {
+        //                    SceneManager.LoadScene("Minigame-Memory");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

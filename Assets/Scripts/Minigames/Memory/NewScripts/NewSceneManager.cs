@@ -8,50 +8,53 @@ namespace MexiColleccion.Minigames.Memory
 {
     public class NewSceneManager : MonoBehaviour
     {
-        [SerializeField] private GameObject FirstCardSpawn;
+        [SerializeField] private GameObject _firstCardSpawn;
+        [SerializeField] private GameObject[] _cardPrefabs = new GameObject[3];
+
+        private List<NewCardScript> _cardsList = new List<NewCardScript>();
         private NewCardScript _firstRevealed;
         private NewCardScript _secondRevealed;
-        private Sprite card1Storage;
-        private Sprite card2Storage;
+        private GameObject _cardsContainer;
+        private Sprite _card1Storage;
+        private Sprite _card2Storage;
+        private const float _offsetX = 40f;
+        private const float _offsetY = 50f;
+        private const int _gridRows = 2;
+        private const int _gridCols = 3;
+        private int _amountOfCollectedPairs = 0;
         private bool _isAPair = false;
-        public const int gridRows = 2;
-        public const int gridCols = 3;
-        public const float offsetX = 40f;
-        public const float offsetY = 50f;
-        public GameObject[] _cardPrefabs = new GameObject[3];
-        public List<NewCardScript> _cardsList = new List<NewCardScript>();
-        private GameObject CardsContainer;
-        private int amountOfCollectedPairs = 0;
-        public bool canReveal
+
+        public bool CanReveal
         {
             get { return _secondRevealed == null; }
         }
+
         private void Start()
         {
-            Vector3 startPos = FirstCardSpawn.transform.position; //The position of the first card. All other cards are offset from here.
+            Vector3 startPos = _firstCardSpawn.transform.position; //The position of the first card. All other cards are offset from here.
 
             int[] numbers = { 0, 0, 1, 1, 2, 2 };
             numbers = ShuffleArray(numbers); //This is a function we will create in a minute!
 
-            for (int i = 0; i < gridCols; i++)
+            for (int i = 0; i < _gridCols; i++)
             {
-                for (int j = 0; j < gridRows; j++)
+                for (int j = 0; j < _gridRows; j++)
                 {
                     GameObject card;
-                    int index = j * gridCols + i;
+                    int index = j * _gridCols + i;
                     card = Instantiate(_cardPrefabs[numbers[index]]);
-                    card.GetComponent<NewCardScript>().id = numbers[index];
+                    card.GetComponent<NewCardScript>().Id = numbers[index];
 
                     //float posX = (offsetX * i) + startPos.x;
                     //float posY = (offsetY * j) + startPos.y;
 
-                    float posX = card.GetComponent<NewCardScript>().id * offsetX;
-                    float posY = 20 * offsetY;
+                    float posX = card.GetComponent<NewCardScript>().Id * _offsetX;
+                    float posY = 20 * _offsetY;
 
                     card.transform.position = new Vector3(posX, posY, startPos.z);
 
-                    CardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
-                    card.transform.SetParent(CardsContainer.transform);
+                    _cardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
+                    card.transform.SetParent(_cardsContainer.transform);
 
                     _cardsList.Add(card.GetComponent<NewCardScript>());
                 }
@@ -87,9 +90,9 @@ namespace MexiColleccion.Minigames.Memory
         }
         private void FlipCard(NewCardScript card)
         {
-            card1Storage = card.ImageBack;
+            _card1Storage = card.ImageBack;
             card.ImageBack = card.ImageFront;
-            card.ImageFront = card1Storage;
+            card.ImageFront = _card1Storage;
             UpdateCardImage(card);
         }
         private int[] ShuffleArray(int[] numbers)
@@ -107,7 +110,7 @@ namespace MexiColleccion.Minigames.Memory
         public void AfterClick(GameObject clickedCard)
         {
             NewCardScript revealedCard = clickedCard.GetComponent<NewCardScript>();
-            if (_firstRevealed == null && canReveal)
+            if (_firstRevealed == null && CanReveal)
             {
                 Debug.Log("REVEAL");
                 _firstRevealed = revealedCard;
@@ -131,7 +134,7 @@ namespace MexiColleccion.Minigames.Memory
 
         private IEnumerator CheckMatch()
         {
-            if (_firstRevealed.id == _secondRevealed.id)
+            if (_firstRevealed.Id == _secondRevealed.Id)
             {
                 //_score++;
                 //scoreLabel.text = "Score: " + _score;
@@ -153,7 +156,7 @@ namespace MexiColleccion.Minigames.Memory
 
         private void CheckForWin()
         {
-            if (amountOfCollectedPairs == _cardPrefabs.Length)
+            if (_amountOfCollectedPairs == _cardPrefabs.Length)
             {
                 Debug.Log("Win");
             }
@@ -163,7 +166,7 @@ namespace MexiColleccion.Minigames.Memory
         {
             Destroy(_firstRevealed.gameObject);
             Destroy(_secondRevealed.gameObject);
-            amountOfCollectedPairs++; 
+            _amountOfCollectedPairs++; 
         }
 
         private void UpdateCardImage(NewCardScript card)

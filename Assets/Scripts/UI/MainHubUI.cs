@@ -8,12 +8,11 @@ using UnityEngine;
 
 namespace MexiColleccion.UI
 {
+    /// <summary>
+    /// This is the new version of the UIScriptMainHub Script (deleted)
+    /// </summary>
     public class MainHubUI : UIScript
     {
-        /// <summary>
-        /// This is the new version of the UIScriptMainHub Script
-        /// </summary>
-
         [SerializeField] private GameObject _playerCharacter;
 
         internal event EventHandler<OnArrowTappedEventArgs> ArrowTapped;
