@@ -14,6 +14,9 @@ namespace MexiColleccion.UI
 
         private bool _isInOptions = false;
 
+        [SerializeField]
+        private GameObject Player;
+
         //private int _tappedSide = 0;
         //private Vector3 _spaceBetweenObjects = new Vector3(400, 0, 0);
         //private Vector3 _destinationPosition;
@@ -62,14 +65,16 @@ namespace MexiColleccion.UI
         public void OnMainHubEnter()
         {
             Debug.Log("Now entering main hub");
+            Player.GetComponent<Hub.PlayerBehaviour>().LastMinigame = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("MainHub");
+            Time.timeScale = 1;
         }
 
         public void OnRestartUp()
         {
             Debug.Log("Restarting Scene");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+            Time.timeScale = 1;
         }
 
         public void OnOptionsClick()

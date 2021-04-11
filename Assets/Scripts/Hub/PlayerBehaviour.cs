@@ -20,7 +20,13 @@ namespace MexiColleccion.Hub
         private int _index = 0;
         private bool _isMoving = false;
         private bool _isDirectionLocked = false;
-        
+
+        public string LastMinigame = "Drawing";
+        private void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         private Vector3 DestinationPosition
         {
             get
@@ -35,7 +41,14 @@ namespace MexiColleccion.Hub
                 {
                     return _rightTrigger.transform.position;
                 }
-                // move towards the next / previous painting
+                if (LastMinigame == "Minigame-Teotihuacan")
+                {
+                    _index = 1;
+                }
+                else if(LastMinigame == "Minigame-Memory")
+                {
+                    _index = 0;
+                }
                 return _paintings[_index].transform.GetChild(0).position;
             }
         }

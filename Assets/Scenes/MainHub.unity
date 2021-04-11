@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 653635064}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -523,6 +523,7 @@ MonoBehaviour:
   _paintings:
   - {fileID: 984953958}
   - {fileID: 2060382617}
+  LastMinigame: Drawing
 --- !u!54 &653635064
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1796,6 +1797,7 @@ MonoBehaviour:
   - {fileID: 689125081}
   - {fileID: 774601815}
   - {fileID: 601373618}
+  Player: {fileID: 653635061}
   _playerCharacter: {fileID: 871773164}
 --- !u!1 &1657390270
 GameObject:

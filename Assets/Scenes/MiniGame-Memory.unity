@@ -701,7 +701,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311644457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -736.3999, y: 246.23145, z: 0}
+  m_LocalPosition: {x: -511, y: 246.23145, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 1263362079}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937445311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 262ce47a4cd705942a2661ae051bffd1, type: 3}
   m_Name: 
@@ -1793,12 +1793,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9e27a72f3c58541a265168de84e747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstCardSpawn: {fileID: 311644457}
+  _firstCardSpawn: {fileID: 311644457}
   _cardPrefabs:
   - {fileID: 1986349455937953690, guid: 455014795c0cbc54196c2898f6a1c2df, type: 3}
   - {fileID: 1986349455937953690, guid: a537aacc35e47f04abce809b753089a2, type: 3}
   - {fileID: 1986349455937953690, guid: fa1c1f4273de030498f8bb047cf25443, type: 3}
-  _cardsList: []
 --- !u!1001 &5346261148111233558
 PrefabInstance:
   m_ObjectHideFlags: 0
