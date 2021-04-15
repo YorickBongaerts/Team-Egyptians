@@ -27,7 +27,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         {
             if(Timer.remainingTime <= 0 && _needsToCount)
             {
-                CompareTextures(PlayerPaintingQuad, ActualTextureRenderer);
+                CompareTextures(PlayerPaintingQuad, ActualTextureRenderer); // original texture sizes must be (743,353), because original player painted texture is this size.
                 _needsToCount = false;
             }
         }
@@ -39,12 +39,10 @@ namespace MexiColleccion.Minigames.Teotihuacan
             Color[] firstPix = firstTex.GetPixels();
             Color[] secondPix = secondTex.GetPixels();
 
-
-
-            Debug.Log(firstTex.width);
-            Debug.Log(firstTex.height);
-            Debug.Log(secondTex.width);
-            Debug.Log(secondTex.height);
+            // Debug.Log(firstTex.width);
+            // Debug.Log(firstTex.height);
+            // Debug.Log(secondTex.width);
+            // Debug.Log(secondTex.height);
 
             if (firstPix.Length != secondPix.Length)
             {
@@ -59,7 +57,8 @@ namespace MexiColleccion.Minigames.Teotihuacan
                     ComparePixel(firstPix, secondPix, i);
                 }
 
-                Score = (CorrectPixels/TotalPixels)*100;
+                Score = CorrectPixels*100/TotalPixels;
+                Debug.Log("score: " + Score);
 
                // if (Score > ScoreVictoryTreshhold)
                //     GameOverManager.OnVictory();
@@ -71,6 +70,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         private void ComparePixel(Color[] firstPix, Color[] secondPix, int i)
         {
             Vector3 firstVector = new Vector3(firstPix[i].r, firstPix[i].g, firstPix[i].b);
+
             Vector3 secondVector = new Vector3(secondPix[i].r, secondPix[i].g, secondPix[i].b);
 
             if (firstVector == secondVector) // not finished yet
