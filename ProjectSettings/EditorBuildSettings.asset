@@ -17,5 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame-InputTest.unity
     guid: 1ca83f5d911be6d489a4389d370e6ea9
+  - enabled: 1
+    path: Assets/Scenes/Minigame-Teotihuacan.unity
+    guid: ac91b6023804f1543bd089ea0f03e2e7
+  - enabled: 1
+    path: Assets/Scenes/GameOverScenes/DefeatScene.unity
+    guid: d7b619e74b56a344a9c6e80dc31c0212
+  - enabled: 1
+    path: Assets/Scenes/GameOverScenes/VictoryScene.unity
+    guid: f54bbd2f550c3694d96bd9a4083b38a1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1d66695ad730d284484246228577067e, type: 2}

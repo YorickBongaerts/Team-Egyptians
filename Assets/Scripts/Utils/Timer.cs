@@ -6,7 +6,7 @@ namespace MexiColleccion.Utils
     //General Timer class, should replace the timer methods in the minigamebaseclass
     public class Timer : MonoBehaviour
     {
-        [SerializeField] private float remainingTime = 120f;
+        [SerializeField] public float remainingTime = 120f;
         [SerializeField] private bool IsTimerRunning = false;
         [SerializeField] private Text timerText;
 
