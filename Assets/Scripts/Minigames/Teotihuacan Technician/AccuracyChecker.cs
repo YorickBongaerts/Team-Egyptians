@@ -13,7 +13,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         public GameOverManager GameOverManager;
         public Timer Timer;
         public Renderer PlayerPaintingQuad;
-        public Renderer ActualTextureRenderer;
+        public PaintingChooser ActualPainting;
 
         public int ScoreVictoryTreshhold;
 
@@ -27,22 +27,26 @@ namespace MexiColleccion.Minigames.Teotihuacan
         {
             if(Timer.remainingTime <= 0 && _needsToCount)
             {
-                CompareTextures(PlayerPaintingQuad, ActualTextureRenderer); // original texture sizes must be (743,353), because original player painted texture is this size.
+                Texture2D firstTex = PlayerPaintingQuad.material.mainTexture as Texture2D;
+                Texture2D secondTex = ActualPainting.CompareTexture;
+
+                CompareTextures(firstTex, secondTex); // original texture sizes must be (743,353), because original player painted texture is this size.
+                                                      // (depends on screen size??)
                 _needsToCount = false;
             }
         }
 
-        private void CompareTextures(Renderer playerTexture, Renderer actualTexture)
+        private void CompareTextures(Texture2D firstTex, Texture2D secondTex)
         {
-            Texture2D firstTex = playerTexture.material.mainTexture as Texture2D;
-            Texture2D secondTex = actualTexture.material.mainTexture as Texture2D;
+            //Texture2D firstTex = playerTexture.material.mainTexture as Texture2D;
+            //Texture2D secondTex = actualTexture.material.mainTexture as Texture2D;
             Color[] firstPix = firstTex.GetPixels();
             Color[] secondPix = secondTex.GetPixels();
 
-            // Debug.Log(firstTex.width);
-            // Debug.Log(firstTex.height);
-            // Debug.Log(secondTex.width);
-            // Debug.Log(secondTex.height);
+             Debug.Log(firstTex.width);
+             Debug.Log(firstTex.height);
+             Debug.Log(secondTex.width);
+             Debug.Log(secondTex.height);
 
             if (firstPix.Length != secondPix.Length)
             {
@@ -58,7 +62,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
                 }
 
                 Score = CorrectPixels*100/TotalPixels;
-                Debug.Log("score: " + Score);
+                Debug.Log("score: " + Score +"%");
 
                // if (Score > ScoreVictoryTreshhold)
                //     GameOverManager.OnVictory();
