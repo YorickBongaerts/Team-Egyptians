@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugger: {fileID: 0}
-  _sceneToLoad: {fileID: 102900000, guid: ecdec8970442b6d44b2b25cd30d4236b, type: 3}
+  _sceneToLoadName: Minigame-Memory
 --- !u!114 &1657390273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugger: {fileID: 0}
-  _sceneToLoad: {fileID: 102900000, guid: 1ca83f5d911be6d489a4389d370e6ea9, type: 3}
+  _sceneToLoadName: Minigame-Teotihuacan
 --- !u!114 &1962911867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,6 +3148,10 @@ PrefabInstance:
       propertyPath: _minigameName
       value: Painter
       objectReference: {fileID: 0}
+    - target: {fileID: 8832888965966647364, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
+      propertyPath: _sceneToLoadName
+      value: Minigame-Teotihuacan
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
 --- !u!4 &2136002491 stripped
@@ -3233,6 +3237,10 @@ PrefabInstance:
     - target: {fileID: 8832888965966647364, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
       propertyPath: _minigameName
       value: Memory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832888965966647364, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
+      propertyPath: _sceneToLoadName
+      value: Minigame-Memory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}

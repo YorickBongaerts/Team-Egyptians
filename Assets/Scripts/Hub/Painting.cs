@@ -13,7 +13,10 @@ namespace MexiColleccion.Hub
     internal class Painting : InputManager
     {
         [Tooltip("The scene that needs to be loaded when the user select this Minigame.")]
-        [SerializeField] private SceneAsset _sceneToLoad;
+        //[SerializeField] private SceneAsset _sceneToLoad;
+        // This only works in the Editor. I still need to find a way to use a reference field 
+        // (auto update) instead of a string (manual update) that also works for a build. - Erik
+        [SerializeField] private string _sceneToLoadName;
 
         private Vector2 _inputPosition;
 
@@ -31,7 +34,7 @@ namespace MexiColleccion.Hub
             {
                 if (hit.transform.gameObject == gameObject)
                 {
-                    SceneManager.LoadScene(_sceneToLoad.name);
+                    SceneManager.LoadScene(_sceneToLoadName);
                 }
             }
         }
