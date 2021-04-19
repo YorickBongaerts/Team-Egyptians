@@ -7,7 +7,6 @@ namespace MexiColleccion.Minigames
 {
     public class GameOverManager : MonoBehaviour
     {
-
         public void OnVictory()
         {
             PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);

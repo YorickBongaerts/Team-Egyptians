@@ -2208,7 +2208,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3aaed84879d4bd74ba8dec2623580a7c, type: 2}
+  - {fileID: 2100000, guid: 5906120f5205f54489714cf36c32c9fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2718,7 +2718,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9cfec3cba62425343b12bca73cfd3df3, type: 2}
+  - {fileID: 2100000, guid: b0f6d1d2115fba24699aeaba7bc722e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2925,7 +2925,7 @@ PrefabInstance:
     - target: {fileID: 814154616023695645, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cfec3cba62425343b12bca73cfd3df3, type: 2}
+      objectReference: {fileID: 2100000, guid: b0f6d1d2115fba24699aeaba7bc722e4, type: 2}
     - target: {fileID: 814154616023695646, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
       propertyPath: camera
       value: 
@@ -3011,7 +3011,7 @@ PrefabInstance:
     - target: {fileID: 814154616023695645, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3aaed84879d4bd74ba8dec2623580a7c, type: 2}
+      objectReference: {fileID: 2100000, guid: 5906120f5205f54489714cf36c32c9fa, type: 2}
     - target: {fileID: 814154616023695646, guid: f3dd25cf5d784c146aca37921e2d946d, type: 3}
       propertyPath: camera
       value: 

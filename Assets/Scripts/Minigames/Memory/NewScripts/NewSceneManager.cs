@@ -24,6 +24,13 @@ namespace MexiColleccion.Minigames.Memory
         private int _amountOfCollectedPairs = 0;
         private bool _isAPair = false;
 
+        private int _score = 0;
+        public int Lives = 3;
+
+        public Text ScoreText;
+        public Text LivesText;
+        public GameOverManager GameOver;
+
         public bool CanReveal
         {
             get { return _secondRevealed == null; }
@@ -31,6 +38,10 @@ namespace MexiColleccion.Minigames.Memory
 
         private void Start()
         {
+
+            ScoreText.text = _score.ToString();
+            LivesText.text = Lives.ToString();
+
             Vector3 startPos = _firstCardSpawn.transform.position; //The position of the first card. All other cards are offset from here.
 
             int[] numbers = { 0, 0, 1, 1, 2, 2 };
@@ -136,8 +147,9 @@ namespace MexiColleccion.Minigames.Memory
         {
             if (_firstRevealed.Id == _secondRevealed.Id)
             {
-                //_score++;
-                //scoreLabel.text = "Score: " + _score;
+                _score++;
+                ScoreText.text = _score.ToString();
+
                 Debug.Log("Correct pair");
                 Delete(_firstRevealed.gameObject, _secondRevealed.gameObject);
                 _firstRevealed = null;
@@ -146,11 +158,15 @@ namespace MexiColleccion.Minigames.Memory
             }
             else
             {
+                Lives--;
+                LivesText.text = Lives.ToString();
+
                 yield return new WaitForSeconds(0.5f);
                 yield return StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 Debug.Log("Incorrect pair");
                 _firstRevealed = null;
                 _secondRevealed = null;
+                CheckForLoss();
             }
         }
 
@@ -159,6 +175,16 @@ namespace MexiColleccion.Minigames.Memory
             if (_amountOfCollectedPairs == _cardPrefabs.Length)
             {
                 Debug.Log("Win");
+                GameOver.OnVictory();
+            }
+        }
+
+        private void CheckForLoss()
+        {
+            if(Lives <= 0)
+            {
+                Debug.Log("Loss");
+                GameOver.OnDefeat();
             }
         }
 
