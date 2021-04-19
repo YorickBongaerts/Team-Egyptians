@@ -1,52 +1,23 @@
-using MexiColleccion.Utils;
+using MexiColleccion.Input;
+using MexiColleccion.Input.Utilities;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace MexiColleccion.Minigames.Memory
 {
-    [DefaultExecutionOrder(-1)] //Makes sure that this script gets called first
-    public class MemoryInputManager : Singleton<MemoryInputManager>
+    public class MemoryInputManager : InputManager
     {
-        private Controls controls;
-
-        public delegate void StartTouchEvent(Vector2 position, float time);
-        public event StartTouchEvent OnStartTouch;
-        public delegate void EndTouchEvent(Vector2 position, float time);
-        public event EndTouchEvent OnEndTouch;
-
-        private void Awake()
+        protected override void OnPressed(object sender, PointerEventArgs e)
         {
-            controls = new Controls();
+            base.OnPressed(sender, e);
+
+            Debug.Log($"Touch started at {e.PointerInput.Position} on {e.Context.time}");
         }
 
-        private void OnEnable()
+        protected override void OnReleased(object sender, PointerEventArgs e)
         {
-            controls.Enable();
-        }
+            base.OnReleased(sender, e);
 
-        private void OnDisable()
-        {
-            controls.Disable();
-        }
-
-        private void Start()
-        {
-            controls.MemoryGame.TouchPress.started += ctx => StartTouch(ctx);
-            controls.MemoryGame.TouchPress.canceled += ctx => EndTouch(ctx);
-        }
-
-        private void StartTouch(InputAction.CallbackContext context)
-        {
-            Debug.Log("Touch started " + controls.MemoryGame.TouchPosition.ReadValue<Vector2>());
-            if (OnStartTouch != null)
-                OnStartTouch(controls.MemoryGame.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
-        }
-
-        private void EndTouch(InputAction.CallbackContext context)
-        {
-            Debug.Log("Touch ended " + controls.MemoryGame.TouchPosition.ReadValue<Vector2>());
-            if (OnEndTouch != null)
-                OnEndTouch(controls.MemoryGame.TouchPosition.ReadValue<Vector2>(), (float)context.time);
+            Debug.Log($"Touch ended at {e.PointerInput.Position} on {e.Context.time}");
         }
     }
 }

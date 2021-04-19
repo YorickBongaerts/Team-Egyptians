@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames
 {
-
     public class VictoryManager : MonoBehaviour
     {
         public string MemoryMinigame = "MiniGame-Memory";

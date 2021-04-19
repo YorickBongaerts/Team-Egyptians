@@ -10,22 +10,16 @@ namespace MexiColleccion.Hub
     /// </summary>
     public class PlayerBehaviour : MonoBehaviour
     {
-
         [SerializeField] private Collider _leftTrigger;
         [SerializeField] private Collider _rightTrigger;
         [SerializeField] private MainHubUI _hubUI;
         [SerializeField] private GameObject[] _paintings;
 
+        private GameObject _artifactsButton = null;
         private float _movementSpeed = 10f;
-        private int _index = 0;
+        private static int _index = 0;
         private bool _isMoving = false;
         private bool _isDirectionLocked = false;
-
-        public string LastMinigame = "Drawing";
-        private void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
 
         private Vector3 DestinationPosition
         {
@@ -40,14 +34,6 @@ namespace MexiColleccion.Hub
                 if (_index >= _paintings.Length)
                 {
                     return _rightTrigger.transform.position;
-                }
-                if (LastMinigame == "Minigame-Teotihuacan")
-                {
-                    _index = 1;
-                }
-                else if(LastMinigame == "Minigame-Memory")
-                {
-                    _index = 0;
                 }
                 return _paintings[_index].transform.GetChild(0).position;
             }
@@ -117,6 +103,11 @@ namespace MexiColleccion.Hub
             
             _index += e.Direction;
             _isMoving = true;
+
+            if (_artifactsButton == null)
+            {
+                _artifactsButton = e.ArtifactsButton;
+            }
         }
 
         private void MoveToSide(Vector3 destinationPosition)
@@ -130,6 +121,7 @@ namespace MexiColleccion.Hub
                 if (gameObject.transform.position == destinationPosition)
                 {
                     _isMoving = false;
+                    _artifactsButton?.SetActive(true);
                 }
             }
         }

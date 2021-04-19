@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MexiColleccion.UI
 {
-    public class UiScriptMemory : UIScript
+    public class MemoryUI : MinigameBaseUI
     {
 
     }

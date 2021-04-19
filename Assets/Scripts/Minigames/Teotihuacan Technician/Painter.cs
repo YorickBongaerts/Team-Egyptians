@@ -13,14 +13,18 @@ namespace MexiColleccion.Minigames.Teotihuacan
     public class Painter : InputManager
     {
         [Header("References")]
-        [Tooltip("Reference to the GameObject where the painting will be displayed on.")]
+        [Tooltip("Reference to the Display Camera. This is the camera that projects the canvas on the screen. Default is MainCamera.")]
+        [SerializeField] private Camera _displayCamera = null;
+        [Tooltip("Reference to the SnapShot Camera. This camera will read and save the ink on the canvas and must therefore cull out the reference painting layer. Required.")]
+        [SerializeField] private Camera _snapShotCamera = null;
+        [Tooltip("Reference to the GameObject where the painting will be displayed on. Required.")]
         [SerializeField] private GameObject _display = null;
-        [Tooltip("Reference to the Transform that holds all instantiated brushes.")]
+        [Tooltip("Reference to the Transform that holds all instantiated brushes. Required.")]
         [SerializeField] private Transform _brushContainer = null;
-        [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events.")]
-        [SerializeField] private UiScriptArtist _uiScript = null;
+        [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
+        [SerializeField] private PainterUI _uiScript = null;
         [Header("Painting")]
-        [Tooltip("A Prefab that represents the default brush to be used. Must be one that is used in the UI.")]
+        [Tooltip("A Prefab that represents the default brush to be used. Must be one that is used in the UI. Required.")]
         [SerializeField] private GameObject _defaultBrush = null;
         [Tooltip("How many instances the object pool of brushes contains.")]
         [SerializeField] private int _maxBrushCount = 1000;
@@ -33,7 +37,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         private Renderer _renderer = null;
         private Sprite _brushSprite;
         private Color _brushColor = Color.black;
-        private Rect _printRect;
+        private Rect _snapShotRect;
         private Vector2 _inputPosition;
         private float _scaleUnit = 0.1f;
         private int _brushCounter = 0;
@@ -46,7 +50,30 @@ namespace MexiColleccion.Minigames.Teotihuacan
         #region Unity Lifecycle
         private void Start()
         {
+            // do some pre-checks
+            // camera
+            if (_displayCamera == null)
+            {
+                _displayCamera = Camera.main;
+            }
+            _snapShotCamera.transform.position = _displayCamera.transform.position;
+            _snapShotCamera.orthographic = _displayCamera.orthographic;
+            _snapShotCamera.depth = _displayCamera.depth - 1;
+            
+            if (_displayCamera.orthographic)
+            {
+                _snapShotCamera.orthographicSize = _displayCamera.orthographicSize;
+            }
+            else
+            {
+                Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
+            }
             Camera.onPostRender += OnPostRenderCallback;
+            
+            // renderer
+            _renderer = _display.GetComponent<Renderer>();
+            if (_renderer == null)
+                Debug.LogError("There is no renderer assigned for the display.");
 
             // set up object pool
             for (int i = 0; i < _maxBrushCount; i++)
@@ -56,36 +83,25 @@ namespace MexiColleccion.Minigames.Teotihuacan
                 dot.SetActive(false);
             }
 
-            _renderer = _display.GetComponent<Renderer>();
-
-            // do some pre-checks
-            if (_renderer == null)
-                Debug.LogError("There is no renderer assigned.");
-            if (!Camera.main.orthographic)
-                Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
-
             // calculate the pixels of the canvas that have to be read
-            int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (Camera.main.orthographicSize * 2f) * Screen.height), Screen.height);
+            int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (_snapShotCamera.orthographicSize * 2f) * Screen.height), Screen.height);
             int width = Mathf.Min(Mathf.RoundToInt((_display.transform.localScale.x / _display.transform.localScale.y) * height), Screen.width);
             int rectX = (int)((Screen.width - width) / 2f);
             int rectY = (int)((Screen.height - height) / 2f);
 
-            _printRect = new Rect(rectX, rectY, width, height);
+            _snapShotRect = new Rect(rectX, rectY, width, height);
 
             // subscribe to the UIScript
             _uiScript.BrushColorChanged += BrushColorChanged;
             _uiScript.BrushShapeChanged += BrushShapeChanged;
             _uiScript.BrushSizeChanged += BrushSizeChanged;
-
-            //print($"{Screen.width}|{Screen.height}|{Screen.dpi}|{_display.transform.localScale.x}|{_display.transform.localScale.y}|{Camera.main.orthographicSize}");
-            //print($"width: {width}, height: {height}, bottomLeft: ({rectX}, {rectY})");
         }
 
         private void Update()
         {
             if (_isPainting && CanPaint && _brushCounter < _maxBrushCount)
             {
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(_inputPosition.x, _inputPosition.y, -Camera.main.transform.position.z));
+                Vector3 worldPosition = _displayCamera.ScreenToWorldPoint(new Vector3(_inputPosition.x, _inputPosition.y, -_displayCamera.transform.position.z));
                 _brushCounter++;
                 SetDot(worldPosition, true);
             }
@@ -120,7 +136,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
 
         private void OnPostRenderCallback(Camera cam)
         {
-            if (cam == Camera.main)
+            if (cam == _snapShotCamera)
             {
                 if (_brushCounter >= _maxBrushCount)
                 {
@@ -148,8 +164,8 @@ namespace MexiColleccion.Minigames.Teotihuacan
 
         private void UpdateTexture()
         {
-            Texture2D tex = new Texture2D((int)_printRect.width, (int)_printRect.height, TextureFormat.RGB24, false);
-            tex.ReadPixels(_printRect, 0, 0, false);
+            Texture2D tex = new Texture2D((int)_snapShotRect.width, (int)_snapShotRect.height, TextureFormat.RGB24, false);
+            tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
             _renderer.material.mainTexture = tex;
             // disable brushes
@@ -164,7 +180,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(new Vector3(_printRect.center.x, _printRect.center.y, 0.01f), new Vector3(_printRect.size.x, _printRect.size.y, 0.01f));
+            Gizmos.DrawWireCube(new Vector3(_snapShotRect.center.x, _snapShotRect.center.y, 0.01f), new Vector3(_snapShotRect.size.x, _snapShotRect.size.y, 0.01f));
         }
         #endregion
 

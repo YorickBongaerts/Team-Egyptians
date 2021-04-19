@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MexiColleccion.UI
 {
-    public class UIScriptStartScreen : UIScript
+    public class StartScreenUI : BaseUI
     {
 
     }

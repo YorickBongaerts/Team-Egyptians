@@ -9,7 +9,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         [Tooltip("Reference to an instance of the \"Painter\" Script")]
         [SerializeField] private Painter _painterScript = null;
         [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script")]
-        [SerializeField] private UiScriptArtist _uiScript = null;
+        [SerializeField] private PainterUI _uiScript = null;
         [Header("Ink")]
         [Tooltip("The speed at which ink gets used when painting. Measured in ml/s.")]
         [SerializeField] private float _inkDropRate = 10f;

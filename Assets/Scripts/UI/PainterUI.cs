@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace MexiColleccion.UI
 {
-    public class UiScriptArtist : UIScript
+    public class PainterUI : MinigameBaseUI
     {
         internal event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
         internal event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;

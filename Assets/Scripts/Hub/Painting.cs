@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using MexiColleccion.Input;
 using MexiColleccion.Input.Utilities;
+using UnityEngine.EventSystems;
+using UnityEditor;
 
 namespace MexiColleccion.Hub
 {
@@ -10,7 +12,9 @@ namespace MexiColleccion.Hub
     /// </summary>
     internal class Painting : InputManager
     {
-        [SerializeField] private string _minigameName;
+        [Tooltip("The scene that needs to be loaded when the user select this Minigame.")]
+        [SerializeField] private SceneAsset _sceneToLoad;
+
         private Vector2 _inputPosition;
 
         protected override void OnPressed(object sender, PointerEventArgs e)
@@ -19,52 +23,17 @@ namespace MexiColleccion.Hub
 
             _inputPosition = e.PointerInput.Position;
 
+            if (EventSystem.current.IsPointerOverGameObject(e.PointerInput.InputId))
+                return;
+
             Ray ray = Camera.main.ScreenPointToRay(_inputPosition);
             if (Physics.Raycast(ray, out var hit))
             {
                 if (hit.transform.gameObject == gameObject)
                 {
-                    if (_minigameName == "Painter")
-                    {
-                        SceneManager.LoadScene("Minigame-InputTest"); // TODO: change this to the correct scene
-                    }
-
-                    if (_minigameName == "Memory")
-                    {
-                        SceneManager.LoadScene("Minigame-Memory");
-                    }
+                    SceneManager.LoadScene(_sceneToLoad.name);
                 }
             }
         }
-
-        //public void OnTapPosition(InputAction.CallbackContext context)
-        //{
-        //    TouchControl control = context.control.parent as TouchControl;
-        //    _inputPosition = control.position.ReadValue();
-        //    print(_inputPosition);
-        //}
-
-        //public void OnPaintingTap(InputAction.CallbackContext context)
-        //{
-        //    if (context.ReadValueAsButton())
-        //    {
-        //        Ray ray = Camera.main.ScreenPointToRay(_inputPosition);
-        //        if (Physics.Raycast(ray, out var hit))
-        //        {
-        //            if (hit.transform.gameObject == this.gameObject)
-        //            {
-        //                if (MinigameName == "Painter")
-        //                {
-        //                    SceneManager.LoadScene("Painter");
-        //                }
-
-        //                if (MinigameName == "Memory")
-        //                {
-        //                    SceneManager.LoadScene("Minigame-Memory");
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
