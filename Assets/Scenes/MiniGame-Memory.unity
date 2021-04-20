@@ -1934,13 +1934,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1263362079}
     m_Modifications:
+    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 5cde39fb56d51cc478241488d5575447, type: 3}
     - target: {fileID: 3277144125903729130, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
       propertyPath: m_Name
       value: BackgroundOptions
       objectReference: {fileID: 0}
     - target: {fileID: 3277144125903729130, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3277144125903729131, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
       propertyPath: m_Pivot.x
