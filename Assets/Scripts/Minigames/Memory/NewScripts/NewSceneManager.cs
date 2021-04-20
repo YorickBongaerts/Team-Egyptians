@@ -89,7 +89,12 @@ namespace MexiColleccion.Minigames.Memory
                 FlipCard(card);
                 UpdateCardImage(card);
             }
-
+            StartCoroutine(DisableGridGroup());
+        }
+        private IEnumerator DisableGridGroup()
+        {
+            yield return new WaitForEndOfFrame();
+            _cardsContainer.GetComponent<GridLayoutGroup>().enabled = false;
         }
         public IEnumerator FlipCards(NewCardScript card1, NewCardScript card2)
         {
@@ -198,6 +203,10 @@ namespace MexiColleccion.Minigames.Memory
         private void UpdateCardImage(NewCardScript card)
         {
             card.gameObject.GetComponent<Image>().sprite = card.ImageFront;
+        }
+        private void SetCardPosition(NewCardScript card)
+        {
+
         }
 }
 }

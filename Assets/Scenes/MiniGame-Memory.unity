@@ -258,7 +258,6 @@ GameObject:
   - component: {fileID: 82926192}
   - component: {fileID: 82926191}
   - component: {fileID: 82926194}
-  - component: {fileID: 82926195}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -347,18 +346,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!114 &82926195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82926190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &196819839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1073,7 +1060,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937445312}
-  - component: {fileID: 937445313}
   - component: {fileID: 937445314}
   m_Layer: 0
   m_Name: CardsContainer
@@ -1101,18 +1087,6 @@ RectTransform:
   m_AnchoredPosition: {x: 291.5, y: -100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &937445313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937445311}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262ce47a4cd705942a2661ae051bffd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &937445314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +1110,7 @@ MonoBehaviour:
   m_CellSize: {x: 100, y: 150}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 6
+  m_ConstraintCount: 4
 --- !u!1 &1045112902
 GameObject:
   m_ObjectHideFlags: 0
