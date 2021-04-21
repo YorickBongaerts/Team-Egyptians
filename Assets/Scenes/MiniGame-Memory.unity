@@ -1897,8 +1897,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "(these are temporary text instructions, they will be replaced with a instruction
     video in a later version)\n\nSelect the cards on screen and match the pair of
-    cards, \nselecting the wrong pair will flip them over agan, \nselecting the right
-    pair will remove the selected cards."
+    cards, \nselecting the wrong pair will flip them over again, \nselecting the
+    right pair will remove the selected cards."
 --- !u!222 &1847532187
 CanvasRenderer:
   m_ObjectHideFlags: 0

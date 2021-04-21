@@ -11,31 +11,50 @@ namespace MexiColleccion.UI
     {
         [SerializeField] private GameObject _playerCharacter;
         [SerializeField] private GameObject _viewArtifactsButton;
-        [SerializeField] private GameObject _artifactViewer;
+        [SerializeField] private GameObject _hideArtifactsButton;
+        [SerializeField] private GameObject _artifactsViewer;
         [SerializeField] private Camera _cam;
         
-        private Animator _animator;
+        private Animator _camAnimator;
+        private Animator _artifactAnimator;
+
+        /// <summary>
+        /// 0 = idle; 1 = zoom out; 2 = zoom in;
+        /// </summary>
+        private int ViewerState
+        {
+            get => _camAnimator.GetInteger("ViewerState");
+            set => _camAnimator.SetInteger("ViewerState", value);
+        }
 
         internal event EventHandler<OnArrowTappedEventArgs> ArrowTapped;
 
+        private void Start()
+        {
+            _camAnimator = _cam.GetComponent<Animator>();
+            _artifactAnimator = _artifactsViewer.GetComponent<Animator>();
+        }
+
         public void OnArtifactViewerClosed()
         {
-            _animator = _artifactViewer.GetComponentInChildren<Animator>();
-            _animator?.SetBool("IsClosed", true);
-            _cam.GetComponent<Animator>().SetInteger("ViewerState", 0);
+            ViewerState = 2;
+            _hideArtifactsButton.SetActive(false);
+            _artifactAnimator.SetBool("IsClosing", true);
             StartCoroutine(WaitForEndOfAnimation());
         }
 
         public void OnArtifactViewerOpened()
         {
-            _cam.GetComponent<Animator>().SetInteger("ViewerState", 1);
-            _artifactViewer.SetActive(true);
+            ViewerState = 1;
             _viewArtifactsButton.SetActive(false);
+            _artifactAnimator.SetBool("IsClosing", false);
+            _artifactsViewer.SetActive(true);
+            StartCoroutine(WaitForEndOfAnimation());
         }
 
         public void OnLeftArrowTapped()
         {
-            if (_artifactViewer.activeSelf)
+            if (ViewerState != 0)
                 return;
 
             Debug.Log("TappedLeft");
@@ -46,7 +65,7 @@ namespace MexiColleccion.UI
 
         public void OnRightArrowTapped()
         {
-            if (_artifactViewer.activeSelf)
+            if (ViewerState != 0)
                 return;
 
             Debug.Log("TappedRight");
@@ -65,10 +84,18 @@ namespace MexiColleccion.UI
 
         private IEnumerator WaitForEndOfAnimation()
         {
-            yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(_camAnimator.GetCurrentAnimatorStateInfo(0).length);
 
-            _artifactViewer.SetActive(false);
-            _viewArtifactsButton.SetActive(true);
+            if (ViewerState == 1)
+            {
+                _hideArtifactsButton.SetActive(true);
+            }
+            if (ViewerState == 2)
+            {
+                _artifactsViewer.SetActive(false);
+                _viewArtifactsButton.SetActive(true);
+                ViewerState = 0;
+            }
         }
 
         private void OnDestroy()

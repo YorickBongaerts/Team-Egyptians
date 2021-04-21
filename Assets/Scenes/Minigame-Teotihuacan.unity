@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Text: "(these are temporary text instructions, they will be replaced with a instruction
     video in a later version)\n\nSelect a colour from the top left of the screen,\nSelect
     the type of brush you would like to use to the right of the colours,\nSelect
-    the size of the stroke the the right of that,\nNow draw with your finger to match
+    the size of the stroke to the right of that,\nNow draw with your finger to match
     the given painting \n(the closer to the example, the better your score will be)"
 --- !u!222 &162918726
 CanvasRenderer:
