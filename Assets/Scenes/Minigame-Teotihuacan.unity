@@ -213,29 +213,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546973774}
     m_Modifications:
-    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277144125903729128, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 9786d80e117f3384598f27d51c705584, type: 3}
     - target: {fileID: 3277144125903729130, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
       propertyPath: m_Name
       value: BackgroundOptions
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277144125903729130, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3277144125903729131, guid: a5319a1719fd56640a339a7239ef8c02, type: 3}
       propertyPath: m_Pivot.x
@@ -1229,6 +1209,8 @@ GameObject:
   - component: {fileID: 546973772}
   - component: {fileID: 546973771}
   - component: {fileID: 546973775}
+  - component: {fileID: 546973777}
+  - component: {fileID: 546973776}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1351,6 +1333,41 @@ MonoBehaviour:
   - {fileID: 537469679}
   - {fileID: 1586538187}
   - {fileID: 1246444895}
+--- !u!114 &546973776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546973770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 9786d80e117f3384598f27d51c705584, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &546973777
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546973770}
+  m_CullTransparentMesh: 1
 --- !u!1 &610728513
 GameObject:
   m_ObjectHideFlags: 0
