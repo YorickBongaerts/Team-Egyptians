@@ -55,7 +55,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
             // assign the new ink
             _currentInk = e.NewInk;
             _inkRemaining = _currentInk.InkRemaining;
-            
+
             // check if the new ink container still has ink left
             if (!_painterScript.CanPaint && _inkRemaining > 0f)
             {

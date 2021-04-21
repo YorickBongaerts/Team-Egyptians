@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +33,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         private void Update()
         {
             DisplayTime -= Time.deltaTime;
-            if(DisplayTime<=0 && !_hasStoppedDisplaying)
+            if (DisplayTime <= 0 && !_hasStoppedDisplaying)
             {
                 this.transform.position += new Vector3(0, 0, 10);
                 _hasStoppedDisplaying = true;

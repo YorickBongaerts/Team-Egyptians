@@ -14,7 +14,7 @@ namespace MexiColleccion.Minigames
         //Vincent check for the memory minigame
 
         //Delegates??
-        
+
 
         #region Privates
 

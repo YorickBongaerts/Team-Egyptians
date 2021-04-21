@@ -1,11 +1,11 @@
-using MexiColleccion.Minigames.Memory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames.Memory {
-public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
+namespace MexiColleccion.Minigames.Memory
 {
+    public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
+    {
         private CardType _cardTypeProperties = null;
 
         [Header("Attributes")]

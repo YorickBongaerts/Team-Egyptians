@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,8 +7,8 @@ namespace MexiColleccion.Minigames.Memory
     public class NewCardScript : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         public string Cardname;
-        public Sprite ImageFront;
-        public Sprite ImageBack;
+        public Sprite ImageShow;
+        public Sprite ImageHide;
         public NewSceneManager sceneController;
         private int _id;
         public int Id
@@ -41,7 +39,7 @@ namespace MexiColleccion.Minigames.Memory
         }
         public void Initialize()
         {
-            
+
 
             ////hides the image of the card
             //Transform frontImage = transform.GetChild(1);

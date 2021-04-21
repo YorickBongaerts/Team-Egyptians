@@ -2,11 +2,8 @@ using MexiColleccion.Input;
 using MexiColleccion.Input.Utilities;
 using MexiColleccion.UI;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 namespace MexiColleccion.Minigames.Teotihuacan
 {
@@ -33,7 +30,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         [SerializeField] private Vector3 _brushSize = new Vector3(0.1f, 2.5f, 5f);
 
         internal bool CanPaint = true; // is there still ink left?
-        
+
         private Renderer _renderer = null;
         private Sprite _brushSprite;
         private Color _brushColor = Color.black;
@@ -59,7 +56,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
             _snapShotCamera.transform.position = _displayCamera.transform.position;
             _snapShotCamera.orthographic = _displayCamera.orthographic;
             _snapShotCamera.depth = _displayCamera.depth - 1;
-            
+
             if (_displayCamera.orthographic)
             {
                 _snapShotCamera.orthographicSize = _displayCamera.orthographicSize;
@@ -69,7 +66,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
                 Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
             }
             Camera.onPostRender += OnPostRenderCallback;
-            
+
             // renderer
             _renderer = _display.GetComponent<Renderer>();
             if (_renderer == null)

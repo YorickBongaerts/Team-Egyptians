@@ -1,5 +1,4 @@
 ﻿using MexiColleccion.UI;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -79,14 +78,14 @@ namespace MexiColleccion.Hub
             // temporarily disable this trigger
             otherTrigger.gameObject.SetActive(false);
             _isDirectionLocked = true;
-            
+
             StartCoroutine(DelayTriggerActivation(otherTrigger));
         }
 
         private IEnumerator DelayTriggerActivation(Collider trigger)
         {
             yield return new WaitForSeconds(0.1f);
-            
+
             if (trigger.gameObject.activeSelf == false)
             {
                 trigger.gameObject.SetActive(true);
@@ -100,7 +99,7 @@ namespace MexiColleccion.Hub
             {
                 return;
             }
-            
+
             _index += e.Direction;
             _isMoving = true;
 

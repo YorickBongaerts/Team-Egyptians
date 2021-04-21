@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MexiColleccion.Minigames;
 using MexiColleccion.Utils;
-using System;
+using UnityEngine;
 
 namespace MexiColleccion.Minigames.Teotihuacan
 {
@@ -25,7 +21,7 @@ namespace MexiColleccion.Minigames.Teotihuacan
         // Update is called once per frame
         void Update()
         {
-            if(Timer.remainingTime <= 0 && _needsToCount)
+            if (Timer.remainingTime <= 0 && _needsToCount)
             {
                 Texture2D firstTex = PlayerPaintingQuad.material.mainTexture as Texture2D;
                 Texture2D secondTex = ActualPainting.CompareTexture;
@@ -43,10 +39,10 @@ namespace MexiColleccion.Minigames.Teotihuacan
             Color[] firstPix = firstTex.GetPixels();
             Color[] secondPix = secondTex.GetPixels();
 
-             Debug.Log(firstTex.width);
-             Debug.Log(firstTex.height);
-             Debug.Log(secondTex.width);
-             Debug.Log(secondTex.height);
+            Debug.Log(firstTex.width);
+            Debug.Log(firstTex.height);
+            Debug.Log(secondTex.width);
+            Debug.Log(secondTex.height);
 
             if (firstPix.Length != secondPix.Length)
             {
@@ -61,13 +57,13 @@ namespace MexiColleccion.Minigames.Teotihuacan
                     ComparePixel(firstPix, secondPix, i);
                 }
 
-                Score = CorrectPixels*100/TotalPixels;
-                Debug.Log("score: " + Score +"%");
+                Score = CorrectPixels * 100 / TotalPixels;
+                Debug.Log("score: " + Score + "%");
 
-               // if (Score > ScoreVictoryTreshhold)
-               //     GameOverManager.OnVictory();
-               // else
-               //     GameOverManager.OnDefeat();
+                // if (Score > ScoreVictoryTreshhold)
+                //     GameOverManager.OnVictory();
+                // else
+                //     GameOverManager.OnDefeat();
             }
         }
 

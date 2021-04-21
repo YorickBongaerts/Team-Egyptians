@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Artifact : MonoBehaviour
@@ -11,7 +8,7 @@ public class Artifact : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerPrefs.GetInt(_artifactName) ==1) // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
+        if (PlayerPrefs.GetInt(_artifactName) == 1) // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
         {
             IsCollected();
         }

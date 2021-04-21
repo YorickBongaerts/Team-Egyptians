@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames.Memory
@@ -9,7 +8,11 @@ namespace MexiColleccion.Minigames.Memory
     public class NewSceneManager : MonoBehaviour
     {
         [SerializeField] private GameObject _firstCardSpawn;
+        //[SerializeField] private GameObject[] _cardPrefabs = new GameObject[3];
         [SerializeField] private GameObject[] _cardPrefabs = new GameObject[3];
+
+        [SerializeField] private int _gridCols = 4;
+        [SerializeField] private int _gridRows = 4;
 
         private List<NewCardScript> _cardsList = new List<NewCardScript>();
         private NewCardScript _firstRevealed;
@@ -19,8 +22,6 @@ namespace MexiColleccion.Minigames.Memory
         private Sprite _card2Storage;
         private const float _offsetX = 40f;
         private const float _offsetY = 50f;
-        private const int _gridRows = 2;
-        private const int _gridCols = 3;
         private int _amountOfCollectedPairs = 0;
         private bool _isAPair = false;
 
@@ -42,9 +43,23 @@ namespace MexiColleccion.Minigames.Memory
             ScoreText.text = _score.ToString();
             LivesText.text = Lives.ToString();
 
-            Vector3 startPos = _firstCardSpawn.transform.position; //The position of the first card. All other cards are offset from here.
 
-            int[] numbers = { 0, 0, 1, 1, 2, 2 };
+            //The position of the first card. All other cards are offset from here.
+            Vector3 startPos = _firstCardSpawn.transform.position;
+
+            // change the shuffle array relative to the length of card types
+            List<int> numbersList = new List<int>();
+
+            for (int i = 0; i < _cardPrefabs.Length; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    numbersList.Add(i);
+                }
+            }
+
+            int[] numbers = numbersList.ToArray();
+
             numbers = ShuffleArray(numbers); //This is a function we will create in a minute!
 
             for (int i = 0; i < _gridCols; i++)
@@ -106,9 +121,9 @@ namespace MexiColleccion.Minigames.Memory
         }
         private void FlipCard(NewCardScript card)
         {
-            _card1Storage = card.ImageBack;
-            card.ImageBack = card.ImageFront;
-            card.ImageFront = _card1Storage;
+            _card1Storage = card.ImageHide;
+            card.ImageHide = card.ImageShow;
+            card.ImageShow = _card1Storage;
             UpdateCardImage(card);
         }
         private int[] ShuffleArray(int[] numbers)
@@ -130,8 +145,9 @@ namespace MexiColleccion.Minigames.Memory
             {
                 Debug.Log("REVEAL");
                 _firstRevealed = revealedCard;
+
             }
-            else if(_firstRevealed.gameObject != clickedCard && _secondRevealed == null)
+            else if (_firstRevealed.gameObject != clickedCard && _secondRevealed == null)
             {
                 Debug.Log("REVEAL 2");
                 _secondRevealed = revealedCard;
@@ -144,8 +160,8 @@ namespace MexiColleccion.Minigames.Memory
             if (_firstRevealed == null || _secondRevealed == null)
                 return;
 
-                StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
-                StartCoroutine(CheckMatch());
+            StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
+            StartCoroutine(CheckMatch());
         }
 
         private IEnumerator CheckMatch()
@@ -156,6 +172,7 @@ namespace MexiColleccion.Minigames.Memory
                 ScoreText.text = _score.ToString();
 
                 Debug.Log("Correct pair");
+                yield return new WaitForSeconds(2f);
                 Delete(_firstRevealed.gameObject, _secondRevealed.gameObject);
                 _firstRevealed = null;
                 _secondRevealed = null;
@@ -166,7 +183,7 @@ namespace MexiColleccion.Minigames.Memory
                 Lives--;
                 LivesText.text = Lives.ToString();
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(2f);
                 yield return StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 Debug.Log("Incorrect pair");
                 _firstRevealed = null;
@@ -186,7 +203,7 @@ namespace MexiColleccion.Minigames.Memory
 
         private void CheckForLoss()
         {
-            if(Lives <= 0)
+            if (Lives <= 0)
             {
                 Debug.Log("Loss");
                 GameOver.OnDefeat();
@@ -197,16 +214,16 @@ namespace MexiColleccion.Minigames.Memory
         {
             Destroy(_firstRevealed.gameObject);
             Destroy(_secondRevealed.gameObject);
-            _amountOfCollectedPairs++; 
+            _amountOfCollectedPairs++;
         }
 
         private void UpdateCardImage(NewCardScript card)
         {
-            card.gameObject.GetComponent<Image>().sprite = card.ImageFront;
+            card.gameObject.GetComponent<Image>().sprite = card.ImageShow;
         }
         private void SetCardPosition(NewCardScript card)
         {
 
         }
-}
+    }
 }

@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_CellSize: {x: 100, y: 150}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 4
+  m_ConstraintCount: 8
 --- !u!1 &1045112902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,10 +2059,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstCardSpawn: {fileID: 311644457}
   _cardPrefabs:
-  - {fileID: 1986349455937953690, guid: 455014795c0cbc54196c2898f6a1c2df, type: 3}
-  - {fileID: 1986349455937953690, guid: a537aacc35e47f04abce809b753089a2, type: 3}
-  - {fileID: 1986349455937953690, guid: fa1c1f4273de030498f8bb047cf25443, type: 3}
-  Lives: 3
+  - {fileID: 1986349455937953690, guid: 2eee60c5f85304f4c9d39c1068c60ad7, type: 3}
+  - {fileID: 1986349455937953690, guid: cf6341b33661bd54e9f945adca8184ed, type: 3}
+  - {fileID: 1986349455937953690, guid: 5ee9270b668b7f146b7906f1fe92f44c, type: 3}
+  - {fileID: 1986349455937953690, guid: a74f07a1d9969064fa3c26392cef7a4d, type: 3}
+  - {fileID: 1986349455937953690, guid: 3d5c66f5dcafb6c43b4435a7c32b1212, type: 3}
+  - {fileID: 1986349455937953690, guid: a1e888f0ae3bc604f9e107a3778eb413, type: 3}
+  - {fileID: 1986349455937953690, guid: f727e26d011c1ce429ab43c3d8089f62, type: 3}
+  - {fileID: 1986349455937953690, guid: f654720e36fa4844da44d67be86e66c3, type: 3}
+  _gridCols: 8
+  _gridRows: 2
+  Lives: 5
   ScoreText: {fileID: 1462599471}
   LivesText: {fileID: 1533732165}
   GameOver: {fileID: 1186723963}

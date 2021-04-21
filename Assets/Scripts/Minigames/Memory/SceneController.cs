@@ -1,23 +1,22 @@
-using System.Collections;
 using UnityEngine;
 
 namespace MexiColleccion.Minigames.Memory
 {
     public class SceneController : MonoBehaviour
     {
-        
+
 
         [SerializeField] private Sprite[] images;
 
         [SerializeField] private Transform parent;
 
-       
 
-        
+
+
 
         //-------------------------------------------------------------------------------------------------------------------------------------------
 
-        
+
 
         //private int _score = 0;
         //[SerializeField] private TextMesh scoreLabel;

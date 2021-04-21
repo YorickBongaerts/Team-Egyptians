@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace MexiColleccion.Minigames.Memory
 {
@@ -19,7 +17,7 @@ namespace MexiColleccion.Minigames.Memory
         private bool _isAPair = false;
         private Sprite _cardBackSprite = null;
         private PointerEventData _eventData = null;
-        private List<RaycastResult> _results = new List<RaycastResult>(); 
+        private List<RaycastResult> _results = new List<RaycastResult>();
         private void Update()
         {
 
@@ -48,8 +46,8 @@ namespace MexiColleccion.Minigames.Memory
         {
             //Flips both the cards after the player has selected 2 face-down cards
             //Flip them back if they do not match
-            card1.ChangeSprite(card1.id,_cardFrontSprites[card1.id]);
-            card2.ChangeSprite(card2.id,_cardFrontSprites[card2.id]);
+            card1.ChangeSprite(card1.id, _cardFrontSprites[card1.id]);
+            card2.ChangeSprite(card2.id, _cardFrontSprites[card2.id]);
             _isAPair = CheckIfCorrect(card1, card2);
             if (!_isAPair)
             {
@@ -61,7 +59,7 @@ namespace MexiColleccion.Minigames.Memory
         private bool CheckIfCorrect(MainCard card1, MainCard card2)
         {
             //Check if the player has chosen two cards of the same pair
-            if(card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name == card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name)
+            if (card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name == card1.gameObject.transform.GetComponent<SpriteRenderer>().sprite.name)
             {
                 return true;
             }
