@@ -145,12 +145,14 @@ namespace MexiColleccion.Minigames.Memory
             {
                 Debug.Log("REVEAL");
                 _firstRevealed = revealedCard;
+                FlipCard(revealedCard);
 
             }
             else if (_firstRevealed.gameObject != clickedCard && _secondRevealed == null)
             {
                 Debug.Log("REVEAL 2");
                 _secondRevealed = revealedCard;
+                FlipCard(revealedCard);
                 CardsRevealed();
             }
         }
@@ -160,7 +162,7 @@ namespace MexiColleccion.Minigames.Memory
             if (_firstRevealed == null || _secondRevealed == null)
                 return;
 
-            StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
+            //StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
             StartCoroutine(CheckMatch());
         }
 

@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 1986349455937953690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalScale: {x: 0.65, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cardname: CardType_04
-  ImageHide: {fileID: 21300000, guid: 8682c65f3a3e04441bef35e5f1182872, type: 3}
   ImageShow: {fileID: 21300000, guid: 3a788ee70df284f4eaad7146a43ad5cf, type: 3}
+  ImageHide: {fileID: 21300000, guid: 88e30c9e25c51254b907290b07ec7257, type: 3}
   sceneController: {fileID: 0}
