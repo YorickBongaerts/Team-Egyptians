@@ -339,6 +339,14 @@ PrefabInstance:
       propertyPath: _artifactName
       value: PainterArtifact2
       objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: artifactIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: TypeOfMinigame
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
 --- !u!1001 &996296914
@@ -399,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
       propertyPath: _artifactName
       value: MemoryArtifact2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: artifactIndex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
@@ -461,6 +473,10 @@ PrefabInstance:
       propertyPath: _artifactName
       value: PainterArtifact1
       objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: TypeOfMinigame
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
 --- !u!1001 &1572978239
@@ -521,6 +537,14 @@ PrefabInstance:
     - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
       propertyPath: _artifactName
       value: PainterArtifact3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: artifactIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: TypeOfMinigame
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
@@ -675,6 +699,10 @@ PrefabInstance:
     - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
       propertyPath: _artifactName
       value: MemoryArtifact3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986772526368545807, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}
+      propertyPath: artifactIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f603d20ff2eea8439ddbeaacbdc044b, type: 3}

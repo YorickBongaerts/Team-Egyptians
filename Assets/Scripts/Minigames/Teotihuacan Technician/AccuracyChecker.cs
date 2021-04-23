@@ -60,10 +60,10 @@ namespace MexiColleccion.Minigames.Teotihuacan
                 Score = CorrectPixels * 100 / TotalPixels;
                 Debug.Log("score: " + Score + "%");
 
-                // if (Score > ScoreVictoryTreshhold)
-                //     GameOverManager.OnVictory();
-                // else
-                //     GameOverManager.OnDefeat();
+                 if (Score > ScoreVictoryTreshhold)
+                     GameOverManager.OnVictory();
+                 else
+                     GameOverManager.OnDefeat();
             }
         }
 

@@ -7,11 +7,11 @@ namespace MexiColleccion.Minigames
 {
     public class VictoryManager : MonoBehaviour
     {
-        public string MemoryMinigame = "MiniGame-Memory";
-        public List<string> MemoryArtifacts = new List<string>(); //artifact name convention is *Minigame*+Artifact+*Number*
+        public string MemoryMinigame = CollectionDataBase.memoryMiniGame;
+        private List<string> _memoryArtifacts = new List<string>(); 
 
-        public string PainterMinigame = "Painter";
-        public List<string> PainterArtifacts = new List<string>(); //artifact name convention is *Minigame*+Artifact+*Number*
+        public string PainterMinigame = CollectionDataBase.PainterMinigame;
+        private List<string> _painterArtifacts = new List<string>(); 
 
         public Text Message;
 
@@ -21,12 +21,22 @@ namespace MexiColleccion.Minigames
         {
             if (PlayerPrefs.GetString("PreviousScene") == MemoryMinigame)
             {
-                GetArtifact(MemoryArtifacts);
+                foreach(string s in CollectionDataBase.MemoryArtifacts)
+                {
+                    _memoryArtifacts.Add(s);
+                }
+
+                GetArtifact(_memoryArtifacts);
             }
 
             if (PlayerPrefs.GetString("PreviousScene") == PainterMinigame)
             {
-                GetArtifact(PainterArtifacts);
+                foreach (string s in CollectionDataBase.PainterArtifacts)
+                {
+                    _painterArtifacts.Add(s);
+                }
+
+                GetArtifact(_painterArtifacts);
             }
         }
 
@@ -34,11 +44,10 @@ namespace MexiColleccion.Minigames
         {
             for (int i = artifactList.Count - 1; i >= 0; i--) // remove the artifacts the player has aleady won
             {
-                if (PlayerPrefs.GetInt(artifactList[i]) != 0) //this means it has already been collected
+                if (PlayerPrefs.GetInt(artifactList[i]) != 0) // this means it has already been collected
                 {
                     artifactList.RemoveAt(i);
                 }
-
             }
 
             if (artifactList.Count == 0)
@@ -51,7 +60,7 @@ namespace MexiColleccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                Message.text = "You Won a new artifact!";
+                Message.text = "You Won a new artifact: " + artifactList[r] + "!";
             }
         }
     }

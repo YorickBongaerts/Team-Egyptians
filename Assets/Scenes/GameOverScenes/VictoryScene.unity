@@ -250,11 +250,13 @@ MonoBehaviour:
   - MemoryArtifact1
   - MemoryArtifact2
   - MemoryArtifact3
+  - MemoryArtifact4
   PainterMinigame: Painter
   PainterArtifacts:
   - PainterArtifact1
   - PainterArtifact2
   - PainterArtifact3
+  - PainterArtifact4
   Message: {fileID: 1529176639}
 --- !u!4 &503376975
 Transform:
@@ -904,7 +906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1836210168}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521053454}
+        m_TargetAssemblyTypeName: MexiColleccion.UI.BaseUI, Assembly-CSharp
+        m_MethodName: OnMainHubEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1836210168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1275,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2109795543}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521053454}
+        m_TargetAssemblyTypeName: MexiColleccion.UI.MinigameBaseUI, Assembly-CSharp
+        m_MethodName: OnRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2109795543
 MonoBehaviour:
   m_ObjectHideFlags: 0

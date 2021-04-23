@@ -1,29 +1,52 @@
+using System;
 using UnityEngine;
 
 public class Artifact : MonoBehaviour
 {
-    [SerializeField] private string _artifactName; //artifact name convention is *Minigame*+Artifact+*Number*
+    public enum MinigameType
+    {
+        memory,
+        painter
+    }
 
-    public Material CollectedMaterial;
+    public MinigameType TypeOfMinigame;
+    public int artifactIndex;
+    private string _artifactName; 
+
+
+    public Material CollectedMaterial; // code here has to chage depending on implemetation relics
 
     private void Start()
     {
+        _artifactName = GetCorrectArtifactNameFromDataBase();
+
+        Debug.Log(_artifactName);
+
         if (PlayerPrefs.GetInt(_artifactName) == 1) // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
-        {
-            IsCollected();
-        }
+            IsCollected();        
         else
-        {
             IsNotCollected();
-        }
     }
 
-    private void IsNotCollected()
+    private string GetCorrectArtifactNameFromDataBase()
+    {
+        string artifactName = "default";
+
+        if(TypeOfMinigame == MinigameType.memory)
+            artifactName = CollectionDataBase.MemoryArtifacts[artifactIndex];
+
+        else if(TypeOfMinigame == MinigameType.painter)
+            artifactName = CollectionDataBase.PainterArtifacts[artifactIndex];
+
+        return artifactName;
+    }
+
+    private void IsNotCollected() // code here has to chage depending on implemetation relics
     {
         Debug.Log("Not collected yet");
     }
 
-    private void IsCollected()
+    private void IsCollected() // code here has to chage depending on implemetation relics
     {
         this.GetComponent<Renderer>().material = CollectedMaterial;
     }
