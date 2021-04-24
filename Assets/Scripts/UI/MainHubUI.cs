@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MexiColeccion.Hub;
+using System;
 using System.Collections;
 using UnityEngine;
 
-namespace MexiColleccion.UI
+namespace MexiColeccion.UI
 {
     /// <summary>
     /// This is the new version of the UIScriptMainHub Script (deleted)
@@ -12,6 +13,7 @@ namespace MexiColleccion.UI
         [SerializeField] private GameObject _playerCharacter;
         [SerializeField] private GameObject _viewArtifactsButton;
         [SerializeField] private GameObject _hideArtifactsButton;
+        [SerializeField] private GameObject _leftArrow, _rightArrow;
         [SerializeField] private GameObject _artifactsViewer;
         [SerializeField] private Camera _cam;
 
@@ -40,15 +42,18 @@ namespace MexiColleccion.UI
             ViewerState = 2;
             _hideArtifactsButton.SetActive(false);
             _artifactAnimator.SetBool("IsClosing", true);
+
             StartCoroutine(WaitForEndOfAnimation());
         }
 
         public void OnArtifactViewerOpened()
         {
             ViewerState = 1;
-            _viewArtifactsButton.SetActive(false);
-            _artifactAnimator.SetBool("IsClosing", false);
             _artifactsViewer.SetActive(true);
+            _artifactAnimator.SetBool("IsClosing", false);
+
+            SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
+            _artifactsViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().UpdatePosition();
             StartCoroutine(WaitForEndOfAnimation());
         }
 
@@ -93,7 +98,7 @@ namespace MexiColleccion.UI
             if (ViewerState == 2)
             {
                 _artifactsViewer.SetActive(false);
-                _viewArtifactsButton.SetActive(true);
+                SetActive(true, _viewArtifactsButton, _leftArrow, _rightArrow);
                 ViewerState = 0;
             }
         }
@@ -101,6 +106,14 @@ namespace MexiColleccion.UI
         private void OnDestroy()
         {
             StopAllCoroutines();
+        }
+
+        private void SetActive(bool active, params GameObject[] gameObjects)
+        {
+            foreach (GameObject go in gameObjects)
+            {
+                go.SetActive(active);
+            }
         }
     }
 

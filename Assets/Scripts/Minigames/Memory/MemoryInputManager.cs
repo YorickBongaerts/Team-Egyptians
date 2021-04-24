@@ -1,10 +1,10 @@
-using MexiColleccion.Input;
-using MexiColleccion.Input.Utilities;
+using MexiColeccion.Input;
+using MexiColeccion.Input.Utilities;
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
-    public class MemoryInputManager : InputManager
+    public class MemoryInputManager : InputController
     {
         protected override void OnPressed(object sender, PointerEventArgs e)
         {

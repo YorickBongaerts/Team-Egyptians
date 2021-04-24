@@ -1,15 +1,15 @@
-﻿using MexiColleccion.Input;
-using MexiColleccion.Input.Utilities;
+﻿using MexiColeccion.Input;
+using MexiColeccion.Input.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace MexiColleccion.Hub
+namespace MexiColeccion.Hub
 {
     /// <summary>
     /// This is the new version of the HubPaintings Script (deleted)
     /// </summary>
-    internal class Painting : InputManager
+    internal class Painting : InputController
     {
         [Tooltip("The scene that needs to be loaded when the user select this Minigame.")]
         //[SerializeField] private SceneAsset _sceneToLoad;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MexiColleccion.UI
+namespace MexiColeccion.UI
 {
     public class StartScreenUI : BaseUI
     {

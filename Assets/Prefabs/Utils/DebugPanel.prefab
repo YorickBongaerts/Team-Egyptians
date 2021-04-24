@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4098652091631668807}
   - component: {fileID: 4098652091631668801}
   - component: {fileID: 4098652091631668800}
-  - component: {fileID: 4098652091631668803}
   m_Layer: 5
   m_Name: Debug
   m_TagString: Untagged
@@ -79,20 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
---- !u!114 &4098652091631668803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4098652091631668806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5193a29e3ce614b84d0b0a91b884b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info: {fileID: 4098652091631668800}
+  m_Text: 
 --- !u!1 &4098652093014249131
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +92,7 @@ GameObject:
   - component: {fileID: 4098652093014249126}
   - component: {fileID: 4098652093014249125}
   - component: {fileID: 4098652093014249120}
+  - component: {fileID: 1456103591123716552}
   m_Layer: 5
   m_Name: DebugPanel
   m_TagString: Untagged
@@ -211,3 +198,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &1456103591123716552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098652093014249131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5193a29e3ce614b84d0b0a91b884b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _info: {fileID: 4098652091631668800}

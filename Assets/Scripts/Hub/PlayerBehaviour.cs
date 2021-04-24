@@ -1,8 +1,8 @@
-﻿using MexiColleccion.UI;
+﻿using MexiColeccion.UI;
 using System.Collections;
 using UnityEngine;
 
-namespace MexiColleccion.Hub
+namespace MexiColeccion.Hub
 {
     /// <summary>
     /// This is the new version of the PlayerScript (deleted)
@@ -20,7 +20,7 @@ namespace MexiColleccion.Hub
         private bool _isMoving = false;
         private bool _isDirectionLocked = false;
 
-        private Vector3 DestinationPosition
+        internal Vector3 DestinationPosition
         {
             get
             {

@@ -1,8 +1,8 @@
-using MexiColleccion.Minigames.Teotihuacan;
+using MexiColeccion.Minigames.Teotihuacan;
 using System;
 using UnityEngine;
 
-namespace MexiColleccion.UI
+namespace MexiColeccion.UI
 {
     public class PainterUI : MinigameBaseUI
     {

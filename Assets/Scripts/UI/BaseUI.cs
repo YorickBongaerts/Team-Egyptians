@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MexiColleccion.UI
+namespace MexiColeccion.UI
 {
     public class BaseUI : MonoBehaviour
     {

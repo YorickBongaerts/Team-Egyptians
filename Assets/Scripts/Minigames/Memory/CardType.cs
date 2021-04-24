@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
     [CreateAssetMenu(fileName = "MemoryCardType", menuName = "ScriptableObjects/memoryCards")]
     public class CardType : ScriptableObject

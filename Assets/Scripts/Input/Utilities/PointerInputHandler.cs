@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-namespace MexiColleccion.Input.Utilities
+namespace MexiColeccion.Input.Utilities
 {
     internal sealed class PointerInputHandler : MonoBehaviour
     {
@@ -56,7 +56,7 @@ namespace MexiColleccion.Input.Utilities
             {
                 Dragged?.Invoke(this, new PointerEventArgs(drag, context));
             }
-            else
+            else if (!drag.Contact && _isDragging)
             {
                 Released?.Invoke(this, new PointerEventArgs(drag, context));
                 _isDragging = false;
@@ -71,7 +71,7 @@ namespace MexiColleccion.Input.Utilities
         /// </summary>
         internal PointerInput PointerInput;
         /// <summary>
-        /// The CallbackContext of the InputAction (might be redundant).
+        /// The CallbackContext of the InputAction.
         /// </summary>
         internal InputAction.CallbackContext Context;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames
+namespace MexiColeccion.Minigames
 {
     public class VictoryManager : MonoBehaviour
     {

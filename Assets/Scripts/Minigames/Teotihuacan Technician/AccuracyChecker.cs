@@ -1,7 +1,7 @@
-using MexiColleccion.Utils;
+using MexiColeccion.Utils;
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Teotihuacan
+namespace MexiColeccion.Minigames.Teotihuacan
 {
 
     public class AccuracyChecker : MonoBehaviour

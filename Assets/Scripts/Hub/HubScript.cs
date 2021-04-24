@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MexiColleccion.Hub
+namespace MexiColeccion.Hub
 {
     public class HubScript : MonoBehaviour
     {

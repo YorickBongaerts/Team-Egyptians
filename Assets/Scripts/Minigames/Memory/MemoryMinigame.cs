@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
     public class MemoryMinigame : MinigameBaseClass
     {

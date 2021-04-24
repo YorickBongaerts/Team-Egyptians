@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MexiColleccion.Minigames
+namespace MexiColeccion.Minigames
 {
     public class GameOverManager : MonoBehaviour
     {

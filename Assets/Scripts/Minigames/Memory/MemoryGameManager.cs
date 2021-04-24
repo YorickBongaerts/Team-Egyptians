@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
     public class MemoryGameManager : MinigameBaseClass
     {

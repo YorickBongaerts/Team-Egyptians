@@ -1,9 +1,9 @@
-﻿using MexiColleccion.Hub;
+﻿using MexiColeccion.Hub;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames
+namespace MexiColeccion.Minigames
 {
     public class MinigameBaseClass : MonoBehaviour
     {

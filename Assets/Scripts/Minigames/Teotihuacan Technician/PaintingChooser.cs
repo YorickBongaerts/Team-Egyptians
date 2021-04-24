@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Teotihuacan
+namespace MexiColeccion.Minigames.Teotihuacan
 {
     public class PaintingChooser : MonoBehaviour
     {

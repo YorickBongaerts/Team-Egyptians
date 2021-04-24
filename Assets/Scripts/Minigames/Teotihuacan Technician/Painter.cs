@@ -1,13 +1,13 @@
-using MexiColleccion.Input;
-using MexiColleccion.Input.Utilities;
-using MexiColleccion.UI;
+using MexiColeccion.Input;
+using MexiColeccion.Input.Utilities;
+using MexiColeccion.UI;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MexiColleccion.Minigames.Teotihuacan
+namespace MexiColeccion.Minigames.Teotihuacan
 {
-    public class Painter : InputManager
+    public class Painter : InputController
     {
         [Header("References")]
         [Tooltip("Reference to the Display Camera. This is the camera that projects the canvas on the screen. Default is MainCamera.")]

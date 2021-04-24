@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames.Teotihuacan
+namespace MexiColeccion.Minigames.Teotihuacan
 {
     public class Ink : MonoBehaviour
     {

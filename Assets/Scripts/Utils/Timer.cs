@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Utils
+namespace MexiColeccion.Utils
 {
     //General Timer class, should replace the timer methods in the minigamebaseclass
     public class Timer : MonoBehaviour

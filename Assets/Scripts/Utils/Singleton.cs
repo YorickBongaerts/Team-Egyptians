@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MexiColleccion.Utils
+namespace MexiColeccion.Utils
 {
     //Singleton from the video: https://youtu.be/ERAN5KBy2Gs
     public class Singleton<T> : MonoBehaviour where T : Component

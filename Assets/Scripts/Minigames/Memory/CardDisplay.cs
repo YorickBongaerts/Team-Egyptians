@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
     public class CardDisplay : MonoBehaviour, IPointerDownHandler, IDragHandler
     {

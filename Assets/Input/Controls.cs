@@ -87,6 +87,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""09727306-20e9-434d-97a1-4342f6c8f55e"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0f405058-8a35-4dd2-8b8c-42be674a39f1"",
                     ""path"": ""<Touchscreen>/delta"",
                     ""interactions"": """",
@@ -114,7 +125,7 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""Touch"",
-                    ""id"": ""04dca819-b41d-40fe-a464-728d39f50586"",
+                    ""id"": ""7241bc1e-00ae-468a-a406-d43b166c8498"",
                     ""path"": ""PointerInput"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -125,7 +136,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""contact"",
-                    ""id"": ""2cfc1359-f27c-40b2-a3fd-de74c48292f9"",
+                    ""id"": ""a9c53c99-8e3c-449e-95ce-0f01ecb7a76c"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -136,7 +147,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""position"",
-                    ""id"": ""99ebf1cd-ddde-46a0-a221-e2ff53ff194c"",
+                    ""id"": ""f2e31ca6-156e-4d56-ad8b-e41b20b257dc"",
                     ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -147,7 +158,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""radius"",
-                    ""id"": ""fa55728b-1a3d-4805-b015-4e9055561a5f"",
+                    ""id"": ""75bc2a48-8184-422b-8297-d2903d17255c"",
                     ""path"": ""<Touchscreen>/primaryTouch/radius"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -157,8 +168,19 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""delta"",
+                    ""id"": ""8659664e-88db-48d5-9d20-74a8fe41a620"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pointer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""pressure"",
-                    ""id"": ""26e2616f-1825-4bf7-9734-cbf88f0ea7c9"",
+                    ""id"": ""b35df4c2-0639-4a59-b06d-4bbef2f8a208"",
                     ""path"": ""<Touchscreen>/primaryTouch/pressure"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -169,7 +191,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""inputId"",
-                    ""id"": ""0c8908a3-282a-439d-af3b-50f64a493816"",
+                    ""id"": ""54f1237d-22cc-4a31-9537-8ab35f0034f4"",
                     ""path"": ""<Touchscreen>/primaryTouch/touchId"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -180,7 +202,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Mouse"",
-                    ""id"": ""3ebd7a51-52ff-49a9-ba8d-34e9cdcb4612"",
+                    ""id"": ""c950bb76-c58b-4616-8474-79a620533953"",
                     ""path"": ""PointerInput"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -191,7 +213,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""contact"",
-                    ""id"": ""abbcdfab-6c2a-4ba8-b35f-60ce05baf525"",
+                    ""id"": ""9a4e19bd-8c0c-4a0f-9aa7-5d7550927a6f"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -202,7 +224,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""position"",
-                    ""id"": ""183d81d0-017c-4000-8f67-733314166780"",
+                    ""id"": ""a4a45123-30d3-4ab3-a52a-667707fd70be"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -212,8 +234,19 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""delta"",
+                    ""id"": ""f7927887-faac-4f8d-add7-709ef29ba3ff"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pointer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""inputId"",
-                    ""id"": ""28a04dec-333d-4ee6-bcb1-59cae775382a"",
+                    ""id"": ""7d4d2181-7158-4ef6-b2ea-fd9e0e6750b0"",
                     ""path"": ""<Mouse>/pointerId"",
                     ""interactions"": """",
                     ""processors"": """",

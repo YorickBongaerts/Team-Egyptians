@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MexiColleccion.Minigames.Memory
+namespace MexiColeccion.Minigames.Memory
 {
     public class MainCard : MonoBehaviour
     {

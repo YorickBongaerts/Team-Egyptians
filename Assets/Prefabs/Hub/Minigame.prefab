@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 814154616023695644}
   - component: {fileID: 814154616023695645}
   - component: {fileID: 814154616023695642}
-  - component: {fileID: 4203346901366355858}
-  - component: {fileID: 8832888965966647364}
   m_Layer: 0
   m_Name: Painting
   m_TagString: Untagged
@@ -128,34 +126,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4203346901366355858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814154616023695643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b830dc56986e7a742bd47e240a0a142a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isUsingPen: 0
-  _isUsingTouch: 0
---- !u!114 &8832888965966647364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814154616023695643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2333654060e129f4ea08781c07014f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _debugger: {fileID: 0}
-  _minigameName: 
 --- !u!1 &814154616038312087
 GameObject:
   m_ObjectHideFlags: 0

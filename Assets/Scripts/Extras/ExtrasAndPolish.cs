@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MexiColleccion.Extras
+namespace MexiColeccion.Extras
 {
     public class ExtrasAndPolish : MonoBehaviour
     {

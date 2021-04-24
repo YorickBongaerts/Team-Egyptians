@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MexiColleccion.UI
+namespace MexiColeccion.UI
 {
     public class MinigameBaseUI : BaseUI
     {
