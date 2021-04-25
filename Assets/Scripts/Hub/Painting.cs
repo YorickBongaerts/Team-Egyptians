@@ -18,6 +18,7 @@ namespace MexiColeccion.Hub
         [SerializeField] private string _sceneToLoadName;
 
         private Vector2 _inputPosition;
+        private bool ShouldLoad = false;
 
         protected override void OnPressed(object sender, PointerEventArgs e)
         {
@@ -33,8 +34,17 @@ namespace MexiColeccion.Hub
             {
                 if (hit.transform.gameObject == gameObject)
                 {
-                    SceneManager.LoadScene(_sceneToLoadName);
+                    ShouldLoad = true;
                 }
+            }
+        }
+        protected override void OnReleased(object sender, PointerEventArgs e)
+        {
+            base.OnReleased(sender, e);
+            if (ShouldLoad)
+            {
+                ShouldLoad = false;
+                SceneManager.LoadScene(_sceneToLoadName);
             }
         }
     }
