@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CollectionDataBase
 {
-    public static string PainterMinigame = "MiniGame-Teotihuacan";
+    public static string PainterMinigame = "Minigame-Teotihuacan"; //minigame scene name
     public static string[] PainterArtifacts = new string[] 
     {
         "PainterArtifact1",
@@ -14,7 +14,7 @@ public static class CollectionDataBase
     };
 
 
-    public static string memoryMiniGame = "MiniGame-Memory";
+    public static string memoryMiniGame = "MiniGame-Memory"; //minigame scene name
     public static string[] MemoryArtifacts = new string[]
     {
         "MemoryArtifact1",

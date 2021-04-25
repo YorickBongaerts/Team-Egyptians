@@ -246,17 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MemoryMinigame: MiniGame-Memory
-  MemoryArtifacts:
-  - MemoryArtifact1
-  - MemoryArtifact2
-  - MemoryArtifact3
-  - MemoryArtifact4
-  PainterMinigame: Painter
-  PainterArtifacts:
-  - PainterArtifact1
-  - PainterArtifact2
-  - PainterArtifact3
-  - PainterArtifact4
+  PainterMinigame: Minigame-Teotihuacan
   Message: {fileID: 1529176639}
 --- !u!4 &503376975
 Transform:

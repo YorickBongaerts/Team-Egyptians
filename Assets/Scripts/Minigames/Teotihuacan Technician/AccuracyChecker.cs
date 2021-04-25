@@ -1,4 +1,5 @@
 using MexiColeccion.Utils;
+using System;
 using UnityEngine;
 
 namespace MexiColeccion.Minigames.Teotihuacan
@@ -36,6 +37,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             //Texture2D firstTex = playerTexture.material.mainTexture as Texture2D;
             //Texture2D secondTex = actualTexture.material.mainTexture as Texture2D;
+            firstTex = ResizeTetxures(firstTex, secondTex.width, secondTex.height);
+
             Color[] firstPix = firstTex.GetPixels();
             Color[] secondPix = secondTex.GetPixels();
 
@@ -43,6 +46,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
             Debug.Log(firstTex.height);
             Debug.Log(secondTex.width);
             Debug.Log(secondTex.height);
+
+
 
             if (firstPix.Length != secondPix.Length)
             {
@@ -65,6 +70,17 @@ namespace MexiColeccion.Minigames.Teotihuacan
                  else
                      GameOverManager.OnDefeat();
             }
+        }
+
+        private Texture2D ResizeTetxures(Texture2D resizeTexture, int targetX, int targetY)
+        {
+            RenderTexture rt = new RenderTexture(targetX, targetY, 24);
+            RenderTexture.active = rt;
+            Graphics.Blit(resizeTexture, rt);
+            Texture2D result = new Texture2D(targetX, targetY);
+            result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
+            result.Apply();
+            return result;
         }
 
         private void ComparePixel(Color[] firstPix, Color[] secondPix, int i)
