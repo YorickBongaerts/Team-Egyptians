@@ -14,7 +14,7 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _viewArtifactsButton;
         [SerializeField] private GameObject _hideArtifactsButton;
         [SerializeField] private GameObject _leftArrow, _rightArrow;
-        [SerializeField] private GameObject _artifactsViewer;
+        [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
 
         private Animator _camAnimator;
@@ -34,7 +34,7 @@ namespace MexiColeccion.UI
         private void Start()
         {
             _camAnimator = _cam.GetComponent<Animator>();
-            _artifactAnimator = _artifactsViewer.GetComponent<Animator>();
+            _artifactAnimator = _artifactViewer.GetComponent<Animator>();
         }
 
         public void OnArtifactViewerClosed()
@@ -49,11 +49,12 @@ namespace MexiColeccion.UI
         public void OnArtifactViewerOpened()
         {
             ViewerState = 1;
-            _artifactsViewer.SetActive(true);
+            _artifactViewer.SetActive(true);
             _artifactAnimator.SetBool("IsClosing", false);
 
             SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
-            _artifactsViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().UpdatePosition();
+            _artifactViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().UpdatePosition();
+            _artifactViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().Index = 0;
             StartCoroutine(WaitForEndOfAnimation());
         }
 
@@ -97,7 +98,7 @@ namespace MexiColeccion.UI
             }
             if (ViewerState == 2)
             {
-                _artifactsViewer.SetActive(false);
+                _artifactViewer.SetActive(false);
                 SetActive(true, _viewArtifactsButton, _leftArrow, _rightArrow);
                 ViewerState = 0;
             }

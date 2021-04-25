@@ -16,13 +16,14 @@ namespace MexiColeccion.Hub
 
         public bool IsInteractedWith { get; private set; }
 
-        private int Index
+        public int Index
         {
             get => _index;
             set
             {
                 _index = Mathf.Clamp(value, 0, _artifacts.Length - 1);
-                transform.position = new Vector3(_artifacts[Index].transform.position.x, transform.position.y, transform.position.z);
+                float distanceToMove = _artifacts[Index].transform.position.x + 1.54f - transform.position.x;
+                transform.position = new Vector3(transform.position.x - distanceToMove, transform.position.y, transform.position.z);
             }
         }
 
@@ -41,7 +42,6 @@ namespace MexiColeccion.Hub
                 if (hit.transform.gameObject == gameObject)
                 {
                     IsInteractedWith = true;
-                    print("Interacting with viewer");
                 }
             }
         }
@@ -59,15 +59,15 @@ namespace MexiColeccion.Hub
             if (_artifacts[Index].GetComponentInChildren<Artifact>().IsInteractedWith || !IsInteractedWith)
                 return;
 
-            if (e.PointerInput.Swipe.Direction.x > 0.5f)
+            if (e.PointerInput.Swipe.Direction.x > 0.8f)
             {
                 print("Swiped left to right");
-                Index += 1;
+                Index -= 1;
             }
-            else if (e.PointerInput.Swipe.Direction.x < -0.5f)
+            else if (e.PointerInput.Swipe.Direction.x < -0.8f)
             {
                 print("Swiped right to left");
-                Index -= 1;
+                Index += 1;
             }
             IsInteractedWith = false;
         }

@@ -1,9 +1,7 @@
 ﻿using MexiColeccion.Input.Utilities;
 using MexiColeccion.Utils.Debug;
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace MexiColeccion.Input
 {
@@ -38,11 +36,6 @@ namespace MexiColeccion.Input
         }
 
         #region Unity Lifecycle
-        private void Reset()
-        {
-            SetInputHandlerSceneObject();
-        }
-
         private void Start()
         {
             if (_inputHandlerGO == null)
@@ -61,12 +54,10 @@ namespace MexiColeccion.Input
             }
             if (_inputHandler == null)
                 InputHandler = _inputHandlerGO.GetComponent<PointerInputHandler>();
-            //SubscribeToInputHandler();
         }
 
         private void OnDisable()
         {
-            //UnsubscribeFromInputHandler();
             if (_inputHandler != null)
                 InputHandler = null;
         }
@@ -76,7 +67,14 @@ namespace MexiColeccion.Input
             if (_inputHandler != null)
                 InputHandler = null;
         }
-        #endregion
+
+#if UNITY_EDITOR
+        private void Reset()
+        {
+            SetInputHandlerSceneObject();
+        }
+#endif
+#endregion
 
         #region Virtual Input Events
         /// <summary>
@@ -115,11 +113,6 @@ namespace MexiColeccion.Input
             _activeSwipe.Delta = e.PointerInput.Delta;
             e.PointerInput.Swipe = _activeSwipe;
 
-            //if (IsValidSwipe(e))
-            //{
-                //e.PointerInput.SubmitPoint(e.Context);
-            //}
-
             if (Debugger != null)
             {
                 Debugger.DebugInfo(e.PointerInput);
@@ -136,11 +129,6 @@ namespace MexiColeccion.Input
             e.PointerInput.EndTime = e.Context.time;
             _activeSwipe.EndPosition = e.PointerInput.Position;
             e.PointerInput.Swipe = _activeSwipe;
-            
-            //if (IsValidSwipe(e))
-            //{
-                //e.PointerInput.SubmitPoint(e.Context);
-            //}
 
             if (Debugger != null)
             {
@@ -148,11 +136,6 @@ namespace MexiColeccion.Input
             }
         }
         #endregion
-
-        //private bool IsValidSwipe(PointerEventArgs e)
-        //{
-        //    return e.Context.duration > 0 && e.Context.duration < _maxSwipeDuration && e.PointerInput.Swipe.Distance > _minSwipeDistance;
-        //}
 
         private void SubscribeToInputHandler()
         {

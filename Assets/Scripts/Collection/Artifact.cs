@@ -70,7 +70,6 @@ public class Artifact : InputController
             if (hit.transform.gameObject == transform.parent.gameObject)
             {
                 IsInteractedWith = true;
-                print("Interacting with artifact");
             }
         }
     }
@@ -82,7 +81,6 @@ public class Artifact : InputController
         if (IsInteractedWith)
         {
             RotateArtifact(e.PointerInput);
-            print("Rotating artifact");
         }
     }
 
@@ -91,31 +89,19 @@ public class Artifact : InputController
         base.OnReleased(sender, e);
 
         IsInteractedWith = false;
-        print("Stopped interacting with artifact");
     }
 
     private void RotateArtifact(PointerInput input)
     {
         if (input.Swipe.Direction.y > 0.5f || input.Swipe.Direction.y < -0.5f)
         {
-            float rotX = input.Swipe.Delta.y * _rotationSpeed * Time.deltaTime;
-            transform.Rotate(Vector3.right, rotX);
+            float pitch = input.Swipe.Delta.y * _rotationSpeed * Time.deltaTime;
+            transform.Rotate(Vector3.right, pitch, Space.World);
         }
         if (input.Swipe.Direction.x > 0.5f || input.Swipe.Direction.x < -0.5f)
         {
-            float rotY = input.Swipe.Delta.x * _rotationSpeed * Time.deltaTime;
-            transform.Rotate(Vector3.forward, -rotY);
+            float yaw = input.Swipe.Delta.x * _rotationSpeed * Time.deltaTime;
+            transform.Rotate(Vector3.up, -yaw, Space.World);
         }
     }
-
-    // private void IsNotCollected()
-    // {
-    //     Debug.Log("Not collected yet");
-    // }
-
-    //private void IsCollected()
-    //{
-    //    this.GetComponent<Renderer>().material = CollectedMaterial;
-    //}
-
 }
