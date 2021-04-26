@@ -742,8 +742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugger: {fileID: 0}
   _inputHandlerGO: {fileID: 1828953219}
-  _maxSwipeDuration: 0.5
-  _minSwipeDistance: 10
 --- !u!1001 &400071689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2130,6 +2128,7 @@ MonoBehaviour:
   - {fileID: 1986349455937953690, guid: a1e888f0ae3bc604f9e107a3778eb413, type: 3}
   - {fileID: 1986349455937953690, guid: f727e26d011c1ce429ab43c3d8089f62, type: 3}
   - {fileID: 1986349455937953690, guid: f654720e36fa4844da44d67be86e66c3, type: 3}
+  _leafPilePrefab: {fileID: 1225429569987451660, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
   _gridCols: 8
   _gridRows: 2
   Lives: 12

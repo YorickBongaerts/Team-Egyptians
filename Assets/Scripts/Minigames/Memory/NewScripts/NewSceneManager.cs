@@ -10,6 +10,7 @@ namespace MexiColeccion.Minigames.Memory
         [SerializeField] private GameObject _firstCardSpawn;
         //[SerializeField] private GameObject[] _cardPrefabs = new GameObject[3];
         [SerializeField] private GameObject[] _cardPrefabs = new GameObject[3];
+        [SerializeField] private GameObject _leafPilePrefab;
 
         [SerializeField] private int _gridCols = 4;
         [SerializeField] private int _gridRows = 4;
@@ -18,6 +19,8 @@ namespace MexiColeccion.Minigames.Memory
         private NewCardScript _firstRevealed;
         private NewCardScript _secondRevealed;
         private GameObject _cardsContainer;
+        private GameObject _leavesContainer;
+        private Animator animator;
         private Sprite _card1Storage;
         private Sprite _card2Storage;
         private const float _offsetX = 40f;
@@ -78,6 +81,11 @@ namespace MexiColeccion.Minigames.Memory
                     float posY = 20 * _offsetY;
 
                     card.transform.position = new Vector3(posX, posY, startPos.z);
+
+                    GameObject leafPile;
+                    leafPile = Instantiate(_leafPilePrefab);
+                    _leavesContainer = GameObject.FindGameObjectWithTag("LeafContainer");
+                    leafPile.transform.SetParent(card.transform);
 
                     _cardsContainer = GameObject.FindGameObjectWithTag("CardsContainer");
                     card.transform.SetParent(_cardsContainer.transform);
@@ -146,17 +154,30 @@ namespace MexiColeccion.Minigames.Memory
                 Debug.Log("REVEAL");
                 _firstRevealed = revealedCard;
                 FlipCard(revealedCard);
-
+                StartCoroutine(PlayLeavesAnimation(revealedCard, true));
             }
             else if (_firstRevealed.gameObject != clickedCard && _secondRevealed == null)
             {
                 Debug.Log("REVEAL 2");
                 _secondRevealed = revealedCard;
+                StartCoroutine(PlayLeavesAnimation(revealedCard, true));
                 FlipCard(revealedCard);
                 CardsRevealed();
             }
         }
-
+        public IEnumerator PlayLeavesAnimation(NewCardScript card, bool playForward)
+        {
+            animator = card.transform.GetChild(0).GetComponent<Animator>();
+            if (playForward)
+            {
+                animator.Play("Swipe Off");
+            }
+            else
+            {
+                animator.Play("Swipe On");
+            }
+            yield return null;
+        }
         public void CardsRevealed()
         {
             if (_firstRevealed == null || _secondRevealed == null)
@@ -186,7 +207,10 @@ namespace MexiColeccion.Minigames.Memory
                 LivesText.text = Lives.ToString();
 
                 yield return new WaitForSeconds(2f);
-                yield return StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
+                StartCoroutine(PlayLeavesAnimation(_firstRevealed,false));
+                StartCoroutine(PlayLeavesAnimation(_secondRevealed,false));
+                yield return new WaitForSeconds(1.2f);
+                StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 Debug.Log("Incorrect pair");
                 _firstRevealed = null;
                 _secondRevealed = null;

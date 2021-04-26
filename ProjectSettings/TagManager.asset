@@ -7,6 +7,7 @@ TagManager:
   - Right
   - Left
   - CardsContainer
+  - LeafContainer
   layers:
   - Default
   - TransparentFX

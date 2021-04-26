@@ -1242,11 +1242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1225429569987451659, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26
+      value: -64.57031
       objectReference: {fileID: 0}
     - target: {fileID: 1225429569987451659, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -455
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 1225429569987451659, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1263,46 +1263,6 @@ PrefabInstance:
     - target: {fileID: 1225429569987451660, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
       propertyPath: m_Name
       value: PileOffLeaves
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729009068720026992, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3979039881585569539, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4687048284103320151, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5528101563355177125, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629768122965102586, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5757124977520040471, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6681541191315931904, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7361570444610554280, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8407855729389091566, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8984968924295961513, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}

@@ -1,3 +1,4 @@
+using MexiColeccion.Minigames.Memory;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,8 +7,11 @@ public class LeafAnimation : MonoBehaviour, IPointerDownHandler
 {
     //private Animator animator;
     private List<GameObject> children = new List<GameObject>();
+    public NewSceneManager sceneController;
+
     private void Start()
     {
+        sceneController = GameObject.FindObjectOfType<NewSceneManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             children.Add(gameObject.transform.GetChild(i).gameObject);
@@ -20,9 +24,12 @@ public class LeafAnimation : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("clicked");
-        foreach (var leaf in children)
-        {
-            OnCardTapped(leaf.transform.GetComponent<Animator>());
-        }
+        Debug.Log(eventData.pressPosition);
+        //make sure this is a general scene controller
+        sceneController.AfterClick(this.gameObject.transform.parent.gameObject);
+        //foreach (var leaf in children)
+        //{
+        //    OnCardTapped(leaf.transform.GetComponent<Animator>());
+        //}
     }
 }
