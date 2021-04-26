@@ -4,6 +4,7 @@ using MexiColeccion.UI;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 namespace MexiColeccion.Minigames.Teotihuacan
 {
@@ -65,7 +66,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
             {
                 Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
             }
-            Camera.onPostRender += OnPostRenderCallback;
+            RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
+            //Camera.onPostRender += OnPostRenderCallback;
 
             // renderer
             _renderer = _display.GetComponent<Renderer>();
@@ -106,7 +108,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private void OnDestroy()
         {
-            Camera.onPostRender -= OnPostRenderCallback;
+            //Camera.onPostRender -= OnPostRenderCallback;
+            RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
 
             // unsubscribe from UIScript
             _uiScript.BrushColorChanged -= BrushColorChanged;
@@ -131,7 +134,21 @@ namespace MexiColeccion.Minigames.Teotihuacan
             BrushColor = e.NewInk.InkColor;
         }
 
+        // Built-in render pipeline
         private void OnPostRenderCallback(Camera cam)
+        {
+            if (cam == _snapShotCamera)
+            {
+                if (_brushCounter >= _maxBrushCount)
+                {
+                    UpdateTexture();
+                    //print("Updated");
+                }
+            }
+        }
+
+        // The Universal Render Pipeline uses different callbacks for graphics rendering than the built-in render pipeline
+        private void OnEndCameraRendering(UnityEngine.Rendering.ScriptableRenderContext context, Camera cam)
         {
             if (cam == _snapShotCamera)
             {

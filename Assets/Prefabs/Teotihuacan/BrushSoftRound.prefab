@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5205714617231120217}
   - component: {fileID: 216077704534920131}
   m_Layer: 0
-  m_Name: MA - SoftRound
+  m_Name: BrushSoftRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d2dcf7d42b94eb04d873ade8febf210a, type: 3}
-  m_Color: {r: 0, g: 0.13349247, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
