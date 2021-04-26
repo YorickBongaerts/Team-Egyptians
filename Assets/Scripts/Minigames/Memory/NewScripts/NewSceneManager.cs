@@ -72,7 +72,7 @@ namespace MexiColeccion.Minigames.Memory
                     GameObject card;
                     int index = j * _gridCols + i;
                     card = Instantiate(_cardPrefabs[numbers[index]]);
-                    card.GetComponent<NewCardScript>().Id = numbers[index];
+                    card.GetComponent<NewCardScript>().Id = numbers[index];          
 
                     //float posX = (offsetX * i) + startPos.x;
                     //float posY = (offsetY * j) + startPos.y;
@@ -91,6 +91,8 @@ namespace MexiColeccion.Minigames.Memory
                     card.transform.SetParent(_cardsContainer.transform);
 
                     _cardsList.Add(card.GetComponent<NewCardScript>());
+                    
+                    card.GetComponent<RectTransform>().localScale = Vector3.one; //rescales the cards to fit on the screen well and not be deformed.   
                 }
             }
             //////////////////////////////////////////////////////
