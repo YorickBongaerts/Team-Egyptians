@@ -54,7 +54,6 @@ namespace MexiColeccion.UI
 
             SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
             _artifactViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().UpdatePosition();
-            _artifactViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().Index = 0;
             StartCoroutine(WaitForEndOfAnimation());
         }
 

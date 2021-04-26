@@ -13,14 +13,13 @@ public class Artifact : InputController
         painter
     }
 
-    public Material _collectedMaterial; // code here has to change depending on implemetation relics
-    public MinigameType _typeOfMinigame;
-    private bool _isCollected;
-    private int _artifactIndex;
-    private float _rotationSpeed = 20f;
+    [SerializeField] private Material _collectedMaterial; // code here has to change depending on implemetation relics
+    [SerializeField] private MinigameType _typeOfMinigame;
+    [SerializeField] private float _rotationSpeed = 20f;
+    
     private string _artifactName; 
-
-    internal ArtifactViewer ArtifactViewer;
+    private int _artifactIndex;
+    private bool _isCollected;
 
     internal bool IsInteractedWith { get; private set; }
     private bool IsCollected

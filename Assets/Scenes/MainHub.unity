@@ -1355,7 +1355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1508,6 +1508,7 @@ MonoBehaviour:
   _inputHandlerGO: {fileID: 624429756}
   _collectedMaterial: {fileID: 2100000, guid: 29ffa6395d5ac614fb1d446c202a9006, type: 2}
   _typeOfMinigame: 0
+  _rotationSpeed: 20
 --- !u!1 &1022352857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1635,7 @@ MonoBehaviour:
   - {fileID: 1790339851}
   - {fileID: 289265553}
   _playerScript: {fileID: 653635063}
+  _slideSpeed: 2
 --- !u!65 &1066072863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1688,6 +1690,7 @@ MonoBehaviour:
   _inputHandlerGO: {fileID: 624429756}
   _collectedMaterial: {fileID: 2100000, guid: 29ffa6395d5ac614fb1d446c202a9006, type: 2}
   _typeOfMinigame: 0
+  _rotationSpeed: 20
 --- !u!1 &1132254125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,6 +2991,7 @@ MonoBehaviour:
   _inputHandlerGO: {fileID: 624429756}
   _collectedMaterial: {fileID: 2100000, guid: 29ffa6395d5ac614fb1d446c202a9006, type: 2}
   _typeOfMinigame: 0
+  _rotationSpeed: 20
 --- !u!1 &1886970344
 GameObject:
   m_ObjectHideFlags: 0
