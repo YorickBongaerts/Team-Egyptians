@@ -31,6 +31,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                                                       // (depends on screen size??)
                 _needsToCount = false;
             }
+            Debug.Log(CorrectPixels);
         }
 
         private void CompareTextures(Texture2D firstTex, Texture2D secondTex)
