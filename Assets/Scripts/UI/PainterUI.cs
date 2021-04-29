@@ -1,6 +1,7 @@
 using MexiColeccion.Minigames.Teotihuacan;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MexiColeccion.UI
 {
@@ -9,6 +10,11 @@ namespace MexiColeccion.UI
         internal event EventHandler<BrushColorChangedEventArgs> BrushColorChanged;
         internal event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
         internal event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
+
+        private bool _isDisplayingPainting = false;
+        public Transform ReferenceQuad;
+        public Text ScoreDisplay;
+        public AccuracyChecker Ac;
 
         public void OnBrushColorChanged(Ink ink)
         {
@@ -26,6 +32,22 @@ namespace MexiColeccion.UI
         {
             EventHandler<BrushShapeChangedEventArgs> handler = BrushShapeChanged;
             handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
+        }
+
+        public void OnDisplayAndHidePainting()
+        {
+            if(_isDisplayingPainting)
+            {
+                ReferenceQuad.position += new Vector3(0, 0, 10);
+                _isDisplayingPainting = false;
+                ScoreDisplay.text = "";
+            }
+            else
+            {
+                ReferenceQuad.position += new Vector3(0, 0, -10);
+                _isDisplayingPainting = true;
+                ScoreDisplay.text = Ac.CalculateScore() + "%";
+            }
         }
     }
 
