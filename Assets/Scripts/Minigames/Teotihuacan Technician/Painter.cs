@@ -32,6 +32,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [Tooltip("The bounds of the brush size.\nFormat: MIN, DEFAULT, MAX.")]
         [SerializeField] private Vector3 _brushSize = new Vector3(0.1f, 2.5f, 5f);
 
+        [SerializeField] private SoundManager _soundManager;
+
         internal bool CanPaint = true; // is there still ink left?
 
         private Renderer _renderer = null;
@@ -50,6 +52,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         #region Unity Lifecycle
         private void Start()
         {
+            _soundManager.PlayMinigameBGM();
             // do some safety pre-checks
             // - cameras
             if (_displayCamera == null)

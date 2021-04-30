@@ -16,6 +16,7 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _leftArrow, _rightArrow;
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
+        [SerializeField] private SoundManager _soundManager;
 
         private Animator _camAnimator;
         private Animator _artifactAnimator;
@@ -33,12 +34,14 @@ namespace MexiColeccion.UI
 
         private void Start()
         {
+            _soundManager.PlayHubBGM();
             _camAnimator = _cam.GetComponent<Animator>();
             _artifactAnimator = _artifactViewer.GetComponent<Animator>();
         }
 
         public void OnArtifactViewerClosed()
         {
+            _soundManager.PlayButtonTap();
             ViewerState = 2;
             _hideArtifactsButton.SetActive(false);
             _artifactAnimator.SetBool("IsClosing", true);
@@ -48,6 +51,7 @@ namespace MexiColeccion.UI
 
         public void OnArtifactViewerOpened()
         {
+            _soundManager.PlayButtonTap();
             ViewerState = 1;
             _artifactViewer.SetActive(true);
             _artifactAnimator.SetBool("IsClosing", false);
@@ -81,6 +85,8 @@ namespace MexiColeccion.UI
 
         private void OnArrowTapped(int direction)
         {
+            _soundManager.PlayButtonTap();
+
             _viewArtifactsButton.SetActive(false);
 
             EventHandler<OnArrowTappedEventArgs> handler = ArrowTapped;
