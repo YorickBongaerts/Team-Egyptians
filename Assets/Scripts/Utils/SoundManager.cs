@@ -40,5 +40,4 @@ public class SoundManager : MonoBehaviour
     {
         TitleScreenBGM.Play();
     }
-
 }
