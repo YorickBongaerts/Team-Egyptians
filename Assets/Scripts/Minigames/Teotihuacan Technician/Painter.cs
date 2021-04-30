@@ -122,7 +122,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
             _display.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
             _display.transform.position = new Vector3(
-                canvasCenterX * scaleX - 0.028f, canvasCenterY * scaleY - 0.006f, 0f);
+                canvasCenterX * scaleX - 0.032f, canvasCenterY * scaleY - 0.012f, 0f);
             //      ((_snapShotRect.center.x - (Screen.width / 2f)) / Screen.width) * scaleX
             //    , ((_snapShotRect.center.y - (Screen.height / 2f)) / Screen.height) * scaleY
             //    , 0.0f);

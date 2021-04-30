@@ -17,6 +17,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [Tooltip("Paintings displayed when players presses a button to show painting again")]
         public List<Texture2D> HelpTextures = new List<Texture2D>();
 
+        public Image DisplayIcon;
+        public Sprite Display, Hide;
         public float DisplayTime;
         public Renderer OutlineQuad;
 
@@ -36,6 +38,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 CompareTexture = CompareTextures[_r];
                 OutlineQuad.material = OutlineMaterials[_r];
             }
+
+            DisplayIcon.sprite = Hide;
         }
 
         private void Update()
@@ -46,6 +50,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 this.GetComponent<Renderer>().material.mainTexture = HelpTextures[_r]; 
                 this.transform.position += new Vector3(0, 0, 10); //gets moves back and forward whenever player presses the button to show the painting they are copying
                 _hasStoppedDisplaying = true;
+                DisplayIcon.sprite = Display;
             }
         }
     }

@@ -14,6 +14,8 @@ namespace MexiColeccion.UI
         private bool _isDisplayingPainting = false;
         public Transform ReferenceQuad;
         public Text ScoreDisplay;
+        public Image DisplayIcon;
+        public Sprite Display, Hide;
         public AccuracyChecker Ac;
 
         public void OnBrushColorChanged(Ink ink)
@@ -41,12 +43,14 @@ namespace MexiColeccion.UI
                 ReferenceQuad.position += new Vector3(0, 0, 10);
                 _isDisplayingPainting = false;
                 ScoreDisplay.text = "";
+                DisplayIcon.sprite = Display;
             }
             else
             {
                 ReferenceQuad.position += new Vector3(0, 0, -10);
                 _isDisplayingPainting = true;
                 ScoreDisplay.text = Ac.CalculateScore() + "%";
+                DisplayIcon.sprite = Hide;
             }
         }
     }
