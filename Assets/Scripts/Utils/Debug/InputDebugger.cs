@@ -48,6 +48,8 @@ namespace MexiColeccion.Utils.Debug
             builder.AppendLine();
             builder.AppendFormat("      Direction: {0}", input.Swipe.Direction);
             builder.AppendLine();
+            builder.AppendFormat("      Delta: {0}", input.Swipe.Delta);
+            builder.AppendLine();
 
             _info.text = builder.ToString();
         }

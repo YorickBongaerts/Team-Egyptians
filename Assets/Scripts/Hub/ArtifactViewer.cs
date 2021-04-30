@@ -26,17 +26,17 @@ namespace MexiColeccion.Hub
             get => _index;
             set
             {
+                GameObject artifact = _artifacts[Index];
+                artifact.GetComponentInChildren<Artifact>().ToggleInteractivity(false);
+
                 _index = Mathf.Clamp(value, 0, _artifacts.Length - 1);
-
-                float destination = _artifacts[Index].transform.position.x + _startOffset;
+                
+                artifact = _artifacts[Index];
+                float destination = artifact.transform.position.x + _startOffset;
                 _destination = new Vector3(_origin.x + transform.position.x - destination, transform.position.y, transform.position.z);
-                _indexChanged = true;
 
-                //Vector3 previousVisitedPosition = _artifacts[Index].transform.position;
-                //_index = Mathf.Clamp(value, 0, _artifacts.Length - 1);
-                //float distanceToMove = _artifacts[Index].transform.position.x - previousVisitedPosition.x;
-                //_destination = new Vector3(transform.position.x - distanceToMove, transform.position.y, transform.position.z);
-                //_indexChanged = true;
+                artifact.GetComponentInChildren<Artifact>().ToggleInteractivity(true);
+                _indexChanged = true;
             }
         }
 

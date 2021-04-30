@@ -2,6 +2,7 @@ using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using MexiColeccion.UI;
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -17,6 +18,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Camera _snapShotCamera = null;
         [Tooltip("Reference to the GameObject where the painting will be displayed on. Required.")]
         [SerializeField] private GameObject _display = null;
+        [SerializeField] private GameObject _quadScaler = null;
         [Tooltip("Reference to the Transform that holds all instantiated brushes. Required.")]
         [SerializeField] private Transform _brushContainer = null;
         [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
@@ -48,16 +50,16 @@ namespace MexiColeccion.Minigames.Teotihuacan
         #region Unity Lifecycle
         private void Start()
         {
-            // do some pre-checks
-            // camera
+            // do some safety pre-checks
+            // - cameras
             if (_displayCamera == null)
             {
                 _displayCamera = Camera.main;
             }
-            _snapShotCamera.transform.position = _displayCamera.transform.position;
-            _snapShotCamera.orthographic = _displayCamera.orthographic;
-            _snapShotCamera.depth = _displayCamera.depth - 1;
-
+            if (_snapShotCamera.enabled == false || _snapShotCamera.gameObject.activeSelf == false)
+            {
+                Debug.LogWarning("The snapshot camera has been disabled. Updating the texture will not be called. Enable the snapshot camera to resolve this issue.");
+            }
             if (_displayCamera.orthographic)
             {
                 _snapShotCamera.orthographicSize = _displayCamera.orthographicSize;
@@ -66,15 +68,23 @@ namespace MexiColeccion.Minigames.Teotihuacan
             {
                 Debug.LogWarning("The display camera's mode is set to perspective. Painting will not work correctly.");
             }
-            RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
-            //Camera.onPostRender += OnPostRenderCallback;
 
-            // renderer
+            // - renderer
             _renderer = _display.GetComponent<Renderer>();
             if (_renderer == null)
                 Debug.LogError("There is no renderer assigned for the display.");
 
-            // set up object pool
+            // set up
+            // - cameras
+            _snapShotCamera.transform.position = _displayCamera.transform.position;
+            //_snapShotCamera.transform.position = new Vector3(_display.transform.position.x, _display.transform.position.y, _displayCamera.transform.position.z);
+            _snapShotCamera.orthographic = _displayCamera.orthographic;
+            _snapShotCamera.depth = _displayCamera.depth - 1;
+
+            RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
+            //Camera.onPostRender += OnPostRenderCallback; // is not called in URP
+
+            // - object pool
             for (int i = 0; i < _maxBrushCount; i++)
             {
                 GameObject dot = Instantiate(_defaultBrush, Vector3.zero, Quaternion.identity, _brushContainer);
@@ -82,13 +92,40 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 dot.SetActive(false);
             }
 
+            // - painter canvas
             // calculate the pixels of the canvas that have to be read
-            int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (_snapShotCamera.orthographicSize * 2f) * Screen.height), Screen.height);
-            int width = Mathf.Min(Mathf.RoundToInt((_display.transform.localScale.x / _display.transform.localScale.y) * height), Screen.width);
-            int rectX = (int)((Screen.width - width) / 2f);
-            int rectY = (int)((Screen.height - height) / 2f);
+            //int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (_snapShotCamera.orthographicSize * 2f) * Screen.height), Screen.height);
+            //int width = Mathf.Min(Mathf.RoundToInt((_display.transform.localScale.x / _display.transform.localScale.y) * height), Screen.width);
+            //int rectX = (int)((Screen.width - width) / 2f);
+            //int rectY = (int)((Screen.height - height) / 2f);
 
+            float anchorXMin = _quadScaler.GetComponent<RectTransform>().anchorMin.x;
+            float anchorXMax = _quadScaler.GetComponent<RectTransform>().anchorMax.x;
+            float anchorYMin = _quadScaler.GetComponent<RectTransform>().anchorMin.y;
+            float anchorYMax = _quadScaler.GetComponent<RectTransform>().anchorMax.y;
+            float canvasWidth = anchorXMax - anchorXMin;
+            float canvasHeight = anchorYMax - anchorYMin;
+            float canvasCenterX = anchorXMin + canvasWidth / 2 - 0.5f;
+            float canvasCenterY = anchorYMin + canvasHeight / 2 - 0.5f;
+
+            float rectX = anchorXMin * Screen.width;
+            float rectY = anchorYMin * Screen.height;
+            float width = canvasWidth * Screen.width;
+            float height = canvasHeight * Screen.height;
             _snapShotRect = new Rect(rectX, rectY, width, height);
+
+            float scaleY = canvasHeight * (_snapShotCamera.orthographicSize * 2f);
+            float scaleX = (width / height) * scaleY;
+            //float scaleY = (height / Screen.height) * (_snapShotCamera.orthographicSize * 2f);
+            //float scaleY = (_snapShotCamera.orthographicSize * 2f) / Screen.height* height;
+            //float scaleX = (width / height) * scaleY;
+            _display.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+
+            _display.transform.position = new Vector3(
+                canvasCenterX * scaleX - 0.028f, canvasCenterY * scaleY - 0.006f, 0f);
+            //      ((_snapShotRect.center.x - (Screen.width / 2f)) / Screen.width) * scaleX
+            //    , ((_snapShotRect.center.y - (Screen.height / 2f)) / Screen.height) * scaleY
+            //    , 0.0f);
 
             // subscribe to the UIScript
             _uiScript.BrushColorChanged += BrushColorChanged;
@@ -194,7 +231,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(new Vector3(_snapShotRect.center.x, _snapShotRect.center.y, 0.01f), new Vector3(_snapShotRect.size.x, _snapShotRect.size.y, 0.01f));
+            Gizmos.DrawWireCube(new Vector3(_snapShotRect.center.x, _snapShotRect.center.y, 0.01f), new Vector3(_snapShotRect.size.x, _snapShotRect.size.y, 0.1f));
         }
         #endregion
 

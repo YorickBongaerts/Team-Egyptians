@@ -15,11 +15,14 @@ public class Artifact : InputController
 
     [SerializeField] private Material _collectedMaterial; // code here has to change depending on implemetation relics
     [SerializeField] private MinigameType _typeOfMinigame;
-    [SerializeField] private float _rotationSpeed = 20f;
-    
+    [SerializeField] private float _rotationSpeed = 25f;
+
+    private BoxCollider _collider = null;
+
     private string _artifactName; 
     private int _artifactIndex;
     private bool _isCollected;
+    private bool _isInteractable;
 
     internal bool IsInteractedWith { get; private set; }
     private bool IsCollected
@@ -59,6 +62,16 @@ public class Artifact : InputController
         return artifactName;
     }
 
+    public void ToggleInteractivity(bool setActive)
+    {
+        if (_collider == null)
+        {
+            _collider = transform.parent.GetComponent<BoxCollider>();
+        }
+        _collider.enabled = setActive;
+        _isInteractable = setActive;
+    }
+
     protected override void OnPressed(object sender, PointerEventArgs e)
     {
         base.OnPressed(sender, e);
@@ -66,7 +79,7 @@ public class Artifact : InputController
         Ray ray = Camera.main.ScreenPointToRay(e.PointerInput.Position);
         if (Physics.Raycast(ray, out var hit))
         {
-            if (hit.transform.gameObject == transform.parent.gameObject)
+            if (hit.transform.gameObject == transform.parent.gameObject && _isInteractable)
             {
                 IsInteractedWith = true;
             }
@@ -92,14 +105,22 @@ public class Artifact : InputController
 
     private void RotateArtifact(PointerInput input)
     {
-        if (input.Swipe.Direction.y > 0.5f || input.Swipe.Direction.y < -0.5f)
+        if (input.Swipe.Direction.y > 0.8f || input.Swipe.Direction.y < -0.8f)
         {
+#if UNITY_EDITOR
             float pitch = input.Swipe.Delta.y * _rotationSpeed * Time.deltaTime;
+#else
+            float pitch = input.Swipe.Delta.y/Screen.height * _rotationSpeed * Time.deltaTime;
+#endif
             transform.Rotate(Vector3.right, pitch, Space.World);
         }
-        if (input.Swipe.Direction.x > 0.5f || input.Swipe.Direction.x < -0.5f)
+        if (input.Swipe.Direction.x > 0.8f || input.Swipe.Direction.x < -0.8f)
         {
+#if UNITY_EDITOR
             float yaw = input.Swipe.Delta.x * _rotationSpeed * Time.deltaTime;
+#else
+            float yaw = input.Swipe.Delta.x/Screen.width * _rotationSpeed * Time.deltaTime;
+#endif
             transform.Rotate(Vector3.up, -yaw, Space.World);
         }
     }
