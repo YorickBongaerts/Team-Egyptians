@@ -15,6 +15,8 @@ namespace MexiColeccion.Minigames.Memory
         [SerializeField] private int _gridCols = 4;
         [SerializeField] private int _gridRows = 4;
 
+        [SerializeField] private SoundManager soundManager;
+
         private List<NewCardScript> _cardsList = new List<NewCardScript>();
         private NewCardScript _firstRevealed;
         private NewCardScript _secondRevealed;
@@ -42,7 +44,7 @@ namespace MexiColeccion.Minigames.Memory
 
         private void Start()
         {
-
+            StartCoroutine(PlayBGM());
             ScoreText.text = _score.ToString();
             LivesText.text = Lives.ToString();
 
@@ -234,6 +236,7 @@ namespace MexiColeccion.Minigames.Memory
             if (Lives <= 0)
             {
                 Debug.Log("Loss");
+                soundManager.PlayButtonTap();
                 GameOver.OnDefeat();
             }
         }
@@ -252,6 +255,11 @@ namespace MexiColeccion.Minigames.Memory
         private void SetCardPosition(NewCardScript card)
         {
 
+        }
+        private IEnumerator PlayBGM()
+        {
+            soundManager.PlayMinigameBGM();
+            yield return null;
         }
     }
 }

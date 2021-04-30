@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1528,6 +1528,7 @@ MonoBehaviour:
   - {fileID: 1462599469}
   - {fileID: 1533732163}
   - {fileID: 937445311}
+  soundManager: {fileID: 1696248242}
 --- !u!114 &1263362081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,6 +1876,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4469439010112394665, guid: 8e5086283b871f346ac2c1b673693ccc, type: 3}
   m_PrefabInstance: {fileID: 1631572501}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1696248242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7702620336360099512, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+  m_PrefabInstance: {fileID: 7702620336846225162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847d23ff1d6532543875f0c4965f50af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1828953219
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,6 +2177,7 @@ MonoBehaviour:
   _leafPilePrefab: {fileID: 1225429569987451660, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
   _gridCols: 8
   _gridRows: 2
+  soundManager: {fileID: 0}
   Lives: 12
   ScoreText: {fileID: 1462599471}
   LivesText: {fileID: 1533732165}
@@ -2348,3 +2361,60 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7156448719033123802, guid: f290be9ad3918f742942b90f9708948d, type: 3}
   m_PrefabInstance: {fileID: 7156448719336019946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7702620336846225162
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 460.7049
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 357.36447
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 42.998657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702620336360099515, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
