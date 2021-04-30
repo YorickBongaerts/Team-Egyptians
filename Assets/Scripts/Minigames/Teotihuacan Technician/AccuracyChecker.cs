@@ -18,6 +18,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private int _totalPixels;
 
         private bool _needsToCount = true;
+
         // Update is called once per frame
 
         void Update()
@@ -87,12 +88,24 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
             Vector3 secondVector = new Vector3(secondPix[i].r, secondPix[i].g, secondPix[i].b);
 
-            if (firstVector == secondVector) // not finished yet
+            if (CalculateRGBValues(firstVector, secondVector,0.2f))
             {
                 return 1;
             }
             else
                 return 0;
+        }
+
+        private bool CalculateRGBValues(Vector3 firstVector, Vector3 secondVector, float margin)
+        {
+            float rValue = Mathf.Abs(firstVector.x - secondVector.x);
+            float gValue = Mathf.Abs(firstVector.y - secondVector.y);
+            float bValue = Mathf.Abs(firstVector.z - secondVector.z);
+
+            if (rValue < margin && gValue < margin && bValue < margin)
+                return true;
+            else
+                return false;
         }
     }
 }
