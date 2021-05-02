@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1500,14 +1500,13 @@ MonoBehaviour:
   - {fileID: 1586538187}
   - {fileID: 1246444895}
   - {fileID: 2106347530}
-  soundManager: {fileID: 231938370}
+  _soundManager: {fileID: 0}
   ReferenceQuad: {fileID: 1888041220}
   ScoreDisplay: {fileID: 681743497}
   DisplayIcon: {fileID: 820018839}
   Display: {fileID: 21300000, guid: ac180a758336a2d4eab7036c8af30950, type: 3}
   Hide: {fileID: 21300000, guid: 81e609c86bd9ad84bb4a94c98849edd0, type: 3}
   Ac: {fileID: 1137376245}
-  SoundManager: {fileID: 231938370}
 --- !u!114 &546973776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,7 +1718,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b0aefa319b2e8fe4e99001302583e250, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -4246,6 +4245,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546973774}
     m_Modifications:
+    - target: {fileID: 6236089712163167962, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b0aefa319b2e8fe4e99001302583e250, type: 3}
     - target: {fileID: 6236089712163167963, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
