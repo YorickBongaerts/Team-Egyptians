@@ -17,25 +17,24 @@ namespace MexiColeccion.UI
         public Image DisplayIcon;
         public Sprite Display, Hide;
         public AccuracyChecker Ac;
-        public SoundManager SoundManager;
 
         public void OnBrushColorChanged(Ink ink)
         {
-            SoundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
             EventHandler<BrushColorChangedEventArgs> handler = BrushColorChanged;
             handler?.Invoke(this, new BrushColorChangedEventArgs(ink));
         }
 
         public void OnBrushSizeChanged(float scaleSign)
         {
-            SoundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
             EventHandler<BrushSizeChangedEventArgs> handler = BrushSizeChanged;
             handler?.Invoke(this, new BrushSizeChangedEventArgs(scaleSign));
         }
 
         public void OnBrushShapeChanged(Sprite newShape)
         {
-            SoundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
             EventHandler<BrushShapeChangedEventArgs> handler = BrushShapeChanged;
             handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
         }
@@ -44,7 +43,7 @@ namespace MexiColeccion.UI
         {
             if(_isDisplayingPainting)
             {
-                SoundManager.PlayButtonTap();
+                _soundManager.PlayButtonTap();
                 ReferenceQuad.position += new Vector3(0, 0, 10);
                 _isDisplayingPainting = false;
                 ScoreDisplay.text = "";
@@ -52,7 +51,7 @@ namespace MexiColeccion.UI
             }
             else
             {
-                SoundManager.PlayButtonTap();
+                _soundManager.PlayButtonTap();
                 ReferenceQuad.position += new Vector3(0, 0, -10);
                 _isDisplayingPainting = true;
                 ScoreDisplay.text = Ac.CalculateScore() + "%";

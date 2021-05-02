@@ -12,8 +12,7 @@ namespace MexiColeccion.UI
         [SerializeField]
         private List<GameObject> _activeUI;
 
-        [SerializeField]
-        private SoundManager soundManager;
+        public SoundManager _soundManager;
 
         private bool _isInOptions = false;
 
@@ -48,7 +47,7 @@ namespace MexiColeccion.UI
                 _isInOptions = true;
                 Time.timeScale = 0;
             }
-            soundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
         }
 
         public void OnContinueClick()
@@ -68,12 +67,12 @@ namespace MexiColeccion.UI
                 _isInOptions = false;
                 Time.timeScale = 1;
             }
-            soundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
         }
 
         public void OnQuitClick()
         {
-            soundManager.PlayButtonTap();
+            _soundManager.PlayButtonTap();
             Application.Quit();
         }
 

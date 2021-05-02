@@ -7,6 +7,7 @@ namespace MexiColeccion.UI
     {
         public void OnRetry()
         {
+            _soundManager.PlayButtonTap();
             SceneManager.LoadScene(PlayerPrefs.GetString("PreviousScene"));
         }
     }

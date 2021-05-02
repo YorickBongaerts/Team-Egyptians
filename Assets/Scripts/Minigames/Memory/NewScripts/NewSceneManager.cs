@@ -44,7 +44,7 @@ namespace MexiColeccion.Minigames.Memory
 
         private void Start()
         {
-            StartCoroutine(PlayBGM());
+            soundManager.PlayMinigameBGM();
             ScoreText.text = _score.ToString();
             LivesText.text = Lives.ToString();
 
@@ -236,30 +236,19 @@ namespace MexiColeccion.Minigames.Memory
             if (Lives <= 0)
             {
                 Debug.Log("Loss");
-                soundManager.PlayButtonTap();
+                soundManager.PlayLose();
                 GameOver.OnDefeat();
             }
         }
-
         private void Delete(GameObject card1, GameObject card2)
         {
             Destroy(_firstRevealed.gameObject);
             Destroy(_secondRevealed.gameObject);
             _amountOfCollectedPairs++;
         }
-
         private void UpdateCardImage(NewCardScript card)
         {
             card.gameObject.GetComponent<Image>().sprite = card.ImageShow;
-        }
-        private void SetCardPosition(NewCardScript card)
-        {
-
-        }
-        private IEnumerator PlayBGM()
-        {
-            soundManager.PlayMinigameBGM();
-            yield return null;
         }
     }
 }

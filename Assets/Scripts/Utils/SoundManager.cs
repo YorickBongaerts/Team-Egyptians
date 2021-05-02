@@ -8,9 +8,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource Win;
     public AudioSource Lose;
     public AudioSource CollectArtifact;
-    public AudioSource HubBGM;
-    public AudioSource MinigameBGM;
-    public AudioSource TitleScreenBGM;
+    public AudioSource TitleScreenBGM; //1
+    public AudioSource HubBGM; //2
+    public AudioSource MinigameBGM; //3
+    public int CurrentBGM = 0;
 
     public void PlayButtonTap()
     {

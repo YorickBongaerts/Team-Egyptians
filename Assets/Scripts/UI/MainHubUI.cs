@@ -16,7 +16,6 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _leftArrow, _rightArrow;
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
-        [SerializeField] private SoundManager _soundManager;
 
         private Animator _camAnimator;
         private Animator _artifactAnimator;
