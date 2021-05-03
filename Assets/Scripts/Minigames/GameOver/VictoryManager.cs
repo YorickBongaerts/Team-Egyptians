@@ -7,37 +7,18 @@ namespace MexiColeccion.Minigames
 {
     public class VictoryManager : MonoBehaviour
     {
-        public string MemoryMinigame = CollectionDataBase.memoryMiniGame;
-        private List<string> _memoryArtifacts = new List<string>(); 
-
-        public string PainterMinigame = CollectionDataBase.PainterMinigame;
-        private List<string> _painterArtifacts = new List<string>(); 
+        private List<string> _artifacts = new List<string>(); 
 
         public Text Message;
 
-
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-            if (PlayerPrefs.GetString("PreviousScene") == MemoryMinigame)
+            foreach(string s in CollectionDataBase.GetMinigameArtifacts(PlayerPrefs.GetString("PreviousScene")))
             {
-                foreach(string s in CollectionDataBase.MemoryArtifacts)
-                {
-                    _memoryArtifacts.Add(s);
-                }
-
-                GetArtifact(_memoryArtifacts);
+                _artifacts.Add(s);
             }
 
-            if (PlayerPrefs.GetString("PreviousScene") == PainterMinigame)
-            {
-                foreach (string s in CollectionDataBase.PainterArtifacts)
-                {
-                    _painterArtifacts.Add(s);
-                }
-
-                GetArtifact(_painterArtifacts);
-            }
+            GetArtifact(_artifacts);
         }
 
         private void GetArtifact(List<string> artifactList)

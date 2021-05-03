@@ -8,20 +8,11 @@ namespace MexiColeccion.UI
         {
             _soundManager.PlayTitleScreenBGM();
         }
+
         public void DeleteData()
         {
             _soundManager.PlayButtonTap();
-            DeleteDataPerMiniGame(CollectionDataBase.MemoryArtifacts);
-            DeleteDataPerMiniGame(CollectionDataBase.PainterArtifacts);
-        }
-
-        private static void DeleteDataPerMiniGame(string[] artifacts)
-        {
-            foreach (string s in artifacts)
-            {
-                PlayerPrefs.SetInt(s, 0);
-                Debug.Log(s + " " + PlayerPrefs.GetInt(s));
-            }
+            CollectionDataBase.ClearAllArtifactsData();
         }
     }
 }

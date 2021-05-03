@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MexiColeccion.UI
 {
@@ -10,7 +11,6 @@ namespace MexiColeccion.UI
     /// </summary>
     public class MainHubUI : BaseUI
     {
-        [SerializeField] private GameObject _playerCharacter;
         [SerializeField] private GameObject _viewArtifactsButton;
         [SerializeField] private GameObject _hideArtifactsButton;
         [SerializeField] private GameObject _leftArrow, _rightArrow;

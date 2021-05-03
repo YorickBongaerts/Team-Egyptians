@@ -1,6 +1,7 @@
 ﻿using MexiColeccion.UI;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MexiColeccion.Hub
 {
@@ -37,6 +38,8 @@ namespace MexiColeccion.Hub
                 return _paintings[_index].transform.GetChild(0).position;
             }
         }
+
+        internal Painting CurrentPainting => _paintings[_index].GetComponentInChildren<Painting>();
 
         private void Start()
         {

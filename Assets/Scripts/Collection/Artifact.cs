@@ -7,14 +7,8 @@ using UnityEngine;
 
 public class Artifact : InputController
 {
-    public enum MinigameType
-    {
-        memory,
-        painter
-    }
-
     [SerializeField] private Material _collectedMaterial; // code here has to change depending on implemetation relics
-    [SerializeField] private MinigameType _typeOfMinigame;
+    [SerializeField] private Minigame _minigame;
     [SerializeField] private float _rotationSpeed = 25f;
 
     private BoxCollider _collider = null;
@@ -51,15 +45,7 @@ public class Artifact : InputController
 
     private string GetCorrectArtifactNameFromDataBase()
     {
-        string artifactName = "default";
-
-        if (_typeOfMinigame == MinigameType.memory)
-            artifactName = CollectionDataBase.MemoryArtifacts[_artifactIndex];
-
-        else if (_typeOfMinigame == MinigameType.painter)
-            artifactName = CollectionDataBase.PainterArtifacts[_artifactIndex];
-
-        return artifactName;
+        return CollectionDataBase.GetMinigameArtifacts(_minigame)[_artifactIndex];
     }
 
     public void ToggleInteractivity(bool setActive)

@@ -16,7 +16,7 @@ namespace MexiColeccion.UI
 
         private bool _isInOptions = false;
 
-        public void OnMainHubEnter()
+        private void OnMainHubEnter()
         {
             Debug.Log("Now entering main hub");
             SceneManager.LoadScene("MainHub");
@@ -73,7 +73,14 @@ namespace MexiColeccion.UI
         public void OnQuitClick()
         {
             _soundManager.PlayButtonTap();
-            Application.Quit();
+            if (SceneManager.GetActiveScene().name != "MainHub")
+            {
+                OnMainHubEnter();
+            }
+            else
+            {
+                Application.Quit();
+            }
         }
 
     }

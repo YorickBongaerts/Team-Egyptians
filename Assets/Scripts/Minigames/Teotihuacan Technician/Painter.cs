@@ -124,6 +124,15 @@ namespace MexiColeccion.Minigames.Teotihuacan
             //float scaleX = (width / height) * scaleY;
             _display.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
+            // position technique 1: less accurate?
+            //Vector3 leftBottom = _snapShotCamera.ViewportToWorldPoint(new Vector3(anchorXMin, anchorYMin, -_snapShotCamera.transform.position.z));
+            //_display.transform.position = new Vector3(leftBottom.x + scaleX / 2f, leftBottom.y + scaleY / 2f, 0f);
+
+            // position technique 2: still some rounding errors
+            //Vector3 center = _snapShotCamera.ViewportToWorldPoint(new Vector3(canvasCenterX + 0.5f, canvasCenterY + 0.5f, -_snapShotCamera.transform.position.z));
+            //_display.transform.position = new Vector3(center.x, center.y, 0f);
+
+            // position technique 3: still some rounding errors
             _display.transform.position = new Vector3(
                 canvasCenterX * scaleX - 0.032f, canvasCenterY * scaleY - 0.012f, 0f);
             //      ((_snapShotRect.center.x - (Screen.width / 2f)) / Screen.width) * scaleX

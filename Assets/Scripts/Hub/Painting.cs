@@ -11,14 +11,13 @@ namespace MexiColeccion.Hub
     /// </summary>
     internal class Painting : InputController
     {
-        [Tooltip("The scene that needs to be loaded when the user select this Minigame.")]
-        //[SerializeField] private SceneAsset _sceneToLoad;
-        // This only works in the Editor. I still need to find a way to use a reference field 
-        // (auto update) instead of a string (manual update) that also works for a build. - Erik
-        [SerializeField] private string _sceneToLoadName;
+        [Tooltip("The Minigame that will be loaded when the user select this painting.")]
+        [SerializeField] private Minigame _minigame;
 
         private Vector2 _inputPosition;
         private bool ShouldLoad = false;
+
+        internal Minigame Minigame => _minigame;
 
         protected override void OnPressed(object sender, PointerEventArgs e)
         {
@@ -44,7 +43,7 @@ namespace MexiColeccion.Hub
             if (ShouldLoad)
             {
                 ShouldLoad = false;
-                SceneManager.LoadScene(_sceneToLoadName);
+                SceneManager.LoadScene(CollectionDataBase.GetSceneName(Minigame));
             }
         }
     }
