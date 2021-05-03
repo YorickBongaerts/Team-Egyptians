@@ -22,7 +22,7 @@ public static class CollectionDataBase
     {
         get
         {
-            if (_artifacts.Count <= 0 || _artifacts == null)
+            if (_artifacts == null || _artifacts.Count <= 0)
             {
                 _artifacts = new List<string>();
 
