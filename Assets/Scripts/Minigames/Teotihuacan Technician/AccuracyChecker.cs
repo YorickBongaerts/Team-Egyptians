@@ -88,7 +88,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
             Vector3 secondVector = new Vector3(secondPix[i].r, secondPix[i].g, secondPix[i].b);
 
-            if (CalculateRGBValues(firstVector, secondVector,0.2f))
+            if (CalculateRGBValues(firstVector, secondVector,0.1f))
             {
                 return 1;
             }
