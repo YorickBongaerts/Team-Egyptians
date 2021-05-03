@@ -16,7 +16,7 @@ namespace MexiColeccion.UI
 
         private bool _isInOptions = false;
 
-        private void OnMainHubEnter()
+        public void OnMainHubEnter()
         {
             Debug.Log("Now entering main hub");
             SceneManager.LoadScene("MainHub");
