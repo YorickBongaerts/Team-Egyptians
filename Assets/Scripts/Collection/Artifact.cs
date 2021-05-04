@@ -8,13 +8,14 @@ using UnityEngine;
 public class Artifact : InputController
 {
     [SerializeField] private Material _collectedMaterial; // code here has to change depending on implemetation relics
-    [SerializeField] private Minigame _minigame;
     [SerializeField] private float _rotationSpeed = 25f;
+    [SerializeField] private int _artifactIndex; //this + _minigame is used to determine what artifact from CollectionDatabase is chosen.
+    [SerializeField] private Minigame _minigame; // this + _artifactIndex is used to determine what artifact from CollectionDatabase is chosen.
 
     private BoxCollider _collider = null;
 
     private string _artifactName; 
-    private int _artifactIndex;
+  
     private bool _isCollected;
     private bool _isInteractable;
 
@@ -27,10 +28,12 @@ public class Artifact : InputController
             _isCollected = value;
             if (IsCollected)
             {
+                //code if artifact is collected.
                 GetComponent<Renderer>().material = _collectedMaterial;
             }
             else
             {
+                //code if artifact is not collected
                 Debug.Log("Not collected yet");
             }
         }
