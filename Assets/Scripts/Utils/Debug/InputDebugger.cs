@@ -8,14 +8,20 @@ namespace MexiColeccion.Utils.Debug
     public class InputDebugger : MonoBehaviour
     {
         [SerializeField] private Text _info = null;
+        [SerializeField] private Image _panel = null;
         [SerializeField] private bool _enableDebug;
+
+        private void Start()
+        {
+            _panel.enabled = _enableDebug;
+        }
 
         // Temporary, for visualizing input from new input system.
         internal void DebugInfo(PointerInput input)
         {
             if (!_enableDebug)
                 return;
-
+                
             StringBuilder builder = new StringBuilder();
 
             builder.AppendFormat("ID: {0}", input.InputId);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3214,17 +3214,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayTextures:
-  - {fileID: 2800000, guid: 86ddc9eef76fb4040b3178a7f107771c, type: 3}
-  - {fileID: 2800000, guid: 4dd44d6990674684182fd11c9a5e32e7, type: 3}
+  - {fileID: 2800000, guid: 07817180ef56efe43af7c20b8e6f3a34, type: 3}
+  - {fileID: 2800000, guid: 7e664db30dcb7264db2da45fc075e013, type: 3}
+  - {fileID: 2800000, guid: 06ea369dbc4e3334483c9d79c9d6e483, type: 3}
+  - {fileID: 2800000, guid: 813546ae0198a9a45965d237140ff19d, type: 3}
+  - {fileID: 2800000, guid: 7695b1bb267906a44a732210853a9cb8, type: 3}
   CompareTextures:
-  - {fileID: 2800000, guid: 86ddc9eef76fb4040b3178a7f107771c, type: 3}
-  - {fileID: 2800000, guid: 9939d296927733543987c21c4ecb20fe, type: 3}
+  - {fileID: 2800000, guid: 5d4c75a279e17b14da31dabfbd70bc14, type: 3}
+  - {fileID: 2800000, guid: 4c8853e185752674fa160248c80bdc06, type: 3}
+  - {fileID: 2800000, guid: 0d37452460456f6428b45d7daecd2e52, type: 3}
+  - {fileID: 2800000, guid: 1bf0e9c925df30e448e52688df1e7a7a, type: 3}
+  - {fileID: 2800000, guid: 5254da67213f029458e8532335711e91, type: 3}
   OutlineMaterials:
   - {fileID: 2100000, guid: e87df979c55cb6c45adebde2c9998d31, type: 2}
   - {fileID: 2100000, guid: e1ac4bcf2aed6b94d921fb0d7f9e4c94, type: 2}
+  - {fileID: 2100000, guid: 95fb074b1ae6a3b469194463c22266ce, type: 2}
+  - {fileID: 2100000, guid: 162a9d74431343d43b8f175f074cc8a8, type: 2}
+  - {fileID: 2100000, guid: 8667615088a5ea84e8a88eac81355a36, type: 2}
   HelpTextures:
-  - {fileID: 2800000, guid: 86ddc9eef76fb4040b3178a7f107771c, type: 3}
-  - {fileID: 2800000, guid: 740c23ac95ff39340bc9ad5c27e44f3b, type: 3}
+  - {fileID: 2800000, guid: 07817180ef56efe43af7c20b8e6f3a34, type: 3}
+  - {fileID: 2800000, guid: 7e664db30dcb7264db2da45fc075e013, type: 3}
+  - {fileID: 2800000, guid: 06ea369dbc4e3334483c9d79c9d6e483, type: 3}
+  - {fileID: 2800000, guid: 813546ae0198a9a45965d237140ff19d, type: 3}
+  - {fileID: 2800000, guid: 7695b1bb267906a44a732210853a9cb8, type: 3}
   DisplayIcon: {fileID: 820018839}
   Display: {fileID: 21300000, guid: ac180a758336a2d4eab7036c8af30950, type: 3}
   Hide: {fileID: 21300000, guid: 81e609c86bd9ad84bb4a94c98849edd0, type: 3}
