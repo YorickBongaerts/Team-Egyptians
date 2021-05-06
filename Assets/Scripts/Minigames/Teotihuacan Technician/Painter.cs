@@ -52,7 +52,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         #region Unity Lifecycle
         private void Start()
         {
-            Screen.SetResolution(1920, 1080, true);
+            //Screen.SetResolution(1920, 1080, true);
 
             _soundManager.PlayMinigameBGM();
             // do some safety pre-checks
@@ -229,7 +229,15 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private void UpdateTexture()
         {
-            Texture2D tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), (int)(_snapShotRect.height), TextureFormat.RGB24, false);
+            Texture2D tex;
+            if (Screen.height == 720)
+            {
+                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), Mathf.CeilToInt(_snapShotRect.height), TextureFormat.RGB24, false);
+            }
+            else
+            {
+                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), (int)(_snapShotRect.height), TextureFormat.RGB24, false);
+            }
             tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
             _renderer.material.mainTexture = tex;
