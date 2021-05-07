@@ -7,11 +7,9 @@ namespace MexiColeccion.Minigames
 {
     public class VictoryManager : MonoBehaviour
     {
-        private List<string> _artifacts = new List<string>();
-        [SerializeField] private List<Sprite> _artifactPictures = new List<Sprite>();
+        private List<string> _artifacts = new List<string>(); 
 
         public Text Message;
-        public Image Artifact;
 
         private void Start()
         {
@@ -30,21 +28,18 @@ namespace MexiColeccion.Minigames
                 if (PlayerPrefs.GetInt(artifactList[i]) != 0) // this means it has already been collected
                 {
                     artifactList.RemoveAt(i);
-                    _artifactPictures.RemoveAt(i);
                 }
             }
 
             if (artifactList.Count == 0)
             {
                 Message.text = "You Won!";
-                Artifact.gameObject.SetActive(false);
             }
             else //collect new artifact
             {
                 int r = Random.Range(0, artifactList.Count);
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
-                Artifact.sprite = _artifactPictures[r];
 
                 Message.text = "You Won a new artifact: " + artifactList[r] + "!";
             }
