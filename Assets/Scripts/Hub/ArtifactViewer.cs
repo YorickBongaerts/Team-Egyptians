@@ -1,5 +1,8 @@
+using MexiColeccion.Collection;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
+using MexiColeccion.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +12,17 @@ namespace MexiColeccion.Hub
 {
     public class ArtifactViewer : InputController
     {
-        [SerializeField] private GameObject[] _artifacts; // these will be loaded from the save file
+        [SerializeField] private GameObject _pedestalPrefab;
+        [SerializeField] private GameObject _container;
+        [SerializeField] private MainHubUI _hubUI;
         [SerializeField] private PlayerBehaviour _playerScript;
         [Tooltip("The speed at which the user can browse through the artifacts.")]
         [SerializeField] private float _slideSpeed = 2f;
+        [SerializeField] private float _distanceBetweenArtifacts = 3f;
         
+        private List<GameObject> _artifacts;
         private Vector3 _destination, _origin;
-        private float _startOffset;
+        private float _startOffset = 1.54f;
         private int _index;
         private bool _indexChanged;
 
@@ -29,7 +36,7 @@ namespace MexiColeccion.Hub
                 GameObject artifact = _artifacts[Index];
                 artifact.GetComponentInChildren<Artifact>().ToggleInteractivity(false);
 
-                _index = Mathf.Clamp(value, 0, _artifacts.Length - 1);
+                _index = Mathf.Clamp(value, 0, _artifacts.Count - 1);
                 
                 artifact = _artifacts[Index];
                 float destination = artifact.transform.position.x + _startOffset;
@@ -42,7 +49,8 @@ namespace MexiColeccion.Hub
 
         private void Start()
         {
-            _startOffset = transform.position.x - _artifacts[Index].transform.position.x;
+            _hubUI.ViewerTapped += ViewerTapped;
+            _artifacts = new List<GameObject>();
         }
 
         private void Update()
@@ -58,9 +66,53 @@ namespace MexiColeccion.Hub
             }
         }
 
+        private void OnDestroy()
+        {
+            _hubUI.ViewerTapped -= ViewerTapped;
+        }
+
         private bool IsApproximately(float a, float b, float threshold)
         {
             return ((a < b) ? (b - a) : (a - b)) <= threshold;
+        }
+
+        private void ViewerTapped(object sender, OnViewerTappedEventArgs e)
+        {
+            if (e.IsOpened)
+            {
+                RemoveInstantiatedArtifacts();
+                SetupArtifacts(e.Minigame);
+                UpdatePosition();
+            }
+        }
+
+        private void RemoveInstantiatedArtifacts()
+        {
+            if (_artifacts == null || _artifacts.Count <= 0)
+                return;
+
+            for (int i = 0; i < _artifacts.Count; i++)
+            {
+                Destroy(_artifacts[i]);
+            }
+            _artifacts.Clear();
+        }
+
+        private void SetupArtifacts(Minigame currentMinigame)
+        {
+            List<ArtifactSO> artifactsToGenerate = CollectionDataBase.GetMinigameArtifacts(currentMinigame);
+            
+            // if there are no artifacts for this minigame, return
+            if (artifactsToGenerate.Count <= 0)
+                return;
+
+            for (int i = 0; i < artifactsToGenerate.Count; i++)
+            {
+                GameObject pedestal = Instantiate(_pedestalPrefab, new Vector3(_container.transform.position.x - _startOffset + (i * _distanceBetweenArtifacts)
+                    , _pedestalPrefab.transform.position.y, _container.transform.position.z), _pedestalPrefab.transform.rotation, _container.transform);
+                pedestal.GetComponentInChildren<Artifact>().ArtifactDataObject = artifactsToGenerate[i];
+                _artifacts.Add(pedestal);
+            }
         }
 
         internal void UpdatePosition()

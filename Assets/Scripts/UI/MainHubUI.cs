@@ -16,6 +16,7 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _leftArrow, _rightArrow;
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
+        [SerializeField] private PlayerBehaviour _playerScript;
 
         private Animator _camAnimator;
         private Animator _artifactAnimator;
@@ -30,6 +31,7 @@ namespace MexiColeccion.UI
         }
 
         internal event EventHandler<OnArrowTappedEventArgs> ArrowTapped;
+        internal event EventHandler<OnViewerTappedEventArgs> ViewerTapped;
 
         private void Start()
         {
@@ -44,6 +46,7 @@ namespace MexiColeccion.UI
             ViewerState = 2;
             _hideArtifactsButton.SetActive(false);
             _artifactAnimator.SetBool("IsClosing", true);
+            ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(false, _playerScript.CurrentPainting.Minigame));
 
             StartCoroutine(WaitForEndOfAnimation());
         }
@@ -56,7 +59,8 @@ namespace MexiColeccion.UI
             _artifactAnimator.SetBool("IsClosing", false);
 
             SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
-            _artifactViewer.transform.parent.gameObject.GetComponent<ArtifactViewer>().UpdatePosition();
+            ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
+            
             StartCoroutine(WaitForEndOfAnimation());
         }
 
@@ -119,6 +123,18 @@ namespace MexiColeccion.UI
             {
                 go.SetActive(active);
             }
+        }
+    }
+
+    internal class OnViewerTappedEventArgs
+    {
+        internal bool IsOpened;
+        internal Minigame Minigame;
+
+        public OnViewerTappedEventArgs(bool isOpened, Minigame minigame)
+        {
+            IsOpened = isOpened;
+            Minigame = minigame;
         }
     }
 

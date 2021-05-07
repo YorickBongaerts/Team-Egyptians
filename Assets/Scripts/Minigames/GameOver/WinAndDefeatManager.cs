@@ -11,16 +11,15 @@ namespace MexiColeccion.Minigames
         [SerializeField] private int _painterScoreTreshold;
 
 
-        // Start is called before the first frame update
         void Start()
         {
-            if(CollectionDataBase.LastGameSceneName == CollectionDataBase.MemoryMiniGame)
+            if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Memory))
             {
                 _scoreDisplay.text = CollectionDataBase.PlayerScore.ToString();
                 //other code depending on minigame
             }
 
-            if(CollectionDataBase.LastGameSceneName == CollectionDataBase.PainterMinigame)
+            if (CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
             {
                 _scoreDisplay.text = CollectionDataBase.PlayerScore + "%";
                 //other code depending on minigame
