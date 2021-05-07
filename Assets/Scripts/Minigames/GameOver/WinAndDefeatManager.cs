@@ -17,11 +17,13 @@ namespace MexiColeccion.Minigames
             if(CollectionDataBase.LastGameSceneName == CollectionDataBase.MemoryMiniGame)
             {
                 _scoreDisplay.text = CollectionDataBase.PlayerScore.ToString();
+                //other code depending on minigame
             }
 
             if(CollectionDataBase.LastGameSceneName == CollectionDataBase.PainterMinigame)
             {
                 _scoreDisplay.text = CollectionDataBase.PlayerScore + "%";
+                //other code depending on minigame
             }
             
         }
