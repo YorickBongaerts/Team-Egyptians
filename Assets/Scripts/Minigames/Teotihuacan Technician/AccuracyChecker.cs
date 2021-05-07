@@ -11,7 +11,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private int _heigthDepth;
         public GameOverManager GameOverManager;
         public Timer Timer;
-        public Renderer PlayerPaintingQuad;
+        public Painter PainterScript;
         public PaintingChooser ActualPainting;
 
         public int ScoreVictoryTreshhold;
@@ -39,9 +39,11 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         public int CalculateScore()
         {
+            PainterScript.UpdateTexture();
+
             int score = 0;
 
-            Texture2D firstTex = PlayerPaintingQuad.material.mainTexture as Texture2D;
+            Texture2D firstTex = PainterScript.TextureToCheck as Texture2D;
             Texture2D secondTex = ActualPainting.CompareTexture;
 
             firstTex = ResizeTetxures(firstTex, _widthDepth, _heigthDepth);
