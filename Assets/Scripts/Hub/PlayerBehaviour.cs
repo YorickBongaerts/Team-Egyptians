@@ -19,7 +19,6 @@ namespace MexiColeccion.Hub
         private float _movementSpeed = 10f;
         private static int _index = 0;
         private bool _isMoving = false;
-        private bool _isDirectionLocked = false;
 
         internal Vector3 DestinationPosition
         {
@@ -28,14 +27,14 @@ namespace MexiColeccion.Hub
                 // move towards left trigger to warp
                 if (_index < 0)
                 {
-                    return _leftTrigger.transform.position;
+                    return new Vector3(_leftTrigger.transform.position.x, transform.position.y, transform.position.z);
                 }
                 // move towards right trigger to warp
                 if (_index >= _paintings.Length)
                 {
-                    return _rightTrigger.transform.position;
+                    return new Vector3(_rightTrigger.transform.position.x, transform.position.y, transform.position.z);
                 }
-                return _paintings[_index].transform.GetChild(0).position;
+                return new Vector3(_paintings[_index].transform.GetChild(0).position.x, transform.position.y, transform.position.z);
             }
         }
 
@@ -76,11 +75,10 @@ namespace MexiColeccion.Hub
         private void WarpToAndTempDisableTrigger(Collider otherTrigger)
         {
             // warp to opposite side
-            transform.position = otherTrigger.gameObject.transform.position;
+            transform.position = new Vector3(otherTrigger.gameObject.transform.position.x, transform.position.y, transform.position.z);
 
             // temporarily disable this trigger
             otherTrigger.gameObject.SetActive(false);
-            _isDirectionLocked = true;
 
             StartCoroutine(DelayTriggerActivation(otherTrigger));
         }
@@ -93,12 +91,11 @@ namespace MexiColeccion.Hub
             {
                 trigger.gameObject.SetActive(true);
             }
-            _isDirectionLocked = false;
         }
 
         private void ArrowTapped(object sender, OnArrowTappedEventArgs e)
         {
-            if (_isDirectionLocked)
+            if (_isMoving)
             {
                 return;
             }
