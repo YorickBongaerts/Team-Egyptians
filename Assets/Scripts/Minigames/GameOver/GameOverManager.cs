@@ -5,16 +5,20 @@ namespace MexiColeccion.Minigames
 {
     public class GameOverManager : MonoBehaviour
     {
-        public void OnVictory()
+        public void OnVictory(int score)
         {
-            PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+            CollectionDataBase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDataBase.PlayerScore = score;
             SceneManager.LoadScene("VictoryScene");
+
         }
 
-        public void OnDefeat()
+        public void OnDefeat(int score)
         {
-            PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+            CollectionDataBase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDataBase.PlayerScore = score;
             SceneManager.LoadScene("DefeatScene");
+
         }
     }
 }

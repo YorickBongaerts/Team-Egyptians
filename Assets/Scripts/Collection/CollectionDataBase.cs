@@ -1,5 +1,8 @@
+using MexiColeccion.Collection;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum Minigame
@@ -13,55 +16,17 @@ public enum Minigame
 
 public static class CollectionDataBase
 {
-    private static List<string> _artifacts;
+    private static CollectionDatabaseSO Database 
+        => AssetDatabase.LoadAssetAtPath("Assets/Editor/ScriptableObjects/Collection/DefaultCollectionDatabase.asset"
+        , typeof(CollectionDatabaseSO)) as CollectionDatabaseSO;
 
-    // ===============================================
-    // Add the artifacts for all minigames to the list
-    //================================================
-    public static List<string> Artifacts
+    public static List<ArtifactSO> Artifacts
     {
         get
         {
-            if (_artifacts == null || _artifacts.Count <= 0)
-            {
-                _artifacts = new List<string>();
-
-                _artifacts.AddRange(_memoryArtifacts);  // <-- memory
-                _artifacts.AddRange(_painterArtifacts); // <-- painter
-                                                        // <-- ...
-            }
-            return _artifacts;
+            return Database.Artifacts;
         }
     }
-
-    #region Minigame Scene Names
-    //================================================
-    // Add the scene names for the different minigames
-    //================================================
-    private static readonly string _painterMinigame = "Minigame-Teotihuacan";
-    private static readonly string _memoryMiniGame = "MiniGame-Memory";
-    #endregion
-
-    #region Artifact Names Per Minigame
-    //============================================
-    // Add the names of the artifacts per minigame
-    //============================================
-    private static string[] _painterArtifacts = new string[] 
-    {
-        "PainterArtifact1",
-        "PainterArtifact2",
-        "PainterArtifact3",
-        "PainterArtifact4"
-    };
-
-    private static string[] _memoryArtifacts = new string[]
-    {
-        "MemoryArtifact1",
-        "MemoryArtifact2",
-        "MemoryArtifact3",
-        "MemoryArtifact4"
-    };
-    #endregion
 
     #region Methods
     //============================================================================
@@ -69,50 +34,72 @@ public static class CollectionDataBase
     //============================================================================
     public static string GetSceneName(Minigame minigame)
     {
-        switch (minigame)
-        {
-            case Minigame.Memory:
-                return _memoryMiniGame;
-            case Minigame.Painter:
-                return _painterMinigame;
-            default:
-                throw new KeyNotFoundException();
-        }
+        return Database.SceneNames[(int)minigame];
     }
 
-    public static string[] GetMinigameArtifacts(Minigame minigame)
+    public static List<ArtifactSO> GetMinigameArtifacts(Minigame minigame)
     {
-        switch (minigame)
+        List<ArtifactSO> artifacts = new List<ArtifactSO>();
+
+        for (int i = 0; i < Database.Artifacts.Count; i++)
         {
-            case Minigame.Memory:
-                return _memoryArtifacts;
-            case Minigame.Painter:
-                return _painterArtifacts;
-            default:
-                throw new KeyNotFoundException();
+            ArtifactSO artifact = Database.Artifacts[i];
+            if (artifact.Minigame == minigame)
+            {
+                artifacts.Add(artifact);
+            }
         }
+
+        return artifacts;
     }
 
-    public static string[] GetMinigameArtifacts(string minigameScene)
+    public static List<ArtifactSO> GetMinigameArtifacts(string minigameScene)
     {
-        if (minigameScene.Equals(_painterMinigame))
+        Minigame minigame = (Minigame)Database.SceneNames.IndexOf(minigameScene);
+
+        return GetMinigameArtifacts(minigame);
+    }
+
+    public static List<string> GetMinigameArtifactNames(Minigame minigame)
+    {
+        List<string> artifactNames = new List<string>();
+
+        for (int i = 0; i < Database.Artifacts.Count; i++)
         {
-            return _painterArtifacts;
+            ArtifactSO artifact = Database.Artifacts[i];
+            if (artifact.Minigame == minigame)
+            {
+                artifactNames.Add(artifact.Name);
+            }
         }
-        if (minigameScene.Equals(_memoryMiniGame))
-        {
-            return _memoryArtifacts;
-        }
-        throw new KeyNotFoundException();
+
+        return artifactNames;
+    }
+
+    public static List<string> GetMinigameArtifactNames(string minigameScene)
+    {
+        Minigame minigame = (Minigame)Database.SceneNames.IndexOf(minigameScene);
+
+        return GetMinigameArtifactNames(minigame);
     }
 
     public static void ClearAllArtifactsData()
     {
-        foreach (string s in Artifacts)
+        for (int i = 0; i < Database.Artifacts.Count; i++)
         {
+            string s = Database.Artifacts[i].Name;
             PlayerPrefs.SetInt(s, 0);
             Debug.Log(s + " " + PlayerPrefs.GetInt(s));
         }
     }
+    #endregion
+
+    #region PlayerScoreMessageTracker
+    //===================================================================================================================
+    // tis should technicaly get its own script, but it feels weird to make a new script just to keep track for 2 strings.
+    //this is used to keep track of player score between game scene and game over scene.
+    //===================================================================================================================
+    public static int PlayerScore;
+    public static string LastGameSceneName;
     #endregion
 }

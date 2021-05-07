@@ -1,4 +1,5 @@
-﻿using MexiColeccion.Hub;
+﻿using MexiColeccion.Collection;
+using MexiColeccion.Hub;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,12 @@ namespace MexiColeccion.Hub
             get
             {
                 int count = 0;
-                string[] artifacts = CollectionDataBase.GetMinigameArtifacts(_playerScript.CurrentPainting.Minigame);
-                _maxArtifacts = artifacts.Length;
-                for (int i = 0; i < artifacts.Length; i++)
+                List<string> artifactNames = CollectionDataBase.GetMinigameArtifactNames(_playerScript.CurrentPainting.Minigame);
+                _maxArtifacts = artifactNames.Count;
+
+                for (int i = 0; i < artifactNames.Count; i++)
                 {
-                    string artifactName = artifacts[i];
+                    string artifactName = artifactNames[i];
                     if (PlayerPrefs.GetInt(artifactName) == 1)
                         count++;
                 }

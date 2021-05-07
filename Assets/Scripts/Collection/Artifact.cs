@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MexiColeccion.Collection;
 using MexiColeccion.Hub;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
@@ -7,18 +8,15 @@ using UnityEngine;
 
 public class Artifact : InputController
 {
-    [SerializeField] private Material _collectedMaterial; // code here has to change depending on implemetation relics
-    [SerializeField] private float _rotationSpeed = 25f;
-    [SerializeField] private int _artifactIndex; //this + _minigame is used to determine what artifact from CollectionDatabase is chosen.
-    [SerializeField] private Minigame _minigame; // this + _artifactIndex is used to determine what artifact from CollectionDatabase is chosen.
+    private ArtifactSO _artifactData; // reference that will be set by Artifact Viewer
+    private float _rotationSpeed = 25f;
 
     private BoxCollider _collider = null;
 
-    private string _artifactName; 
-  
     private bool _isCollected;
     private bool _isInteractable;
 
+    internal int ArtifactIndex { get; set; }
     internal bool IsInteractedWith { get; private set; }
     private bool IsCollected
     {
@@ -28,8 +26,8 @@ public class Artifact : InputController
             _isCollected = value;
             if (IsCollected)
             {
-                //code if artifact is collected.
-                GetComponent<Renderer>().material = _collectedMaterial;
+                //code if artifact is collected
+                GetComponent<MeshRenderer>().enabled = true;
             }
             else
             {
@@ -39,16 +37,19 @@ public class Artifact : InputController
         }
     }
 
-    private void Start()
+    internal ArtifactSO ArtifactDataObject
     {
-        _artifactName = GetCorrectArtifactNameFromDataBase();
-        Debug.Log(_artifactName);
-        IsCollected = PlayerPrefs.GetInt(_artifactName) == 1; // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
-    }
-
-    private string GetCorrectArtifactNameFromDataBase()
-    {
-        return CollectionDataBase.GetMinigameArtifacts(_minigame)[_artifactIndex];
+        get => _artifactData;
+        set
+        {
+            _artifactData = value;
+            if (value != null)
+            {
+                GetComponent<MeshFilter>().mesh = ArtifactDataObject.Mesh;
+                Debug.Log(_artifactData.Name);
+                IsCollected = PlayerPrefs.GetInt(_artifactData.Name) == 1; // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
+            }
+        }
     }
 
     public void ToggleInteractivity(bool setActive)

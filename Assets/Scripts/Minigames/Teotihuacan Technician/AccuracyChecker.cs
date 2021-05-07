@@ -31,9 +31,9 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 _needsToCount = false;
 
                 if (Score > ScoreVictoryTreshhold)
-                    GameOverManager.OnVictory();
+                    GameOverManager.OnVictory(Score);
                 else
-                    GameOverManager.OnDefeat();
+                    GameOverManager.OnDefeat(Score);
             }
         }
 

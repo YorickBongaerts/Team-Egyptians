@@ -227,7 +227,7 @@ namespace MexiColeccion.Minigames.Memory
             if (_amountOfCollectedPairs == _cardPrefabs.Length)
             {
                 Debug.Log("Win");
-                GameOver.OnVictory();
+                GameOver.OnVictory(_score);
             }
         }
 
@@ -237,7 +237,7 @@ namespace MexiColeccion.Minigames.Memory
             {
                 Debug.Log("Loss");
                 soundManager.PlayLose();
-                GameOver.OnDefeat();
+                GameOver.OnDefeat(_score);
             }
         }
         private void Delete(GameObject card1, GameObject card2)

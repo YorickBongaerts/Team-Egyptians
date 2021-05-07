@@ -13,7 +13,7 @@ namespace MexiColeccion.Minigames
 
         private void Start()
         {
-            foreach(string s in CollectionDataBase.GetMinigameArtifacts(PlayerPrefs.GetString("PreviousScene")))
+            foreach(string s in CollectionDataBase.GetMinigameArtifactNames(PlayerPrefs.GetString("PreviousScene")))
             {
                 _artifacts.Add(s);
             }
