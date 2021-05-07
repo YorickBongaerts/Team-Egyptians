@@ -49,6 +49,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private float BrushSize { get => _brushSize.y; set => _brushSize.y = value; }
         internal bool IsPainting => _isPainting;
 
+        public Texture2D TextureToCheck;
+
         #region Unity Lifecycle
         private void Start()
         {
@@ -227,12 +229,16 @@ namespace MexiColeccion.Minigames.Teotihuacan
             }
         }
 
-        private void UpdateTexture()
+        public void UpdateTexture()
         {
             Texture2D tex;
             if (Screen.height == 720)
             {
                 tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), Mathf.CeilToInt(_snapShotRect.height), TextureFormat.RGB24, false);
+            }
+            else if (Screen.height == 480)
+            {
+                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), (int)(_snapShotRect.height), TextureFormat.RGB24, false);
             }
             else
             {
@@ -240,7 +246,10 @@ namespace MexiColeccion.Minigames.Teotihuacan
             }
             tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
-            _renderer.material.mainTexture = tex;
+            
+            TextureToCheck = tex;
+            //_renderer.material.mainTexture = tex;
+            
             // disable brushes
             for (int i = _maxBrushCount - 1; i >= 0; i--)
             {
