@@ -2213,9 +2213,10 @@ MonoBehaviour:
   _brushContainer: {fileID: 1965969844}
   _uiScript: {fileID: 546973775}
   _defaultBrush: {fileID: 8799839894175420157, guid: d5c5f61cf2b046e40b2c1425988622d3, type: 3}
-  _maxBrushCount: 100
+  _maxBrushCount: 20000
   _brushSize: {x: 0.01, y: 0.5, z: 3}
   _soundManager: {fileID: 231938370}
+  TextureToCheck: {fileID: 0}
 --- !u!4 &1137376241
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,7 +2262,7 @@ MonoBehaviour:
   _heigthDepth: 32
   GameOverManager: {fileID: 283743359}
   Timer: {fileID: 509336558}
-  PlayerPaintingQuad: {fileID: 437102300}
+  PainterScript: {fileID: 0}
   ActualPainting: {fileID: 1888041221}
   ScoreVictoryTreshhold: 60
   Score: 0

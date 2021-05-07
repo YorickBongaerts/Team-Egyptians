@@ -38,8 +38,8 @@ public static class CollectionDataBase
     //================================================
     // Add the scene names for the different minigames
     //================================================
-    private static readonly string _painterMinigame = "Minigame-Teotihuacan";
-    private static readonly string _memoryMiniGame = "MiniGame-Memory";
+    public static readonly string PainterMinigame = "Minigame-Teotihuacan";
+    public static readonly string MemoryMiniGame = "MiniGame-Memory";
     #endregion
 
     #region Artifact Names Per Minigame
@@ -72,9 +72,9 @@ public static class CollectionDataBase
         switch (minigame)
         {
             case Minigame.Memory:
-                return _memoryMiniGame;
+                return MemoryMiniGame;
             case Minigame.Painter:
-                return _painterMinigame;
+                return PainterMinigame;
             default:
                 throw new KeyNotFoundException();
         }
@@ -95,11 +95,11 @@ public static class CollectionDataBase
 
     public static string[] GetMinigameArtifacts(string minigameScene)
     {
-        if (minigameScene.Equals(_painterMinigame))
+        if (minigameScene.Equals(PainterMinigame))
         {
             return _painterArtifacts;
         }
-        if (minigameScene.Equals(_memoryMiniGame))
+        if (minigameScene.Equals(MemoryMiniGame))
         {
             return _memoryArtifacts;
         }
@@ -114,5 +114,14 @@ public static class CollectionDataBase
             Debug.Log(s + " " + PlayerPrefs.GetInt(s));
         }
     }
+    #endregion
+
+    #region PlayerScoreMessageTracker
+    //===================================================================================================================
+    // tis should technicaly get its own script, but it feels weird to make a new script just to keep track for 2 strings.
+    //this is used to keep track of player score between game scene and game over scene.
+    //===================================================================================================================
+    public static int PlayerScore;
+    public static string LastGameSceneName;
     #endregion
 }
