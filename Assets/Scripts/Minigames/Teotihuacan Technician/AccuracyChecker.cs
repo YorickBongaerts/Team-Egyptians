@@ -7,6 +7,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
     public class AccuracyChecker : MonoBehaviour
     {
+        [SerializeField] private int _widthDepth;
+        [SerializeField] private int _heigthDepth;
         public GameOverManager GameOverManager;
         public Timer Timer;
         public Renderer PlayerPaintingQuad;
@@ -42,24 +44,25 @@ namespace MexiColeccion.Minigames.Teotihuacan
             Texture2D firstTex = PlayerPaintingQuad.material.mainTexture as Texture2D;
             Texture2D secondTex = ActualPainting.CompareTexture;
 
-            firstTex = ResizeTetxures(firstTex, secondTex.width, secondTex.height);
+            firstTex = ResizeTetxures(firstTex, _widthDepth, _heigthDepth);
+            secondTex = ResizeTetxures(secondTex, _widthDepth, _heigthDepth);
 
-            Color[] firstPix = firstTex.GetPixels();
-            Color[] secondPix = secondTex.GetPixels();
+            Color[] PlayerPix = firstTex.GetPixels();
+            Color[] ExamplePix = secondTex.GetPixels();
 
-            if (firstPix.Length != secondPix.Length)
+            if (PlayerPix.Length != ExamplePix.Length)
             {
                 Debug.LogError("Textures are not the same size, must be same size");
             }
             else
             {
-                _totalPixels = firstPix.Length;
+                _totalPixels = PlayerPix.Length;
 
                 int correctPixels = 0;
 
-                for (int i = 0; i < firstPix.Length; i++)
+                for (int i = 0; i < PlayerPix.Length; i++)
                 {
-                    correctPixels += ComparePixel(firstPix, secondPix, i);
+                    correctPixels += ComparePixel(PlayerPix, ExamplePix, i);
                 }
 
                 score = correctPixels * 100 / _totalPixels;
@@ -82,11 +85,11 @@ namespace MexiColeccion.Minigames.Teotihuacan
             return result;
         }
 
-        private int ComparePixel(Color[] firstPix, Color[] secondPix, int i)
+        private int ComparePixel(Color[] PlayerPix, Color[] ExamplePix, int i)
         {
-            Vector3 firstVector = new Vector3(firstPix[i].r, firstPix[i].g, firstPix[i].b);
+            Vector4 firstVector = new Vector4(PlayerPix[i].r, PlayerPix[i].g, PlayerPix[i].b, PlayerPix[i].a);
 
-            Vector3 secondVector = new Vector3(secondPix[i].r, secondPix[i].g, secondPix[i].b);
+            Vector4 secondVector = new Vector4(ExamplePix[i].r, ExamplePix[i].g, ExamplePix[i].b, ExamplePix[i].a);
 
             if (CalculateRGBValues(firstVector, secondVector,0.1f))
             {
@@ -96,16 +99,23 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 return 0;
         }
 
-        private bool CalculateRGBValues(Vector3 firstVector, Vector3 secondVector, float margin)
+        private bool CalculateRGBValues(Vector4 firstVector, Vector4 secondVector, float margin)
         {
-            float rValue = Mathf.Abs(firstVector.x - secondVector.x);
-            float gValue = Mathf.Abs(firstVector.y - secondVector.y);
-            float bValue = Mathf.Abs(firstVector.z - secondVector.z);
-
-            if (rValue < margin && gValue < margin && bValue < margin)
-                return true;
-            else
+            if(secondVector.w <0.5f) //0.5f is jst a random low enough value to check if it has alpha(meaning it shouldnt count this pixel)
+            {
+                _totalPixels--;
+                Debug.Log("alpha");
                 return false;
+            }
+            else
+            {
+                float rValue = Mathf.Abs(firstVector.x - secondVector.x);
+                float gValue = Mathf.Abs(firstVector.y - secondVector.y);
+                float bValue = Mathf.Abs(firstVector.z - secondVector.z);
+
+                return (rValue < margin && gValue < margin && bValue < margin);
+            }
+
         }
     }
 }
