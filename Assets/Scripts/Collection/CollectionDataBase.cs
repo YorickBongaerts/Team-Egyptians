@@ -16,9 +16,10 @@ public enum Minigame
 
 public static class CollectionDataBase
 {
-    private static CollectionDatabaseSO Database 
-        => AssetDatabase.LoadAssetAtPath("Assets/Editor/ScriptableObjects/Collection/DefaultCollectionDatabase.asset"
-        , typeof(CollectionDatabaseSO)) as CollectionDatabaseSO;
+    private static CollectionDatabaseSO Database
+        => Resources.Load<CollectionDatabaseSO>("Collection/DefaultCollectionDatabase");
+        //=> AssetDatabase.LoadAssetAtPath("Assets/Editor/ScriptableObjects/Collection/DefaultCollectionDatabase.asset"
+        //, typeof(CollectionDatabaseSO)) as CollectionDatabaseSO;
 
     public static List<ArtifactSO> Artifacts
     {
