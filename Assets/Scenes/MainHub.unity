@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.16788375, g: 0.21073635, b: 0.28994125, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -162,7 +162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7702620336360099513, guid: 281bded2db303044faeeb18f7f5dc71d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,7 +290,7 @@ Transform:
   m_LocalScale: {x: 0.28003967, y: 0.28003967, z: 0.28003967}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284374582
 GameObject:
@@ -918,7 +918,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653635061
 GameObject:
@@ -1930,7 +1930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032490826
 GameObject:
@@ -1974,7 +1974,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 0.71, z: 5}
+  m_Size: {x: 0.05, y: 0.71, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1066072860
 GameObject:
@@ -2040,7 +2040,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.548635, y: 2.4452295, z: 1}
+  m_Size: {x: 20, y: 2.4452295, z: 1}
   m_Center: {x: 4.108363, y: 0.37984517, z: 0}
 --- !u!1 &1092563374 stripped
 GameObject:
@@ -2197,7 +2197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171055919
 GameObject:
@@ -2279,7 +2279,7 @@ Transform:
   m_LocalScale: {x: 0.15773058, y: 0.15773058, z: 0.15773058}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1193181472
 PrefabInstance:
@@ -2642,7 +2642,7 @@ Transform:
   m_LocalScale: {x: 0.11902, y: 0.11902, z: 0.11902}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1481428897
 PrefabInstance:
@@ -3631,7 +3631,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3780,7 +3780,7 @@ Transform:
   m_LocalScale: {x: 0.15773058, y: 0.15773058, z: 0.15773058}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1962911864
 GameObject:
@@ -4029,7 +4029,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 0.71, z: 5}
+  m_Size: {x: 0.05, y: 0.71, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2097186702
 PrefabInstance:

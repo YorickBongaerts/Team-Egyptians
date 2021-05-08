@@ -1,4 +1,5 @@
-﻿using MexiColeccion.Hub;
+﻿using MexiColeccion.Collection;
+using MexiColeccion.Hub;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -54,14 +55,18 @@ namespace MexiColeccion.UI
         public void OnArtifactViewerOpened()
         {
             _soundManager.PlayButtonTap();
-            ViewerState = 1;
-            _artifactViewer.SetActive(true);
-            _artifactAnimator.SetBool("IsClosing", false);
-
-            SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
-            ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
             
-            StartCoroutine(WaitForEndOfAnimation());
+            if(_viewArtifactsButton.GetComponent<ArtifactViewButton>().MaxArtifacts > 0)
+            {
+                ViewerState = 1;
+                _artifactViewer.SetActive(true);
+                _artifactAnimator.SetBool("IsClosing", false);
+
+                SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
+                ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
+            
+                StartCoroutine(WaitForEndOfAnimation());
+            }
         }
 
         public void OnLeftArrowTapped()

@@ -25,6 +25,7 @@ namespace MexiColeccion.Hub
         private float _startOffset = 1.54f;
         private int _index = 0;
         private bool _indexChanged = false;
+        private bool _isOpen = false;
 
         public bool IsInteractedWith { get; private set; }
 
@@ -82,8 +83,17 @@ namespace MexiColeccion.Hub
             {
                 RemoveInstantiatedArtifacts();
                 SetupArtifacts(e.Minigame);
+                //UpdateCollider();
                 UpdatePosition();
             }
+            _isOpen = e.IsOpened;
+        }
+
+        private void UpdateCollider()
+        {
+            BoxCollider bc = GetComponent<BoxCollider>();
+            bc.size = new Vector3(4f * _artifacts.Count, bc.size.y, bc.size.z);
+            bc.center = new Vector3(_artifacts.Count, bc.center.y, bc.center.z);
         }
 
         private void RemoveInstantiatedArtifacts()
@@ -108,8 +118,12 @@ namespace MexiColeccion.Hub
 
             for (int i = 0; i < artifactsToGenerate.Count; i++)
             {
-                GameObject pedestal = Instantiate(_pedestalPrefab, new Vector3(_container.transform.position.x - _startOffset + (i * _distanceBetweenArtifacts)
-                    , _pedestalPrefab.transform.position.y, _container.transform.position.z), _pedestalPrefab.transform.rotation, _container.transform);
+                GameObject pedestal = Instantiate(_pedestalPrefab
+                    , new Vector3(_container.transform.position.x -_startOffset + (i * _distanceBetweenArtifacts)
+                    , _pedestalPrefab.transform.localPosition.y + _container.transform.position.y - transform.position.y
+                    , _container.transform.position.z)
+                    , _pedestalPrefab.transform.rotation
+                    , _container.transform);
                 pedestal.GetComponentInChildren<Artifact>().ArtifactDataObject = artifactsToGenerate[i];
                 _artifacts.Add(pedestal);
             }
@@ -140,7 +154,7 @@ namespace MexiColeccion.Hub
         {
             base.OnReleased(sender, e);
 
-            if (EventSystem.current.IsPointerOverGameObject(e.PointerInput.InputId))
+            if (EventSystem.current.IsPointerOverGameObject(e.PointerInput.InputId) || !_isOpen)
             {
                 Debug.Log("Pointer over UI.");
                 return;

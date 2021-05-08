@@ -15,6 +15,8 @@ namespace MexiColeccion.Hub
         [SerializeField] private PlayerBehaviour _playerScript;
         private int _maxArtifacts;
 
+        internal int MaxArtifacts => _maxArtifacts;
+
         private int ArtifactsCollected
         {
             get
@@ -36,6 +38,7 @@ namespace MexiColeccion.Hub
         private void OnEnable()
         {
             GetComponentInChildren<Text>().text = $"{ArtifactsCollected}/{_maxArtifacts}";
+            GetComponent<Button>().interactable = _maxArtifacts > 0;
         }
     }
 }

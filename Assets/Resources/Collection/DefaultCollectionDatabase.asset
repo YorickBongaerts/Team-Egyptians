@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Artifacts:
   - _name: Chicomecoatl
-    _minigame: 1
+    _minigame: 0
     _mesh: {fileID: -2232952877369940510, guid: 4cd77973e390a6c4a81e6bcb49ad862b, type: 3}
+    _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
   - _name: Fitomorfa
     _minigame: 0
     _mesh: {fileID: -3292925553009838691, guid: 8b4682a332cc2ce49b88412bbe5aafab, type: 3}
+    _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
   - _name: Olla Tripodel
     _minigame: 0
     _mesh: {fileID: 973877516759717424, guid: bba468a6cf5db514c8eca092850dad33, type: 3}
+    _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
   SceneNames:
   - Minigame-Teotihuacan

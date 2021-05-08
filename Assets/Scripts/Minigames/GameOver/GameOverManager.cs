@@ -1,3 +1,4 @@
+using MexiColeccion.Collection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
