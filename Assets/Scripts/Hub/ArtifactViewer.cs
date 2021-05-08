@@ -12,19 +12,19 @@ namespace MexiColeccion.Hub
 {
     public class ArtifactViewer : InputController
     {
-        [SerializeField] private GameObject _pedestalPrefab;
-        [SerializeField] private GameObject _container;
-        [SerializeField] private MainHubUI _hubUI;
-        [SerializeField] private PlayerBehaviour _playerScript;
+        [SerializeField] private GameObject _pedestalPrefab = null;
+        [SerializeField] private GameObject _container = null;
+        [SerializeField] private MainHubUI _hubUI = null;
+        [SerializeField] private PlayerBehaviour _playerScript = null;
         [Tooltip("The speed at which the user can browse through the artifacts.")]
         [SerializeField] private float _slideSpeed = 2f;
         [SerializeField] private float _distanceBetweenArtifacts = 3f;
         
-        private List<GameObject> _artifacts;
-        private Vector3 _destination, _origin;
+        private List<GameObject> _artifacts = null;
+        private Vector3 _destination = Vector3.zero, _origin = Vector3.zero;
         private float _startOffset = 1.54f;
-        private int _index;
-        private bool _indexChanged;
+        private int _index = 0;
+        private bool _indexChanged = false;
 
         public bool IsInteractedWith { get; private set; }
 
