@@ -9,10 +9,10 @@ namespace MexiColeccion.Minigames
     public class VictoryManager : MonoBehaviour
     {
         private List<string> _artifacts = new List<string>();
-        [SerializeField] private List<Sprite> _artifactPictures = new List<Sprite>();
+        [SerializeField] private List<Sprite> _artifactPainterPictures = new List<Sprite>();
+        [SerializeField] private List<Sprite> _artifactMemoryPictures = new List<Sprite>();
 
-        public Text Message;
-        public Image Artifact;
+        [SerializeField] private Image _artifactImmage;
 
         private void Start()
         {
@@ -31,14 +31,13 @@ namespace MexiColeccion.Minigames
                 if (PlayerPrefs.GetInt(artifactList[i]) != 0) // this means it has already been collected
                 {
                     artifactList.RemoveAt(i);
-                    _artifactPictures.RemoveAt(i);
+                    _artifactPainterPictures.RemoveAt(i);
                 }
             }
 
             if (artifactList.Count == 0)
             {
-                Message.text = "You Won!";
-                Artifact.gameObject.SetActive(false);
+                _artifactImmage.gameObject.SetActive(false);
             }
             else //collect new artifact
             {
@@ -46,9 +45,18 @@ namespace MexiColeccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                Artifact.sprite = _artifactPictures[r];
+                if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Memory))
+                {
+                    _artifactImmage.sprite = _artifactMemoryPictures[r];
+                }
 
-                Message.text = "You Won a new artifact: " + artifactList[r] + "!";
+                if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
+                {
+                    _artifactImmage.sprite = _artifactPainterPictures[r];
+                }
+
+
+
             }
         }
     }

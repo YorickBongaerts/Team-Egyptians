@@ -22,7 +22,11 @@ namespace MexiColeccion.Minigames
 
             if (CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
             {
-                _scoreDisplay.text = CollectionDataBase.PlayerScore + "%";
+                if(CollectionDataBase.PlayerScore > _painterScoreTreshold)
+                    _scoreDisplay.text = CollectionDataBase.PlayerScore + "% > " + _painterScoreTreshold + "%";
+                else
+                    _scoreDisplay.text = CollectionDataBase.PlayerScore + "% < " + _painterScoreTreshold + "%";
+
                 //other code depending on minigame
             }
             
