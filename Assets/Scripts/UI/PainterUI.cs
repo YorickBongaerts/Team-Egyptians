@@ -53,8 +53,7 @@ namespace MexiColeccion.UI
             else
             {
                 _soundManager.PlayButtonTap();
-                ReferenceQuad.position += new Vector3(0, 0, -10);
-                _isDisplayingPainting = true;
+                
                 Ac.CalculateScore();
                 StartCoroutine(WaitForTextureUpdate());
             }
@@ -69,6 +68,8 @@ namespace MexiColeccion.UI
         {
             yield return new WaitForSeconds(Time.deltaTime * 2);
 
+            ReferenceQuad.position += new Vector3(0, 0, -10);
+            _isDisplayingPainting = true;
             ScoreDisplay.text = Ac.CurrentScore + "%";
             DisplayIcon.sprite = Hide;
         }
