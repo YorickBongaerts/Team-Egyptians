@@ -5,9 +5,12 @@ using MexiColeccion.Hub;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Artifact : InputController
 {
+    [SerializeField] private Text _infoBox = null;
+
     private ArtifactSO _artifactData; // reference that will be set by Artifact Viewer
     private float _rotationSpeed = 25f;
 
@@ -46,8 +49,11 @@ public class Artifact : InputController
             if (value != null)
             {
                 GetComponent<MeshFilter>().mesh = ArtifactDataObject.Mesh;
-                Debug.Log(_artifactData.Name);
                 IsCollected = PlayerPrefs.GetInt(_artifactData.Name) == 1; // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
+                if (IsCollected)
+                {
+                    _infoBox.text = _artifactData.Name;
+                }
             }
         }
     }

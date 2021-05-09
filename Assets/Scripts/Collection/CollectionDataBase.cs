@@ -83,6 +83,11 @@ namespace MexiColeccion.Collection
             return GetMinigameArtifactNames(minigame);
         }
 
+        public static int GetArtifactIndex(ArtifactSO artifact)
+        {
+            return GetMinigameArtifacts(artifact.Minigame).IndexOf(artifact);
+        }
+
         public static void ClearAllArtifactsData()
         {
             for (int i = 0; i < Database.Artifacts.Count; i++)
@@ -96,11 +101,13 @@ namespace MexiColeccion.Collection
 
         #region PlayerScoreMessageTracker
         //===================================================================================================================
-        // tis should technicaly get its own script, but it feels weird to make a new script just to keep track for 2 strings.
-        //this is used to keep track of player score between game scene and game over scene.
+        // this should technicaly get its own script, but it feels weird to make a new script just to keep track for 2 strings.
+        // this is used to keep track of player score between game scene and game over scene.
         //===================================================================================================================
+        public static ArtifactSO LastWonArtifact;
         public static int PlayerScore;
         public static string LastGameSceneName;
+        public static bool ViewedArtifacts;
         #endregion
     }
 }

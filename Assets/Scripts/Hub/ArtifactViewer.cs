@@ -84,7 +84,7 @@ namespace MexiColeccion.Hub
                 RemoveInstantiatedArtifacts();
                 SetupArtifacts(e.Minigame);
                 //UpdateCollider();
-                UpdatePosition();
+                UpdatePosition(e.Minigame);
             }
             _isOpen = e.IsOpened;
         }
@@ -111,7 +111,7 @@ namespace MexiColeccion.Hub
         private void SetupArtifacts(Minigame currentMinigame)
         {
             List<ArtifactSO> artifactsToGenerate = CollectionDatabase.GetMinigameArtifacts(currentMinigame);
-            
+
             // if there are no artifacts for this minigame, return
             if (artifactsToGenerate.Count <= 0)
                 return;
@@ -129,11 +129,19 @@ namespace MexiColeccion.Hub
             }
         }
 
-        internal void UpdatePosition()
+        internal void UpdatePosition(Minigame currentMinigame)
         {
             _origin = _playerScript.DestinationPosition;
             transform.position = new Vector3(_origin.x, transform.position.y, transform.position.z);
-            Index = 0;
+
+            if (CollectionDatabase.LastWonArtifact != null && CollectionDatabase.LastWonArtifact.Minigame == currentMinigame)
+            {
+                Index = CollectionDatabase.GetArtifactIndex(CollectionDatabase.LastWonArtifact);
+            }
+            else
+            {
+                Index = 0;
+            }
         }
 
         protected override void OnPressed(object sender, PointerEventArgs e)

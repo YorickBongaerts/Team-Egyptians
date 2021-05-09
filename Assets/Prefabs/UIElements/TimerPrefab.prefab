@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4639428137314449981}
   - component: {fileID: 3970357081651709227}
+  - component: {fileID: 3344654084606028312}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -321,3 +322,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3344654084606028312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147895895331812528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d4f5d7f8b77bb46ace29533ebfaa6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remainingTime: 360
+  IsTimerRunning: 0
+  timerText: {fileID: 6236089712163167962}

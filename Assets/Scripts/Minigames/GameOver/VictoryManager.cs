@@ -11,6 +11,7 @@ namespace MexiColeccion.Minigames
         private List<string> _artifacts = new List<string>();
 
         [SerializeField] private Image _artifactImage;
+        [SerializeField] private Text _artifactName;
 
         private void Start()
         {
@@ -42,7 +43,10 @@ namespace MexiColeccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                _artifactImage.sprite = CollectionDatabase.GetMinigameArtifacts(CollectionDatabase.LastGameSceneName)[r].Image;
+                ArtifactSO wonArtifact = CollectionDatabase.GetMinigameArtifacts(CollectionDatabase.LastGameSceneName)[r];
+                _artifactImage.sprite = wonArtifact.Image;
+                _artifactName.text = wonArtifact.Name;
+                CollectionDatabase.LastWonArtifact = wonArtifact;
             }
         }
     }
