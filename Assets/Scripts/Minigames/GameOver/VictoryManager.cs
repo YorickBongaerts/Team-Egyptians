@@ -9,10 +9,8 @@ namespace MexiColeccion.Minigames
     public class VictoryManager : MonoBehaviour
     {
         private List<string> _artifacts = new List<string>();
-        [SerializeField] private List<Sprite> _artifactPainterPictures = new List<Sprite>();
-        [SerializeField] private List<Sprite> _artifactMemoryPictures = new List<Sprite>();
 
-        [SerializeField] private Image _artifactImmage;
+        [SerializeField] private Image _artifactImage;
 
         private void Start()
         {
@@ -36,7 +34,7 @@ namespace MexiColeccion.Minigames
 
             if (artifactList.Count == 0)
             {
-                _artifactImmage.gameObject.SetActive(false);
+                _artifactImage.gameObject.SetActive(false);
             }
             else //collect new artifact
             {
@@ -44,18 +42,7 @@ namespace MexiColeccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Memory))
-                {
-                    _artifactImmage.sprite = _artifactMemoryPictures[r];
-                }
-
-                if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
-                {
-                    _artifactImmage.sprite = _artifactPainterPictures[r];
-                }
-
-
-
+                _artifactImage.sprite = CollectionDataBase.GetMinigameArtifacts(CollectionDataBase.LastGameSceneName)[r].Image;
             }
         }
     }

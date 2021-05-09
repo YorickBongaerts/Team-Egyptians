@@ -16,52 +16,52 @@ MonoBehaviour:
   - _name: Chicomecoatl
     _minigame: 1
     _mesh: {fileID: -2232952877369940510, guid: 4cd77973e390a6c4a81e6bcb49ad862b, type: 3}
-    _referenceImage: {fileID: 7687754189918111951, guid: 873a94f81df893149833ef1d7af2ebf0, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 8159808f7203f374bae658392b2b9c9b, type: 3}
     _info: https://www.3museos.com/?pieza=chicomecoatl
-  - _name: Fitomorfa
+  - _name: Vasija Fitomorfa
     _minigame: 0
     _mesh: {fileID: -3292925553009838691, guid: 8b4682a332cc2ce49b88412bbe5aafab, type: 3}
-    _referenceImage: {fileID: 4271667390970228969, guid: d948f762764fe424694cd58c662f6fb5, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 0885eecf8aed01b4cb35fcc97a84c325, type: 3}
     _info: https://www.3museos.com/?pieza=vasija-fitomorfa-cacao
   - _name: Olla Tripodel
     _minigame: 1
     _mesh: {fileID: 973877516759717424, guid: bba468a6cf5db514c8eca092850dad33, type: 3}
-    _referenceImage: {fileID: 3838159126819693364, guid: 7aa11ceba00187b4c9b67421e4ca4d5d, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 7cbc3daa014b6d24ba51805c0fb65c18, type: 3}
     _info: https://www.3museos.com/?pieza=olla-tripode
   - _name: Almena
     _minigame: 0
     _mesh: {fileID: -7553716758358721678, guid: f5aabec799d01a14c9713e255166d887, type: 3}
-    _referenceImage: {fileID: 4585995783936981446, guid: 50d04766b3484d940a787b5215736319, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 76602c23847d0434f80b528924cd62cf, type: 3}
     _info: https://www.3museos.com/?pieza=almena
   - _name: "Eh\xE9catl"
     _minigame: 0
     _mesh: {fileID: 5060444177187149915, guid: 4cd77973e390a6c4a81e6bcb49ad862b, type: 3}
-    _referenceImage: {fileID: 8011432752229155209, guid: 391ec14315fd8cf4b9c36360850ea821, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 0351faffb6b23c64ca52f56c0e65a8b1, type: 3}
     _info: https://www.3museos.com/?pieza=ehecatl
   - _name: Zapoteca
     _minigame: 0
     _mesh: {fileID: -2128599272216676504, guid: 6ebe3270fc44ead4b9ff674d17449a30, type: 3}
-    _referenceImage: {fileID: 2471857508696255722, guid: 643d3515371f88b489b41c58e2112531, type: 3}
+    _referenceImage: {fileID: 21300000, guid: c2dfac4a8c510ae46b9e8cdb23bf10e1, type: 3}
     _info: https://www.3museos.com/?pieza=cajete-tripode-zapoteca
-  - _name: Xiuhcoatl
+  - _name: Xiuhcoatl, serpiente de fuego
     _minigame: 1
     _mesh: {fileID: 5060444177187149915, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
-    _referenceImage: {fileID: 7051659147684259312, guid: 968cc30b73bb2e848b8ceecdfaed28a9, type: 3}
+    _referenceImage: {fileID: 21300000, guid: c227cb5b2486aee408aa57949a0b36a2, type: 3}
     _info: https://www.3museos.com/?pieza=xiuhcoatl-serpiente-de-fuego
   - _name: Vaso Tripode
     _minigame: 1
     _mesh: {fileID: 5060444177187149915, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
-    _referenceImage: {fileID: 8940493976813635854, guid: 39f55745a2896234f839276c4ff7f86f, type: 3}
+    _referenceImage: {fileID: 21300000, guid: c6a7e493f0c4fe94f813686c8fd30c05, type: 3}
     _info: https://www.3museos.com/?pieza=vaso-tripode
-  - _name: PinturaAve
+  - _name: Pintura Mural Ave
     _minigame: 1
     _mesh: {fileID: 5060444177187149915, guid: 5cfc85816bbda33488aa8ca5249e62fb, type: 3}
-    _referenceImage: {fileID: 6310976169270943073, guid: 5fa73542679ea574ca137442cf79aaad, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 250e4c619f38f2e4fa867d9f12553a63, type: 3}
     _info: https://www.3museos.com/?pieza=fragmento-de-pintura-mural-ave
-  - _name: PinturaCoyote
+  - _name: Pintura Mural Coyote
     _minigame: 0
     _mesh: {fileID: 5060444177187149915, guid: 3dbfccc0b7747194ca0d36750c45b6d0, type: 3}
-    _referenceImage: {fileID: 2977047787496198588, guid: b36c2d30d1feb5c44b5c29ce35b66cf9, type: 3}
+    _referenceImage: {fileID: 21300000, guid: 9b160bafeb5368e45975019142daf14e, type: 3}
     _info: https://www.3museos.com/?pieza=fragmento-de-pintura-mural-coyote
   SceneNames:
   - Minigame-Teotihuacan

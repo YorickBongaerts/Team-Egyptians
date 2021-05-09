@@ -22,7 +22,7 @@ namespace MexiColeccion.Collection
         [SerializeField] private Mesh _mesh; // might need to change to gameobject
 
         [Tooltip("The image that is shown when you collect the artifact.")]
-        [SerializeField] private Image _referenceImage;
+        [SerializeField] private Sprite _referenceImage;
 
         [TextArea]
         [Tooltip("A small info box to inform the user about the artifact. This can also be just a link to an informative web page.")]
@@ -32,6 +32,6 @@ namespace MexiColeccion.Collection
         internal Minigame Minigame => _minigame;
         internal Mesh Mesh => _mesh;
         internal string Info => _info;
-        internal Image Image => _referenceImage;
+        internal Sprite Image => _referenceImage;
     }
 }
