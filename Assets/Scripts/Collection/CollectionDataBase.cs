@@ -37,6 +37,10 @@ namespace MexiColeccion.Collection
             return Database.SceneNames[(int)minigame];
         }
 
+        public static Minigame GetMinigameFromScene(string sceneName)
+        {
+            return (Minigame)Database.SceneNames.IndexOf(sceneName);
+        }
         public static List<ArtifactSO> GetMinigameArtifacts(Minigame minigame)
         {
             List<ArtifactSO> artifacts = new List<ArtifactSO>();
@@ -86,6 +90,12 @@ namespace MexiColeccion.Collection
         public static int GetArtifactIndex(ArtifactSO artifact)
         {
             return GetMinigameArtifacts(artifact.Minigame).IndexOf(artifact);
+        }
+
+        public static ArtifactSO GetArtifactByName(string name, Minigame minigame)
+        {
+            int index = GetMinigameArtifactNames(minigame).IndexOf(name);
+            return Artifacts[index];
         }
 
         public static void ClearAllArtifactsData()

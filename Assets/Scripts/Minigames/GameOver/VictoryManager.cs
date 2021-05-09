@@ -43,7 +43,7 @@ namespace MexiColeccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                ArtifactSO wonArtifact = CollectionDatabase.GetMinigameArtifacts(CollectionDatabase.LastGameSceneName)[r];
+                ArtifactSO wonArtifact = CollectionDatabase.GetArtifactByName(artifactList[r], CollectionDatabase.GetMinigameFromScene(CollectionDatabase.LastGameSceneName));
                 _artifactImage.sprite = wonArtifact.Image;
                 _artifactName.text = wonArtifact.Name;
                 CollectionDatabase.LastWonArtifact = wonArtifact;

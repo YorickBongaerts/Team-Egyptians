@@ -17,7 +17,7 @@ namespace MexiColeccion.Hub
 
         internal int MaxArtifacts => _maxArtifacts;
 
-        private int ArtifactsCollected
+        internal int ArtifactsCollected
         {
             get
             {

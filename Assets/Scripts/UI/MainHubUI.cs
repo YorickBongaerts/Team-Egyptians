@@ -69,8 +69,11 @@ namespace MexiColeccion.UI
                 SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
                 ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
 
-                _swipeIndicatorHolder.SetActive(!CollectionDatabase.ViewedArtifacts);
-                CollectionDatabase.ViewedArtifacts = true;
+                if (!CollectionDatabase.ViewedArtifacts && _viewArtifactsButton.GetComponent<ArtifactViewButton>().ArtifactsCollected > 0)
+                {
+                    _swipeIndicatorHolder.SetActive(true);
+                    CollectionDatabase.ViewedArtifacts = true;
+                }
                 StartCoroutine(WaitForEndOfAnimation());
             }
         }
