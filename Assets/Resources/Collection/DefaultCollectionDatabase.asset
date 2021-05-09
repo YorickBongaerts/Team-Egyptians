@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Artifacts:
   - _name: Chicomecoatl
-    _minigame: 0
+    _minigame: 1
     _mesh: {fileID: -2232952877369940510, guid: 4cd77973e390a6c4a81e6bcb49ad862b, type: 3}
     _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
@@ -24,8 +24,43 @@ MonoBehaviour:
     _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
   - _name: Olla Tripodel
-    _minigame: 0
+    _minigame: 1
     _mesh: {fileID: 973877516759717424, guid: bba468a6cf5db514c8eca092850dad33, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Almena
+    _minigame: 0
+    _mesh: {fileID: -7553716758358721678, guid: 966d8c75ee918ae45bf9a88c3d14ad99, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: "Eh\xE9catl"
+    _minigame: 0
+    _mesh: {fileID: 5060444177187149915, guid: 4cd77973e390a6c4a81e6bcb49ad862b, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Zapoteca
+    _minigame: 0
+    _mesh: {fileID: -2128599272216676504, guid: 6ebe3270fc44ead4b9ff674d17449a30, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Xiuhcoatl
+    _minigame: 1
+    _mesh: {fileID: 5060444177187149915, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Vaso Tripode
+    _minigame: 1
+    _mesh: {fileID: 5060444177187149915, guid: 159a9e4324fd04045a256fc0feb94818, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Pintura1
+    _minigame: 1
+    _mesh: {fileID: 5060444177187149915, guid: 5cfc85816bbda33488aa8ca5249e62fb, type: 3}
+    _referenceImage: {fileID: 0}
+    _info: Description, link to Museum Website, etc.
+  - _name: Pintura2
+    _minigame: 0
+    _mesh: {fileID: 5060444177187149915, guid: 3dbfccc0b7747194ca0d36750c45b6d0, type: 3}
     _referenceImage: {fileID: 0}
     _info: Description, link to Museum Website, etc.
   SceneNames:
