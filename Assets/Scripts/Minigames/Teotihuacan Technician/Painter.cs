@@ -23,6 +23,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Transform _brushContainer = null;
         [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
         [SerializeField] private PainterUI _uiScript = null;
+        [Tooltip("REference to the Brush Preview GameObject that needs to update when the brush is changed.")]
+        [SerializeField] private GameObject _brushPreview = null;
         [Header("Painting")]
         [Tooltip("The gameobject to instantiate in order to paint. Required.")]
         [SerializeField] private GameObject _brushPrefab = null;
@@ -51,9 +53,33 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private bool _isPainting = false;
         private bool _hasPaintChanged = false;
 
-        private Color BrushColor { get => _brushColor; set => _brushColor = value; }
-        private Sprite BrushShape { get => _brushSprite; set => _brushSprite = value; }
-        private float BrushSize { get => _brushSize.y; set => _brushSize.y = value; }
+        private Color BrushColor
+        {
+            get => _brushColor;
+            set
+            {
+                _brushColor = value;
+                _brushPreview.GetComponent<SpriteRenderer>().color = BrushColor;
+            }
+        }
+        private Sprite BrushShape
+        {
+            get => _brushSprite;
+            set
+            {
+                _brushSprite = value;
+                _brushPreview.GetComponent<SpriteRenderer>().sprite = BrushShape;
+            }
+        }
+        private float BrushSize
+        {
+            get => _brushSize.y;
+            set
+            {
+                _brushSize.y = value;
+                _brushPreview.transform.localScale = new Vector3(BrushSize, BrushSize, _brushPreview.transform.localScale.z);
+            }
+        }
         internal bool IsPainting => _isPainting;
         internal bool HasPaintChanged => _hasPaintChanged;
 
@@ -179,7 +205,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private void BrushShapeChanged(object sender, BrushShapeChangedEventArgs e)
         {
-            _brushSprite = e.NewShape;
+            BrushShape = e.NewShape;
         }
 
         private void BrushColorChanged(object sender, BrushColorChangedEventArgs e)

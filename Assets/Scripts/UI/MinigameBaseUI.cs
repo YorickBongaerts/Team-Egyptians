@@ -9,7 +9,7 @@ namespace MexiColeccion.UI
         public void OnRetry()
         {
             _soundManager.PlayButtonTap();
-            SceneManager.LoadScene(CollectionDataBase.LastGameSceneName);
+            SceneManager.LoadScene(CollectionDatabase.LastGameSceneName);
         }
     }
 }

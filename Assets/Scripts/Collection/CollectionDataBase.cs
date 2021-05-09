@@ -13,7 +13,7 @@ namespace MexiColeccion.Collection
         Memory
     }
 
-    public static class CollectionDataBase
+    public static class CollectionDatabase
     {
         private static CollectionDatabaseSO Database
         => Resources.Load<CollectionDatabaseSO>("Collection/DefaultCollectionDatabase");

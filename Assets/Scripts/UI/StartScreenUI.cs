@@ -13,7 +13,7 @@ namespace MexiColeccion.UI
         public void DeleteData()
         {
             _soundManager.PlayButtonTap();
-            CollectionDataBase.ClearAllArtifactsData();
+            CollectionDatabase.ClearAllArtifactsData();
         }
     }
 }

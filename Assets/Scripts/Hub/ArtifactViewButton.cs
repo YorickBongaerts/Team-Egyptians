@@ -22,7 +22,7 @@ namespace MexiColeccion.Hub
             get
             {
                 int count = 0;
-                List<string> artifactNames = CollectionDataBase.GetMinigameArtifactNames(_playerScript.CurrentPainting.Minigame);
+                List<string> artifactNames = CollectionDatabase.GetMinigameArtifactNames(_playerScript.CurrentPainting.Minigame);
                 _maxArtifacts = artifactNames.Count;
 
                 for (int i = 0; i < artifactNames.Count; i++)

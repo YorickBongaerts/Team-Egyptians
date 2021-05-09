@@ -110,7 +110,7 @@ namespace MexiColeccion.Hub
 
         private void SetupArtifacts(Minigame currentMinigame)
         {
-            List<ArtifactSO> artifactsToGenerate = CollectionDataBase.GetMinigameArtifacts(currentMinigame);
+            List<ArtifactSO> artifactsToGenerate = CollectionDatabase.GetMinigameArtifacts(currentMinigame);
             
             // if there are no artifacts for this minigame, return
             if (artifactsToGenerate.Count <= 0)

@@ -14,7 +14,7 @@ namespace MexiColeccion.Minigames
 
         private void Start()
         {
-            foreach (string s in CollectionDataBase.GetMinigameArtifactNames(CollectionDataBase.LastGameSceneName))
+            foreach (string s in CollectionDatabase.GetMinigameArtifactNames(CollectionDatabase.LastGameSceneName))
             {
                 _artifacts.Add(s);
             }
@@ -42,7 +42,7 @@ namespace MexiColeccion.Minigames
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                _artifactImage.sprite = CollectionDataBase.GetMinigameArtifacts(CollectionDataBase.LastGameSceneName)[r].Image;
+                _artifactImage.sprite = CollectionDatabase.GetMinigameArtifacts(CollectionDatabase.LastGameSceneName)[r].Image;
             }
         }
     }

@@ -14,18 +14,18 @@ namespace MexiColeccion.Minigames
 
         void Start()
         {
-            if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Memory))
+            if(CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
-                _scoreDisplay.text = CollectionDataBase.PlayerScore.ToString();
+                _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString();
                 //other code depending on minigame
             }
 
-            if (CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
+            if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Painter))
             {
-                if(CollectionDataBase.PlayerScore > _painterScoreTreshold)
-                    _scoreDisplay.text = CollectionDataBase.PlayerScore + "% > " + _painterScoreTreshold + "%";
+                if(CollectionDatabase.PlayerScore > _painterScoreTreshold)
+                    _scoreDisplay.text = CollectionDatabase.PlayerScore + "% > " + _painterScoreTreshold + "%";
                 else
-                    _scoreDisplay.text = CollectionDataBase.PlayerScore + "% < " + _painterScoreTreshold + "%";
+                    _scoreDisplay.text = CollectionDatabase.PlayerScore + "% < " + _painterScoreTreshold + "%";
 
                 //other code depending on minigame
             }

@@ -44,7 +44,7 @@ namespace MexiColeccion.Hub
             if (ShouldLoad)
             {
                 ShouldLoad = false;
-                SceneManager.LoadScene(CollectionDataBase.GetSceneName(Minigame));
+                SceneManager.LoadScene(CollectionDatabase.GetSceneName(Minigame));
             }
         }
     }

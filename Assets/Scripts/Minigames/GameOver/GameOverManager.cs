@@ -8,16 +8,16 @@ namespace MexiColeccion.Minigames
     {
         public void OnVictory(int score)
         {
-            CollectionDataBase.LastGameSceneName = SceneManager.GetActiveScene().name;
-            CollectionDataBase.PlayerScore = score;
+            CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDatabase.PlayerScore = score;
             SceneManager.LoadScene("VictoryScene");
 
         }
 
         public void OnDefeat(int score)
         {
-            CollectionDataBase.LastGameSceneName = SceneManager.GetActiveScene().name;
-            CollectionDataBase.PlayerScore = score;
+            CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDatabase.PlayerScore = score;
             SceneManager.LoadScene("DefeatScene");
 
         }
