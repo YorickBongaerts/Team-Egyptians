@@ -1,5 +1,6 @@
 using MexiColeccion.Minigames.Teotihuacan;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,9 +55,22 @@ namespace MexiColeccion.UI
                 _soundManager.PlayButtonTap();
                 ReferenceQuad.position += new Vector3(0, 0, -10);
                 _isDisplayingPainting = true;
-                ScoreDisplay.text = Ac.CalculateScore() + "%";
-                DisplayIcon.sprite = Hide;
+                Ac.CalculateScore();
+                StartCoroutine(WaitForTextureUpdate());
             }
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
+
+        private IEnumerator WaitForTextureUpdate()
+        {
+            yield return new WaitForSeconds(Time.deltaTime * 2);
+
+            ScoreDisplay.text = Ac.CurrentScore + "%";
+            DisplayIcon.sprite = Hide;
         }
     }
 

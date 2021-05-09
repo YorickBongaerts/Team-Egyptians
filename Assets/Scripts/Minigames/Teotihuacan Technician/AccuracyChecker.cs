@@ -1,5 +1,6 @@
 using MexiColeccion.Utils;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace MexiColeccion.Minigames.Teotihuacan
@@ -16,38 +17,63 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         public int ScoreVictoryTreshhold;
 
-        public int Score = 0;
+        private int _score = 0;
         private int _totalPixels;
 
         private bool _needsToCount = true;
+        internal int CurrentScore
+        {
+            get
+            {
+                // only recalculate the score if there were changes to the paint, else simply return the latest saved score
+                if (PainterScript.HasPaintChanged)
+                    CalculateScore();
 
-        // Update is called once per frame
+                return _score;
+            }
+        }
 
         void Update()
         {
             if (Timer.remainingTime <= 0 && _needsToCount)
             {
-               Score = CalculateScore();
                 _needsToCount = false;
 
-                if (Score > ScoreVictoryTreshhold)
-                    GameOverManager.OnVictory(Score);
-                else
-                    GameOverManager.OnDefeat(Score);
+                StartCoroutine(DetermineWinOrLose());
             }
         }
 
-        public int CalculateScore()
+        private void OnDestroy()
         {
-            PainterScript.UpdateTexture();
+            StopAllCoroutines();
+        }
 
-            int score = 0;
+        private IEnumerator DetermineWinOrLose()
+        {
+            yield return new WaitForSeconds(Time.deltaTime*2);
 
-            Texture2D firstTex = PainterScript.TextureToCheck as Texture2D;
+            if (CurrentScore > ScoreVictoryTreshhold)
+                GameOverManager.OnVictory(CurrentScore);
+            else
+                GameOverManager.OnDefeat(CurrentScore);
+        }
+
+        internal void CalculateScore()
+        {
+            PainterScript.CanUpdate = true;
+
+            StartCoroutine(WaitForTextureUpdate());
+        }
+
+        private IEnumerator WaitForTextureUpdate()
+        {
+            yield return new WaitForEndOfFrame();
+
+            Texture2D firstTex = PainterScript.TextureToCheck;
             Texture2D secondTex = ActualPainting.CompareTexture;
 
-            firstTex = ResizeTetxures(firstTex, _widthDepth, _heigthDepth);
-            secondTex = ResizeTetxures(secondTex, _widthDepth, _heigthDepth);
+            firstTex = ResizeTextures(firstTex, _widthDepth, _heigthDepth);
+            secondTex = ResizeTextures(secondTex, _widthDepth, _heigthDepth);
 
             Color[] PlayerPix = firstTex.GetPixels();
             Color[] ExamplePix = secondTex.GetPixels();
@@ -67,16 +93,16 @@ namespace MexiColeccion.Minigames.Teotihuacan
                     correctPixels += ComparePixel(PlayerPix, ExamplePix, i);
                 }
 
-                score = correctPixels * 100 / _totalPixels;
+                int score = correctPixels * 100 / _totalPixels;
                 Debug.Log(correctPixels);
                 Debug.Log("score: " + score + "%");
                 Debug.Log(_totalPixels);
+                
+                _score = score;
             }
-
-            return score;
         }
 
-        private Texture2D ResizeTetxures(Texture2D resizeTexture, int targetX, int targetY)
+        private Texture2D ResizeTextures(Texture2D resizeTexture, int targetX, int targetY)
         {
             RenderTexture rt = new RenderTexture(targetX, targetY, 24);
             RenderTexture.active = rt;

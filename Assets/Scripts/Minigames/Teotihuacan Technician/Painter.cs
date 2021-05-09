@@ -34,7 +34,9 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         [SerializeField] private SoundManager _soundManager;
 
+        internal Texture2D TextureToCheck;
         internal bool CanPaint = true; // is there still ink left?
+        internal bool CanUpdate = false;
 
         private Renderer _renderer = null;
         private Sprite _brushSprite;
@@ -44,19 +46,17 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private float _scaleUnit = 0.1f;
         private int _brushCounter = 0;
         private bool _isPainting = false;
+        private bool _hasPaintChanged = false;
 
         private Color BrushColor { get => _brushColor; set => _brushColor = value; }
+        private Sprite BrushShape { get => _brushSprite; set => _brushSprite = value; }
         private float BrushSize { get => _brushSize.y; set => _brushSize.y = value; }
         internal bool IsPainting => _isPainting;
-
-        public Texture2D TextureToCheck;
+        internal bool HasPaintChanged => _hasPaintChanged;
 
         #region Unity Lifecycle
         private void Start()
         {
-            //Screen.SetResolution(1920, 1080, true);
-
-            _soundManager.PlayMinigameBGM();
             // do some safety pre-checks
             // - cameras
             if (_displayCamera == null)
@@ -100,12 +100,6 @@ namespace MexiColeccion.Minigames.Teotihuacan
             }
 
             // - painter canvas
-            // calculate the pixels of the canvas that have to be read
-            //int height = Mathf.Min(Mathf.RoundToInt(_display.transform.localScale.y / (_snapShotCamera.orthographicSize * 2f) * Screen.height), Screen.height);
-            //int width = Mathf.Min(Mathf.RoundToInt((_display.transform.localScale.x / _display.transform.localScale.y) * height), Screen.width);
-            //int rectX = (int)((Screen.width - width) / 2f);
-            //int rectY = (int)((Screen.height - height) / 2f);
-
             float anchorXMin = _quadScaler.GetComponent<RectTransform>().anchorMin.x;
             float anchorXMax = _quadScaler.GetComponent<RectTransform>().anchorMax.x;
             float anchorYMin = _quadScaler.GetComponent<RectTransform>().anchorMin.y;
@@ -123,14 +117,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
             float scaleY = canvasHeight * (_snapShotCamera.orthographicSize * 2f);
             float scaleX = (width / height) * scaleY;
-            //float scaleY = (height / Screen.height) * (_snapShotCamera.orthographicSize * 2f);
-            //float scaleY = (_snapShotCamera.orthographicSize * 2f) / Screen.height* height;
-            //float scaleX = (width / height) * scaleY;
-            _display.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
-            // position technique 1: less accurate?
-            //Vector3 leftBottom = _snapShotCamera.ViewportToWorldPoint(new Vector3(anchorXMin, anchorYMin, -_snapShotCamera.transform.position.z));
-            //_display.transform.position = new Vector3(leftBottom.x + scaleX / 2f, leftBottom.y + scaleY / 2f, 0f);
+            _display.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
             // position technique 2: still some rounding errors
             //Vector3 center = _snapShotCamera.ViewportToWorldPoint(new Vector3(canvasCenterX + 0.5f, canvasCenterY + 0.5f, -_snapShotCamera.transform.position.z));
@@ -147,6 +135,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
             _uiScript.BrushColorChanged += BrushColorChanged;
             _uiScript.BrushShapeChanged += BrushShapeChanged;
             _uiScript.BrushSizeChanged += BrushSizeChanged;
+
+            _soundManager.PlayMinigameBGM();
         }
 
         private void Update()
@@ -156,6 +146,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 Vector3 worldPosition = _displayCamera.ScreenToWorldPoint(new Vector3(_inputPosition.x, _inputPosition.y, -_displayCamera.transform.position.z));
                 _brushCounter++;
                 SetDot(worldPosition, true);
+                print("painting");
+                _isPainting = false;
             }
         }
 
@@ -205,10 +197,12 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             if (cam == _snapShotCamera)
             {
-                if (_brushCounter >= _maxBrushCount)
+                if (CanUpdate && _hasPaintChanged)
                 {
                     UpdateTexture();
                     //print("Updated");
+                    CanUpdate = false;
+                    _hasPaintChanged = false;
                 }
             }
         }
@@ -222,39 +216,30 @@ namespace MexiColeccion.Minigames.Teotihuacan
             dot.SetActive(activate);
             if (activate)
             {
-                //_brushShape = Mathf.Clamp(_brushShape, 0, _brushes.Length - 1);
                 dot.transform.localScale = new Vector3(BrushSize, BrushSize, 1);
-                dot.GetComponent<SpriteRenderer>().sprite = _brushSprite;
+                dot.GetComponent<SpriteRenderer>().sprite = BrushShape;
                 dot.GetComponent<SpriteRenderer>().color = BrushColor;
             }
         }
 
         public void UpdateTexture()
         {
-            Texture2D tex;
-            if (Screen.height == 720)
-            {
-                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), Mathf.CeilToInt(_snapShotRect.height), TextureFormat.RGB24, false);
-            }
-            else if (Screen.height == 480)
-            {
-                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), (int)(_snapShotRect.height), TextureFormat.RGB24, false);
-            }
-            else
-            {
-                tex = new Texture2D(Mathf.RoundToInt(_snapShotRect.width), (int)(_snapShotRect.height), TextureFormat.RGB24, false);
-            }
+            Texture2D tex = new Texture2D((int)_snapShotRect.width, (int)_snapShotRect.height, TextureFormat.RGB24, false);
             tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
             
             TextureToCheck = tex;
-            //_renderer.material.mainTexture = tex;
-            
-            // disable brushes
-            for (int i = _maxBrushCount - 1; i >= 0; i--)
+
+            // if there are not enough brushes in reserve
+            // update the canvas texture and disable the brushes
+            if (_brushCounter >= (int)(_maxBrushCount/0.8f))
             {
-                SetDot(Vector3.zero, false);
-                _brushCounter--;
+                _renderer.material.mainTexture = tex;
+                for (int i = _brushCounter - 1; i >= 0; i--)
+                {
+                    SetDot(Vector3.zero, false);
+                    _brushCounter--;
+                }
             }
         }
 
@@ -277,6 +262,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
             if (!_isPainting)
             {
                 _isPainting = true;
+                _hasPaintChanged = true;
             }
             else
             {
@@ -289,6 +275,11 @@ namespace MexiColeccion.Minigames.Teotihuacan
         protected override void OnDragged(object sender, PointerEventArgs e)
         {
             base.OnDragged(sender, e);
+
+            if (e.PointerInput.Delta.x > 0.5f || e.PointerInput.Delta.x < -0.5f || e.PointerInput.Delta.y > 0.5f || e.PointerInput.Delta.y < -0.5f)
+            {
+                _isPainting = true;
+            }
 
             _inputPosition = e.PointerInput.Position;
         }
