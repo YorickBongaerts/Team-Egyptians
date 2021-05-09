@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2409,9 +2409,11 @@ MonoBehaviour:
   _quadScaler: {fileID: 282087474}
   _brushContainer: {fileID: 1965969844}
   _uiScript: {fileID: 546973775}
-  _defaultBrush: {fileID: 8799839894175420157, guid: d5c5f61cf2b046e40b2c1425988622d3, type: 3}
-  _maxBrushCount: 10000
+  _brushPrefab: {fileID: 8799839894175420157, guid: 48ede52a6bdea4e4cb3d3e44effe1a3a, type: 3}
+  _defaultBrush: {fileID: 21300000, guid: d2dcf7d42b94eb04d873ade8febf210a, type: 3}
+  _defaultBrushColor: {r: 0.63529414, g: 0.19607843, b: 0.05882353, a: 1}
   _brushSize: {x: 0.1, y: 0.5, z: 3}
+  _maxBrushCount: 10000
   _soundManager: {fileID: 231938370}
 --- !u!4 &1137376241
 Transform:
