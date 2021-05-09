@@ -18,7 +18,7 @@ namespace MexiColeccion.Hub
         private GameObject _artifactsButton = null;
         private float _movementSpeed = 10f;
         private static int _index = 0;
-        private bool _isMoving = false;
+        private int _direction = 0;
 
         internal Vector3 DestinationPosition
         {
@@ -59,49 +59,34 @@ namespace MexiColeccion.Hub
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other == _leftTrigger)
+            if (other == _leftTrigger && _direction < 0)
             {
-                WarpToAndTempDisableTrigger(_rightTrigger);
+                WarpToTrigger(_rightTrigger);
                 _index = _paintings.Length - 1;
                 return;
             }
-            if (other == _rightTrigger)
+            if (other == _rightTrigger && _direction > 0)
             {
-                WarpToAndTempDisableTrigger(_leftTrigger);
+                WarpToTrigger(_leftTrigger);
                 _index = 0;
             }
         }
 
-        private void WarpToAndTempDisableTrigger(Collider otherTrigger)
+        private void WarpToTrigger(Collider otherTrigger)
         {
             // warp to opposite side
             transform.position = new Vector3(otherTrigger.gameObject.transform.position.x, transform.position.y, transform.position.z);
-
-            // temporarily disable this trigger
-            otherTrigger.gameObject.SetActive(false);
-
-            StartCoroutine(DelayTriggerActivation(otherTrigger));
-        }
-
-        private IEnumerator DelayTriggerActivation(Collider trigger)
-        {
-            yield return new WaitForSeconds(0.1f);
-
-            if (trigger.gameObject.activeSelf == false)
-            {
-                trigger.gameObject.SetActive(true);
-            }
         }
 
         private void ArrowTapped(object sender, OnArrowTappedEventArgs e)
         {
-            if (_isMoving)
+            if (_direction != 0)
             {
                 return;
             }
 
-            _index += e.Direction;
-            _isMoving = true;
+            _direction = e.Direction;
+            _index += _direction;
 
             if (_artifactsButton == null)
             {
@@ -111,24 +96,25 @@ namespace MexiColeccion.Hub
 
         private void MoveToSide(Vector3 destinationPosition)
         {
-            if (_isMoving)
+            if (_direction != 0)
             {
-                Debug.Log("moved");
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position
                     , destinationPosition, _movementSpeed * Time.deltaTime);
 
                 if (gameObject.transform.position == destinationPosition)
                 {
-                    _isMoving = false;
+                    _direction = 0;
                     _artifactsButton?.SetActive(true);
                 }
             }
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, DestinationPosition);
         }
+#endif
     }
 }

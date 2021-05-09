@@ -24,13 +24,16 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
         [SerializeField] private PainterUI _uiScript = null;
         [Header("Painting")]
-        [Tooltip("A Prefab that represents the default brush to be used. Must be one that is used in the UI. Required.")]
-        [SerializeField] private GameObject _defaultBrush = null;
-        [Tooltip("How many instances the object pool of brushes contains.")]
-        [SerializeField] private int _maxBrushCount = 1000;
-        [Header("Brush")]
+        [Tooltip("The gameobject to instantiate in order to paint. Required.")]
+        [SerializeField] private GameObject _brushPrefab = null;
+        [Tooltip("A Sprite that represents the default brush to be used. Must be one that is used in the UI. Required.")]
+        [SerializeField] private Sprite _defaultBrush = null;
+        [Tooltip("The default brush color to be used. Must be one that is used in the UI. Required.")]
+        [SerializeField] private Color _defaultBrushColor = Color.black;
         [Tooltip("The bounds of the brush size.\nFormat: MIN, DEFAULT, MAX.")]
         [SerializeField] private Vector3 _brushSize = new Vector3(0.1f, 2.5f, 5f);
+        [Tooltip("How many instances the object pool of brushes contains.")]
+        [SerializeField] private int _maxBrushCount = 1000;
 
         [SerializeField] private SoundManager _soundManager;
 
@@ -40,7 +43,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private Renderer _renderer = null;
         private Sprite _brushSprite;
-        private Color _brushColor = Color.black;
+        private Color _brushColor;
         private Rect _snapShotRect;
         private Vector2 _inputPosition;
         private float _scaleUnit = 0.1f;
@@ -94,7 +97,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
             // - object pool
             for (int i = 0; i < _maxBrushCount; i++)
             {
-                GameObject dot = Instantiate(_defaultBrush, Vector3.zero, Quaternion.identity, _brushContainer);
+                GameObject dot = Instantiate(_brushPrefab, Vector3.zero, Quaternion.identity, _brushContainer);
                 dot.name = $"Dot {i}";
                 dot.SetActive(false);
             }
@@ -137,6 +140,11 @@ namespace MexiColeccion.Minigames.Teotihuacan
             _uiScript.BrushSizeChanged += BrushSizeChanged;
 
             _soundManager.PlayMinigameBGM();
+
+            // set up default brush values
+            BrushColor = _defaultBrushColor;
+            BrushShape = _defaultBrush;
+            BrushSize = _brushSize.y;
         }
 
         private void Update()
