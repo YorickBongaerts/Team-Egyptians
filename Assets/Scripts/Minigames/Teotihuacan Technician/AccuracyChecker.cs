@@ -39,8 +39,14 @@ namespace MexiColeccion.Minigames.Teotihuacan
             {
                 _needsToCount = false;
 
-                StartCoroutine(DetermineWinOrLose());
+                OnEndGame();
+                
             }
+        }
+
+        public void OnEndGame()
+        {
+            StartCoroutine(DetermineWinOrLose());
         }
 
         private void OnDestroy()

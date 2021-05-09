@@ -40,6 +40,11 @@ namespace MexiColeccion.UI
             handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
         }
 
+        public void OnFinnishGame()
+        {
+            Ac.OnEndGame();
+        }
+
         public void OnDisplayAndHidePainting()
         {
             if(_isDisplayingPainting)
