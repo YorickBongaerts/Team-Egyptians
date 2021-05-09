@@ -41,6 +41,7 @@ namespace MexiColeccion.Collection
         {
             return (Minigame)Database.SceneNames.IndexOf(sceneName);
         }
+
         public static List<ArtifactSO> GetMinigameArtifacts(Minigame minigame)
         {
             List<ArtifactSO> artifacts = new List<ArtifactSO>();
