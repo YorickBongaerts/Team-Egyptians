@@ -31,7 +31,6 @@ namespace MexiColeccion.Minigames
                 if (PlayerPrefs.GetInt(artifactList[i]) != 0) // this means it has already been collected
                 {
                     artifactList.RemoveAt(i);
-                    _artifactPainterPictures.RemoveAt(i);
                 }
             }
 
