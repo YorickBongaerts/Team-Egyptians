@@ -74,7 +74,7 @@ namespace MexiColeccion.Minigames.Memory
                     GameObject card;
                     int index = j * _gridCols + i;
                     card = Instantiate(_cardPrefabs[numbers[index]]);
-                    card.GetComponent<NewCardScript>().Id = numbers[index];          
+                    card.GetComponent<NewCardScript>().Id = numbers[index];
 
                     //float posX = (offsetX * i) + startPos.x;
                     //float posY = (offsetY * j) + startPos.y;
@@ -93,7 +93,7 @@ namespace MexiColeccion.Minigames.Memory
                     card.transform.SetParent(_cardsContainer.transform);
 
                     _cardsList.Add(card.GetComponent<NewCardScript>());
-                    
+
                     card.GetComponent<RectTransform>().localScale = Vector3.one; //rescales the cards to fit on the screen well and not be deformed.   
                 }
             }
@@ -211,8 +211,8 @@ namespace MexiColeccion.Minigames.Memory
                 LivesText.text = Lives.ToString();
 
                 yield return new WaitForSeconds(2f);
-                StartCoroutine(PlayLeavesAnimation(_firstRevealed,false));
-                StartCoroutine(PlayLeavesAnimation(_secondRevealed,false));
+                StartCoroutine(PlayLeavesAnimation(_firstRevealed, false));
+                StartCoroutine(PlayLeavesAnimation(_secondRevealed, false));
                 yield return new WaitForSeconds(1.2f);
                 StartCoroutine(FlipCards(_firstRevealed, _secondRevealed));
                 Debug.Log("Incorrect pair");

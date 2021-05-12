@@ -1,5 +1,4 @@
 using MexiColeccion.Utils;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -40,7 +39,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 _needsToCount = false;
 
                 OnEndGame();
-                
+
             }
         }
 
@@ -56,7 +55,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private IEnumerator DetermineWinOrLose()
         {
-            yield return new WaitForSeconds(Time.deltaTime*2);
+            yield return new WaitForSeconds(Time.deltaTime * 2);
 
             if (CurrentScore > ScoreVictoryTreshhold)
                 GameOverManager.OnVictory(CurrentScore);
@@ -103,7 +102,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 Debug.Log(correctPixels);
                 Debug.Log("score: " + score + "%");
                 Debug.Log(_totalPixels);
-                
+
                 _score = score;
             }
         }
@@ -125,7 +124,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
             Vector4 secondVector = new Vector4(ExamplePix[i].r, ExamplePix[i].g, ExamplePix[i].b, ExamplePix[i].a);
 
-            if (CalculateRGBValues(firstVector, secondVector,0.1f))
+            if (CalculateRGBValues(firstVector, secondVector, 0.1f))
             {
                 return 1;
             }
@@ -135,7 +134,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private bool CalculateRGBValues(Vector4 firstVector, Vector4 secondVector, float margin)
         {
-            if(secondVector.w <0.5f) //0.5f is jst a random low enough value to check if it has alpha(meaning it shouldnt count this pixel)
+            if (secondVector.w < 0.5f) //0.5f is jst a random low enough value to check if it has alpha(meaning it shouldnt count this pixel)
             {
                 _totalPixels--;
                 Debug.Log("alpha");

@@ -47,7 +47,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
             DisplayTime -= Time.deltaTime;
             if (DisplayTime <= 0 && !_hasStoppedDisplaying)
             {
-                this.GetComponent<Renderer>().material.mainTexture = HelpTextures[_r]; 
+                this.GetComponent<Renderer>().material.mainTexture = HelpTextures[_r];
                 this.transform.position += new Vector3(0, 0, 10); //gets moves back and forward whenever player presses the button to show the painting they are copying
                 _hasStoppedDisplaying = true;
                 DisplayIcon.sprite = Display;

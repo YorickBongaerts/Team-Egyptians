@@ -21,7 +21,7 @@ namespace MexiColeccion.Utils.Debug
         {
             if (!_enableDebug)
                 return;
-                
+
             StringBuilder builder = new StringBuilder();
 
             builder.AppendFormat("ID: {0}", input.InputId);

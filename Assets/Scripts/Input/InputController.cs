@@ -74,7 +74,7 @@ namespace MexiColeccion.Input
             SetInputHandlerSceneObject();
         }
 #endif
-#endregion
+        #endregion
 
         #region Virtual Input Events
         /// <summary>
@@ -165,9 +165,9 @@ namespace MexiColeccion.Input
             {
                 _inputHandlerGO = new GameObject("PointerInputHandler [Auto-generated]", typeof(PointerInputHandler));
             }
-            
+
             _debugger = GameObject.Find("DebugPanel")?.GetComponent<InputDebugger>();
-            if(_debugger == null)
+            if (_debugger == null)
             {
                 print("No InputDebugger Detected. Create a new InputDebugger if you want to debug the input. An InputDebugger must have a text component.");
             }

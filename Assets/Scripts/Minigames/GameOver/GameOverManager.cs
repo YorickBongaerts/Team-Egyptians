@@ -10,7 +10,8 @@ namespace MexiColeccion.Minigames
         {
             CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
             CollectionDatabase.PlayerScore = score;
-            SceneManager.LoadScene("VictoryScene");
+            //SceneManager.LoadScene("VictoryScene");
+            LevelLoader.LoadNextLevel("VictoryScene", "CrossFade");
 
         }
 
@@ -18,8 +19,8 @@ namespace MexiColeccion.Minigames
         {
             CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
             CollectionDatabase.PlayerScore = score;
-            SceneManager.LoadScene("DefeatScene");
-
+            //SceneManager.LoadScene("DefeatScene");
+            LevelLoader.LoadNextLevel("DefeatScene", "CrossFade");
         }
     }
 }

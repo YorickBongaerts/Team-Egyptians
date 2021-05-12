@@ -2,7 +2,6 @@ using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using MexiColeccion.UI;
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -21,7 +20,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private GameObject _quadScaler = null;
         [Tooltip("Reference to the Transform that holds all instantiated brushes. Required.")]
         [SerializeField] private Transform _brushContainer = null;
-        [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
+        [Tooltip("Reference to an LevelLoader of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
         [SerializeField] private PainterUI _uiScript = null;
         [Tooltip("REference to the Brush Preview GameObject that needs to update when the brush is changed.")]
         [SerializeField] private GameObject _brushPreview = null;
@@ -261,12 +260,12 @@ namespace MexiColeccion.Minigames.Teotihuacan
             Texture2D tex = new Texture2D((int)_snapShotRect.width, (int)_snapShotRect.height, TextureFormat.RGB24, false);
             tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
-            
+
             TextureToCheck = tex;
 
             // if there are not enough brushes in reserve
             // update the canvas texture and disable the brushes
-            if (_brushCounter >= (int)(_maxBrushCount/0.8f))
+            if (_brushCounter >= (int)(_maxBrushCount / 0.8f))
             {
                 _renderer.material.mainTexture = tex;
                 for (int i = _brushCounter - 1; i >= 0; i--)

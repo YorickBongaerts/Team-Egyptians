@@ -47,7 +47,7 @@ namespace MexiColeccion.UI
 
         public void OnDisplayAndHidePainting()
         {
-            if(_isDisplayingPainting)
+            if (_isDisplayingPainting)
             {
                 _soundManager.PlayButtonTap();
                 ReferenceQuad.position += new Vector3(0, 0, 10);
@@ -58,7 +58,7 @@ namespace MexiColeccion.UI
             else
             {
                 _soundManager.PlayButtonTap();
-                
+
                 Ac.CalculateScore();
                 StartCoroutine(WaitForTextureUpdate());
             }

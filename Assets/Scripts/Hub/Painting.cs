@@ -3,7 +3,6 @@ using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 namespace MexiColeccion.Hub
 {
@@ -13,7 +12,7 @@ namespace MexiColeccion.Hub
     internal class Painting : InputController
     {
         [Tooltip("The Minigame that will be loaded when the user select this painting.")]
-        [SerializeField] private Minigame _minigame;
+        [SerializeField] public Minigame _minigame;
 
         private Vector2 _inputPosition;
         private bool ShouldLoad = false;
@@ -44,7 +43,8 @@ namespace MexiColeccion.Hub
             if (ShouldLoad)
             {
                 ShouldLoad = false;
-                SceneManager.LoadScene(CollectionDatabase.GetSceneName(Minigame));
+                LevelLoader.LoadNextLevel(CollectionDatabase.GetSceneName(Minigame), "CrossFade");
+                //SceneManager.LoadScene(CollectionDatabase.GetSceneName(Minigame));
             }
         }
     }

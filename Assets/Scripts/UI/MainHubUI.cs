@@ -3,7 +3,6 @@ using MexiColeccion.Hub;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MexiColeccion.UI
 {
@@ -59,8 +58,8 @@ namespace MexiColeccion.UI
         public void OnArtifactViewerOpened()
         {
             _soundManager.PlayButtonTap();
-            
-            if(_viewArtifactsButton.GetComponent<ArtifactViewButton>().MaxArtifacts > 0)
+
+            if (_viewArtifactsButton.GetComponent<ArtifactViewButton>().MaxArtifacts > 0)
             {
                 ViewerState = 1;
                 _artifactViewer.SetActive(true);

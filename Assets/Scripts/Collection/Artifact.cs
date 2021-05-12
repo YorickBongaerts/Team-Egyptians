@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using MexiColeccion.Collection;
-using MexiColeccion.Hub;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using UnityEngine;
@@ -71,7 +68,7 @@ public class Artifact : InputController
     protected override void OnPressed(object sender, PointerEventArgs e)
     {
         base.OnPressed(sender, e);
-        
+
         Ray ray = Camera.main.ScreenPointToRay(e.PointerInput.Position);
         if (Physics.Raycast(ray, out var hit))
         {
