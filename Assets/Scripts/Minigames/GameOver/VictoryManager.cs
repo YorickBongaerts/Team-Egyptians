@@ -1,4 +1,5 @@
 using MexiColeccion.Collection;
+using MexiColeccion.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ namespace MexiColeccion.Minigames
 
         [SerializeField] private Image _artifactImage;
         [SerializeField] private Text _artifactName;
+        [SerializeField] private SoundManager _soundManager;
 
         private void Start()
         {
@@ -18,6 +20,8 @@ namespace MexiColeccion.Minigames
             {
                 _artifacts.Add(s);
             }
+
+            _soundManager.PlayCollectArtifact();
 
             GetArtifact(_artifacts);
         }
