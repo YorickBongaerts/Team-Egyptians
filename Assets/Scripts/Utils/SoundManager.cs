@@ -12,7 +12,9 @@ namespace MexiColeccion.Utils
             , _collectArtifact
             , _titleScreenBGM //1
             , _hubBGM //2
-            , _minigameBGM; //3
+            , _minigameBGM
+            ,_wrong
+            ,_correct; //3
 
         [SerializeField] private int CurrentBGM = 0;
 
@@ -49,6 +51,16 @@ namespace MexiColeccion.Utils
         internal void PlayTitleScreenBGM()
         {
             _titleScreenBGM.Play();
+        }
+
+        internal void PlayWrong()
+        {
+            _wrong.Play();
+        }
+
+        internal void PlayCorrect()
+        {
+            _correct.Play();
         }
     }
 }

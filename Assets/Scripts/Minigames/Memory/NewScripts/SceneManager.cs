@@ -200,17 +200,22 @@ namespace MexiColeccion.Minigames.Memory
                 _score++;
                 _scoreText.text = _score.ToString();
 
+                _soundManager.PlayCorrect();
+
                 Debug.Log("Correct pair");
                 yield return new WaitForSeconds(2f);
                 Delete(_firstRevealedCard.gameObject, _secondRevealedCard.gameObject);
                 _firstRevealedCard = null;
                 _secondRevealedCard = null;
+
                 CheckForWin();
             }
             else
             {
                 _lives--;
                 _livesText.text = _lives.ToString();
+
+                _soundManager.PlayWrong();
 
                 yield return new WaitForSeconds(2f);
                 StartCoroutine(PlayLeavesAnimation(_firstRevealedCard, false));
@@ -220,6 +225,7 @@ namespace MexiColeccion.Minigames.Memory
                 Debug.Log("Incorrect pair");
                 _firstRevealedCard = null;
                 _secondRevealedCard = null;
+
                 CheckForLoss();
             }
         }
