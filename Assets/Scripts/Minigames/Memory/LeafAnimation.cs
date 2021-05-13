@@ -7,11 +7,11 @@ public class LeafAnimation : MonoBehaviour, IPointerDownHandler
 {
     //private Animator animator;
     private List<GameObject> children = new List<GameObject>();
-    public NewSceneManager sceneController;
+    public SceneManager sceneController;
 
     private void Start()
     {
-        sceneController = GameObject.FindObjectOfType<NewSceneManager>();
+        sceneController = GameObject.FindObjectOfType<SceneManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             children.Add(gameObject.transform.GetChild(i).gameObject);

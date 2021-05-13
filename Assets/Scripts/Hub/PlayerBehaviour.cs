@@ -3,19 +3,17 @@ using UnityEngine;
 
 namespace MexiColeccion.Hub
 {
-    /// <summary>
-    /// This is the new version of the PlayerScript (deleted)
-    /// </summary>
     public class PlayerBehaviour : MonoBehaviour
     {
         [SerializeField] private Collider _leftTrigger;
         [SerializeField] private Collider _rightTrigger;
         [SerializeField] private MainHubUI _hubUI;
         [SerializeField] private GameObject[] _paintings;
+        [SerializeField] private float _movementSpeed = 10f;
+
+        private static int _index = 0;
 
         private GameObject _artifactsButton = null;
-        private float _movementSpeed = 10f;
-        private static int _index = 0;
         private int _direction = 0;
 
         internal Vector3 DestinationPosition
@@ -102,7 +100,10 @@ namespace MexiColeccion.Hub
                 if (gameObject.transform.position == destinationPosition)
                 {
                     _direction = 0;
-                    _artifactsButton?.SetActive(true);
+                    if (_artifactsButton != null)
+                    {
+                        _artifactsButton.SetActive(true);
+                    }
                 }
             }
         }

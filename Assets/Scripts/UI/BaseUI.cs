@@ -1,35 +1,36 @@
+using MexiColeccion.Utils;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MexiColeccion.UI
 {
     public class BaseUI : MonoBehaviour
     {
-        [SerializeField]
-        private List<GameObject> _optionsUI;
-
-        [SerializeField]
-        private List<GameObject> _activeUI;
-
-        public SoundManager _soundManager;
+        [SerializeField] private List<GameObject> _optionsUI;
+        [SerializeField] private List<GameObject> _activeUI;
+        [SerializeField] protected SoundManager _soundManager;
 
         private bool _isInOptions = false;
 
+        // should be public in order to be called from inside the inspector
         public void OnMainHubEnter()
         {
             Debug.Log("Now entering main hub");
-            SceneManager.LoadScene("MainHub");
+            // TODO: might want to change the animation type
+            LevelLoader.LoadNextLevel("MainHub");
             Time.timeScale = 1;
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnRestartUp()
         {
             Debug.Log("Restarting Scene");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // TODO: might want to change the animation type
+            LevelLoader.LoadNextLevel(LevelLoader.GetCurrentLevelName(), "CrossFade");
             Time.timeScale = 1;
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnOptionsClick()
         {
             if (_isInOptions == false)
@@ -50,6 +51,7 @@ namespace MexiColeccion.UI
             _soundManager.PlayButtonTap();
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnContinueClick()
         {
             if (_isInOptions == true)
@@ -70,10 +72,11 @@ namespace MexiColeccion.UI
             _soundManager.PlayButtonTap();
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnQuitClick()
         {
             _soundManager.PlayButtonTap();
-            if (SceneManager.GetActiveScene().name != "MainHub")
+            if (LevelLoader.GetCurrentLevelName() != "MainHub")
             {
                 OnMainHubEnter();
             }
@@ -82,6 +85,5 @@ namespace MexiColeccion.UI
                 Application.Quit();
             }
         }
-
     }
 }

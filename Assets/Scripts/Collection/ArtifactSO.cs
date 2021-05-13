@@ -20,7 +20,7 @@ namespace MexiColeccion.Collection
         [SerializeField] private Sprite _referenceImage;
 
         [TextArea]
-        [Tooltip("A small info box to inform the user about the artifact. This can also be just a link to an informative web page.")]
+        [Tooltip("A small info box to inform the user about the artifact. This can also be just as link to an informative web page.")]
         [SerializeField] private string _info = "Description, link to Museum Website, etc.";
 
         internal string Name => _name;

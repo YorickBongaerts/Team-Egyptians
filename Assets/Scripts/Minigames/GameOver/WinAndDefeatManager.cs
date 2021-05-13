@@ -9,13 +9,14 @@ namespace MexiColeccion.Minigames
         [SerializeField] private Text _scoreDisplay;
         [SerializeField] private int _painterScoreTreshold;
 
-
-        void Start()
+        private void Start()
         {
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
                 _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString();
                 //other code depending on minigame
+
+                return;
             }
 
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Painter))
@@ -26,10 +27,10 @@ namespace MexiColeccion.Minigames
                     _scoreDisplay.text = CollectionDatabase.PlayerScore + "% < " + _painterScoreTreshold + "%";
 
                 //other code depending on minigame
+
+                return;
             }
-
         }
-
     }
 }
 

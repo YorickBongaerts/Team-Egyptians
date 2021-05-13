@@ -6,9 +6,9 @@ namespace MexiColeccion.Minigames.Teotihuacan
     public class InkManager : MonoBehaviour
     {
         [Header("References")]
-        [Tooltip("Reference to an LevelLoader of the \"Painter\" Script")]
+        [Tooltip("Reference to an instance of the \"Painter\" Script")]
         [SerializeField] private Painter _painterScript = null;
-        [Tooltip("Reference to an LevelLoader of the \"UiScriptArtist\" Script")]
+        [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script")]
         [SerializeField] private PainterUI _uiScript = null;
         [Header("Ink")]
         [Tooltip("The speed at which ink gets used when painting. Measured in ml/s.")]
@@ -17,13 +17,13 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private Ink _currentInk = null;
         private float _inkRemaining = 0f;
 
-        void Start()
+        private void Start()
         {
             // subscribe to the UI Script
             _uiScript.BrushColorChanged += BrushColorChanged;
         }
 
-        void Update()
+        private void Update()
         {
             if (_painterScript.IsPainting && _inkRemaining > 0f)
             {
@@ -64,4 +64,3 @@ namespace MexiColeccion.Minigames.Teotihuacan
         }
     }
 }
-

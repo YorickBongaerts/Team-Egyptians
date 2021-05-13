@@ -1,4 +1,3 @@
-//using System;
 using MexiColeccion.Collection;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +24,8 @@ namespace MexiColeccion.Minigames
 
         private void GetArtifact(List<string> artifactList)
         {
-            for (int i = artifactList.Count - 1; i >= 0; i--) // remove the artifacts the player has aleady won
+            // remove the artifacts the player has aleady won
+            for (int i = artifactList.Count - 1; i >= 0; i--)
             {
                 if (PlayerPrefs.GetInt(artifactList[i]) != 0) // this means it has already been collected
                 {
@@ -37,13 +37,15 @@ namespace MexiColeccion.Minigames
             {
                 _artifactImage.gameObject.SetActive(false);
             }
-            else //collect new artifact
+            //collect new artifact
+            else
             {
                 int r = Random.Range(0, artifactList.Count);
 
                 PlayerPrefs.SetInt(artifactList[r], 1); // 1 means it has been collected
 
-                ArtifactSO wonArtifact = CollectionDatabase.GetArtifactByName(artifactList[r], CollectionDatabase.GetMinigameFromScene(CollectionDatabase.LastGameSceneName));
+                ArtifactSO wonArtifact = CollectionDatabase.GetArtifactByName(artifactList[r]
+                    , CollectionDatabase.GetMinigameFromScene(CollectionDatabase.LastGameSceneName));
                 _artifactImage.sprite = wonArtifact.Image;
                 _artifactName.text = wonArtifact.Name;
                 CollectionDatabase.LastWonArtifact = wonArtifact;

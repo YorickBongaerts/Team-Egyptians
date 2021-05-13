@@ -16,10 +16,8 @@ namespace MexiColeccion.Collection
     {
         private static CollectionDatabaseSO Database
         => Resources.Load<CollectionDatabaseSO>("Collection/DefaultCollectionDatabase");
-        //=> AssetDatabase.LoadAssetAtPath("Assets/Editor/ScriptableObjects/Collection/DefaultCollectionDatabase.asset"
-        //, typeof(CollectionDatabaseSO)) as CollectionDatabaseSO;
 
-        public static List<ArtifactSO> Artifacts
+        private static List<ArtifactSO> Artifacts
         {
             get
             {
@@ -31,17 +29,17 @@ namespace MexiColeccion.Collection
         //============================================================================
         // Use a similar structure as the existing methods if you want to add new ones
         //============================================================================
-        public static string GetSceneName(Minigame minigame)
+        internal static string GetSceneName(Minigame minigame)
         {
             return Database.SceneNames[(int)minigame];
         }
 
-        public static Minigame GetMinigameFromScene(string sceneName)
+        internal static Minigame GetMinigameFromScene(string sceneName)
         {
             return (Minigame)Database.SceneNames.IndexOf(sceneName);
         }
 
-        public static List<ArtifactSO> GetMinigameArtifacts(Minigame minigame)
+        internal static List<ArtifactSO> GetMinigameArtifacts(Minigame minigame)
         {
             List<ArtifactSO> artifacts = new List<ArtifactSO>();
 
@@ -57,14 +55,14 @@ namespace MexiColeccion.Collection
             return artifacts;
         }
 
-        public static List<ArtifactSO> GetMinigameArtifacts(string minigameScene)
+        internal static List<ArtifactSO> GetMinigameArtifacts(string minigameScene)
         {
             Minigame minigame = (Minigame)Database.SceneNames.IndexOf(minigameScene);
 
             return GetMinigameArtifacts(minigame);
         }
 
-        public static List<string> GetMinigameArtifactNames(Minigame minigame)
+        internal static List<string> GetMinigameArtifactNames(Minigame minigame)
         {
             List<string> artifactNames = new List<string>();
 
@@ -80,25 +78,25 @@ namespace MexiColeccion.Collection
             return artifactNames;
         }
 
-        public static List<string> GetMinigameArtifactNames(string minigameScene)
+        internal static List<string> GetMinigameArtifactNames(string minigameScene)
         {
             Minigame minigame = (Minigame)Database.SceneNames.IndexOf(minigameScene);
 
             return GetMinigameArtifactNames(minigame);
         }
 
-        public static int GetArtifactIndex(ArtifactSO artifact)
+        internal static int GetArtifactIndex(ArtifactSO artifact)
         {
             return GetMinigameArtifacts(artifact.Minigame).IndexOf(artifact);
         }
 
-        public static ArtifactSO GetArtifactByName(string name, Minigame minigame)
+        internal static ArtifactSO GetArtifactByName(string name, Minigame minigame)
         {
             int index = GetMinigameArtifactNames(minigame).IndexOf(name);
             return Artifacts[index];
         }
 
-        public static void ClearAllArtifactsData()
+        internal static void ClearAllArtifactsData()
         {
             for (int i = 0; i < Database.Artifacts.Count; i++)
             {
@@ -109,15 +107,11 @@ namespace MexiColeccion.Collection
         }
         #endregion
 
-        #region PlayerScoreMessageTracker
-        //===================================================================================================================
-        // this should technicaly get its own script, but it feels weird to make a new script just to keep track for 2 strings.
-        // this is used to keep track of player score between game scene and game over scene.
-        //===================================================================================================================
-        public static ArtifactSO LastWonArtifact;
-        public static int PlayerScore;
-        public static string LastGameSceneName;
-        public static bool ViewedArtifacts;
+        #region Game Loop Management
+        internal static ArtifactSO LastWonArtifact;
+        internal static int PlayerScore;
+        internal static string LastGameSceneName;
+        internal static bool ViewedArtifacts;
         #endregion
     }
 }

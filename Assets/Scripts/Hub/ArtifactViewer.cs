@@ -20,12 +20,11 @@ namespace MexiColeccion.Hub
 
         private List<GameObject> _artifacts = null;
         private Vector3 _destination = Vector3.zero, _origin = Vector3.zero;
-        private float _startOffset = 1.54f;
+        private readonly float _startOffset = 1.54f;
         private int _index = 0;
         private bool _indexChanged = false;
+        private bool _isInteractedWith = false;
         private bool _isOpen = false;
-
-        public bool IsInteractedWith { get; private set; }
 
         private int Index
         {
@@ -87,6 +86,7 @@ namespace MexiColeccion.Hub
             _isOpen = e.IsOpened;
         }
 
+        // TODO: find the correct formula
         private void UpdateCollider()
         {
             BoxCollider bc = GetComponent<BoxCollider>();
@@ -127,7 +127,7 @@ namespace MexiColeccion.Hub
             }
         }
 
-        internal void UpdatePosition(Minigame currentMinigame)
+        private void UpdatePosition(Minigame currentMinigame)
         {
             _origin = _playerScript.DestinationPosition;
             transform.position = new Vector3(_origin.x, transform.position.y, transform.position.z);
@@ -151,7 +151,7 @@ namespace MexiColeccion.Hub
             {
                 if (hit.transform.gameObject == gameObject)
                 {
-                    IsInteractedWith = true;
+                    _isInteractedWith = true;
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace MexiColeccion.Hub
                 return;
             }
 
-            if (_artifacts[Index].GetComponentInChildren<Artifact>().IsInteractedWith || !IsInteractedWith)
+            if (_artifacts[Index].GetComponentInChildren<Artifact>().IsInteractedWith || !_isInteractedWith)
                 return;
 
             if (e.PointerInput.Swipe.Direction.x > 0.8f)
@@ -179,7 +179,7 @@ namespace MexiColeccion.Hub
                 print("Swiped right to left");
                 Index += 1;
             }
-            IsInteractedWith = false;
+            _isInteractedWith = false;
         }
     }
 }

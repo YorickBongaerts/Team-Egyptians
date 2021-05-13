@@ -6,9 +6,6 @@ using UnityEngine;
 
 namespace MexiColeccion.UI
 {
-    /// <summary>
-    /// This is the new version of the UIScriptMainHub Script (deleted)
-    /// </summary>
     public class MainHubUI : BaseUI
     {
         [SerializeField] private GameObject _viewArtifactsButton;
@@ -42,6 +39,7 @@ namespace MexiColeccion.UI
             _swipeIndicatorHolder.SetActive(false);
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnArtifactViewerClosed()
         {
             _soundManager.PlayButtonTap();
@@ -55,6 +53,7 @@ namespace MexiColeccion.UI
             StartCoroutine(WaitForEndOfAnimation());
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnArtifactViewerOpened()
         {
             _soundManager.PlayButtonTap();
@@ -77,6 +76,7 @@ namespace MexiColeccion.UI
             }
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnLeftArrowTapped()
         {
             if (ViewerState != 0)
@@ -88,6 +88,7 @@ namespace MexiColeccion.UI
             OnArrowTapped(direction);
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnRightArrowTapped()
         {
             if (ViewerState != 0)

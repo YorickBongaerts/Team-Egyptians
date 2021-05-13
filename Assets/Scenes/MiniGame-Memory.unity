@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2404,13 +2404,13 @@ MonoBehaviour:
   - {fileID: 1986349455937953690, guid: f727e26d011c1ce429ab43c3d8089f62, type: 3}
   - {fileID: 1986349455937953690, guid: f654720e36fa4844da44d67be86e66c3, type: 3}
   _leafPilePrefab: {fileID: 1225429569987451660, guid: 4d1fe16b62014c9449c8c7ccbc1084d5, type: 3}
+  _gameOverManager: {fileID: 1186723963}
+  _soundManager: {fileID: 1696248242}
+  _scoreText: {fileID: 1462599471}
+  _livesText: {fileID: 1533732165}
   _gridCols: 8
   _gridRows: 2
-  soundManager: {fileID: 1696248242}
-  Lives: 10
-  ScoreText: {fileID: 1462599471}
-  LivesText: {fileID: 1533732165}
-  GameOver: {fileID: 1186723963}
+  _lives: 3
 --- !u!1 &2098865056
 GameObject:
   m_ObjectHideFlags: 0

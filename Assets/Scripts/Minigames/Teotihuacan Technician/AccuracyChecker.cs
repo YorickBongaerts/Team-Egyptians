@@ -4,46 +4,48 @@ using UnityEngine;
 
 namespace MexiColeccion.Minigames.Teotihuacan
 {
-
     public class AccuracyChecker : MonoBehaviour
     {
         [SerializeField] private int _widthDepth;
         [SerializeField] private int _heigthDepth;
-        public GameOverManager GameOverManager;
-        public Timer Timer;
-        public Painter PainterScript;
-        public PaintingChooser ActualPainting;
-
-        public int ScoreVictoryTreshhold;
-
+        [SerializeField] private GameOverManager _gameOverManager;
+        [SerializeField] private Timer _timer;
+        [SerializeField] private PaintingChooser _actualPainting;
+        [SerializeField] private int ScoreVictoryTreshhold;
+        
+        private Painter _painterScript;
         private int _score = 0;
         private int _totalPixels;
-
         private bool _needsToCount = true;
+
         internal int CurrentScore
         {
             get
             {
                 // only recalculate the score if there were changes to the paint, else simply return the latest saved score
-                if (PainterScript.HasPaintChanged)
+                if (_painterScript.HasPaintChanged)
                     CalculateScore();
 
                 return _score;
             }
         }
 
-        void Update()
+        private void Start()
         {
-            if (Timer.remainingTime <= 0 && _needsToCount)
+            _painterScript = GetComponent<Painter>();
+        }
+
+        private void Update()
+        {
+            if (_timer.RemainingTime <= 0 && _needsToCount)
             {
                 _needsToCount = false;
 
                 OnEndGame();
-
             }
         }
 
-        public void OnEndGame()
+        internal void OnEndGame()
         {
             StartCoroutine(DetermineWinOrLose());
         }
@@ -58,14 +60,14 @@ namespace MexiColeccion.Minigames.Teotihuacan
             yield return new WaitForSeconds(Time.deltaTime * 2);
 
             if (CurrentScore > ScoreVictoryTreshhold)
-                GameOverManager.OnVictory(CurrentScore);
+                _gameOverManager.OnVictory(CurrentScore);
             else
-                GameOverManager.OnDefeat(CurrentScore);
+                _gameOverManager.OnDefeat(CurrentScore);
         }
 
         internal void CalculateScore()
         {
-            PainterScript.CanUpdate = true;
+            _painterScript.CanUpdate = true;
 
             StartCoroutine(WaitForTextureUpdate());
         }
@@ -74,8 +76,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             yield return new WaitForEndOfFrame();
 
-            Texture2D firstTex = PainterScript.TextureToCheck;
-            Texture2D secondTex = ActualPainting.CompareTexture;
+            Texture2D firstTex = _painterScript.TextureToCheck;
+            Texture2D secondTex = _actualPainting.CompareTexture;
 
             firstTex = ResizeTextures(firstTex, _widthDepth, _heigthDepth);
             secondTex = ResizeTextures(secondTex, _widthDepth, _heigthDepth);

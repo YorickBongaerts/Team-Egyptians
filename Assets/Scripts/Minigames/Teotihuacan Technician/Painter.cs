@@ -1,6 +1,7 @@
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using MexiColeccion.UI;
+using MexiColeccion.Utils;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,7 +21,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private GameObject _quadScaler = null;
         [Tooltip("Reference to the Transform that holds all instantiated brushes. Required.")]
         [SerializeField] private Transform _brushContainer = null;
-        [Tooltip("Reference to an LevelLoader of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
+        [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
         [SerializeField] private PainterUI _uiScript = null;
         [Tooltip("REference to the Brush Preview GameObject that needs to update when the brush is changed.")]
         [SerializeField] private GameObject _brushPreview = null;
@@ -35,7 +36,6 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Vector3 _brushSize = new Vector3(0.1f, 2.5f, 5f);
         [Tooltip("How many instances the object pool of brushes contains.")]
         [SerializeField] private int _maxBrushCount = 1000;
-
         [SerializeField] private SoundManager _soundManager;
 
         internal Texture2D TextureToCheck;
@@ -47,7 +47,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private Color _brushColor;
         private Rect _snapShotRect;
         private Vector2 _inputPosition;
-        private float _scaleUnit = 0.1f;
+        private readonly float _scaleUnit = 0.1f;
         private int _brushCounter = 0;
         private bool _isPainting = false;
         private bool _hasPaintChanged = false;
@@ -276,13 +276,15 @@ namespace MexiColeccion.Minigames.Teotihuacan
             }
         }
 
+#if UNITY_EDITOR
         #region Debug
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(new Vector3(_snapShotRect.center.x, _snapShotRect.center.y, 0.01f), new Vector3(_snapShotRect.size.x, _snapShotRect.size.y, 0.1f));
         }
-        #endregion
+#endregion
+#endif
 
         #region Input callbacks
         protected override void OnPressed(object sender, PointerEventArgs e)

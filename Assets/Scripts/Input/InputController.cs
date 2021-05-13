@@ -91,8 +91,10 @@ namespace MexiColeccion.Input
             }
 
             e.PointerInput.StartTime = e.Context.time;
-            _activeSwipe = new Swipe(e.PointerInput);
-            _activeSwipe.StartPosition = e.PointerInput.Position;
+            _activeSwipe = new Swipe(e.PointerInput)
+            {
+                StartPosition = e.PointerInput.Position
+            };
             e.PointerInput.Swipe = _activeSwipe;
 
             if (Debugger != null)
@@ -156,8 +158,10 @@ namespace MexiColeccion.Input
             GameObject section = GameObject.Find("==== DO NOT DELETE ====");
             if (section == null)
             {
-                section = new GameObject("==== DO NOT DELETE ====");
-                section.tag = "EditorOnly";
+                new GameObject("==== DO NOT DELETE ====")
+                {
+                    tag = "EditorOnly"
+                };
             }
 
             _inputHandlerGO = GameObject.Find("PointerInputHandler [Auto-generated]");

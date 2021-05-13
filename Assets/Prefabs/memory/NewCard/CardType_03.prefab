@@ -88,7 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56c019c21a98694191afc0018ce0687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cardname: CardType_03
-  ImageShow: {fileID: 21300000, guid: be3fd74ecd9057b438fe9b448638c82f, type: 3}
-  ImageHide: {fileID: 21300000, guid: 88e30c9e25c51254b907290b07ec7257, type: 3}
-  sceneController: {fileID: 0}
+  _cardName: CardType_03
+  _imageShow: {fileID: 21300000, guid: be3fd74ecd9057b438fe9b448638c82f, type: 3}
+  _imageHide: {fileID: 21300000, guid: 88e30c9e25c51254b907290b07ec7257, type: 3}

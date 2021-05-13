@@ -1,25 +1,22 @@
 using MexiColeccion.Collection;
+using MexiColeccion.Utils;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MexiColeccion.Minigames
 {
     public class GameOverManager : MonoBehaviour
     {
-        public void OnVictory(int score)
+        internal void OnVictory(int score)
         {
-            CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDatabase.LastGameSceneName = LevelLoader.GetCurrentLevelName();
             CollectionDatabase.PlayerScore = score;
-            //SceneManager.LoadScene("VictoryScene");
             LevelLoader.LoadNextLevel("VictoryScene", "CrossFade");
-
         }
 
-        public void OnDefeat(int score)
+        internal void OnDefeat(int score)
         {
-            CollectionDatabase.LastGameSceneName = SceneManager.GetActiveScene().name;
+            CollectionDatabase.LastGameSceneName = LevelLoader.GetCurrentLevelName();
             CollectionDatabase.PlayerScore = score;
-            //SceneManager.LoadScene("DefeatScene");
             LevelLoader.LoadNextLevel("DefeatScene", "CrossFade");
         }
     }

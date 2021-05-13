@@ -298,13 +298,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847d23ff1d6532543875f0c4965f50af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonTap: {fileID: 7702620336623639578}
-  Win: {fileID: 0}
-  Lose: {fileID: 7702620336871084161}
-  CollectArtifact: {fileID: 0}
-  HubBGM: {fileID: 7702620336870405176}
-  MinigameBGM: {fileID: 7702620335979258270}
-  TitleScreenBGM: {fileID: 7702620336835275577}
+  _buttonTap: {fileID: 7702620336623639578}
+  _win: {fileID: 0}
+  _lose: {fileID: 7702620336871084161}
+  _collectArtifact: {fileID: 0}
+  _titleScreenBGM: {fileID: 7702620336835275577}
+  _hubBGM: {fileID: 7702620336870405176}
+  _minigameBGM: {fileID: 7702620335979258270}
+  CurrentBGM: 0
 --- !u!1 &7702620336439202952
 GameObject:
   m_ObjectHideFlags: 0
