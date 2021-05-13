@@ -1992,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6236089712655322970, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 13.31
+      value: 13.310059
       objectReference: {fileID: 0}
     - target: {fileID: 6236089712655322970, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   _gridCols: 8
   _gridRows: 2
   soundManager: {fileID: 1696248242}
-  Lives: 2
+  Lives: 10
   ScoreText: {fileID: 1462599471}
   LivesText: {fileID: 1533732165}
   GameOver: {fileID: 1186723963}
