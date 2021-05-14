@@ -41,7 +41,7 @@ namespace MexiColeccion.UI
             handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
         }
 
-        public void OnFinnishGame()
+        public void OnFinishGame()
         {
             _ac.OnEndGame();
         }

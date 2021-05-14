@@ -12,6 +12,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Timer _timer;
         [SerializeField] private PaintingChooser _actualPainting;
         [SerializeField] private int ScoreVictoryTreshhold;
+        [SerializeField] private GameObject GlintImage;
         
         private Painter _painterScript;
         private int _score = 0;
@@ -47,6 +48,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         internal void OnEndGame()
         {
+            StartCoroutine(GlintAnimation());
             StartCoroutine(DetermineWinOrLose());
         }
 
@@ -64,7 +66,11 @@ namespace MexiColeccion.Minigames.Teotihuacan
             else
                 _gameOverManager.OnDefeat(CurrentScore);
         }
-
+        private IEnumerator GlintAnimation()
+        {
+            GlintImage.GetComponent<Animation>().Play("GlintMove");
+            yield return null;
+        }
         internal void CalculateScore()
         {
             _painterScript.CanUpdate = true;
