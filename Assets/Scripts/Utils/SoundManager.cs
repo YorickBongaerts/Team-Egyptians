@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MexiColeccion.Utils
 {
@@ -17,7 +18,7 @@ namespace MexiColeccion.Utils
             ,_correct; //3
 
         [SerializeField] private int CurrentBGM = 0;
-
+        [SerializeField] private Slider SoundSlider;
         internal void PlayButtonTap()
         {
             _buttonTap.Play();
@@ -61,6 +62,19 @@ namespace MexiColeccion.Utils
         internal void PlayCorrect()
         {
             _correct.Play();
+        }
+
+        public void OnVolumeChanged()
+        {
+            _correct.volume = SoundSlider.value;
+            _wrong.volume = SoundSlider.value;
+            _titleScreenBGM.volume = SoundSlider.value;
+            _hubBGM.volume = SoundSlider.value;
+            _minigameBGM.volume = SoundSlider.value;
+            _collectArtifact.volume = SoundSlider.value;
+            _lose.volume = SoundSlider.value;
+            _win.volume = SoundSlider.value;
+            _buttonTap.volume = SoundSlider.value;
         }
     }
 }
