@@ -19,9 +19,10 @@ namespace MexiColeccion.Utils.Debug
         // Temporary, for visualizing input from new input system.
         internal void DebugInfo(PointerInput input)
         {
+#if UNITY_EDITOR
             if (!_enableDebug)
                 return;
-                
+
             StringBuilder builder = new StringBuilder();
 
             builder.AppendFormat("ID: {0}", input.InputId);
@@ -58,6 +59,7 @@ namespace MexiColeccion.Utils.Debug
             builder.AppendLine();
 
             _info.text = builder.ToString();
+#endif
         }
     }
 }

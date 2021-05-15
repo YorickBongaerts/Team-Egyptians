@@ -2,8 +2,6 @@ using MexiColeccion.Collection;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using MexiColeccion.UI;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,15 +17,14 @@ namespace MexiColeccion.Hub
         [Tooltip("The speed at which the user can browse through the artifacts.")]
         [SerializeField] private float _slideSpeed = 2f;
         [SerializeField] private float _distanceBetweenArtifacts = 3f;
-        
+
         private List<GameObject> _artifacts = null;
         private Vector3 _destination = Vector3.zero, _origin = Vector3.zero;
-        private float _startOffset = 1.54f;
+        private readonly float _startOffset = 1.54f;
         private int _index = 0;
         private bool _indexChanged = false;
+        private bool _isInteractedWith = false;
         private bool _isOpen = false;
-
-        public bool IsInteractedWith { get; private set; }
 
         private int Index
         {
@@ -38,7 +35,7 @@ namespace MexiColeccion.Hub
                 artifact.GetComponentInChildren<Artifact>().ToggleInteractivity(false);
 
                 _index = Mathf.Clamp(value, 0, _artifacts.Count - 1);
-                
+
                 artifact = _artifacts[Index];
                 float destination = artifact.transform.position.x + _startOffset;
                 _destination = new Vector3(_origin.x + transform.position.x - destination, transform.position.y, transform.position.z);
@@ -84,11 +81,12 @@ namespace MexiColeccion.Hub
                 RemoveInstantiatedArtifacts();
                 SetupArtifacts(e.Minigame);
                 //UpdateCollider();
-                UpdatePosition();
+                UpdatePosition(e.Minigame);
             }
             _isOpen = e.IsOpened;
         }
 
+        // TODO: find the correct formula
         private void UpdateCollider()
         {
             BoxCollider bc = GetComponent<BoxCollider>();
@@ -110,8 +108,8 @@ namespace MexiColeccion.Hub
 
         private void SetupArtifacts(Minigame currentMinigame)
         {
-            List<ArtifactSO> artifactsToGenerate = CollectionDataBase.GetMinigameArtifacts(currentMinigame);
-            
+            List<ArtifactSO> artifactsToGenerate = CollectionDatabase.GetMinigameArtifacts(currentMinigame);
+
             // if there are no artifacts for this minigame, return
             if (artifactsToGenerate.Count <= 0)
                 return;
@@ -119,7 +117,7 @@ namespace MexiColeccion.Hub
             for (int i = 0; i < artifactsToGenerate.Count; i++)
             {
                 GameObject pedestal = Instantiate(_pedestalPrefab
-                    , new Vector3(_container.transform.position.x -_startOffset + (i * _distanceBetweenArtifacts)
+                    , new Vector3(_container.transform.position.x - _startOffset + (i * _distanceBetweenArtifacts)
                     , _pedestalPrefab.transform.localPosition.y + _container.transform.position.y - transform.position.y
                     , _container.transform.position.z)
                     , _pedestalPrefab.transform.rotation
@@ -129,11 +127,19 @@ namespace MexiColeccion.Hub
             }
         }
 
-        internal void UpdatePosition()
+        private void UpdatePosition(Minigame currentMinigame)
         {
             _origin = _playerScript.DestinationPosition;
             transform.position = new Vector3(_origin.x, transform.position.y, transform.position.z);
-            Index = 0;
+
+            if (CollectionDatabase.LastWonArtifact != null && CollectionDatabase.LastWonArtifact.Minigame == currentMinigame)
+            {
+                Index = CollectionDatabase.GetArtifactIndex(CollectionDatabase.LastWonArtifact);
+            }
+            else
+            {
+                Index = 0;
+            }
         }
 
         protected override void OnPressed(object sender, PointerEventArgs e)
@@ -145,7 +151,7 @@ namespace MexiColeccion.Hub
             {
                 if (hit.transform.gameObject == gameObject)
                 {
-                    IsInteractedWith = true;
+                    _isInteractedWith = true;
                 }
             }
         }
@@ -160,7 +166,7 @@ namespace MexiColeccion.Hub
                 return;
             }
 
-            if (_artifacts[Index].GetComponentInChildren<Artifact>().IsInteractedWith || !IsInteractedWith)
+            if (_artifacts[Index].GetComponentInChildren<Artifact>().IsInteractedWith || !_isInteractedWith)
                 return;
 
             if (e.PointerInput.Swipe.Direction.x > 0.8f)
@@ -173,7 +179,7 @@ namespace MexiColeccion.Hub
                 print("Swiped right to left");
                 Index += 1;
             }
-            IsInteractedWith = false;
+            _isInteractedWith = false;
         }
     }
 }

@@ -17,13 +17,13 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private Ink _currentInk = null;
         private float _inkRemaining = 0f;
 
-        void Start()
+        private void Start()
         {
             // subscribe to the UI Script
             _uiScript.BrushColorChanged += BrushColorChanged;
         }
 
-        void Update()
+        private void Update()
         {
             if (_painterScript.IsPainting && _inkRemaining > 0f)
             {
@@ -64,4 +64,3 @@ namespace MexiColeccion.Minigames.Teotihuacan
         }
     }
 }
-

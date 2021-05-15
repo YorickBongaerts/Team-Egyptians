@@ -1,8 +1,8 @@
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
 using MexiColeccion.UI;
+using MexiColeccion.Utils;
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -23,6 +23,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Transform _brushContainer = null;
         [Tooltip("Reference to an instance of the \"UiScriptArtist\" Script that will invoke brush related events. Required.")]
         [SerializeField] private PainterUI _uiScript = null;
+        [Tooltip("REference to the Brush Preview GameObject that needs to update when the brush is changed.")]
+        [SerializeField] private GameObject _brushPreview = null;
         [Header("Painting")]
         [Tooltip("The gameobject to instantiate in order to paint. Required.")]
         [SerializeField] private GameObject _brushPrefab = null;
@@ -34,7 +36,6 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Vector3 _brushSize = new Vector3(0.1f, 2.5f, 5f);
         [Tooltip("How many instances the object pool of brushes contains.")]
         [SerializeField] private int _maxBrushCount = 1000;
-
         [SerializeField] private SoundManager _soundManager;
 
         internal Texture2D TextureToCheck;
@@ -46,14 +47,38 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private Color _brushColor;
         private Rect _snapShotRect;
         private Vector2 _inputPosition;
-        private float _scaleUnit = 0.1f;
+        private readonly float _scaleUnit = 0.1f;
         private int _brushCounter = 0;
         private bool _isPainting = false;
         private bool _hasPaintChanged = false;
 
-        private Color BrushColor { get => _brushColor; set => _brushColor = value; }
-        private Sprite BrushShape { get => _brushSprite; set => _brushSprite = value; }
-        private float BrushSize { get => _brushSize.y; set => _brushSize.y = value; }
+        private Color BrushColor
+        {
+            get => _brushColor;
+            set
+            {
+                _brushColor = value;
+                _brushPreview.GetComponent<SpriteRenderer>().color = BrushColor;
+            }
+        }
+        private Sprite BrushShape
+        {
+            get => _brushSprite;
+            set
+            {
+                _brushSprite = value;
+                _brushPreview.GetComponent<SpriteRenderer>().sprite = BrushShape;
+            }
+        }
+        private float BrushSize
+        {
+            get => _brushSize.y;
+            set
+            {
+                _brushSize.y = value;
+                _brushPreview.transform.localScale = new Vector3(BrushSize, BrushSize, _brushPreview.transform.localScale.z);
+            }
+        }
         internal bool IsPainting => _isPainting;
         internal bool HasPaintChanged => _hasPaintChanged;
 
@@ -179,7 +204,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private void BrushShapeChanged(object sender, BrushShapeChangedEventArgs e)
         {
-            _brushSprite = e.NewShape;
+            BrushShape = e.NewShape;
         }
 
         private void BrushColorChanged(object sender, BrushColorChangedEventArgs e)
@@ -235,12 +260,12 @@ namespace MexiColeccion.Minigames.Teotihuacan
             Texture2D tex = new Texture2D((int)_snapShotRect.width, (int)_snapShotRect.height, TextureFormat.RGB24, false);
             tex.ReadPixels(_snapShotRect, 0, 0, false);
             tex.Apply();
-            
+
             TextureToCheck = tex;
 
             // if there are not enough brushes in reserve
             // update the canvas texture and disable the brushes
-            if (_brushCounter >= (int)(_maxBrushCount/0.8f))
+            if (_brushCounter >= (int)(_maxBrushCount / 0.8f))
             {
                 _renderer.material.mainTexture = tex;
                 for (int i = _brushCounter - 1; i >= 0; i--)
@@ -251,13 +276,15 @@ namespace MexiColeccion.Minigames.Teotihuacan
             }
         }
 
+#if UNITY_EDITOR
         #region Debug
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(new Vector3(_snapShotRect.center.x, _snapShotRect.center.y, 0.01f), new Vector3(_snapShotRect.size.x, _snapShotRect.size.y, 0.1f));
         }
-        #endregion
+#endregion
+#endif
 
         #region Input callbacks
         protected override void OnPressed(object sender, PointerEventArgs e)

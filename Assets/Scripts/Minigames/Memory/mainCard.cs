@@ -4,7 +4,7 @@ namespace MexiColeccion.Minigames.Memory
 {
     public class MainCard : MonoBehaviour
     {
-        [SerializeField] public SceneController controller;
+        [SerializeField] private SceneController controller;
         [SerializeField] private GameObject Card_Back;
         public bool IsActive = true;
 
@@ -18,7 +18,8 @@ namespace MexiColeccion.Minigames.Memory
         //}
 
         private int _id;
-        public int id
+
+        public int Id
         {
             get { return _id; }
         }

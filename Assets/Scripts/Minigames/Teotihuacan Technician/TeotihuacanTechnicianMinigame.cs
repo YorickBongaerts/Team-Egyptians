@@ -4,6 +4,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
 {
     public class TeotihuacanTechnicianMinigame : MinigameBaseClass
     {
+        // TODO: remove if this is not going to be used
+
         protected sealed override void ScoreSystem() // --> could be a seperate class
         {
             //Implementing the scoresystem of the minigame base class

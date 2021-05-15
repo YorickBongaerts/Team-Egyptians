@@ -4,13 +4,16 @@ using UnityEngine.EventSystems;
 namespace MexiColeccion.Minigames.Memory
 {
     //[CreateAssetMenu(fileName = "MemoryCardType", menuName = "ScriptableObjects/memoryCards")]
-    public class NewCardScript : MonoBehaviour, IPointerDownHandler, IDragHandler
+    public class Card : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
-        public string Cardname;
-        public Sprite ImageShow;
-        public Sprite ImageHide;
-        public NewSceneManager sceneController;
+        [SerializeField] private string _cardName;
+        [SerializeField] private Sprite _imageShow;
+        [SerializeField] private Sprite _imageHide;
+        private SceneManager _sceneController; // TODO: is this used somewhere?
         private int _id;
+
+        public Sprite ImageHide { get => _imageHide; set => _imageHide = value; }
+        public Sprite ImageShow { get => _imageShow; set => _imageShow = value; }
         public int Id
         {
             get { return _id; }
@@ -20,7 +23,7 @@ namespace MexiColeccion.Minigames.Memory
 
         private void Start()
         {
-            sceneController = GameObject.FindObjectOfType<NewSceneManager>();
+            _sceneController = FindObjectOfType<SceneManager>();
         }
         public void OnPointerDown(PointerEventData eventData)
         {

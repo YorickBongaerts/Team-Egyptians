@@ -7,6 +7,8 @@ namespace MexiColeccion.Minigames
 {
     public class MinigameBaseClass : MonoBehaviour
     {
+        // TODO: what is ectually being used of this class?
+
         //Tibo and Vincent
         //Make a base class for both minigames
 

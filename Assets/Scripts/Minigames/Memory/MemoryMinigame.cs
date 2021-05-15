@@ -46,13 +46,13 @@ namespace MexiColeccion.Minigames.Memory
         {
             //Flips both the cards after the player has selected 2 face-down cards
             //Flip them back if they do not match
-            card1.ChangeSprite(card1.id, _cardFrontSprites[card1.id]);
-            card2.ChangeSprite(card2.id, _cardFrontSprites[card2.id]);
+            card1.ChangeSprite(card1.Id, _cardFrontSprites[card1.Id]);
+            card2.ChangeSprite(card2.Id, _cardFrontSprites[card2.Id]);
             _isAPair = CheckIfCorrect(card1, card2);
             if (!_isAPair)
             {
-                card1.ChangeSprite(card1.id, _cardBackSprite);
-                card2.ChangeSprite(card2.id, _cardBackSprite);
+                card1.ChangeSprite(card1.Id, _cardBackSprite);
+                card2.ChangeSprite(card2.Id, _cardBackSprite);
             }
         }
 

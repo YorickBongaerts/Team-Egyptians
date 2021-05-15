@@ -3,13 +3,9 @@ using MexiColeccion.Hub;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MexiColeccion.UI
 {
-    /// <summary>
-    /// This is the new version of the UIScriptMainHub Script (deleted)
-    /// </summary>
     public class MainHubUI : BaseUI
     {
         [SerializeField] private GameObject _viewArtifactsButton;
@@ -18,6 +14,7 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
         [SerializeField] private PlayerBehaviour _playerScript;
+        [SerializeField] private GameObject _swipeIndicatorHolder;
 
         private Animator _camAnimator;
         private Animator _artifactAnimator;
@@ -39,8 +36,10 @@ namespace MexiColeccion.UI
             _soundManager.PlayHubBGM();
             _camAnimator = _cam.GetComponent<Animator>();
             _artifactAnimator = _artifactViewer.GetComponent<Animator>();
+            _swipeIndicatorHolder.SetActive(false);
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnArtifactViewerClosed()
         {
             _soundManager.PlayButtonTap();
@@ -49,14 +48,17 @@ namespace MexiColeccion.UI
             _artifactAnimator.SetBool("IsClosing", true);
             ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(false, _playerScript.CurrentPainting.Minigame));
 
+            _swipeIndicatorHolder.SetActive(false);
+
             StartCoroutine(WaitForEndOfAnimation());
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnArtifactViewerOpened()
         {
             _soundManager.PlayButtonTap();
-            
-            if(_viewArtifactsButton.GetComponent<ArtifactViewButton>().MaxArtifacts > 0)
+
+            if (_viewArtifactsButton.GetComponent<ArtifactViewButton>().MaxArtifacts > 0)
             {
                 ViewerState = 1;
                 _artifactViewer.SetActive(true);
@@ -64,11 +66,17 @@ namespace MexiColeccion.UI
 
                 SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
                 ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
-            
+
+                if (!CollectionDatabase.ViewedArtifacts && _viewArtifactsButton.GetComponent<ArtifactViewButton>().ArtifactsCollected > 0)
+                {
+                    _swipeIndicatorHolder.SetActive(true);
+                    CollectionDatabase.ViewedArtifacts = true;
+                }
                 StartCoroutine(WaitForEndOfAnimation());
             }
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnLeftArrowTapped()
         {
             if (ViewerState != 0)
@@ -80,6 +88,7 @@ namespace MexiColeccion.UI
             OnArrowTapped(direction);
         }
 
+        // should be public in order to be called from inside the inspector
         public void OnRightArrowTapped()
         {
             if (ViewerState != 0)

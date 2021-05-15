@@ -6,30 +6,31 @@ namespace MexiColeccion.Utils
     //General Timer class, should replace the timer methods in the minigamebaseclass
     public class Timer : MonoBehaviour
     {
-        [SerializeField] public float remainingTime = 120f;
-        [SerializeField] private bool IsTimerRunning = false;
+        [SerializeField] private float _remainingTime = 120f;
         [SerializeField] private Text timerText;
 
-        private float minutes, seconds;
-        // Start is called before the first frame update
+        internal float RemainingTime => _remainingTime;
+
+        private bool _isTimerRunning = false;
+        private float _minutes, _seconds;
 
         void Start()
         {
             //start timer when script is called
-            IsTimerRunning = true;
+            _isTimerRunning = true;
         }
 
         private void Update()
         {
-            if (remainingTime > 0 & TimerIsRunning())
+            if (_remainingTime > 0 & _isTimerRunning)
             {
-                remainingTime -= Time.deltaTime;
+                _remainingTime -= Time.deltaTime;
             }
             else
             {
                 UnityEngine.Debug.Log("Time had run out");
-                remainingTime = 0;
-                IsTimerRunning = false;
+                _remainingTime = 0;
+                _isTimerRunning = false;
             }
 
             CalculateMinutes();
@@ -40,24 +41,17 @@ namespace MexiColeccion.Utils
 
         private void CalculateSeconds()
         {
-            seconds = Mathf.FloorToInt(remainingTime % 60);
+            _seconds = Mathf.FloorToInt(_remainingTime % 60);
         }
 
         private void CalculateMinutes()
         {
-            minutes = Mathf.FloorToInt(remainingTime / 60);
+            _minutes = Mathf.FloorToInt(_remainingTime / 60);
         }
 
         private void DisplayTime()
         {
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        }
-
-        private bool TimerIsRunning()
-        {
-            if (IsTimerRunning == true)
-                return true;
-            return false;
+            timerText.text = string.Format("{0:00}:{1:00}", _minutes, _seconds);
         }
     }
 }

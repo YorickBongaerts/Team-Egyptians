@@ -1,6 +1,4 @@
 using MexiColeccion.Collection;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,23 +9,28 @@ namespace MexiColeccion.Minigames
         [SerializeField] private Text _scoreDisplay;
         [SerializeField] private int _painterScoreTreshold;
 
-
-        void Start()
+        private void Start()
         {
-            if(CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Memory))
+            if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
-                _scoreDisplay.text = CollectionDataBase.PlayerScore.ToString();
+                _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString();
                 //other code depending on minigame
+
+                return;
             }
 
-            if (CollectionDataBase.LastGameSceneName == CollectionDataBase.GetSceneName(Minigame.Painter))
+            if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Painter))
             {
-                _scoreDisplay.text = CollectionDataBase.PlayerScore + "%";
+                if (CollectionDatabase.PlayerScore > _painterScoreTreshold)
+                    _scoreDisplay.text = CollectionDatabase.PlayerScore + "% > " + _painterScoreTreshold + "%";
+                else
+                    _scoreDisplay.text = CollectionDatabase.PlayerScore + "% < " + _painterScoreTreshold + "%";
+
                 //other code depending on minigame
+
+                return;
             }
-            
         }
-
     }
 }
 

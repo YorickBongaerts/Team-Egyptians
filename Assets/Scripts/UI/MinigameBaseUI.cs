@@ -1,6 +1,5 @@
 using MexiColeccion.Collection;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using MexiColeccion.Utils;
 
 namespace MexiColeccion.UI
 {
@@ -9,7 +8,7 @@ namespace MexiColeccion.UI
         public void OnRetry()
         {
             _soundManager.PlayButtonTap();
-            SceneManager.LoadScene(CollectionDataBase.LastGameSceneName);
+            LevelLoader.LoadNextLevel(CollectionDatabase.LastGameSceneName, "CrossFade");
         }
     }
 }

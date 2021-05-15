@@ -4,6 +4,7 @@ namespace MexiColeccion.Hub
 {
     public class HubScript : MonoBehaviour
     {
+        // TODO: remove this script if it's not going to be used
 
         private void MinigameSelector() // --> seperate class
         {

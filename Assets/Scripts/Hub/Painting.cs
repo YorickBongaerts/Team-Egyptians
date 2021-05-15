@@ -1,16 +1,13 @@
 ﻿using MexiColeccion.Collection;
 using MexiColeccion.Input;
 using MexiColeccion.Input.Utilities;
+using MexiColeccion.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 namespace MexiColeccion.Hub
 {
-    /// <summary>
-    /// This is the new version of the HubPaintings Script (deleted)
-    /// </summary>
-    internal class Painting : InputController
+    public class Painting : InputController
     {
         [Tooltip("The Minigame that will be loaded when the user select this painting.")]
         [SerializeField] private Minigame _minigame;
@@ -44,7 +41,7 @@ namespace MexiColeccion.Hub
             if (ShouldLoad)
             {
                 ShouldLoad = false;
-                SceneManager.LoadScene(CollectionDataBase.GetSceneName(Minigame));
+                LevelLoader.LoadNextLevel(CollectionDatabase.GetSceneName(Minigame), "CrossFade");
             }
         }
     }

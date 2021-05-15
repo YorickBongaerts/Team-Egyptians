@@ -1,5 +1,4 @@
 using MexiColeccion.Collection;
-using UnityEngine;
 
 namespace MexiColeccion.UI
 {
@@ -13,7 +12,7 @@ namespace MexiColeccion.UI
         public void DeleteData()
         {
             _soundManager.PlayButtonTap();
-            CollectionDataBase.ClearAllArtifactsData();
+            CollectionDatabase.ClearAllArtifactsData();
         }
     }
 }

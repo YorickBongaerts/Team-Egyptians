@@ -1,51 +1,54 @@
 using MexiColeccion.Utils;
-using System;
 using System.Collections;
 using UnityEngine;
 
 namespace MexiColeccion.Minigames.Teotihuacan
 {
-
     public class AccuracyChecker : MonoBehaviour
     {
         [SerializeField] private int _widthDepth;
         [SerializeField] private int _heigthDepth;
-        public GameOverManager GameOverManager;
-        public Timer Timer;
-        public Painter PainterScript;
-        public PaintingChooser ActualPainting;
-
-        public int ScoreVictoryTreshhold;
-
+        [SerializeField] private GameOverManager _gameOverManager;
+        [SerializeField] private Timer _timer;
+        [SerializeField] private PaintingChooser _actualPainting;
+        [SerializeField] private int ScoreVictoryTreshhold;
+        [SerializeField] private GameObject GlintImage;
+        
+        private Painter _painterScript;
         private int _score = 0;
         private int _totalPixels;
-
         private bool _needsToCount = true;
+
         internal int CurrentScore
         {
             get
             {
                 // only recalculate the score if there were changes to the paint, else simply return the latest saved score
-                if (PainterScript.HasPaintChanged)
+                if (_painterScript.HasPaintChanged)
                     CalculateScore();
 
                 return _score;
             }
         }
 
-        void Update()
+        private void Start()
         {
-            if (Timer.remainingTime <= 0 && _needsToCount)
+            _painterScript = GetComponent<Painter>();
+        }
+
+        private void Update()
+        {
+            if (_timer.RemainingTime <= 0 && _needsToCount)
             {
                 _needsToCount = false;
 
                 OnEndGame();
-                
             }
         }
 
-        public void OnEndGame()
+        internal void OnEndGame()
         {
+            StartCoroutine(GlintAnimation());
             StartCoroutine(DetermineWinOrLose());
         }
 
@@ -56,17 +59,21 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private IEnumerator DetermineWinOrLose()
         {
-            yield return new WaitForSeconds(Time.deltaTime*2);
+            yield return new WaitForSeconds(Time.deltaTime * 2);
 
             if (CurrentScore > ScoreVictoryTreshhold)
-                GameOverManager.OnVictory(CurrentScore);
+                _gameOverManager.OnVictory(CurrentScore);
             else
-                GameOverManager.OnDefeat(CurrentScore);
+                _gameOverManager.OnDefeat(CurrentScore);
         }
-
+        private IEnumerator GlintAnimation()
+        {
+            GlintImage.GetComponent<Animation>().Play("GlintMove");
+            yield return null;
+        }
         internal void CalculateScore()
         {
-            PainterScript.CanUpdate = true;
+            _painterScript.CanUpdate = true;
 
             StartCoroutine(WaitForTextureUpdate());
         }
@@ -75,8 +82,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             yield return new WaitForEndOfFrame();
 
-            Texture2D firstTex = PainterScript.TextureToCheck;
-            Texture2D secondTex = ActualPainting.CompareTexture;
+            Texture2D firstTex = _painterScript.TextureToCheck;
+            Texture2D secondTex = _actualPainting.CompareTexture;
 
             firstTex = ResizeTextures(firstTex, _widthDepth, _heigthDepth);
             secondTex = ResizeTextures(secondTex, _widthDepth, _heigthDepth);
@@ -103,7 +110,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 Debug.Log(correctPixels);
                 Debug.Log("score: " + score + "%");
                 Debug.Log(_totalPixels);
-                
+
                 _score = score;
             }
         }
@@ -125,7 +132,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
             Vector4 secondVector = new Vector4(ExamplePix[i].r, ExamplePix[i].g, ExamplePix[i].b, ExamplePix[i].a);
 
-            if (CalculateRGBValues(firstVector, secondVector,0.1f))
+            if (CalculateRGBValues(firstVector, secondVector, 0.1f))
             {
                 return 1;
             }
@@ -135,7 +142,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private bool CalculateRGBValues(Vector4 firstVector, Vector4 secondVector, float margin)
         {
-            if(secondVector.w <0.5f) //0.5f is jst a random low enough value to check if it has alpha(meaning it shouldnt count this pixel)
+            if (secondVector.w < 0.5f) //0.5f is jst a random low enough value to check if it has alpha(meaning it shouldnt count this pixel)
             {
                 _totalPixels--;
                 Debug.Log("alpha");

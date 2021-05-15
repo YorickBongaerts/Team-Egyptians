@@ -12,12 +12,13 @@ namespace MexiColeccion.UI
         internal event EventHandler<BrushSizeChangedEventArgs> BrushSizeChanged;
         internal event EventHandler<BrushShapeChangedEventArgs> BrushShapeChanged;
 
+        [SerializeField] private Transform _referenceQuad;
+        [SerializeField] private Text _scoreDisplay;
+        [SerializeField] private Image _displayIcon;
+        [SerializeField] private Sprite _display, _hide;
+        [SerializeField] private AccuracyChecker _ac;
+
         private bool _isDisplayingPainting = false;
-        public Transform ReferenceQuad;
-        public Text ScoreDisplay;
-        public Image DisplayIcon;
-        public Sprite Display, Hide;
-        public AccuracyChecker Ac;
 
         public void OnBrushColorChanged(Ink ink)
         {
@@ -40,26 +41,26 @@ namespace MexiColeccion.UI
             handler?.Invoke(this, new BrushShapeChangedEventArgs(newShape));
         }
 
-        public void OnFinnishGame()
+        public void OnFinishGame()
         {
-            Ac.OnEndGame();
+            _ac.OnEndGame();
         }
 
         public void OnDisplayAndHidePainting()
         {
-            if(_isDisplayingPainting)
+            if (_isDisplayingPainting)
             {
                 _soundManager.PlayButtonTap();
-                ReferenceQuad.position += new Vector3(0, 0, 10);
+                _referenceQuad.position += new Vector3(0, 0, 10);
                 _isDisplayingPainting = false;
-                ScoreDisplay.text = "";
-                DisplayIcon.sprite = Display;
+                _scoreDisplay.text = "";
+                _displayIcon.sprite = _display;
             }
             else
             {
                 _soundManager.PlayButtonTap();
-                
-                Ac.CalculateScore();
+
+                _ac.CalculateScore();
                 StartCoroutine(WaitForTextureUpdate());
             }
         }
@@ -73,10 +74,10 @@ namespace MexiColeccion.UI
         {
             yield return new WaitForSeconds(Time.deltaTime * 2);
 
-            ReferenceQuad.position += new Vector3(0, 0, -10);
+            _referenceQuad.position += new Vector3(0, 0, -10);
             _isDisplayingPainting = true;
-            ScoreDisplay.text = Ac.CurrentScore + "%";
-            DisplayIcon.sprite = Hide;
+            _scoreDisplay.text = _ac.CurrentScore + "%";
+            _displayIcon.sprite = _hide;
         }
     }
 
