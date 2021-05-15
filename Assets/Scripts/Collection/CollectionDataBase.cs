@@ -25,6 +25,7 @@ namespace MexiColeccion.Collection
             }
         }
 
+
         #region Methods
         //============================================================================
         // Use a similar structure as the existing methods if you want to add new ones
@@ -112,6 +113,7 @@ namespace MexiColeccion.Collection
         internal static int PlayerScore;
         internal static string LastGameSceneName;
         internal static bool ViewedArtifacts;
+        internal static bool HasWon;
         #endregion
     }
 }

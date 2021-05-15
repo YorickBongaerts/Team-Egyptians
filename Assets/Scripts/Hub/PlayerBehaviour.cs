@@ -5,15 +5,19 @@ namespace MexiColeccion.Hub
 {
     public class PlayerBehaviour : MonoBehaviour
     {
+        [SerializeField] private GameObject[] _paintings;
+        [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Collider _leftTrigger;
         [SerializeField] private Collider _rightTrigger;
         [SerializeField] private MainHubUI _hubUI;
-        [SerializeField] private GameObject[] _paintings;
         [SerializeField] private float _movementSpeed = 10f;
+        [SerializeField] private float _idleAnimationChangeInterval = 10f;
 
         private static int _index = 0;
 
         private GameObject _artifactsButton = null;
+        private Quaternion _playerStartRotation;
+        private float _idleTime = 0f;
         private int _direction = 0;
 
         internal Vector3 DestinationPosition
@@ -39,7 +43,19 @@ namespace MexiColeccion.Hub
         private void Start()
         {
             transform.position = DestinationPosition;
+            _playerStartRotation = _playerAnimator.transform.rotation;
             _hubUI.ArrowTapped += ArrowTapped;
+        }
+
+        private void Update()
+        {
+            _idleTime += Time.deltaTime;
+
+            if (_idleTime >= _idleAnimationChangeInterval)
+            {
+                _playerAnimator.SetInteger("IdleRandom", Random.Range(0, 6));
+                _idleTime = 0f;
+            }
         }
 
         private void LateUpdate()
@@ -83,6 +99,9 @@ namespace MexiColeccion.Hub
 
             _direction = e.Direction;
             _index += _direction;
+            _playerAnimator.SetInteger("Direction", _direction);
+            _playerAnimator.applyRootMotion = false;
+            _playerAnimator.transform.LookAt(DestinationPosition, Vector3.up);
 
             if (_artifactsButton == null)
             {
@@ -100,6 +119,10 @@ namespace MexiColeccion.Hub
                 if (gameObject.transform.position == destinationPosition)
                 {
                     _direction = 0;
+                    _playerAnimator.SetInteger("Direction", _direction);
+                    _playerAnimator.transform.rotation = _playerStartRotation;
+                    _playerAnimator.applyRootMotion = true;
+
                     if (_artifactsButton != null)
                     {
                         _artifactsButton.SetActive(true);

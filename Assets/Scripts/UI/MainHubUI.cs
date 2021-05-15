@@ -10,6 +10,7 @@ namespace MexiColeccion.UI
     {
         [SerializeField] private GameObject _viewArtifactsButton;
         [SerializeField] private GameObject _hideArtifactsButton;
+        [SerializeField] private GameObject _optionsButton;
         [SerializeField] private GameObject _leftArrow, _rightArrow;
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
@@ -64,7 +65,7 @@ namespace MexiColeccion.UI
                 _artifactViewer.SetActive(true);
                 _artifactAnimator.SetBool("IsClosing", false);
 
-                SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow);
+                SetActive(false, _viewArtifactsButton, _leftArrow, _rightArrow, _optionsButton);
                 ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(true, _playerScript.CurrentPainting.Minigame));
 
                 if (!CollectionDatabase.ViewedArtifacts && _viewArtifactsButton.GetComponent<ArtifactViewButton>().ArtifactsCollected > 0)
@@ -121,7 +122,7 @@ namespace MexiColeccion.UI
             if (ViewerState == 2)
             {
                 _artifactViewer.SetActive(false);
-                SetActive(true, _viewArtifactsButton, _leftArrow, _rightArrow);
+                SetActive(true, _viewArtifactsButton, _leftArrow, _rightArrow, _optionsButton);
                 ViewerState = 0;
             }
         }

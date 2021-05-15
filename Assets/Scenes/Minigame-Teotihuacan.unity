@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 219957260}
   - component: {fileID: 219957259}
   m_Layer: 5
-  m_Name: FinnishGame
+  m_Name: FinishGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 546973775}
           m_TargetAssemblyTypeName: MexiColeccion.UI.PainterUI, Assembly-CSharp
-          m_MethodName: OnFinnishGame
+          m_MethodName: OnFinishGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1503,6 +1503,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546973774}
     m_Modifications:
+    - target: {fileID: 529529891, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529529891, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529529891, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538185528, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538185528, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1614701131842623656, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1529,7 +1549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1614701131842623657, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675.0194
+      value: 775.0194
       objectReference: {fileID: 0}
     - target: {fileID: 1614701131842623657, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1661,11 +1681,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1673,15 +1693,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 207.36002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 395.01163
+      value: 445.01163
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509352, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -103.68001
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890733497899509353, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8890733497899509355, guid: 721adf37277fb0e4788ae47ab28c954f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2457,7 +2481,7 @@ MonoBehaviour:
   _timer: {fileID: 1825637145}
   _actualPainting: {fileID: 1888041221}
   ScoreVictoryTreshhold: 60
-  GlintImage: {fileID: 0}
+  GlintImage: {fileID: 1281332601}
 --- !u!224 &1142642968 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4098652093014249124, guid: 5456c6e6b8cb5ed4390f3e9d4c742689, type: 3}
@@ -2700,7 +2724,6 @@ GameObject:
   - component: {fileID: 1281332605}
   - component: {fileID: 1281332604}
   - component: {fileID: 1281332603}
-  - component: {fileID: 1281332606}
   m_Layer: 5
   m_Name: Glint
   m_TagString: Untagged
@@ -2784,22 +2807,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281332601}
   m_CullTransparentMesh: 1
---- !u!111 &1281332606
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281332601}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0d2051c2d3ca9c84eb51ed9a11ee1b9e, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0d2051c2d3ca9c84eb51ed9a11ee1b9e, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1306242605
 GameObject:
   m_ObjectHideFlags: 0

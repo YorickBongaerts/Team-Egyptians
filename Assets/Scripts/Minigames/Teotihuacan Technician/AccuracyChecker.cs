@@ -49,7 +49,6 @@ namespace MexiColeccion.Minigames.Teotihuacan
         internal void OnEndGame()
         {
             StartCoroutine(GlintAnimation());
-            StartCoroutine(DetermineWinOrLose());
         }
 
         private void OnDestroy()
@@ -66,11 +65,15 @@ namespace MexiColeccion.Minigames.Teotihuacan
             else
                 _gameOverManager.OnDefeat(CurrentScore);
         }
+
         private IEnumerator GlintAnimation()
         {
-            GlintImage.GetComponent<Animation>().Play("GlintMove");
-            yield return null;
+            GlintImage.GetComponent<Animator>().enabled = true;
+            yield return new WaitForSeconds(GlintImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+            
+            StartCoroutine(DetermineWinOrLose());
         }
+
         internal void CalculateScore()
         {
             _painterScript.CanUpdate = true;

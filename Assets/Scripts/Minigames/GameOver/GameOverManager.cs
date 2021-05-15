@@ -10,6 +10,7 @@ namespace MexiColeccion.Minigames
         {
             CollectionDatabase.LastGameSceneName = LevelLoader.GetCurrentLevelName();
             CollectionDatabase.PlayerScore = score;
+            CollectionDatabase.HasWon = true;
             LevelLoader.LoadNextLevel("VictoryScene", "CrossFade");
         }
 
@@ -17,6 +18,7 @@ namespace MexiColeccion.Minigames
         {
             CollectionDatabase.LastGameSceneName = LevelLoader.GetCurrentLevelName();
             CollectionDatabase.PlayerScore = score;
+            CollectionDatabase.HasWon = false;
             LevelLoader.LoadNextLevel("DefeatScene", "CrossFade");
         }
     }

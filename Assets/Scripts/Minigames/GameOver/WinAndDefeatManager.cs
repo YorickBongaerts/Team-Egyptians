@@ -8,9 +8,12 @@ namespace MexiColeccion.Minigames
     {
         [SerializeField] private Text _scoreDisplay;
         [SerializeField] private int _painterScoreTreshold;
+        [SerializeField] private Animator _quetziAnimator;
 
         private void Start()
         {
+            _quetziAnimator.SetBool("HasWon", CollectionDatabase.HasWon);
+
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
                 _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString();
