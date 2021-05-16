@@ -15,6 +15,7 @@ namespace MexiColeccion.Minigames.Memory
         [SerializeField] private SoundManager _soundManager;
         [SerializeField] private Text _scoreText;
         [SerializeField] private Text _livesText;
+        [SerializeField] private GameObject _confettiParticles;
 
         [SerializeField] private int _gridCols = 4;
         [SerializeField] private int _gridRows = 4;
@@ -201,6 +202,7 @@ namespace MexiColeccion.Minigames.Memory
                 _scoreText.text = _score.ToString();
 
                 _soundManager.PlayCorrect();
+                Instantiate(_confettiParticles, Vector3.zero, Quaternion.identity);
 
                 Debug.Log("Correct pair");
                 yield return new WaitForSeconds(2f);
