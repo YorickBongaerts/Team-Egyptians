@@ -15,7 +15,7 @@ namespace MexiColeccion.Collection
     public static class CollectionDatabase
     {
         private static CollectionDatabaseSO Database
-        => Resources.Load<CollectionDatabaseSO>("Collection/DefaultCollectionDatabase");
+        => Resources.Load<CollectionDatabaseSO>("DefaultCollectionDatabase");
 
         private static List<ArtifactSO> Artifacts
         {

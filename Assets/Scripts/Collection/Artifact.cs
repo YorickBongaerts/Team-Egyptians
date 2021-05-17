@@ -27,12 +27,11 @@ namespace MexiColeccion.Collection
                 _isCollected = value;
                 if (IsCollected)
                 {
-                    //code if artifact is collected
-                    GetComponent<MeshRenderer>().enabled = true;
+                    Instantiate(ArtifactDataObject.Model, transform);
+                    _infoBox.text = ArtifactDataObject.Name;
                 }
                 else
                 {
-                    //code if artifact is not collected
                     Debug.Log("Not collected yet");
                 }
             }
@@ -43,15 +42,14 @@ namespace MexiColeccion.Collection
             get => _artifactData;
             set
             {
+                if (value != null && transform.childCount > 0)
+                {
+                    Destroy(transform.GetChild(0));
+                }
                 _artifactData = value;
                 if (value != null)
                 {
-                    GetComponent<MeshFilter>().mesh = ArtifactDataObject.Mesh;
                     IsCollected = PlayerPrefs.GetInt(ArtifactDataObject.Name) == 1; // 1 means it has been unlocked, 0 if it hasn't (standard is 0)
-                    if (IsCollected)
-                    {
-                        _infoBox.text = ArtifactDataObject.Name;
-                    }
                 }
             }
         }

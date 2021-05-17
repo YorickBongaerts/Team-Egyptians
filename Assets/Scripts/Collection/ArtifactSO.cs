@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace MexiColeccion.Collection
@@ -13,8 +14,8 @@ namespace MexiColeccion.Collection
         [Tooltip("The minigame the user has to play to collect this artifact.")]
         [SerializeField] private Minigame _minigame;
 
-        [Tooltip("The actual 3D model for use in the viewer.")]
-        [SerializeField] private Mesh _mesh; // might need to change to gameobject
+        [Tooltip("The actual 3D model for use in the viewer, with all its materials applied.")]
+        [SerializeField] private GameObject _model;
 
         [Tooltip("The image that is shown when you collect the artifact.")]
         [SerializeField] private Sprite _referenceImage;
@@ -25,7 +26,7 @@ namespace MexiColeccion.Collection
 
         internal string Name => _name;
         internal Minigame Minigame => _minigame;
-        internal Mesh Mesh => _mesh;
+        internal GameObject Model => _model;
         internal string Info => _info;
         internal Sprite Image => _referenceImage;
     }

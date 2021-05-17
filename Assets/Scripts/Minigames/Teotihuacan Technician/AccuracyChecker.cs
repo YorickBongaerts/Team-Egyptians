@@ -60,7 +60,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             yield return new WaitForSeconds(Time.deltaTime * 2);
 
-            if (CurrentScore > ScoreVictoryTreshhold)
+            if (CurrentScore >= ScoreVictoryTreshhold)
                 _gameOverManager.OnVictory(CurrentScore);
             else
                 _gameOverManager.OnDefeat(CurrentScore);

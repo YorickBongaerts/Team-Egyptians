@@ -16,8 +16,7 @@ namespace MexiColeccion.Minigames
 
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
-                _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString();
-                //other code depending on minigame
+                _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString() + "/8";
 
                 return;
             }
@@ -26,10 +25,10 @@ namespace MexiColeccion.Minigames
             {
                 if (CollectionDatabase.PlayerScore > _painterScoreTreshold)
                     _scoreDisplay.text = CollectionDatabase.PlayerScore + "% > " + _painterScoreTreshold + "%";
+                else if (CollectionDatabase.PlayerScore == _painterScoreTreshold)
+                    _scoreDisplay.text = CollectionDatabase.PlayerScore + "% = " + _painterScoreTreshold + "%";
                 else
                     _scoreDisplay.text = CollectionDatabase.PlayerScore + "% < " + _painterScoreTreshold + "%";
-
-                //other code depending on minigame
 
                 return;
             }

@@ -3183,6 +3183,10 @@ PrefabInstance:
       propertyPath: remainingTime
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
+      propertyPath: _remainingTime
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 4639428137314449981, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
