@@ -8,8 +8,6 @@ namespace MexiColeccion.Minigames
 {
     public class VictoryManager : MonoBehaviour
     {
-        private List<string> _artifacts = new List<string>();
-
         [SerializeField] private Image _artifactImage;
         [SerializeField] private Text _artifactName;
         [SerializeField] private GameObject _artifactBackground;
@@ -17,14 +15,9 @@ namespace MexiColeccion.Minigames
 
         private void Start()
         {
-            foreach (string s in CollectionDatabase.GetMinigameArtifactNames(CollectionDatabase.LastGameSceneName))
-            {
-                _artifacts.Add(s);
-            }
-
             _soundManager.PlayCollectArtifact();
 
-            GetArtifact(_artifacts);
+            GetArtifact(CollectionDatabase.GetMinigameArtifactNames(CollectionDatabase.LastGameSceneName));
         }
 
         private void GetArtifact(List<string> artifactList)
@@ -53,6 +46,7 @@ namespace MexiColeccion.Minigames
                     , CollectionDatabase.GetMinigameFromScene(CollectionDatabase.LastGameSceneName));
                 _artifactImage.sprite = wonArtifact.Image;
                 _artifactName.text = wonArtifact.Name;
+                print(wonArtifact.Name);
                 CollectionDatabase.LastWonArtifact = wonArtifact;
             }
         }

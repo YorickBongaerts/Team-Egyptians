@@ -25,7 +25,6 @@ namespace MexiColeccion.Collection
             }
         }
 
-
         #region Methods
         //============================================================================
         // Use a similar structure as the existing methods if you want to add new ones
@@ -88,13 +87,15 @@ namespace MexiColeccion.Collection
 
         internal static int GetArtifactIndex(ArtifactSO artifact)
         {
-            return GetMinigameArtifacts(artifact.Minigame).IndexOf(artifact);
+            // not sure why I can't find the index if I pass through the object itself instead of the name
+            //return GetMinigameArtifacts(artifact.Minigame).IndexOf(artifact);
+            return GetMinigameArtifactNames(artifact.Minigame).IndexOf(artifact.Name);
         }
 
         internal static ArtifactSO GetArtifactByName(string name, Minigame minigame)
         {
             int index = GetMinigameArtifactNames(minigame).IndexOf(name);
-            return Artifacts[index];
+            return GetMinigameArtifacts(minigame)[index];
         }
 
         internal static void ClearAllArtifactsData()

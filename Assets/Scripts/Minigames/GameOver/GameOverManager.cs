@@ -6,7 +6,8 @@ namespace MexiColeccion.Minigames
 {
     public class GameOverManager : MonoBehaviour
     {
-        internal void OnVictory(int score)
+        // TODO: reset to internal when testing is done
+        public void OnVictory(int score)
         {
             CollectionDatabase.LastGameSceneName = LevelLoader.GetCurrentLevelName();
             CollectionDatabase.PlayerScore = score;
