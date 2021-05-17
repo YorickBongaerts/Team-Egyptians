@@ -23,7 +23,7 @@ MonoBehaviour:
     _model: {fileID: 0}
     _referenceImage: {fileID: 21300000, guid: 0885eecf8aed01b4cb35fcc97a84c325, type: 3}
     _info: https://www.3museos.com/?pieza=vasija-fitomorfa-cacao
-  - _name: Olla Tripodel
+  - _name: Olla Tripode
     _minigame: 1
     _model: {fileID: 0}
     _referenceImage: {fileID: 21300000, guid: 7cbc3daa014b6d24ba51805c0fb65c18, type: 3}
