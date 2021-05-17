@@ -4205,7 +4205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457d2654291d0134b81561b8b6d53c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayTextures:
+  _displayMaterials:
   - {fileID: 2100000, guid: aecc0657133d62748b0b38a82462b88b, type: 2}
   - {fileID: 2100000, guid: e52a07d2ea69a8547be24b940fa5cb90, type: 2}
   - {fileID: 2100000, guid: e401d85f04c44354ba0a420e70a525ba, type: 2}
