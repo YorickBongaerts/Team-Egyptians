@@ -12,6 +12,7 @@ namespace MexiColeccion.Minigames
 
         [SerializeField] private Image _artifactImage;
         [SerializeField] private Text _artifactName;
+        [SerializeField] private GameObject _artifactBackground;
         [SerializeField] private SoundManager _soundManager;
 
         private void Start()
@@ -39,7 +40,7 @@ namespace MexiColeccion.Minigames
 
             if (artifactList.Count == 0)
             {
-                _artifactImage.gameObject.SetActive(false);
+                _artifactBackground.SetActive(false);
             }
             //collect new artifact
             else
