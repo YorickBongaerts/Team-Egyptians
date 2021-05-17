@@ -9,7 +9,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         //make sure the display painting and their respective compare painting are in the same index in both lists.
         //each painting that gets displayed has a compare texture attached that is used to compare at the end of the game.
         [Tooltip("painting that will be displayed on the screen as the example")]
-        [SerializeField] private List<Material> _displayMaterial = new List<Material>();
+        [SerializeField] private List<Material> _displayMaterials = new List<Material>();
         [Tooltip("comparable painting that will be compared to at the end of the game")]
         [SerializeField] private List<Texture2D> _compareTextures = new List<Texture2D>();
         [Tooltip("Painting outline that will be displayed during the game")]
@@ -26,17 +26,17 @@ namespace MexiColeccion.Minigames.Teotihuacan
         
         private void Start()
         {
-            if (_displayMaterial.Count != _compareTextures.Count
-                || _outlineMaterials.Count != _displayMaterial.Count
+            if (_displayMaterials.Count != _compareTextures.Count
+                || _outlineMaterials.Count != _displayMaterials.Count
                 || _outlineMaterials.Count != _compareTextures.Count)
             {
                 Debug.LogError("Missing textures in lists.");
             }
             else
             {
-                _r = Random.Range(0, _displayMaterial.Count);
+                _r = Random.Range(0, _displayMaterials.Count);
 
-                this.GetComponent<Renderer>().material = _displayMaterial[_r];
+                this.GetComponent<Renderer>().material = _displayMaterials[_r];
                 CompareTexture = _compareTextures[_r];
                 _outlineQuad.material = _outlineMaterials[_r];
             }
@@ -49,7 +49,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
             _displayTime -= Time.deltaTime;
             if (_displayTime <= 0 && !_hasStoppedDisplaying)
             {
-                this.GetComponent<Renderer>().material = _displayMaterial[_r];
+                this.GetComponent<Renderer>().material = _displayMaterials[_r];
                 this.transform.position += new Vector3(0, 0, 10); //gets moves back and forward whenever player presses the button to show the painting they are copying
                 _hasStoppedDisplaying = true;
                 _displayIcon.sprite = _display;

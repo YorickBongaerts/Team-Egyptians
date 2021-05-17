@@ -4148,7 +4148,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: aecc0657133d62748b0b38a82462b88b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4156,7 +4156,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
+  m_ReceiveGI: 2
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4205,15 +4205,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457d2654291d0134b81561b8b6d53c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayMaterial:
-  - {fileID: 2100000, guid: e47fd10c6df9d8946a58ddbec519795d, type: 2}
-  - {fileID: 2100000, guid: e47fd10c6df9d8946a58ddbec519795d, type: 2}
-  - {fileID: 2100000, guid: e47fd10c6df9d8946a58ddbec519795d, type: 2}
-  - {fileID: 2100000, guid: e47fd10c6df9d8946a58ddbec519795d, type: 2}
-  - {fileID: 2100000, guid: e47fd10c6df9d8946a58ddbec519795d, type: 2}
+  _displayTextures:
+  - {fileID: 2100000, guid: aecc0657133d62748b0b38a82462b88b, type: 2}
+  - {fileID: 2100000, guid: e52a07d2ea69a8547be24b940fa5cb90, type: 2}
+  - {fileID: 2100000, guid: e401d85f04c44354ba0a420e70a525ba, type: 2}
+  - {fileID: 2100000, guid: cce526fb8ca6da149a42ff146fd34992, type: 2}
+  - {fileID: 2100000, guid: a230ef18c52e72743870db77d4c64bf9, type: 2}
   _compareTextures:
   - {fileID: 2800000, guid: 5d4c75a279e17b14da31dabfbd70bc14, type: 3}
-  - {fileID: 2800000, guid: 4c8853e185752674fa160248c80bdc06, type: 3}
+  - {fileID: 2800000, guid: 808eb15782b85ae4795e0c8abd7e63b4, type: 3}
   - {fileID: 2800000, guid: 0d37452460456f6428b45d7daecd2e52, type: 3}
   - {fileID: 2800000, guid: 1bf0e9c925df30e448e52688df1e7a7a, type: 3}
   - {fileID: 2800000, guid: 5254da67213f029458e8532335711e91, type: 3}
@@ -4445,7 +4445,7 @@ GameObject:
   - component: {fileID: 1966047294}
   - component: {fileID: 1966047293}
   m_Layer: 6
-  m_Name: BackGround
+  m_Name: BackGroundRefQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
