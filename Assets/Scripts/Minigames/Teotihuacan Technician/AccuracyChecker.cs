@@ -34,6 +34,8 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private void Start()
         {
             _painterScript = GetComponent<Painter>();
+            GlintImage.GetComponent<RectTransform>().localPosition = new Vector3(-Screen.width,0,0);
+            GlintImage.transform.localScale = new Vector3(1,Screen.height/480,0);
         }
 
         private void Update()

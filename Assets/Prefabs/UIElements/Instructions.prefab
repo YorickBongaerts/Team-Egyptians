@@ -67,23 +67,21 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "(these are temporary text instructions, they will be replaced with an
-    instruction video in a later version)\n\nSelect a colour from the top left of
-    the screen,\nSelect the type of brush you would like to use to the right of the
-    colours,\nSelect the size of the stroke to the right of that,\nNow draw with
-    your finger to match the given painting \n(the closer to the example, the better
-    your score will be)"
+    instruction video in a later version)\n\nSelect the cards on screen and match
+    the pair of cards, \nselecting the wrong pair will flip them over again, \nselecting
+    the right pair will remove the selected cards."
 --- !u!1 &4618815776522568203
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +113,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4618815776221817443}
+  - {fileID: 6842387253182929272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,7 +176,7 @@ MonoBehaviour:
     m_Left: 10
     m_Right: 10
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: 3
   m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -187,3 +186,65 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1001 &1330881430730954318
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4618815776522568202}
+    m_Modifications:
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 354.9097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 197.22737
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.009819
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062683188228241822, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+      propertyPath: m_Name
+      value: PaintVid
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+--- !u!4 &6842387253182929272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5516126040247815990, guid: 8175bbbd3a069844fb2a4b197865a694, type: 3}
+  m_PrefabInstance: {fileID: 1330881430730954318}
+  m_PrefabAsset: {fileID: 0}
