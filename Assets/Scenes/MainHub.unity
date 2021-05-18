@@ -3434,6 +3434,8 @@ MonoBehaviour:
   - {fileID: 689125081}
   - {fileID: 774601815}
   - {fileID: 1886970344}
+  - {fileID: 984953958}
+  - {fileID: 2060382617}
   _soundManager: {fileID: 2016288322}
   _viewArtifactsButton: {fileID: 1886970344}
   _hideArtifactsButton: {fileID: 1589211068}
