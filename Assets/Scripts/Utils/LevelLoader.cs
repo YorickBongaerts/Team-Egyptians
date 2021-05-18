@@ -83,7 +83,7 @@ namespace MexiColeccion.Utils
 
             while (!operation.isDone)
             {
-                var progress = Mathf.Clamp01(operation.progress / .0f);
+                var progress = Mathf.Clamp01(operation.progress / .01f);
                 UnityEngine.Debug.Log(progress);
 
                 // wait for next frame
