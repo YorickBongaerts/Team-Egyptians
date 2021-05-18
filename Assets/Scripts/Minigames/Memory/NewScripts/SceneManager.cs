@@ -13,7 +13,6 @@ namespace MexiColeccion.Minigames.Memory
         [SerializeField] private GameObject _leafPilePrefab;
         [SerializeField] private GameOverManager _gameOverManager;
         [SerializeField] private SoundManager _soundManager;
-        [SerializeField] private Text _scoreText;
         [SerializeField] private Text _livesText;
         [SerializeField] private GameObject _confettiParticles;
 
@@ -41,7 +40,7 @@ namespace MexiColeccion.Minigames.Memory
         private void Start()
         {
             _soundManager.PlayMinigameBGM();
-            _scoreText.text = _score.ToString();
+            //_scoreText.text = _score.ToString();
             _livesText.text = _lives.ToString();
 
             //The position of the first card. All other cards are offset from here.
@@ -199,7 +198,7 @@ namespace MexiColeccion.Minigames.Memory
             if (_firstRevealedCard.Id == _secondRevealedCard.Id)
             {
                 _score++;
-                _scoreText.text = _score.ToString();
+                //_scoreText.text = _score.ToString();
 
                 _soundManager.PlayCorrect();
                 Instantiate(_confettiParticles, Vector3.zero, Quaternion.identity);
