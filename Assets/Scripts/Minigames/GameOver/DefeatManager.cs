@@ -1,17 +1,21 @@
 using MexiColeccion.Collection;
+using MexiColeccion.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace MexiColeccion.Minigames
 {
-    public class WinAndDefeatManager : MonoBehaviour
+    public class DefeatManager : MonoBehaviour
     {
         [SerializeField] private Text _scoreDisplay;
         [SerializeField] private int _painterScoreTreshold;
         [SerializeField] private Animator _quetziAnimator;
+        [SerializeField] private SoundManager _soundManager;
 
         private void Start()
         {
+            _soundManager.PlayLose();
+            
             _quetziAnimator.SetBool("HasWon", CollectionDatabase.HasWon);
 
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))

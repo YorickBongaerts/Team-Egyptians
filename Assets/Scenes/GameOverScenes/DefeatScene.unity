@@ -1958,3 +1958,4 @@ MonoBehaviour:
   _scoreDisplay: {fileID: 1071444301}
   _painterScoreTreshold: 60
   _quetziAnimator: {fileID: 245460411}
+  _soundManager: {fileID: 1463595957}

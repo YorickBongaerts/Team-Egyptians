@@ -245,7 +245,7 @@ namespace MexiColeccion.Minigames.Memory
             if (_lives <= 0)
             {
                 Debug.Log("Loss");
-                _soundManager.PlayLose();
+                //_soundManager.PlayLose();
                 _gameOverManager.OnDefeat(_score);
             }
         }
