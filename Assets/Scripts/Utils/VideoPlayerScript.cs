@@ -10,7 +10,7 @@ public class VideoPlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.GetComponent<VideoClip>().name == "MemoryVideo")
+        if (this.gameObject.GetComponent<VideoPlayer>().clip.name == "MemoryVideo")
         {
             gameObject.transform.localPosition = new Vector3(-gameObject.GetComponent<RectTransform>().rect.width / 2, -gameObject.GetComponent<RectTransform>().rect.height / 2, 0);
         }
