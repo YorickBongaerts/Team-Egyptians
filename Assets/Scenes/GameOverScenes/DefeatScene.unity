@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8618679327491832470, guid: 8e87f8e8e0a72224d8c848d8e168262a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8618679327491832470, guid: 8e87f8e8e0a72224d8c848d8e168262a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -582,7 +582,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.5}
   m_AnchorMax: {x: 0.05, y: 0.5}
@@ -654,7 +654,7 @@ RectTransform:
   m_LocalScale: {x: 0.8648627, y: 0.8648627, z: 0.8648627}
   m_Children: []
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 11
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1049,7 +1049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4469439010112394666, guid: 8e5086283b871f346ac2c1b673693ccc, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4469439010112394666, guid: 8e5086283b871f346ac2c1b673693ccc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1249,6 +1249,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1289235997}
+  - {fileID: 1482091652}
+  - {fileID: 1707579809}
+  - {fileID: 1800188352}
+  - {fileID: 982786621}
   - {fileID: 1769748312}
   - {fileID: 1510116333}
   - {fileID: 1464768729}
@@ -1256,10 +1260,6 @@ RectTransform:
   - {fileID: 1291040684}
   - {fileID: 1827285439}
   - {fileID: 926041937}
-  - {fileID: 1482091652}
-  - {fileID: 1707579809}
-  - {fileID: 1800188352}
-  - {fileID: 982786621}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1522,7 +1522,7 @@ RectTransform:
   m_Children:
   - {fileID: 541386581}
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1626,7 +1626,7 @@ RectTransform:
   m_LocalScale: {x: 0.8648627, y: 0.8648627, z: 0.8648627}
   m_Children: []
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1700,7 +1700,7 @@ RectTransform:
   m_Children:
   - {fileID: 768618873}
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1897,7 +1897,7 @@ RectTransform:
   m_LocalScale: {x: 0.8648627, y: 0.8648627, z: 0.8648627}
   m_Children: []
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 9
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1970,7 +1970,7 @@ RectTransform:
   m_Children:
   - {fileID: 341250163}
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2045,7 +2045,7 @@ RectTransform:
   m_LocalScale: {x: 0.8648627, y: 0.8648627, z: 0.8648627}
   m_Children: []
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2120,7 +2120,7 @@ RectTransform:
   m_Children:
   - {fileID: 1071444303}
   m_Father: {fileID: 1362732320}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
