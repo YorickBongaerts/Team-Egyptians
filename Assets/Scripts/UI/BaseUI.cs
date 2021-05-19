@@ -47,7 +47,10 @@ namespace MexiColeccion.UI
                     ui.SetActive(false);
                 }
                 _isInOptions = true;
-                timer.IsTimerRunning = false;
+                if (timer)
+                {
+                    timer.IsTimerRunning = false;
+                }
             }
             _soundManager.PlayButtonTap();
         }
@@ -68,7 +71,10 @@ namespace MexiColeccion.UI
                     ui.SetActive(true);
                 }
                 _isInOptions = false;
-                timer.IsTimerRunning = true;
+                if (timer)
+                {
+                    timer.IsTimerRunning = true;
+                }
             }
             _soundManager.PlayButtonTap();
         }

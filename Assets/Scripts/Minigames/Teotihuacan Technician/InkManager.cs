@@ -31,7 +31,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
                 if (_inkRemaining <= 0f)
                 {
                     _inkRemaining = 0f;
-                    _painterScript.CanPaint = false;
+                    //_painterScript.CanPaint = false;
                     print($"Out of {_currentInk.InkColor} ink.");
                 }
                 //Debug.Log(_inkPercentage);

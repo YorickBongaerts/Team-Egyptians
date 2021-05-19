@@ -10,7 +10,7 @@ namespace MexiColeccion.Collection
         [SerializeField] private Text _infoBox = null;
 
         private ArtifactSO _artifactData; // reference that will be set by Artifact Viewer
-        private readonly float _rotationSpeed = 25f;
+        private readonly float _rotationSpeed = 0.5f;
 
         private BoxCollider _collider = null;
 
@@ -99,20 +99,20 @@ namespace MexiColeccion.Collection
         {
             if (input.Swipe.Direction.y > 0.8f || input.Swipe.Direction.y < -0.8f)
             {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
                 float pitch = input.Swipe.Delta.y * _rotationSpeed * Time.deltaTime;
-#else
-            float pitch = input.Swipe.Delta.y/Screen.height * _rotationSpeed * Time.deltaTime;
-#endif
+//#else
+ //           float pitch = input.Swipe.Delta.y/Screen.height * _rotationSpeed * Time.deltaTime;
+//#endif
                 transform.Rotate(Vector3.right, pitch, Space.World);
             }
             if (input.Swipe.Direction.x > 0.8f || input.Swipe.Direction.x < -0.8f)
             {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
                 float yaw = input.Swipe.Delta.x * _rotationSpeed * Time.deltaTime;
-#else
-            float yaw = input.Swipe.Delta.x/Screen.width * _rotationSpeed * Time.deltaTime;
-#endif
+//#else
+//            float yaw = input.Swipe.Delta.x/Screen.width * _rotationSpeed * Time.deltaTime;
+//#endif
                 transform.Rotate(Vector3.up, -yaw, Space.World);
             }
         }

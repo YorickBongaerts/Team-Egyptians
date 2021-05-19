@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,61 @@ namespace MexiColeccion.Utils
             ,_correct; //3
 
         [SerializeField] private int CurrentBGM = 0;
-        [SerializeField] private Slider SoundSlider;
+        [SerializeField] private Slider _backgroundSlider, _sfxSlider;
+
+        private static readonly string FirstTime = "FirstTime"; // first playthrough
+        private static readonly string BackgroundVolume = "BackgroundVolume"; // background volume
+        private static readonly string SFXVolume = "SFXVolume"; // sound effects volume
+        private float _backgroundVolume, _sfxVolume;
+
+        private void Awake()
+        {
+            if (!_backgroundSlider && !_sfxSlider)
+            {
+                if (PlayerPrefs.HasKey(BackgroundVolume))
+                {
+                    _titleScreenBGM.volume = PlayerPrefs.GetFloat(BackgroundVolume);
+                    return;
+                }
+                _titleScreenBGM.volume = 0.25f;
+                return;
+            }
+
+            if (PlayerPrefs.GetInt(FirstTime) == 0)
+            {
+                _backgroundVolume = 0.25f;
+                _sfxVolume = 0.5f;
+                SetSliderValues();
+                SaveSettings();
+                PlayerPrefs.SetInt(FirstTime, 1);
+            }
+            else
+            {
+                _backgroundVolume = PlayerPrefs.GetFloat(BackgroundVolume);
+                _sfxVolume = PlayerPrefs.GetFloat(SFXVolume);
+                SetSliderValues();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            SaveSettings();
+        }
+
+        public void OnVolumeChanged()
+        {
+            ChangeVolumeIfSourceExists(_titleScreenBGM, "bgm");
+            ChangeVolumeIfSourceExists(_hubBGM, "bgm");
+            ChangeVolumeIfSourceExists(_minigameBGM, "bgm");
+
+            ChangeVolumeIfSourceExists(_correct, "sfx");
+            ChangeVolumeIfSourceExists(_wrong, "sfx");
+            ChangeVolumeIfSourceExists(_collectArtifact, "sfx");
+            ChangeVolumeIfSourceExists(_lose, "sfx");
+            ChangeVolumeIfSourceExists(_win, "sfx");
+            ChangeVolumeIfSourceExists(_buttonTap, "sfx");
+        }
+
         internal void PlayButtonTap()
         {
             _buttonTap.Play();
@@ -64,17 +119,42 @@ namespace MexiColeccion.Utils
             _correct.Play();
         }
 
-        public void OnVolumeChanged()
+        private void SetSliderValues()
         {
-            _correct.volume = SoundSlider.value;
-            _wrong.volume = SoundSlider.value;
-            _titleScreenBGM.volume = SoundSlider.value;
-            _hubBGM.volume = SoundSlider.value;
-            _minigameBGM.volume = SoundSlider.value;
-            _collectArtifact.volume = SoundSlider.value;
-            _lose.volume = SoundSlider.value;
-            _win.volume = SoundSlider.value;
-            _buttonTap.volume = SoundSlider.value;
+            _backgroundSlider.value = _backgroundVolume;
+            _sfxSlider.value = _sfxVolume;
+        }
+
+        private void SaveSettings()
+        {
+            if (_backgroundSlider && _sfxSlider)
+            {
+                PlayerPrefs.SetFloat(BackgroundVolume, _backgroundSlider.value);
+                PlayerPrefs.SetFloat(SFXVolume, _sfxSlider.value);
+            }
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            if (!focus && PlayerPrefs.HasKey(BackgroundVolume) && PlayerPrefs.HasKey(SFXVolume))
+            {
+                SaveSettings();
+            }
+        }
+
+        private void ChangeVolumeIfSourceExists(AudioSource source, string audioType)
+        {
+            if (!source)
+                return;
+
+            if (audioType.Equals("sfx"))
+            {
+                source.volume = _sfxSlider.value;
+            }
+            else
+            {
+                source.volume = _backgroundSlider.value;
+            }
         }
     }
 }

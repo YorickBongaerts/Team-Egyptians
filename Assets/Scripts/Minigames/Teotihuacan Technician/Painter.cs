@@ -174,7 +174,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
 
         private void Update()
         {
-            if (_isPainting && CanPaint && _brushCounter < _maxBrushCount)
+            if (_isPainting && /*CanPaint &&*/ _brushCounter < _maxBrushCount)
             {
                 Vector3 worldPosition = _displayCamera.ScreenToWorldPoint(new Vector3(_inputPosition.x, _inputPosition.y, -_displayCamera.transform.position.z));
                 _brushCounter++;
