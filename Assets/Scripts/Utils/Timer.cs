@@ -11,26 +11,26 @@ namespace MexiColeccion.Utils
 
         internal float RemainingTime => _remainingTime;
 
-        private bool _isTimerRunning = false;
+        public bool IsTimerRunning = false;
         private float _minutes, _seconds;
 
         void Start()
         {
             //start timer when script is called
-            _isTimerRunning = true;
+            //IsTimerRunning = true;
         }
 
         private void Update()
         {
-            if (_remainingTime > 0 & _isTimerRunning)
+            if (_remainingTime > 0 & IsTimerRunning)
             {
                 _remainingTime -= Time.deltaTime;
             }
-            else
+            else if(_remainingTime < 0)
             {
                 UnityEngine.Debug.Log("Time had run out");
                 _remainingTime = 0;
-                _isTimerRunning = false;
+                IsTimerRunning = false;
             }
 
             CalculateMinutes();

@@ -503,7 +503,7 @@ RectTransform:
   m_Children:
   - {fileID: 1346383523}
   m_Father: {fileID: 546973774}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -643,7 +643,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 546973774}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.173, y: 0.19}
   m_AnchorMax: {x: 0.823, y: 0.81}
@@ -1354,9 +1354,9 @@ RectTransform:
   - {fileID: 1387195541}
   - {fileID: 448824451}
   - {fileID: 2052446768}
-  - {fileID: 998709549}
   - {fileID: 282087475}
   - {fileID: 219957258}
+  - {fileID: 998709549}
   - {fileID: 1866010046}
   - {fileID: 598921436}
   - {fileID: 1057986265}
@@ -2478,7 +2478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1057986265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3466,6 +3466,10 @@ PrefabInstance:
     - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: remainingTime
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
+      propertyPath: IsTimerRunning
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: _remainingTime
@@ -5130,7 +5134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618815776522568202, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4618815776522568202, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5208,6 +5212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Instructions
       objectReference: {fileID: 0}
+    - target: {fileID: 5122213818064521041, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1825637145}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
 --- !u!1001 &6622902321233881385
