@@ -12,12 +12,35 @@ namespace MexiColeccion.Minigames
         [SerializeField] private Text _artifactName;
         [SerializeField] private GameObject _artifactBackground;
         [SerializeField] private SoundManager _soundManager;
+        [SerializeField] private GameObject _confetti;
+        [SerializeField] private float _timeBetweenConfetti;
+
+        private float confettiTimer;
+
 
         private void Start()
         {
             _soundManager.PlayCollectArtifact();
 
+
+
             GetArtifact(CollectionDatabase.GetMinigameArtifactNames(CollectionDatabase.LastGameSceneName));
+        }
+
+        private void Update()
+        {
+            confettiTimer -= Time.deltaTime;
+
+            if (confettiTimer <= 0)
+            {
+                confettiTimer = _timeBetweenConfetti;
+                SpawnConfetti();
+            }
+        }
+
+        private void SpawnConfetti()
+        {
+            Instantiate(_confetti, Vector3.zero, Quaternion.identity);
         }
 
         private void GetArtifact(List<string> artifactList)
