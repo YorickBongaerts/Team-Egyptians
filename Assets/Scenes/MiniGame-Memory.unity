@@ -2184,7 +2184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: IsTimerRunning
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3344654084606028312, guid: dc6d1bebb23cc0244b6d7cbee0c63388, type: 3}
       propertyPath: _remainingTime
