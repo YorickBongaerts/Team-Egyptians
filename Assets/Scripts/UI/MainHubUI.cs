@@ -15,7 +15,6 @@ namespace MexiColeccion.UI
         [SerializeField] private GameObject _artifactViewer;
         [SerializeField] private Camera _cam;
         [SerializeField] private PlayerBehaviour _playerScript;
-        //[SerializeField] private GameObject _swipeIndicatorHolder;
 
         private Animator _camAnimator;
         private Animator _artifactAnimator;
@@ -37,7 +36,6 @@ namespace MexiColeccion.UI
             _soundManager.PlayHubBGM();
             _camAnimator = _cam.GetComponent<Animator>();
             _artifactAnimator = _artifactViewer.GetComponent<Animator>();
-            //_swipeIndicatorHolder.SetActive(false);
         }
 
         // should be public in order to be called from inside the inspector
@@ -48,8 +46,6 @@ namespace MexiColeccion.UI
             _hideArtifactsButton.SetActive(false);
             _artifactAnimator.SetBool("IsClosing", true);
             ViewerTapped?.Invoke(this, new OnViewerTappedEventArgs(false, _playerScript.CurrentPainting.Minigame));
-
-            //_swipeIndicatorHolder.SetActive(false);
 
             StartCoroutine(WaitForEndOfAnimation());
         }
@@ -70,7 +66,6 @@ namespace MexiColeccion.UI
 
                 if (!CollectionDatabase.ViewedArtifacts && _viewArtifactsButton.GetComponent<ArtifactViewButton>().ArtifactsCollected > 0)
                 {
-                    //_swipeIndicatorHolder.SetActive(true);
                     CollectionDatabase.ViewedArtifacts = true;
                 }
                 StartCoroutine(WaitForEndOfAnimation());

@@ -36,7 +36,7 @@ namespace MexiColeccion.UI
         {
             if (_isInOptions == false)
             {
-
+                Screen.sleepTimeout = SleepTimeout.SystemSetting;
                 foreach (GameObject ui in _optionsUI)
                 {
                     ui.SetActive(true);
@@ -60,7 +60,7 @@ namespace MexiColeccion.UI
         {
             if (_isInOptions == true)
             {
-
+                Screen.sleepTimeout = SleepTimeout.NeverSleep;
                 foreach (GameObject ui in _optionsUI)
                 {
                     ui.SetActive(false);
