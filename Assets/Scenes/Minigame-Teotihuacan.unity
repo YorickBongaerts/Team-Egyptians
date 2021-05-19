@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1393,6 +1393,7 @@ MonoBehaviour:
   - {fileID: 282087474}
   - {fileID: 219957257}
   _soundManager: {fileID: 231938370}
+  timer: {fileID: 1825637145}
   _referenceQuad: {fileID: 1888041220}
   _scoreDisplay: {fileID: 681743497}
   _displayIcon: {fileID: 820018839}

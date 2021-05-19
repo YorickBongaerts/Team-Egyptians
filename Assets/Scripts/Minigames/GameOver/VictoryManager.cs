@@ -10,10 +10,12 @@ namespace MexiColeccion.Minigames
     {
         [SerializeField] private Image _artifactImage;
         [SerializeField] private Text _artifactName;
+        [SerializeField] private GameObject _nameObject;
         [SerializeField] private GameObject _artifactBackground;
         [SerializeField] private SoundManager _soundManager;
         [SerializeField] private GameObject _confetti;
         [SerializeField] private float _timeBetweenConfetti;
+        [SerializeField] private UIAnimator _uiAnimator;
 
         private float confettiTimer;
 
@@ -56,7 +58,9 @@ namespace MexiColeccion.Minigames
 
             if (artifactList.Count == 0)
             {
+                Destroy(_uiAnimator);
                 _artifactBackground.SetActive(false);
+                _nameObject.SetActive(false);
             }
             //collect new artifact
             else
