@@ -115,6 +115,8 @@ namespace MexiColeccion.Collection
         internal static string LastGameSceneName;
         internal static bool ViewedArtifacts;
         internal static bool HasWon;
+        internal static string MemoryVideo = "MemoryVideo";
+        internal static string PainterVideo = "PainterVideo";
         #endregion
     }
 }

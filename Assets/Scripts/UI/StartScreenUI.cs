@@ -1,4 +1,5 @@
 using MexiColeccion.Collection;
+using UnityEngine;
 
 namespace MexiColeccion.UI
 {
@@ -13,6 +14,8 @@ namespace MexiColeccion.UI
         {
             _soundManager.PlayButtonTap();
             CollectionDatabase.ClearAllArtifactsData();
+            PlayerPrefs.SetInt(CollectionDatabase.PainterVideo, 0);
+            PlayerPrefs.SetInt(CollectionDatabase.MemoryVideo, 0);
         }
     }
 }
