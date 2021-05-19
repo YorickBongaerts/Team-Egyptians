@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace MexiColeccion.Minigames.Teotihuacan
 {
@@ -18,6 +19,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         [SerializeField] private Sprite _display, _hide;
         [SerializeField] private Renderer _outlineQuad;
         [SerializeField] private float _displayTime;
+        [SerializeField] private VideoPlayerScript _videoPlayer;
 
         private int _r;
         private bool _hasStoppedDisplaying;
@@ -26,6 +28,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         
         private void Start()
         {
+            _displayTime += (float)_videoPlayer.gameObject.GetComponent<VideoPlayer>().clip.length;
             if (_displayMaterials.Count != _compareTextures.Count
                 || _outlineMaterials.Count != _displayMaterials.Count
                 || _outlineMaterials.Count != _compareTextures.Count)
