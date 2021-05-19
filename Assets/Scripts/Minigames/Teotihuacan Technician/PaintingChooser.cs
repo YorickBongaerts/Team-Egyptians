@@ -1,3 +1,4 @@
+using MexiColeccion.Collection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,10 +26,18 @@ namespace MexiColeccion.Minigames.Teotihuacan
         private bool _hasStoppedDisplaying;
         
         internal Texture2D CompareTexture;
-        
+
+        private void Awake()
+        {
+            if (PlayerPrefs.GetInt(CollectionDatabase.PainterVideo) != 1)
+            {
+                _displayTime += (float)_videoPlayer.gameObject.GetComponent<VideoPlayer>().clip.length;
+            }
+        }
+
         private void Start()
         {
-            _displayTime += (float)_videoPlayer.gameObject.GetComponent<VideoPlayer>().clip.length;
+         
             if (_displayMaterials.Count != _compareTextures.Count
                 || _outlineMaterials.Count != _displayMaterials.Count
                 || _outlineMaterials.Count != _compareTextures.Count)

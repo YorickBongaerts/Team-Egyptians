@@ -8,7 +8,7 @@ using UnityEngine.Video;
 public class VideoPlayerScript : MonoBehaviour
 {
     [SerializeField] private Timer timer;
-    // Start is called before the first frame update
+
     void Start()
     {
         if (this.gameObject.GetComponent<VideoPlayer>().clip.name == "MemoryVideo")
