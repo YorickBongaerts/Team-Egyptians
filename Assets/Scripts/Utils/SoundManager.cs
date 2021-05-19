@@ -16,7 +16,8 @@ namespace MexiColeccion.Utils
             , _hubBGM //2
             , _minigameBGM
             ,_wrong
-            ,_correct; //3
+            ,_correct
+            ,_leaf; //3
 
         [SerializeField] private int CurrentBGM = 0;
         [SerializeField] private Slider _backgroundSlider, _sfxSlider;
@@ -117,6 +118,11 @@ namespace MexiColeccion.Utils
         internal void PlayCorrect()
         {
             _correct.Play();
+        }
+
+        internal void PlayLeaf()
+        {
+            _leaf.Play();
         }
 
         private void SetSliderValues()

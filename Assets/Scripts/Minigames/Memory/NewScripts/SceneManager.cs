@@ -153,6 +153,7 @@ namespace MexiColeccion.Minigames.Memory
         internal void AfterClick(GameObject clickedCard)
         {
             Card revealedCard = clickedCard.GetComponent<Card>();
+            _soundManager.PlayLeaf();
             if (_firstRevealedCard == null && CanReveal)
             {
                 Debug.Log("REVEAL");
