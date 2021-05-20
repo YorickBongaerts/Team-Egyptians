@@ -15,6 +15,7 @@ namespace MexiColeccion.Minigames.Memory
         [SerializeField] private SoundManager _soundManager;
         [SerializeField] private Text _livesText;
         [SerializeField] private GameObject _confettiParticles;
+        [SerializeField] private Timer _timer;
 
         [SerializeField] private int _gridCols = 4;
         [SerializeField] private int _gridRows = 4;
@@ -261,6 +262,17 @@ namespace MexiColeccion.Minigames.Memory
         private void UpdateCardImage(Card card)
         {
             card.gameObject.GetComponent<Image>().sprite = card.ImageShow;
+        }
+
+        private bool _hasTimeRunOut = false;
+
+        private void Update()
+        {
+            if(_timer.RemainingTime <= 0 && !_hasTimeRunOut)
+            {
+                _gameOverManager.OnDefeat(_score);
+                _hasTimeRunOut = true;
+            }
         }
     }
 }

@@ -2575,6 +2575,7 @@ MonoBehaviour:
   _soundManager: {fileID: 1696248242}
   _livesText: {fileID: 1533732165}
   _confettiParticles: {fileID: 5524492519351102737, guid: 548c82675fc23404b8180fc19d2c973b, type: 3}
+  _timer: {fileID: 2047764232}
   _gridCols: 8
   _gridRows: 2
   _lives: 10
