@@ -16,8 +16,6 @@ namespace MexiColeccion.Minigames
         {
             _soundManager.PlayLose();
             
-            _quetziAnimator.SetBool("HasWon", CollectionDatabase.HasWon);
-
             if (CollectionDatabase.LastGameSceneName == CollectionDatabase.GetSceneName(Minigame.Memory))
             {
                 _scoreDisplay.text = CollectionDatabase.PlayerScore.ToString() + "/8";

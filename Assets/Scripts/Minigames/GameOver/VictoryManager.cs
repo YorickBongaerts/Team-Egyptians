@@ -16,6 +16,7 @@ namespace MexiColeccion.Minigames
         [SerializeField] private GameObject _confetti;
         [SerializeField] private float _timeBetweenConfetti;
         [SerializeField] private UIAnimator _uiAnimator;
+        [SerializeField] private Animator _quetziAnimator;
 
         private float confettiTimer;
 
@@ -36,13 +37,15 @@ namespace MexiColeccion.Minigames
             if (confettiTimer <= 0)
             {
                 confettiTimer = _timeBetweenConfetti;
+                _quetziAnimator.SetInteger("RandomWin", Random.Range(0, 3));
                 SpawnConfetti();
             }
         }
 
         private void SpawnConfetti()
         {
-            Instantiate(_confetti, Vector3.zero, Quaternion.identity);
+            GameObject confetti = Instantiate(_confetti, Vector3.zero, Quaternion.identity);
+            Destroy(confetti, 5f);
         }
 
         private void GetArtifact(List<string> artifactList)
