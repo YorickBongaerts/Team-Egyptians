@@ -4967,15 +4967,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1586538188}
     m_Modifications:
-<<<<<<< Updated upstream
     - target: {fileID: 6579091139434672279, guid: 562718af5a72cca478adaab783146803, type: 3}
-=======
-    - target: {fileID: 4618815776522568200, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4618815776522568202, guid: 9c95af6c221c75f4394f14057c2ae899, type: 3}
->>>>>>> Stashed changes
       propertyPath: m_Pivot.x
       value: 0.5
       objectReference: {fileID: 0}
