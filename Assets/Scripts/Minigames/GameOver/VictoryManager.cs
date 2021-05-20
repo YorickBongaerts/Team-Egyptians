@@ -13,39 +13,29 @@ namespace MexiColeccion.Minigames
         [SerializeField] private GameObject _nameObject;
         [SerializeField] private GameObject _artifactBackground;
         [SerializeField] private SoundManager _soundManager;
-        [SerializeField] private GameObject _confetti;
-        [SerializeField] private float _timeBetweenConfetti;
+        [SerializeField] private float _timeBetweenRandomWinSwitch;
         [SerializeField] private UIAnimator _uiAnimator;
         [SerializeField] private Animator _quetziAnimator;
 
-        private float confettiTimer;
+        private float _quetziTimer;
 
 
         private void Start()
         {
             _soundManager.PlayCollectArtifact();
 
-
-
             GetArtifact(CollectionDatabase.GetMinigameArtifactNames(CollectionDatabase.LastGameSceneName));
         }
 
         private void Update()
         {
-            confettiTimer -= Time.deltaTime;
+            _quetziTimer -= Time.deltaTime;
 
-            if (confettiTimer <= 0)
+            if (_quetziTimer <= 0)
             {
-                confettiTimer = _timeBetweenConfetti;
+                _quetziTimer = _timeBetweenRandomWinSwitch;
                 _quetziAnimator.SetInteger("RandomWin", Random.Range(0, 3));
-                SpawnConfetti();
             }
-        }
-
-        private void SpawnConfetti()
-        {
-            GameObject confetti = Instantiate(_confetti, Vector3.zero, Quaternion.identity);
-            Destroy(confetti, 5f);
         }
 
         private void GetArtifact(List<string> artifactList)
