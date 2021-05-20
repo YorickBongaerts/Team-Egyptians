@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1225429569987451659}
   - component: {fileID: 840372960}
   - component: {fileID: 4497950226005653520}
+  - component: {fileID: 8119018803544481424}
   m_Layer: 5
-  m_Name: PileOffLeaves
+  m_Name: PileOfLeaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,6 +82,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!222 &8119018803544481424
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225429569987451660}
+  m_CullTransparentMesh: 1
 --- !u!95 &1225429570494674403
 Animator:
   serializedVersion: 3
@@ -1219,14 +1228,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
---- !u!224 &5814088503335318708 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4732811533432586500, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
-  m_PrefabInstance: {fileID: 1225429571506337200}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5814088503335318711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4732811533432586503, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
+  m_PrefabInstance: {fileID: 1225429571506337200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5814088503335318708 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4732811533432586500, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
   m_PrefabInstance: {fileID: 1225429571506337200}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1225429571586629606
@@ -1433,14 +1442,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
---- !u!224 &5814088503129460140 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4732811533432586500, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
-  m_PrefabInstance: {fileID: 1225429571703786664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5814088503129460143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4732811533432586503, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
+  m_PrefabInstance: {fileID: 1225429571703786664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5814088503129460140 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4732811533432586500, guid: 1508fc6835dbc1f4191306b4023a2f67, type: 3}
   m_PrefabInstance: {fileID: 1225429571703786664}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5814088502828989653
