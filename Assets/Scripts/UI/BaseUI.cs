@@ -60,7 +60,10 @@ namespace MexiColeccion.UI
         {
             if (_isInOptions == true)
             {
-                Screen.sleepTimeout = SleepTimeout.NeverSleep;
+                if (LevelLoader.GetCurrentLevelName() != "MainHub")
+                {
+                    Screen.sleepTimeout = SleepTimeout.NeverSleep;
+                }
                 foreach (GameObject ui in _optionsUI)
                 {
                     ui.SetActive(false);

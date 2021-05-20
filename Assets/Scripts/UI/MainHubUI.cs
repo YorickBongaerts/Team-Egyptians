@@ -36,6 +36,7 @@ namespace MexiColeccion.UI
             _soundManager.PlayHubBGM();
             _camAnimator = _cam.GetComponent<Animator>();
             _artifactAnimator = _artifactViewer.GetComponent<Animator>();
+            Screen.sleepTimeout = SleepTimeout.SystemSetting;
         }
 
         // should be public in order to be called from inside the inspector

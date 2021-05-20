@@ -311,7 +311,7 @@ namespace MexiColeccion.Minigames.Teotihuacan
         {
             base.OnDragged(sender, e);
 
-            if (e.PointerInput.Delta.x > 0.5f || e.PointerInput.Delta.x < -0.5f || e.PointerInput.Delta.y > 0.5f || e.PointerInput.Delta.y < -0.5f)
+            if (e.PointerInput.Delta.x > 0.2f || e.PointerInput.Delta.x < -0.2f || e.PointerInput.Delta.y > 0.2f || e.PointerInput.Delta.y < -0.2f)
             {
                 _isPainting = true;
             }

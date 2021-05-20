@@ -20,6 +20,11 @@ namespace MexiColeccion.UI
 
         private bool _isDisplayingPainting = false;
 
+        private void Start()
+        {
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        }
+
         public void OnBrushColorChanged(Ink ink)
         {
             _soundManager.PlayButtonTap();
